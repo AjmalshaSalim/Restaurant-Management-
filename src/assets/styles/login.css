@@ -1,0 +1,107 @@
+@font-face {
+    font-family: poppins;
+    src: url(../font/PoppinsRegular-B2Bw.otf);
+  }
+.log-bg img{
+    width: 100%;
+}
+.login{
+    background-color: #010213;
+    background-image: url(../images/backgroundlog.jpg);
+    background-position: left;
+    background-repeat: no-repeat;
+    background-size: contain;
+
+}
+.form{
+    color: rgb(134, 134, 134);
+    border: 1px solid rgb(95, 95, 95);
+    border-radius: 10px;
+    padding: 10%;
+    margin: 10%;
+    margin-top: 15%;
+    margin-bottom: 17%;
+    background: transparent;
+    backdrop-filter: blur(8px);
+    font-family: poppins;
+}
+.form-control{
+    color: rgb(211, 211, 211);
+    background-color: transparent;
+    border-radius: 20px;
+    box-shadow: none;
+    border: 1px solid grey;
+    font-size: small;
+    padding: 2.5%;
+}
+.form-control:focus{
+    background-color: transparent;
+    color: rgb(211, 211, 211);
+    box-shadow: none;
+    outline: none;
+    border: 1px solid grey;
+    border-right: none !important;
+}
+.form-label{
+    color: white;
+    font-size: small;
+}
+.input-group-text{
+    background: transparent !important;
+  color: rgb(199, 199, 199);
+  border: 1px solid gray !important;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  border-left: none !important;
+}
+.form-password{
+    border-right: none;
+}
+.log-submit{
+    width: 100%;
+    font-size: small;
+    background-color: #582bff;
+    color: white;
+}
+.log-submit:hover{
+    background-color: #361a9c;
+    color: white;
+}
+.signin-p{
+    color: rgb(187, 184, 184);
+    font-size: small;
+    text-align: center;
+}
+.signin-a{
+    text-decoration: none;
+    margin-left: 2%;
+    color: white;
+    font-weight: 900;
+}
+.bi-lock-fill{
+    display: none;
+}
+form p {
+font-size: small;
+text-align: center;
+}
+.register{
+    background-color: #010213;
+    background-image: url(../images/backgroundreg.jpg);
+    background-position: left;
+    background-repeat: no-repeat;
+    background-size: contain;
+
+}
+.reg-form{
+    color: rgb(134, 134, 134);
+    border: 1px solid rgb(95, 95, 95);
+    border-radius: 10px;
+    padding: 5%;
+    margin-left: 2%;
+    margin-top: 8.9%;
+    margin-bottom: 8.9%;
+    background: transparent;
+    backdrop-filter: blur(8px);
+    font-family: poppins;
+}
