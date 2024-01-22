@@ -1,107 +1,152 @@
 @font-face {
     font-family: poppins;
     src: url(../font/PoppinsRegular-B2Bw.otf);
-  }
-.log-bg img{
+}
+
+.log-bg img {
     width: 100%;
 }
-.login{
+
+.login {
     background-color: #010213;
     background-image: url(../images/backgroundlog.jpg);
     background-position: left;
     background-repeat: no-repeat;
     background-size: contain;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+
 
 }
-.form{
+
+.form {
     color: rgb(134, 134, 134);
     border: 1px solid rgb(95, 95, 95);
-    border-radius: 10px;
+    border-radius: 5px;
     padding: 10%;
     margin: 10%;
-    margin-top: 15%;
-    margin-bottom: 17%;
+    margin-top: 10%;
+    margin-bottom: 10%;
     background: transparent;
     backdrop-filter: blur(8px);
     font-family: poppins;
 }
-.form-control{
+
+.form-control {
     color: rgb(211, 211, 211);
     background-color: transparent;
-    border-radius: 20px;
+    border-radius: 5px;
     box-shadow: none;
     border: 1px solid grey;
     font-size: small;
     padding: 2.5%;
 }
-.form-control:focus{
+
+.form-control:focus {
     background-color: transparent;
     color: rgb(211, 211, 211);
     box-shadow: none;
     outline: none;
     border: 1px solid grey;
+
+}
+
+.form-password:focus {
     border-right: none !important;
 }
-.form-label{
+
+.form-label {
     color: white;
     font-size: small;
 }
-.input-group-text{
+
+.input-group-text {
     background: transparent !important;
-  color: rgb(199, 199, 199);
-  border: 1px solid gray !important;
-  border-top-right-radius: 20px;
-  border-bottom-right-radius: 20px;
-  border-left: none !important;
+    color: rgb(199, 199, 199);
+    border: 1px solid gray !important;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-left: none !important;
 }
-.form-password{
+
+.form-password {
     border-right: none;
 }
-.log-submit{
+
+.log-submit {
     width: 100%;
     font-size: small;
     background-color: #582bff;
     color: white;
+    width: 90%;
 }
-.log-submit:hover{
+
+.log-submit:hover {
     background-color: #361a9c;
     color: white;
 }
-.signin-p{
+
+.signin-p {
     color: rgb(187, 184, 184);
     font-size: small;
     text-align: center;
+    text-decoration: none;
 }
-.signin-a{
+
+.signin-a {
     text-decoration: none;
     margin-left: 2%;
     color: white;
     font-weight: 900;
 }
-.bi-lock-fill{
+
+.bi-lock-fill {
     display: none;
 }
+
 form p {
-font-size: small;
-text-align: center;
+    font-size: small;
+    text-align: center;
 }
-.register{
+
+.register {
     background-color: #010213;
     background-image: url(../images/backgroundreg.jpg);
     background-position: left;
     background-repeat: no-repeat;
     background-size: contain;
-
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-.reg-form{
+
+.reg-form {
     color: rgb(134, 134, 134);
     border: 1px solid rgb(95, 95, 95);
-    border-radius: 10px;
+    border-radius: 5px;
     padding: 5%;
     margin-left: 2%;
-    margin-top: 8.9%;
-    margin-bottom: 8.9%;
+    margin-top: 8.5%;
+    margin-bottom: 8.5%;
     background: transparent;
     backdrop-filter: blur(8px);
     font-family: poppins;
 }
+.select-goal{
+    background-color: #010213 !important;
+    color: white !important;
+    border-radius: 1px solid white !important;
+    outline: none !important;
+    font-family:poppins !important ;
+}
+.goal-option{
+    font-family:poppins !important ;
+}
+/* .select-goal:focus{
+    outline: none !important;
+    box-shadow: none !important;
+    border:  none !important;
+} */
