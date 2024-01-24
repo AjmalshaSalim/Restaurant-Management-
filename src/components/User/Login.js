@@ -1,5 +1,7 @@
 import { NavLink } from "react-router-dom"
 import "../../assets/styles/login.css"
+import Swal from 'sweetalert2';
+
 
 import { useState } from "react"
 import $ from "jquery"
@@ -21,7 +23,7 @@ let Login = () => {
         })
     })
     let handleSubmit = (e) => {
-        if (log.number == "" || log.password == "") {
+        if (log.number === "" || log.password === "") {
             alert('fill the fields')
         }
         else {
@@ -67,7 +69,7 @@ let Login = () => {
                                     <button type="submit" className="btn log-submit">SIGN IN</button>
                                 </div>
                                 <div className="text-center mb-3">
-                                    <NavLink to="" className="signin-p">Forget password ?</NavLink>
+                                    <NavLink to="/Forgetpassword" className="signin-p">Forget password ?</NavLink>
                                 </div>
                                 <p className="signin-p">Don't you have an account?<NavLink to="/Register" className="signin-a">Sign Up</NavLink></p>
                             </form>
