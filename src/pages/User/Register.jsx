@@ -2,7 +2,7 @@ import { useState } from "react"
 import { NavLink } from "react-router-dom"
 import "../../assets/styles/login.css"
 import Swal from 'sweetalert2';
-import $, { event } from "jquery"
+import $ from "jquery"
 
 let Register = () => {
     const [account, setAccount] = useState({
@@ -61,7 +61,7 @@ let Register = () => {
                     <div className="col-12 col-xl-6 col-md-12 col-lg-6 col-xxl-6 col-sm-12 ">
                         <div className="reg-form">
                             <div className="brand-logo-register">
-                                <img src="" />
+                                <img src="" alt=""/>
                             </div>
                             <h2 className="text-center text-light">Register Now</h2>
                             <form className="login-form" onSubmit={handleSubmit}>
