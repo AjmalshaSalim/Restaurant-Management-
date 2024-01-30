@@ -1,4 +1,3 @@
-import { NavLink } from "react-router-dom"
 import "../../assets/styles/login.css"
 import Swal from 'sweetalert2';
 
@@ -9,7 +8,7 @@ let Forgetpassword=()=>{
         number: ""
     })
     let handleSubmit = (e) => {
-        if (forget.number == "") {
+        if (forget.number === "") {
             Swal.fire('Password doesnot matching'); 
         }
         else {
@@ -34,7 +33,7 @@ let Forgetpassword=()=>{
                     <div className="col-12 col-xl-6 col-md-12 col-lg-6 col-xxl-6 col-sm-12 ">
                         <div className="form">
                             <div className="brand-logo-login">
-                                <img src="" />
+                                <img src="" alt=""/>
                             </div>
                             <h2 className="text-center text-light">Forget Password</h2>
                             <form className="login-form" onSubmit={handleSubmit} action="/Otp">

@@ -1,9 +1,9 @@
 import { BrowserRouter as Router,Route,Routes } from "react-router-dom"
-import Login from "../components/User/Login"
-import Register from "../components/User/Register"
-import Forgetpassword from "../components/User/Forgetpassword"
-import Otp from "../components/User/Otp"
-import Changepassword from "../components/User/Changepassword"
+import Login from "../pages/User/Login"
+import Register from "../pages/User/Register"
+import Forgetpassword from "../pages/User/Forgetpassword"
+import Otp from "../pages/User/Otp"
+import Changepassword from "../pages/User/Changepassword"
 let Routers = () => {
     return (
         <div className="Route">
