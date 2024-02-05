@@ -96,8 +96,8 @@ console.log(Avatar);
 }
 
 Sidenav.defaultProps = {
-  brandImg: "/img/logo-ct.png",
-  brandName: "Material Tailwind React",
+  brandImg: "/img/Achu.jpeg",
+  brandName: "Gymsoft",
 };
 
 Sidenav.propTypes = {

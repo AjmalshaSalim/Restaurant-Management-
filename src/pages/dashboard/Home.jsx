@@ -72,14 +72,14 @@ export function Home() {
           >
             <div>
               <Typography variant="h6" color="blue-gray" className="mb-1">
-                Projects
+                Today's Attendance
               </Typography>
               <Typography
                 variant="small"
                 className="flex items-center gap-1 font-normal text-blue-gray-600"
               >
                 <CheckCircleIcon strokeWidth={3} className="h-4 w-4 text-blue-gray-200" />
-                <strong>30 done</strong> this month
+                <strong>5 Members</strong> Present Today
               </Typography>
             </div>
             <Menu placement="left-start">
@@ -103,7 +103,7 @@ export function Home() {
             <table className="w-full min-w-[640px] table-auto">
               <thead>
                 <tr>
-                  {["companies", "members", "budget", "completion"].map(
+                  {["Members", "Time", "Status", "Progress"].map(
                     (el) => (
                       <th
                         key={el}
@@ -198,7 +198,7 @@ export function Home() {
             className="m-0 p-6"
           >
             <Typography variant="h6" color="blue-gray" className="mb-2">
-              Orders Overview
+              Todo List
             </Typography>
             <Typography
               variant="small"

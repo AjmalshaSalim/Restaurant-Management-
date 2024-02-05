@@ -164,11 +164,11 @@ export function Configurator() {
               </Button>
             </a>
             <a
-              href="https://www.material-tailwind.com/blocks/react?rel=mtdr"
+              href="#"
               target="_black"
             >
               <Button variant="outlined" color="blue-gray" fullWidth>
-                Material Tailwind PRO
+                Gymsoft PRO
               </Button>
             </a>
           </div>

@@ -109,7 +109,7 @@ export function DashboardNavbar() {
             <MenuList className="w-max border-0">
               <MenuItem className="flex items-center gap-3">
                 <Avatar
-                  src="https://demos.creative-tim.com/material-dashboard/assets/img/team-2.jpg"
+                  src="https://avatars.githubusercontent.com/u/98327654?v=4"
                   alt="item-1"
                   size="sm"
                   variant="circular"
@@ -120,7 +120,7 @@ export function DashboardNavbar() {
                     color="blue-gray"
                     className="mb-1 font-normal"
                   >
-                    <strong>New message</strong> from Laur
+                    <strong>New Payment Request</strong> from Achu
                   </Typography>
                   <Typography
                     variant="small"
@@ -133,7 +133,7 @@ export function DashboardNavbar() {
               </MenuItem>
               <MenuItem className="flex items-center gap-4">
                 <Avatar
-                  src="https://demos.creative-tim.com/material-dashboard/assets/img/small-logos/logo-spotify.svg"
+                  src="https://avatars.githubusercontent.com/u/123806799?v=4"
                   alt="item-1"
                   size="sm"
                   variant="circular"
@@ -144,7 +144,7 @@ export function DashboardNavbar() {
                     color="blue-gray"
                     className="mb-1 font-normal"
                   >
-                    <strong>New album</strong> by Travis Scott
+                    <strong>New Enquiry</strong> From Ajmalsha
                   </Typography>
                   <Typography
                     variant="small"
@@ -165,7 +165,7 @@ export function DashboardNavbar() {
                     color="blue-gray"
                     className="mb-1 font-normal"
                   >
-                    Payment successfully completed
+                    Payment Confirmed successfully
                   </Typography>
                   <Typography
                     variant="small"
