@@ -35,7 +35,7 @@ export function Profile() {
           <div className="mb-10 flex items-center justify-between flex-wrap gap-6">
             <div className="flex items-center gap-6">
               <Avatar
-                src="/img/bruce-mars.jpeg"
+                src="/img/Achu.jpeg"
                 alt="bruce-mars"
                 size="xl"
                 variant="rounded"
@@ -43,13 +43,13 @@ export function Profile() {
               />
               <div>
                 <Typography variant="h5" color="blue-gray" className="mb-1">
-                  Richard Davis
+                  Achu Joseph
                 </Typography>
                 <Typography
                   variant="small"
                   className="font-normal text-blue-gray-600"
                 >
-                  CEO / Co-Founder
+                  Software Developer
                 </Typography>
               </div>
             </div>
@@ -58,15 +58,15 @@ export function Profile() {
                 <TabsHeader>
                   <Tab value="app">
                     <HomeIcon className="-mt-1 mr-2 inline-block h-5 w-5" />
-                    App
+                    About
                   </Tab>
                   <Tab value="message">
                     <ChatBubbleLeftEllipsisIcon className="-mt-0.5 mr-2 inline-block h-5 w-5" />
-                    Message
+                    Details
                   </Tab>
                   <Tab value="settings">
                     <Cog6ToothIcon className="-mt-1 mr-2 inline-block h-5 w-5" />
-                    Settings
+                    Payments
                   </Tab>
                 </TabsHeader>
               </Tabs>
@@ -75,7 +75,7 @@ export function Profile() {
           <div className="gird-cols-1 mb-12 grid gap-12 px-4 lg:grid-cols-2 xl:grid-cols-3">
             <div>
               <Typography variant="h6" color="blue-gray" className="mb-3">
-                Platform Settings
+                
               </Typography>
               <div className="flex flex-col gap-12">
                 {platformSettingsData.map(({ title, options }) => (
@@ -124,7 +124,7 @@ export function Profile() {
             />
             <div>
               <Typography variant="h6" color="blue-gray" className="mb-3">
-                Platform Settings
+               Personal Trainers
               </Typography>
               <ul className="flex flex-col gap-6">
                 {conversationsData.map((props) => (
@@ -141,7 +141,7 @@ export function Profile() {
               </ul>
             </div>
           </div>
-          <div className="px-4 pb-4">
+          {/* <div className="px-4 pb-4">
             <Typography variant="h6" color="blue-gray" className="mb-2">
               Projects
             </Typography>
@@ -213,7 +213,7 @@ export function Profile() {
                 )
               )}
             </div>
-          </div>
+          </div> */}
         </CardBody>
       </Card>
     </>

@@ -93,9 +93,9 @@ export function Home() {
                 </IconButton>
               </MenuHandler>
               <MenuList>
-                <MenuItem>Action</MenuItem>
-                <MenuItem>Another Action</MenuItem>
-                <MenuItem>Something else here</MenuItem>
+                <MenuItem>Add Attendance</MenuItem>
+                <MenuItem>Weekly Attendance</MenuItem>
+                <MenuItem>Monthly Attendance</MenuItem>
               </MenuList>
             </Menu>
           </CardHeader>
