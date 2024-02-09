@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import { Link, NavLink } from "react-router-dom";
 import { XMarkIcon } from "@heroicons/react/24/outline";
+import Logo from "../../assets/images/Gymsoft_Logo.jpg"
 import {
   Avatar,
   Button,
@@ -27,12 +28,15 @@ console.log(Avatar);
       <div
         className={`relative`}
       >
+        <div className=" w-full">
+        <img src={Logo} alt="Gymsoft" className=" px-5 pt-2"/>
+        </div>
         <Link to="/" className="py-6 px-8 text-center">
           <Typography
             variant="h6"
             color={sidenavType === "dark" ? "white" : "blue-gray"}
           >
-            {brandName}
+            {/* {brandName} */}
           </Typography>
         </Link>
         <IconButton
@@ -96,8 +100,8 @@ console.log(Avatar);
 }
 
 Sidenav.defaultProps = {
-  brandImg: "/img/Achu.jpeg",
-  brandName: "Gymsoft",
+  brandImg: "/img/Gymsoft_Logo.jpg",
+  brandName: "Gymsoft--",
 };
 
 Sidenav.propTypes = {
