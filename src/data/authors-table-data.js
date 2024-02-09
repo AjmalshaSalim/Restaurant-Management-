@@ -16,7 +16,7 @@ export const authorsTableData = [
     date: "11/01/19",
   },
   {
-    img: "/img/team-4.jpeg",
+    img: "/img/Achu.jpeg",
     name: "Laurent Perrier",
     email: "laurent@creative-tim.com",
     job: ["Executive", "Projects"],

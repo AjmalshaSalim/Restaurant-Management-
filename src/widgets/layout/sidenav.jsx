@@ -13,7 +13,7 @@ export function Sidenav({ brandImg, brandName, routes }) {
   const [controller, dispatch] = useMaterialTailwindController();
   const { sidenavColor, sidenavType, openSidenav } = controller;
   const sidenavTypes = {
-    dark: "bg-gradient-to-br from-gray-800 to-gray-900",
+    dark: "bg-black to-orange-500",
     white: "bg-white shadow-sm",
     transparent: "bg-transparent",
   };
@@ -96,8 +96,8 @@ console.log(Avatar);
 }
 
 Sidenav.defaultProps = {
-  brandImg: "/img/logo-ct.png",
-  brandName: "Material Tailwind React",
+  brandImg: "/img/Achu.jpeg",
+  brandName: "Gymsoft",
 };
 
 Sidenav.propTypes = {
