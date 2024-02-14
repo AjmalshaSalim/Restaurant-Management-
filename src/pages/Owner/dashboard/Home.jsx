@@ -17,13 +17,13 @@ import {
   EllipsisVerticalIcon,
   ArrowUpIcon,
 } from "@heroicons/react/24/outline";
-import { StatisticsCard } from "../../widgets/cards/statistics-card";
-import { StatisticsChart } from "../../widgets/charts/statistics-chart";
-import {statisticsCardsData} from "../../data/statistics-cards-data";
-import {statisticsChartsData} from "../../data/statistics-charts-data"
+import { StatisticsCard } from "../../../widgets/cards/statistics-card";
+import { StatisticsChart } from "../../../widgets/charts/statistics-chart";
+import {statisticsCardsData} from "../../../data/statistics-cards-data";
+import {statisticsChartsData} from "../../../data/statistics-charts-data"
 import { CheckCircleIcon, ClockIcon } from "@heroicons/react/24/solid";
-import { projectsTableData} from "../../data/projects-table-data";
-import { ordersOverviewData } from "../../data/orders-overview-data"
+import { projectsTableData} from "../../../data/projects-table-data";
+import { ordersOverviewData } from "../../../data/orders-overview-data"
 export function Home() {
   return (
     <div className="mt-12">

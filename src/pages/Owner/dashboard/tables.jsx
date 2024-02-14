@@ -9,8 +9,8 @@ import {
   Progress,
 } from "@material-tailwind/react";
 import { EllipsisVerticalIcon } from "@heroicons/react/24/outline";
-import { authorsTableData } from "../../data/authors-table-data";
-import { projectsTableData } from "../../data/projects-table-data";
+import { authorsTableData } from "../../../data/authors-table-data";
+import { projectsTableData } from "../../../data/projects-table-data";
 
 export function Tables() {
   return (
