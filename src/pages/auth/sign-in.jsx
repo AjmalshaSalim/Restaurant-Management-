@@ -1,3 +1,5 @@
+import React, { useState } from "react";
+import axios from "./../../axios";
 import {
   Card,
   Input,
@@ -9,6 +11,18 @@ import { Link } from "react-router-dom";
 
 
 export function SignIn() {
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [password, setPassword] = useState("");
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post("/api/login/", { phoneNumber, password });
+      console.log("Login successful:", response.data);
+    } catch (error) {
+      console.error("Login failed:", error);
+    }
+  };
+
   return (
     <section className="m-8 flex gap-4">
       <div className="w-full lg:w-3/5 mt-24">
@@ -16,19 +30,21 @@ export function SignIn() {
           <Typography variant="h2" className="font-bold mb-4">Sign In</Typography>
           <Typography variant="paragraph" color="blue-gray" className="text-lg font-normal">Enter your email and password to Sign In.</Typography>
         </div>
-        <form className="mt-8 mb-2 mx-auto w-80 max-w-screen-lg lg:w-1/2">
+        <form className="mt-8 mb-2 mx-auto w-80 max-w-screen-lg lg:w-1/2" onSubmit={handleSubmit}>
           <div className="mb-1 flex flex-col gap-6">
             <Typography variant="small" color="blue-gray" className="-mb-3 font-medium">
-              Your email
+              Your phone number
             </Typography>
             <Input
-              size="lg"
-              placeholder="name@mail.com"
-              className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
-              labelProps={{
-                className: "before:content-none after:content-none",
-              }}
-            />
+    size="lg"
+    placeholder="Phone number"
+    className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
+    labelProps={{
+        className: "before:content-none after:content-none",
+    }}
+    value={phoneNumber}
+    onChange={(e) => setPhoneNumber(e.target.value)}
+/>
             <Typography variant="small" color="blue-gray" className="-mb-3 font-medium">
               Password
             </Typography>
@@ -40,6 +56,8 @@ export function SignIn() {
               labelProps={{
                 className: "before:content-none after:content-none",
               }}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
           <Checkbox
@@ -60,9 +78,10 @@ export function SignIn() {
             }
             containerProps={{ className: "-ml-2.5" }}
           />
-          <Button className="mt-6" fullWidth>
+          <Button type="submit" className="mt-6" fullWidth>
             Sign In
           </Button>
+
 
           <div className="flex items-center justify-between gap-2 mt-6">
             <Checkbox
