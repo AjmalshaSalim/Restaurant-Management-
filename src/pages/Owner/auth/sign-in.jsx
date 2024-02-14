@@ -1,3 +1,4 @@
+import BackgroundImage from "../../../assets/images/backgroundlog.jpg"
 import {
   Card,
   Input,
@@ -19,11 +20,10 @@ export function SignIn() {
         <form className="mt-8 mb-2 mx-auto w-80 max-w-screen-lg lg:w-1/2">
           <div className="mb-1 flex flex-col gap-6">
             <Typography variant="small" color="blue-gray" className="-mb-3 font-medium">
-              Your email
+              Your Mobile Number
             </Typography>
             <Input
               size="lg"
-              placeholder="name@mail.com"
               className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
               labelProps={{
                 className: "before:content-none after:content-none",
@@ -65,18 +65,6 @@ export function SignIn() {
           </Button>
 
           <div className="flex items-center justify-between gap-2 mt-6">
-            <Checkbox
-              label={
-                <Typography
-                  variant="small"
-                  color="gray"
-                  className="flex items-center justify-start font-medium"
-                >
-                  Subscribe me to newsletter
-                </Typography>
-              }
-              containerProps={{ className: "-ml-2.5" }}
-            />
             <Typography variant="small" className="font-medium text-gray-900">
               <a href="#">
                 Forgot Password
@@ -100,10 +88,6 @@ export function SignIn() {
               </svg>
               <span>Sign in With Google</span>
             </Button>
-            <Button size="lg" color="white" className="flex items-center gap-2 justify-center shadow-md" fullWidth>
-              <img src="/img/twitter-logo.svg" height={24} width={24} alt="" />
-              <span>Sign in With Twitter</span>
-            </Button>
           </div>
           <Typography variant="paragraph" className="text-center text-blue-gray-500 font-medium mt-4">
             Not registered?
@@ -114,8 +98,7 @@ export function SignIn() {
       </div>
       <div className="w-2/5 h-full hidden lg:block">
         <img
-          src="/img/pattern.png"
-          // src="/img/backgroundlog.jpg"
+          src={BackgroundImage} alt="BackgroundImage"
           className="h-full w-full object-cover rounded-3xl"
         />
       </div>
