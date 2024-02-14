@@ -6,12 +6,12 @@ import {
   ServerStackIcon,
   RectangleStackIcon,
 } from "@heroicons/react/24/solid";
-import {Home} from "../src/pages/dashboard/Home";
-import {Profile} from "../src/pages/dashboard/profile";
-import {Tables} from "../src/pages/dashboard/tables";
-import {Notifications} from "../src/pages/dashboard/notifications";
-import { SignIn} from "../src/pages/auth/sign-in";
-import { SignUp } from "../src/pages/auth/sign-up";
+import {Home} from "./pages/Owner/dashboard/Home";
+import {Profile} from "./pages/Owner/dashboard/profile";
+import {Tables} from "./pages/Owner/dashboard/tables";
+import {Notifications} from "./pages/Owner/dashboard/notifications";
+import { SignIn} from "./pages/Owner/auth/sign-in";
+import { SignUp } from "./pages/Owner/auth/sign-up";
 
 const icon = {
   className: "w-5 h-5 text-inherit",
