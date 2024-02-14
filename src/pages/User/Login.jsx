@@ -1,82 +1,50 @@
-import { NavLink } from "react-router-dom"
-import "../../assets/styles/login.css"
+
+import BackgroundImage from '../../assets/images/bgImageUser.jpg'
+import logo from '../../assets/images/Gymsoft_Logo1-removebg-preview.png'
+
+function Login() {
 
 
-import { useState } from "react"
-import $ from "jquery"
-let Login = () => {
-    const [log, setLog] = useState({
-        number: "",
-        password: ""
-    })
-    $(document).ready(function () {
-        $(".bi-unlock-fill").click(function () {
-            $(".bi-unlock-fill").hide();
-            $(".bi-lock-fill").show();
-            $(".form-password").attr("type", "password")
-        })
-        $(".bi-lock-fill").click(function () {
-            $(".bi-lock-fill").hide();
-            $(".bi-unlock-fill").show();
-            $(".form-password").attr("type", "text")
-        })
-    })
-    let handleSubmit = (e) => {
-        if (log.number === "" || log.password === "") {
-            alert('fill the fields')
-        }
-        else {
-            // document.getElementById("password").type = "password";
-            alert("submitted")
-        }
-    }
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setLog((prevLog) => ({
-            ...prevLog,
-            [name]: value,
-        }));
-    };
+
     return (
-        <div className="login">
-            <div className="container">
-                <div className="row">
-                    <div className="col-12 col-xl-6 col-md-12 col-lg-6 col-xxl-6 col-sm-12 ">
-                        <div className="log-bg">
-                        </div>
-                    </div>
-                    <div className="col-12 col-xl-6 col-md-12 col-lg-6 col-xxl-6 col-sm-12 ">
-                        <div className="form">
-                            <div className="brand-logo-login">
-                                <img src="" alt=""/>
-                            </div>
-                            <h2 className="text-center text-light">Sign in</h2>
-                            <form className="login-form" onSubmit={handleSubmit}>
-                                <p>Enter your number and password to signin</p>
-                                <div className="mb-3">
-                                    <label className="form-label">Phone Number</label>
-                                    <input type="tel" className="form-control" placeholder="Your Mobile number" name="number" value={log.number} required onChange={handleChange} />
-                                </div>
-                                <div className="mb-3">
-                                    <label className="form-label">Password</label>
-                                    <div className="input-group">
-                                        <input type="text" className="form-control form-password" placeholder="Your password" name="password" id="password" value={log.password} required onChange={handleChange} />
-                                        <span className="input-group-text"><i class="bi bi-unlock-fill"></i><i class="bi bi-lock-fill"></i></span>
-                                    </div>
-                                </div>
-                                <div className="mb-3 text-center">
-                                    <button type="submit" className="btn log-submit">SIGN IN</button>
-                                </div>
-                                <div className="text-center mb-3">
-                                    <NavLink to="/Forgetpassword" className="signin-p">Forget password ?</NavLink>
-                                </div>
-                                <p className="signin-p">Don't you have an account?<NavLink to="/Register" className="signin-a">Sign Up</NavLink></p>
-                            </form>
-                        </div>
-                    </div>
-                </div>
+<div className="relative h-screen">
+    {/* Background Image */}
+    <img className="absolute inset-0 w-full h-full object-cover" src={BackgroundImage} alt="bg-image" />
+
+    {/* Overlay */}
+    <div className="absolute inset-0 bg-gradient-to-br from-black to-gray-800 opacity-60"></div>
+
+    {/* Content */}
+    <div className="absolute inset-0 flex flex-col justify-center items-center">
+        <img className='h-auto w-[200px] md:w-[300px] ml-2 mt-2 absolute left-2 top-8' src={logo} alt='' />
+        <form className='flex flex-col gap-2'>
+            <h1 className="text-white text-3xl md:text-6xl font-semibold ml-4 md:ml-20 mb-4">Sign In</h1>
+            <div className="mt-4 text-white">
+                <input 
+                    type="text" 
+                    className="border border-gray-300 px-6 md:px-20 py-2 rounded-3xl mb-4 focus:outline-none" 
+                    placeholder='Enter your phone number' 
+                />
+                <button 
+                    className='bg-red-500 text-white rounded-full px-5 py-2 flex ml-4 md:ml-24 cursor-pointer' 
+                    type='button'
+                >
+                    Sign In
+                </button>
             </div>
-        </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
     )
 }
+
 export default Login
