@@ -1,56 +1,9 @@
-import { useState } from "react"
-import { NavLink } from "react-router-dom"
-import "../../assets/styles/login.css"
-import Swal from 'sweetalert2';
-import $ from "jquery"
-
-let Register = () => {
-    const [account, setAccount] = useState({
-        username: "",
-        fullname: "",
-        newpassword: "",
-        confirmpassword: "",
-        phonenumber: "",
-        goal: "",
-        email: ""
-    })
-    let goal = ["training", "weight loss", "weight gain"]
-    $(document).ready(function () {
-        $(".bi-unlock-fill").click(function () {
-            $(".bi-unlock-fill").hide();
-            $(".bi-lock-fill").show();
-            $(".form-password").attr("type", "password")
-        })
-        $(".bi-lock-fill").click(function () {
-            $(".bi-lock-fill").hide();
-            $(".bi-unlock-fill").show();
-            $(".form-password").attr("type", "text")
-        })
-    })
-    let handleSubmit = (e) => {
-        if (account.username === "" ||
-            account.fullname === " " ||
-            account.newpassword === " " || account.confirmpassword === ""
-            || account.phonenumber === " " || account.goal === ""
-            || account.newpassword !== account.confirmpassword
-            || account.email === "") {
-            Swal.fire('Password doesnot matching');
-            e.preventDefault();
-        }
-
-        else {
-            console.log(account.username, account.fullname, account.email, account.newpassword, account.confirmpassword, account.goal, account.phonenumber)
-            Swal.fire("Successfully Registered");
-        }
-    }
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setAccount((prevLog) => ({
-            ...prevLog,
-            [name]: value,
-        }));
-    };
+function Register() {
     return (
+<<<<<<< HEAD
+        <div>
+            register
+=======
         <div className="register">
             <div className="container">
                 <div className="row">
@@ -132,7 +85,9 @@ let Register = () => {
                     </div>
                 </div>
             </div>
+>>>>>>> 5c5fbfc111395d04379b602dc6ea4c70192e8d89
         </div>
     )
 }
+
 export default Register
