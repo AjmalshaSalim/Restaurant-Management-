@@ -1,4 +1,4 @@
-import BackgroundImage from "../../../assets/images/backgroundlog.jpg"
+import BackgroundImage from "../../../assets/images/BackgroundForg.jpg"
 import Logo from "../../../assets/images/Gymsoft_Logo1.jpg"
 import {
   Card,
@@ -10,12 +10,12 @@ import {
 import { Link } from "react-router-dom";
 
 
-export function SignIn() {
+export function ForgotPassword() {
   return (
     <section className="m-8 flex gap-4">
       <div className="w-full lg:w-3/5 mt-24">
         <div className="text-center">
-          <Typography variant="h2" className="font-bold mb-4">Sign In</Typography>
+          <Typography variant="h2" className="font-bold mb-4">Forgot Password</Typography>
          
         </div>
         <form className="mt-8 mb-2 mx-auto w-80 max-w-screen-lg lg:w-1/2">
@@ -30,18 +30,7 @@ export function SignIn() {
                 className: "before:content-none after:content-none",
               }}
             />
-            <Typography variant="small" color="blue-gray" className="-mb-3 font-medium">
-              Password
-            </Typography>
-            <Input
-              type="password"
-              size="lg"
-              placeholder="********"
-              className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
-              labelProps={{
-                className: "before:content-none after:content-none",
-              }}
-            />
+           
           </div>
           {/* <Checkbox
             label={
@@ -61,14 +50,16 @@ export function SignIn() {
             }
             containerProps={{ className: "-ml-2.5" }}
           /> */}
+          <Link to="/auth/Reset-pw">
           <Button className="mt-6" fullWidth>
-            Sign In
+            Send OTP
           </Button>
-          <Link to="/auth/Forgot-pw">
-          <Button className="mt-6" fullWidth >
-            Forgot Password
+          </Link>
+          <Link to="/auth/sign-in">
+          <Button className="mt-6" fullWidth>
+          Back to Sign In
           </Button>
-          </Link>  
+          </Link>
           {/* <div className="space-y-4 mt-8">
             <Button size="lg" color="white" className="flex items-center gap-2 justify-center shadow-md" fullWidth>
               <svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -87,10 +78,10 @@ export function SignIn() {
               <span>Sign in With Google</span>
             </Button>
           </div> */}
-          <Typography variant="paragraph" className="text-center text-blue-gray-500 font-medium mt-4">
+          {/* <Typography variant="paragraph" className="text-center text-blue-gray-500 font-medium mt-4">
             Not registered?
             <Link to="/auth/sign-up" className="text-gray-900 ml-1">Create account</Link>
-          </Typography>
+          </Typography> */}
         </form>
 
       </div>
@@ -106,4 +97,4 @@ export function SignIn() {
   );
 }
 
-export default SignIn;
+export default ForgotPassword;

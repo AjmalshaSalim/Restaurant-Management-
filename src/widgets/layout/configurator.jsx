@@ -50,7 +50,7 @@ export function Configurator() {
   const sidenavColors = {
     white: "from-gray-100 to-gray-100 border-gray-200",
     dark: "from-red-500 to-orange-500 border-gray-200",
-    green: "from-green-500 to-green-700",
+    green: "from-red-500 to-green-700",
     orange: "from-orange-400 to-orange-600",
     red: "from-red-600 to-red-800",
     pink: "from-red-500 to-red-700",

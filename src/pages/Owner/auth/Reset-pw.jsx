@@ -1,4 +1,4 @@
-import BackgroundImage from "../../../assets/images/backgroundlog.jpg"
+import BackgroundImage from "../../../assets/images/BackgroundOtp.jpg"
 import Logo from "../../../assets/images/Gymsoft_Logo1.jpg"
 import {
   Card,
@@ -10,18 +10,18 @@ import {
 import { Link } from "react-router-dom";
 
 
-export function SignIn() {
+export function ResetPwd() {
   return (
     <section className="m-8 flex gap-4">
       <div className="w-full lg:w-3/5 mt-24">
         <div className="text-center">
-          <Typography variant="h2" className="font-bold mb-4">Sign In</Typography>
+          <Typography variant="h2" className="font-bold mb-4">Reset Password</Typography>
          
         </div>
         <form className="mt-8 mb-2 mx-auto w-80 max-w-screen-lg lg:w-1/2">
           <div className="mb-1 flex flex-col gap-6">
             <Typography variant="small" color="blue-gray" className="-mb-3 font-medium">
-              Mobile Number
+              New Password
             </Typography>
             <Input
               size="lg"
@@ -31,7 +31,7 @@ export function SignIn() {
               }}
             />
             <Typography variant="small" color="blue-gray" className="-mb-3 font-medium">
-              Password
+              Re-enter Password
             </Typography>
             <Input
               type="password"
@@ -62,13 +62,20 @@ export function SignIn() {
             containerProps={{ className: "-ml-2.5" }}
           /> */}
           <Button className="mt-6" fullWidth>
-            Sign In
+            Submit
           </Button>
-          <Link to="/auth/Forgot-pw">
-          <Button className="mt-6" fullWidth >
-            Forgot Password
+          <Link to="/auth/sign-in">
+          <Button className="mt-6" fullWidth>
+          Back to Signup
           </Button>
           </Link>  
+          <div className="flex items-center justify-between gap-2 mt-6">
+            {/* <Typography variant="small" className="font-medium text-gray-900">
+              <a href="#">
+                Forgot Password
+              </a>
+            </Typography> */}
+          </div>
           {/* <div className="space-y-4 mt-8">
             <Button size="lg" color="white" className="flex items-center gap-2 justify-center shadow-md" fullWidth>
               <svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -87,10 +94,10 @@ export function SignIn() {
               <span>Sign in With Google</span>
             </Button>
           </div> */}
-          <Typography variant="paragraph" className="text-center text-blue-gray-500 font-medium mt-4">
+          {/* <Typography variant="paragraph" className="text-center text-blue-gray-500 font-medium mt-4">
             Not registered?
             <Link to="/auth/sign-up" className="text-gray-900 ml-1">Create account</Link>
-          </Typography>
+          </Typography> */}
         </form>
 
       </div>
@@ -98,7 +105,7 @@ export function SignIn() {
       <img src={Logo} alt="" className=" w-[200px] absolute p-2" />
         <img
           src={BackgroundImage} alt="BackgroundImage"
-          className="h-[600px] w-[600px]  object-cover rounded-3xl"
+          className="h-[600px] w-[600px] object-cover rounded-3xl"
         />
       </div>
 
@@ -106,4 +113,4 @@ export function SignIn() {
   );
 }
 
-export default SignIn;
+export default ResetPwd;
