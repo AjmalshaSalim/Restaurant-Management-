@@ -90,7 +90,7 @@ let Register = () => {
                                         <div className="col-12 col-xl-6 col-md-12 col-lg-6 col-xxl-6 col-sm-12 ">
                                             <div className="mb-3">
                                                 <label className="form-label">Email Id</label>
-                                                <input type="email" className="form-control" placeholder="Your Email ID" required onChange={handleChange} name="email" value={account.email} />
+                                                <input type="email" className="form-control" placeholder="" required onChange={handleChange} name="email" value={account.email} />
                                             </div>
                                         </div>
                                     </div>
