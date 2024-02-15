@@ -1,7 +1,9 @@
 
 
-const Demo_API_PATH = '/demo';
+const LOGIN_API_PATH = '/api/login/'
+
 
 export const API_URLS = {
-    DEMO_PATH: `${Demo_API_PATH}`,
+    LOGIN_API_PATH: `${LOGIN_API_PATH}`,
 }
+
