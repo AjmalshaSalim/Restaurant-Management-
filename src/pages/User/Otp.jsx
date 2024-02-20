@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import BackgroundImage from '../../assets/images/bgImageUser.jpg';
 import logo from '../../assets/images/Gymsoft_Logo1-removebg-preview.png';
 import { useRef, useState,useEffect } from 'react';
@@ -7,6 +7,9 @@ import axios from 'axios';
 
 
 function Otp() {
+    const location = useLocation();
+    const { phonenumber } = location.state;
+    console.log(phonenumber);
     const [otp,setOtp]=useState('')
     const [minutes,setMinutes]=useState(1)
     const [seconds,setSeconds]=useState(30)

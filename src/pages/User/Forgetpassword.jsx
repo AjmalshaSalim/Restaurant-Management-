@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import BackgroundImage from '../../assets/images/bgImageUser.jpg';
 import logo from '../../assets/images/Gymsoft_Logo1-removebg-preview.png';
-import { Link} from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import {SEND_OTP} from '../../actions/AuthActions'
 function Forgetpassword() {
@@ -21,7 +20,7 @@ const handleSubmit=async(e)=>{
     try {
         const response = await SEND_OTP(formData);
      // OTP sent successfully, navigate to '/Otp'
-        navigate('/Otp');
+        navigate('/Otp',{ state: { phonenumber: formData.phonenumber } });
       
     } catch (error) {
         console.error('Error while sending phone number:', error.message);
