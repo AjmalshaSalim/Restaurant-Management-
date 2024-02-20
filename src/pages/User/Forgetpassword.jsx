@@ -21,7 +21,7 @@ const handleSubmit=async(e)=>{
     try {
         const response = await SEND_OTP(formData);
      // OTP sent successfully, navigate to '/Otp'
-        navigate('/Otp');
+     navigate('/Otp', { state: { phoneNumber:formData.phonenumber } });
       
     } catch (error) {
         console.error('Error while sending phone number:', error.message);

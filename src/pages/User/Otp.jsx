@@ -3,10 +3,14 @@ import BackgroundImage from '../../assets/images/bgImageUser.jpg';
 import logo from '../../assets/images/Gymsoft_Logo1-removebg-preview.png';
 import { useRef, useState,useEffect } from 'react';
 import axios from 'axios';
-
-
+import { useLocation } from 'react-router-dom';
+import { data } from 'jquery';
+import { VERIFY_OTP } from '../../actions/AuthActions';
 
 function Otp() {
+    const location = useLocation();
+    const phoneNumber = location.state.phoneNumber;
+    console.log("Phone Number:", phoneNumber); 
     const [otp,setOtp]=useState('')
     const [minutes,setMinutes]=useState(1)
     const [seconds,setSeconds]=useState(30)
@@ -17,8 +21,10 @@ const resendOTP=()=>{
 setMinutes(1)
 setSeconds(30)
 }
+
 useEffect(()=>{
 const interval=setInterval(()=>{
+    
     if(seconds>0){
         setSeconds(seconds-1)
     }
@@ -53,10 +59,14 @@ const handleKeyDown = (index, e) => {
     }
 };
 const handleSubmit= async(e)=>{
+    const data = {
+        phoneNumber: phoneNumber,
+        otp: otp
+    };
 e.preventDefault();
 try {
+    const response=await VERIFY_OTP(data)
     navigate('/changepassword')
-    const response=await axios.post('/api/verify-otp/',{otp})
     console.log(response);
 } catch (error) {
  console.error('Error', error);
