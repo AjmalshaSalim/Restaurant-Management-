@@ -1,14 +1,13 @@
-import { useNavigate } from 'react-router-dom';
-import BackgroundImage from '../../assets/images/bgImageUser.jpg';
+import { useLocation, useNavigate } from 'react-router-dom';
+import BackgroundImage from '../../assets/images/bg-gitl-login.jpg';
 import logo from '../../assets/images/Gymsoft_Logo1-removebg-preview.png';
 import { useRef, useState,useEffect } from 'react';
-import axios from 'axios';
-import { useLocation } from 'react-router-dom';
-import { data } from 'jquery';
 import { VERIFY_OTP } from '../../actions/AuthActions';
 
 function Otp() {
     const location = useLocation();
+
+
     const phoneNumber = location.state.phoneNumber;
     console.log("Phone Number:", phoneNumber); 
     const [otp,setOtp]=useState('')
@@ -75,7 +74,7 @@ try {
     return (
 
         <div className="relative h-screen">
-        <img className="absolute inset-0 w-full h-full object-cover" src={BackgroundImage} alt="bg-image" />
+        <img className="absolute inset-0 w-full h-full object-cover filter grayscale " src={BackgroundImage} alt="bg-image" />
       
         <div className="absolute inset-0 bg-gradient-to-br from-black to-gray-800 opacity-60"></div>
         <img className='h-auto w-[200px] md:w-[300px] ml-2 mt-2 absolute left-2 top-8' src={logo} alt='' />

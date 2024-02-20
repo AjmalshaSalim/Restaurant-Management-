@@ -2,7 +2,7 @@ import BackgroundImage from '../../../assets/images/BackgroundForg.jpg';
 import Logo from '../../../assets/images/Gymsoft_Logo1-removebg-preview.png';
 import {useState, useEffect} from 'react';
 import {useNavigate} from 'react-router-dom';
-// import { SEND_OTP } from "../../../actions/AuthActions";
+import { SEND_OTP } from "../../../actions/AuthActions";
 import {Input, Button, Typography} from '@material-tailwind/react';
 import {Link} from 'react-router-dom';
 import AOS from 'aos';
@@ -22,12 +22,15 @@ useEffect(()=>{
   };
   console.log (formData);
 
-  const handleSubmit = async e => {
-    if (formData.phonenumber.trim () === '') {
-      alert ('Please enter your mobile number');
-      return;
-    } else {
-      navigate ('/Otp');
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log(formData.phonenumber);
+    try {
+        const response = await SEND_OTP(formData);
+        navigate('/Otp');
+      
+    } catch (error) {
+        console.error('Error while sending phone number:', error.message);
     }
     // e.preventDefault();
     // console.log(formData.phonenumber);
@@ -74,21 +77,16 @@ useEffect(()=>{
             />
 
           </div>
-
-          <Button
-            className="mt-6"
-            fullWidth
-            onClick={handleSubmit}
-            type="submit"
-          >
+          <Link to="/auth/Reset-pw">
+          <Button type="submit" className="mt-6" fullWidth onClick={handleSubmit}>
             Send OTP
           </Button>
-          <Link to="/auth/Otp">
-            <Button className="mt-6" fullWidth>
-              Back to Sign In
-            </Button>
           </Link>
-
+          <Link to="/auth/sign-in">
+          <Button className="mt-6" fullWidth>
+          Back to Sign In
+          </Button>
+          </Link>
         </form>
 
       </div>
