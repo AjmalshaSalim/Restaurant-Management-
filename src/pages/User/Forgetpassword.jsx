@@ -15,9 +15,9 @@ const handleChange = (e) => {
     });
 }
 
-const handleSubmit = async (e) => {
-    e.preventDefault();
-    console.log(formData.phonenumber);
+const handleSubmit=async(e)=>{
+    e.preventDefault()
+    console.log(formData)
     try {
         const response = await SEND_OTP(formData);
      // OTP sent successfully, navigate to '/Otp'
@@ -53,12 +53,10 @@ const handleSubmit = async (e) => {
             </div>
               
           
-            <div className="mt-6 flex justify-center">
-             
+            <div className="mt-6 flex justify-center">   
                 <button type='submit' className=" w-auto px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-red-700 rounded-xl hover:bg-red-300 focus:outline-none focus:bg-red-800 ">
                 Send OTP
                 </button>
-            
               
             </div>
         </form>

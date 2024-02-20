@@ -8,6 +8,7 @@ import Login from "./pages/User/Login";
 import Forgetpassword from "./pages/User/Forgetpassword";
 import Changepassword from "./pages/User/Changepassword";
 import Otp from "./pages/User/Otp";
+import Homepage from "./pages/User/Homepage";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       <Route path="/auth/*" element={<Auth />} />
       <Route path="*" element={<Navigate to="/dashboard/home" replace />} />
       {/* for use login  */}
+      <Route path="/home" element={<Homepage />} />
       <Route path="/login/*" element={<Login />} />  
       <Route path="/Forgetpassword/" element={<Forgetpassword />} />
       <Route path="/Otp/" element={<Otp />} />
