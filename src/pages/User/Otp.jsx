@@ -1,14 +1,13 @@
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import BackgroundImage from '../../assets/images/bgImageUser.jpg';
 import logo from '../../assets/images/Gymsoft_Logo1-removebg-preview.png';
 import { useRef, useState,useEffect } from 'react';
-import axios from 'axios';
-import { useLocation } from 'react-router-dom';
-import { data } from 'jquery';
 import { VERIFY_OTP } from '../../actions/AuthActions';
 
 function Otp() {
     const location = useLocation();
+
+
     const phoneNumber = location.state.phoneNumber;
     console.log("Phone Number:", phoneNumber); 
     const [otp,setOtp]=useState('')
