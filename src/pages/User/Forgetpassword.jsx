@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import BackgroundImage from '../../assets/images/gym-bg-login.jpg';
+import BackgroundImage from '../../assets/images/bg-image-girl2.jpg';
 import logo from '../../assets/images/Gymsoft_Logo1-removebg-preview.png';
 import { useNavigate } from 'react-router-dom';
 import { SEND_OTP } from '../../actions/AuthActions';
@@ -47,8 +47,8 @@ function Forgetpassword() {
 
     return (
         <div className="relative h-screen">
-            <img className="absolute inset-0 w-full h-full object-cover" src={BackgroundImage} alt="bg-image" />
-            <div className="absolute inset-0 bg-gradient-to-br from-black to-gray-800 opacity-50"></div>
+            <img className="absolute inset-0 w-full h-full object-cover filter grayscale" src={BackgroundImage} alt="bg-image" />
+            <div className="absolute inset-0 bg-gradient-to-br from-black to-gray-800 opacity-60"></div>
             <img className='h-auto w-[200px] md:w-[300px] ml-2 mt-2 absolute left-2 top-8' src={logo} alt='' />
             <div className="relative flex flex-col justify-center min-h-screen overflow-hidden">
                 <div className="w-full p-6 m-auto bg-gray-900 rounded-md shadow-md lg:max-w-xl opacity-70 border-1 border-gray-700">
