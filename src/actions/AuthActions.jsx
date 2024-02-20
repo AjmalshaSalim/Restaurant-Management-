@@ -12,3 +12,5 @@ export const SEND_OTP  = async (data) => {
       throw error; 
     }
   };
+
+ 
