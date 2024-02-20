@@ -13,4 +13,16 @@ export const SEND_OTP  = async (data) => {
     }
   };
 
- 
+
+  export const VERIFY_OTP  = async (data) => {
+    console.log("thgjhbjhjjhjh");
+    console.log("data",data);
+      try {
+        const response = await axios.post(API_URLS.VERIFY_OTP,data)
+        return response.data;
+      } catch (error) {
+      console.error('Error Sending OTP:', error);
+        throw error; 
+      }
+    };
+  
