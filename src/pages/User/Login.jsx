@@ -3,8 +3,10 @@ import BackgroundImage from '../../assets/images/bgImageUser.jpg';
 import logo from '../../assets/images/Gymsoft_Logo1-removebg-preview.png';
 import { Link} from 'react-router-dom';
 import  {DemoAction1}  from './../../actions/DemoActions';
+import { useNavigate } from 'react-router-dom';
 function Login() {
     const [formData, setFormData] = useState({ username:'', password: '' });
+    const navigate=useNavigate();
 
     const handleChange = (e) => {
         setFormData({
@@ -18,6 +20,9 @@ function Login() {
         console.log(formData);
         try {
             const response= DemoAction1(formData)
+            if(response.success) {
+                navigate('/home')
+            }
         } catch (error) {
             console.error('Login failed:', error.message);
         }
