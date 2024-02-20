@@ -6,7 +6,7 @@ import { SEND_OTP } from '../../actions/AuthActions';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-function Forgetpassword() {
+function Forgetpassword() {  
     const navigate = useNavigate();
     const [formData, setFormData] = useState({ phonenumber: '' });
   
@@ -21,7 +21,6 @@ function Forgetpassword() {
         e.preventDefault();
         try {
             const response = await SEND_OTP(formData);
-            // Show success message
             toast.success('OTP sent successfully!', {
                 position: "top-right",
                 autoClose: 3000,
@@ -33,7 +32,6 @@ function Forgetpassword() {
             });
             navigate('/Otp', { state: { phoneNumber: formData.phonenumber } });
         } catch (error) {
-            // Show error message
             toast.error('Error while sending OTP. Please try again later.', {
                 position: "top-right",
                 autoClose: 3000,
