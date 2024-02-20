@@ -1,5 +1,8 @@
 import BackgroundImage from "../../../assets/images/BackgroundForg.jpg"
 import Logo from "../../../assets/images/Gymsoft_Logo1-removebg-preview.png"
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { SEND_OTP } from "../../../actions/AuthActions";
 import {
   Card,
   Input,
@@ -11,6 +14,29 @@ import { Link } from "react-router-dom";
 
 
 export function ForgotPassword() {
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState({phonenumber:''})
+  const handleChange = (e) => {
+    setFormData({
+   ...formData,
+      [e.target.id]: e.target.value,
+    });
+  };
+  console.log(formData);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log(formData.phonenumber);
+    try {
+        const response = await SEND_OTP(formData);
+     // OTP sent successfully, navigate to '/Otp'
+        navigate('/Otp');
+      
+    } catch (error) {
+        console.error('Error while sending phone number:', error.message);
+    }
+}
+  
   return (
     <section className="m-8 flex gap-4">
       <div className="w-full lg:w-3/5 mt-24">
@@ -29,6 +55,13 @@ export function ForgotPassword() {
               labelProps={{
                 className: "before:content-none after:content-none",
               }}
+              id="phonenumber"
+              value={formData.phonenumber}
+              name="phonenumber"
+              onChange={handleChange}
+              placeholder="Enter your phone number"
+              required
+              type="number"
             />
            
           </div>
@@ -51,7 +84,7 @@ export function ForgotPassword() {
             containerProps={{ className: "-ml-2.5" }}
           /> */}
           <Link to="/auth/Reset-pw">
-          <Button className="mt-6" fullWidth>
+          <Button className="mt-6" fullWidth onClick={handleSubmit}>
             Send OTP
           </Button>
           </Link>
