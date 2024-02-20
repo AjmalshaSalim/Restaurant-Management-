@@ -3,7 +3,7 @@ import BackgroundImage from '../../assets/images/bgImageUser.jpg';
 import logo from '../../assets/images/Gymsoft_Logo1-removebg-preview.png';
 import { Link} from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-
+import {SEND_OTP} from '../../actions/AuthActions'
 function Forgetpassword() {
     const navigate=useNavigate();
 const [formData,setFormData]=useState({phonenumber:''}) 
@@ -15,14 +15,16 @@ const handleChange = (e) => {
     });
 }
 
-const handleSubmit=(e)=>{
-    e.preventDefault()
-    console.log(formData)
-    navigate('/Otp')
+const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log(formData.phonenumber);
     try {
-       
+        const response = await SEND_OTP(formData);
+     // OTP sent successfully, navigate to '/Otp'
+        navigate('/Otp');
+      
     } catch (error) {
-        console.error('error while sending phone number:', error.message);
+        console.error('Error while sending phone number:', error.message);
     }
 }
     return (
@@ -52,11 +54,11 @@ const handleSubmit=(e)=>{
               
           
             <div className="mt-6 flex justify-center">
-                <Link to='/Otp'>
+             
                 <button type='submit' className=" w-auto px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-red-700 rounded-xl hover:bg-red-300 focus:outline-none focus:bg-red-800 ">
                 Send OTP
                 </button>
-                </Link>
+            
               
             </div>
         </form>
