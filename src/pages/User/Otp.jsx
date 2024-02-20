@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from 'react-router-dom';
-import BackgroundImage from '../../assets/images/bgImageUser.jpg';
+import BackgroundImage from '../../assets/images/bg-gitl-login.jpg';
 import logo from '../../assets/images/Gymsoft_Logo1-removebg-preview.png';
 import { useRef, useState,useEffect } from 'react';
 import { VERIFY_OTP } from '../../actions/AuthActions';
