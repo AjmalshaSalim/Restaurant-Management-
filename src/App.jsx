@@ -6,6 +6,7 @@ import { Dashboard } from "../src/layouts/dashboard";
 import { Auth } from "../src/layouts/auth";
 import Login from "./pages/User/Login";
 import Forgetpassword from "./pages/User/Forgetpassword";
+import Changepassword from "./pages/User/Changepassword";
 import Otp from "./pages/User/Otp";
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
       <Route path="/login/*" element={<Login />} />  
       <Route path="/Forgetpassword/" element={<Forgetpassword />} />
       <Route path="/Otp/" element={<Otp />} />
+      <Route path="/changepassword/" element={<Changepassword />} /> 
     </Routes>
  
   );

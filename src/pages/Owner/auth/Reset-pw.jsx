@@ -1,5 +1,5 @@
 import BackgroundImage from "../../../assets/images/BackgroundOtp.jpg"
-import Logo from "../../../assets/images/Gymsoft_Logo1.jpg"
+import Logo from "../../../assets/images/Gymsoft_Logo1-removebg-preview.png"
 import {
   Card,
   Input,

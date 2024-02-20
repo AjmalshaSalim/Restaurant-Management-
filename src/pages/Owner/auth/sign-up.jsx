@@ -1,5 +1,6 @@
+import { useState } from "react";
 import BackgroundImage from "../../../assets/images/backgroundreg.jpg"
-import Logo from "../../../assets/images/Gymsoft_Logo1.jpg"
+import Logo from "../../../assets/images/Gymsoft_Logo1-removebg-preview.png"
 import {
   Card,
   Input,
@@ -11,6 +12,17 @@ import { Link } from "react-router-dom";
 
 
 export function SignUp() {
+  const [formData,setFormData] =useState({firstname:'',lastname:'',mobilenumber:'',password:'',nameOfGym:'',city:'',pincode:'',address:''})
+  const handleChange = (e) => {
+    setFormData({
+   ...formData,
+      [e.target.id]: e.target.value,
+    })
+  }
+  const handleSubmit=(e)=>{
+    e.preventDefault()
+    console.log(formData)
+  }
   return (
     <section className="m-8 flex">
             <div className="w-2/5 h-full hidden lg:block">
@@ -23,7 +35,7 @@ export function SignUp() {
           <Typography variant="h2" className="font-bold mb-4">Register</Typography>
           
         </div>
-        <form className="mt-8 mb-2 mx-auto w-80 max-w-screen-lg lg:w-1/2">
+        <form onSubmit={handleSubmit} className="mt-8 mb-2 mx-auto w-80 max-w-screen-lg lg:w-1/2">
   <div className="flex flex-col md:flex-row md:gap-6 lg:mb-2">
     <div className="mb-1 flex flex-col flex-grow">
       <Typography variant="small" color="blue-gray" className=" font-medium ">
@@ -31,6 +43,10 @@ export function SignUp() {
       </Typography>
       <Input
         size="lg"
+        type="string"
+        onChange={handleChange}
+        value={formData.firstname}
+        id="firstname"
         placeholder=""
         className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
         labelProps={{
@@ -44,6 +60,10 @@ export function SignUp() {
       </Typography>
       <Input
         size="lg"
+        type="string"
+        onChange={handleChange}
+        value={formData.lastname}
+        id="lastname"
         placeholder=""
         className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
         labelProps={{
@@ -59,6 +79,10 @@ export function SignUp() {
       </Typography>
       <Input
         size="lg"
+        type="number"
+        onChange={handleChange}
+        value={formData.mobilenumber}
+        id="mobilenumber"
         placeholder=""
         className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
         labelProps={{
@@ -72,6 +96,10 @@ export function SignUp() {
       </Typography>
       <Input
         size="lg"
+        type="string"
+        onChange={handleChange}
+        value={formData.nameOfGym}
+        id="nameOfGym"
         placeholder=""
         className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
         labelProps={{
@@ -87,6 +115,10 @@ export function SignUp() {
       </Typography>
       <Input
         size="lg"
+        type="string"
+        onChange={handleChange}
+        value={formData.city}
+        id="city"
         placeholder=""
         className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
         labelProps={{
@@ -100,6 +132,10 @@ export function SignUp() {
       </Typography>
       <Input
         size="lg"
+        type="number"
+        onChange={handleChange}
+        value={formData.pincode}
+        id="pincode"
         placeholder=""
         className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
         labelProps={{
@@ -114,6 +150,10 @@ export function SignUp() {
     </Typography>
     <Input
       size="lg"
+      type="string"
+      onChange={handleChange}
+      value={formData.address}
+      id="address"
       placeholder=""
       className=" !border-t-blue-gray-200 focus:!border-t-gray-900 lg:w-[425px]"
       labelProps={{
@@ -139,7 +179,7 @@ export function SignUp() {
         }
         containerProps={{ className: "-ml-2.5" }}
       /> */}
-  <Button className="mt-6 lg:w-[425px]" fullWidth>
+  <Button type="submit" className="mt-6 lg:w-[425px]" fullWidth>
     Register Now
   </Button>
 
