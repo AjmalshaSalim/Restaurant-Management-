@@ -9,7 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 function Forgetpassword() {
     const navigate = useNavigate();
     const [formData, setFormData] = useState({ phonenumber: '' });
-
+  
     const handleChange = (e) => {
         setFormData({
             ...formData,
