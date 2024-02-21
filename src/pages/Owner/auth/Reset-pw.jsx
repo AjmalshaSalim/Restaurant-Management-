@@ -6,27 +6,37 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import {useEffect, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
+import {AiOutlineEye, AiOutlineEyeInvisible} from 'react-icons/ai';
 export function ResetPwd () {
   useEffect (() => {
     AOS.init ();
   });
+  const [showPassword, setShowPassword] = useState (false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState (false);
+
+  const handleTogglePassword = e => {
+    e.preventDefault ();
+    setShowPassword (!showPassword);
+  };
+  const handleToggleConfirmPassword = e => {
+    e.preventDefault ();
+    setShowConfirmPassword (!showConfirmPassword);
+  };
   const navigate = useNavigate;
-  const [formData, setFormData] = useState ({password: ''});
+  const [formData, setFormData] = useState ({password: '', confirmPw: ''});
+
   const handleChange = e => {
     setFormData ({
       ...formData,
       [e.target.id]: e.target.value,
     });
+    console.log (formData);
   };
-  console.log (formData);
-  const handleSubmit = async e => {
-    if (formData.password.trim () === '') {
-      alert ('Please enter your password');
-      return;
-    } else {
-      navigate ('/');
-    }
+  const handleSubmit = e => {
+    e.preventDefault ();
+    alert ('clicked');
   };
+
   return (
     <section className="m-8 flex gap-4">
       <div
@@ -45,38 +55,63 @@ export function ResetPwd () {
             <Typography
               variant="small"
               color="blue-gray"
-              className="-mb-3 font-medium"
+              className=" font-medium flex -mb-3"
             >
-              New Password
+              <div className=" w-11/12">
+                New Password
+              </div>
+              <div className="w-1/12">
+                <button onClick={handleTogglePassword} className=" w-full">
+                  {showPassword ? <AiOutlineEye /> : <AiOutlineEyeInvisible />}
+                </button>
+              </div>
             </Typography>
             <Input
               size="lg"
+              type={showPassword ? 'text' : 'password'}
+              onChange={handleChange}
+              value={formData.password}
+              id="password"
+              placeholder=""
               className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
               labelProps={{
                 className: 'before:content-none after:content-none',
               }}
-              onChange={handleChange}
             />
             <Typography
               variant="small"
               color="blue-gray"
-              className="-mb-3 font-medium"
+              className=" font-medium flex"
             >
-              Re-enter Password
+              <div className=" w-11/12">
+                Confirm Password
+              </div>
+              <div className="w-1/12">
+                <button
+                  onClick={handleToggleConfirmPassword}
+                  className=" w-full"
+                >
+                  {showConfirmPassword
+                    ? <AiOutlineEye />
+                    : <AiOutlineEyeInvisible />}
+                </button>
+              </div>
             </Typography>
             <Input
-              type="password"
               size="lg"
-              placeholder="********"
+              type={showConfirmPassword ? 'text' : 'password'}
+              onChange={handleChange}
+              value={formData.confirmPw}
+              id="confirmPw"
+              placeholder=""
               className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
               labelProps={{
                 className: 'before:content-none after:content-none',
               }}
-              onChange={handleChange}
             />
           </div>
 
-          <Button className="mt-6" fullWidth>
+          <Button className="mt-6" fullWidth onClick={handleSubmit}>
             Submit
           </Button>
           <Link to="/auth/sign-in">
