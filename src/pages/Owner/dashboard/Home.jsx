@@ -1,4 +1,7 @@
 import React from "react";
+import { useEffect } from "react";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import {
   Typography,
   Card,
@@ -25,9 +28,12 @@ import { CheckCircleIcon, ClockIcon } from "@heroicons/react/24/solid";
 import { projectsTableData} from "../../../data/projects-table-data";
 import { ordersOverviewData } from "../../../data/orders-overview-data"
 export function Home() {
+  useEffect(()=>{
+    AOS.init();
+  })
   return (
     <div className="mt-12">
-      <div className="mb-12 grid gap-y-10 gap-x-6 md:grid-cols-2 xl:grid-cols-4">
+      <div className="mb-12 grid gap-y-10 gap-x-6 md:grid-cols-2 xl:grid-cols-4" data-aos="fade-left" data-aos-duration="1000">
         {statisticsCardsData.map(({ icon, title, footer, ...rest }) => (
           <StatisticsCard
             key={title}
@@ -45,7 +51,7 @@ export function Home() {
           />
         ))}
       </div>
-      <div className="mb-6 grid grid-cols-1 gap-y-12 gap-x-6 md:grid-cols-2 xl:grid-cols-3">
+      <div className="mb-6 grid grid-cols-1 gap-y-12 gap-x-6 md:grid-cols-2 xl:grid-cols-3"  data-aos="fade-up" data-aos-duration="1000">
         {statisticsChartsData.map((props) => (
           <StatisticsChart
             key={props.title}
@@ -62,7 +68,7 @@ export function Home() {
           />
         ))}
       </div>
-      <div className="mb-4 grid grid-cols-1 gap-6 xl:grid-cols-3">
+      <div className="mb-4 grid grid-cols-1 gap-6 xl:grid-cols-3" data-aos="fade-left" data-aos-duration="1000">
         <Card className="overflow-hidden xl:col-span-2 border border-blue-gray-100 shadow-sm">
           <CardHeader
             floated={false}
