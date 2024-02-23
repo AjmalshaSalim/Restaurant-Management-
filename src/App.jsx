@@ -9,8 +9,20 @@ import Forgetpassword from "./pages/User/Forgetpassword";
 import Changepassword from "./pages/User/Changepassword";
 import Otp from "./pages/User/Otp";
 import Homepage from "./pages/User/Homepage";
+import AOS from "aos";
+import "aos/dist/aos.css"; 
+import { useEffect } from "react";
 
 function App() {
+  useEffect(() => {
+    AOS.init({
+      offset: 100,
+      duration: 1200,
+      easing: "ease-in",
+      delay: 100,
+    });
+    AOS.refresh();
+  }, []);
   return (
   
     <Routes>
