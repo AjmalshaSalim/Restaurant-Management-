@@ -29,9 +29,9 @@ export function Home () {
     AOS.init ();
   });
   return (
-    <div className="mt-12">
+    <div className="mt-12 bg-yellow-100">
       <div
-        className="mb-12 grid gap-y-10 gap-x-6 md:grid-cols-2 xl:grid-cols-4"
+        className="mb-12 grid gap-y-10 gap-x-6 md:grid-cols-2 xl:grid-cols-4 bg-red-100"
         data-aos="fade-left"
         data-aos-duration="1000"
       >

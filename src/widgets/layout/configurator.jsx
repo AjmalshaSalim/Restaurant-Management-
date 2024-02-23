@@ -48,12 +48,15 @@ export function Configurator() {
   const [stars, setStars] = React.useState(0);
 
   const sidenavColors = {
-    white: "from-gray-100 to-gray-100 border-gray-200",
-    dark: "from-red-500 to-orange-500 border-gray-200",
-    green: "from-red-500 to-green-700",
-    orange: "from-orange-400 to-orange-600",
-    red: "from-red-600 to-red-800",
-    pink: "from-red-500 to-red-700",
+
+    // Themes
+    // white: "from-gray-100 to-gray-100 border-gray-200",
+    // dark: "from-red-500 to-orange-500 border-gray-200",
+    // green: "from-red-500 to-green-700",
+    // orange: "from-orange-400 to-orange-600",
+    // red: "from-red-600 to-red-800",
+    // pink: "from-red-500 to-red-700",
+    // Themes
   };
 
   React.useEffect(() => {
@@ -87,7 +90,9 @@ export function Configurator() {
         </IconButton>
       </div>
       <div className="py-4 px-6">
-        <div className="mb-12">
+
+{/* Themes */}
+        {/* <div className="mb-12">
           <Typography variant="h6" color="blue-gray">
             Themes
           </Typography>
@@ -104,7 +109,9 @@ export function Configurator() {
               />
             ))}
           </div>
-        </div>
+        </div> */}
+{/* Themes */}
+
         <div className="mb-12">
           <Typography variant="h6" color="blue-gray">
             Mode
