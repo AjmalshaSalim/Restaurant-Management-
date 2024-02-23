@@ -5,12 +5,10 @@ import { useNavigate } from 'react-router-dom';
 import { SEND_OTP } from '../../actions/AuthActions';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Loader from '../../components/userloader/Loader.jsx';
 
 function Forgetpassword() {  
     const navigate = useNavigate();
     const [formData, setFormData] = useState({ phonenumber: '' });
-    const [loading,setLoading] = useState(false);
   
     const handleChange = (e) => {
         setFormData({
@@ -21,7 +19,6 @@ function Forgetpassword() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setLoading(true);
         try {
             const response = await SEND_OTP(formData);
             toast.success('OTP sent successfully!', {
@@ -45,18 +42,14 @@ function Forgetpassword() {
                 progress: undefined,
             });
             console.error('Error while sending phone number:', error.message);
-        } finally {
-            setLoading(false);
         }
     }
 
     return (
         <>
-        {loading ? ( // Display the loader if loading is true
-            <Loader />
-        ) : (
+       
             <div className="relative h-screen">
-                <img className="absolute inset-0 w-full h-full object-cover filter grayscale" src={BackgroundImage} alt="bg-image" />
+                <img className="absolute inset-0 w-full h-full object-cover filter grayscale" src={BackgroundImage} alt="bg-mage" />
                 <div className="absolute inset-0 bg-gradient-to-br from-black to-gray-800 opacity-60"></div>
                 <img className='h-auto w-[200px] md:w-[300px] ml-2 mt-2 absolute left-2 top-8' src={logo} alt='' />
                 <div className="relative flex flex-col justify-center min-h-screen overflow-hidden">
@@ -85,10 +78,8 @@ function Forgetpassword() {
                         </form>
                     </div>
                 </div>
-                {/* Toast Container for displaying messages */}
                 <ToastContainer />
             </div>
-        )}
     </>
        
     )

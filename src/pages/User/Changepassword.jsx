@@ -26,7 +26,7 @@ const handleSubmit=(e)=>{
 }
     return (
         <div className="relative h-screen">
-        <img className="absolute inset-0 w-full h-full object-cover filter grayscale" src={BackgroundImage} alt="bg-image" />
+        <img className="absolute inset-0 w-full h-full object-cover filter grayscale" src={BackgroundImage} alt="bg-imae" />
       
         <div className="absolute inset-0 bg-gradient-to-br from-black to-gray-800 opacity-60"></div>
         <img className='h-auto w-[200px] md:w-[300px] ml-2 mt-2 absolute left-2 top-8' src={logo} alt='' />
