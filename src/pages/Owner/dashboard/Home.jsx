@@ -1,4 +1,7 @@
-import React from "react";
+import React from 'react';
+import {useEffect} from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import {
   Typography,
   Card,
@@ -12,29 +15,33 @@ import {
   Avatar,
   Tooltip,
   Progress,
-} from "@material-tailwind/react";
-import {
-  EllipsisVerticalIcon,
-  ArrowUpIcon,
-} from "@heroicons/react/24/outline";
-import { StatisticsCard } from "../../../widgets/cards/statistics-card";
-import { StatisticsChart } from "../../../widgets/charts/statistics-chart";
-import {statisticsCardsData} from "../../../data/statistics-cards-data";
-import {statisticsChartsData} from "../../../data/statistics-charts-data"
-import { CheckCircleIcon, ClockIcon } from "@heroicons/react/24/solid";
-import { projectsTableData} from "../../../data/projects-table-data";
-import { ordersOverviewData } from "../../../data/orders-overview-data"
-export function Home() {
+} from '@material-tailwind/react';
+import {EllipsisVerticalIcon, ArrowUpIcon} from '@heroicons/react/24/outline';
+import {StatisticsCard} from '../../../widgets/cards/statistics-card';
+import {StatisticsChart} from '../../../widgets/charts/statistics-chart';
+import {statisticsCardsData} from '../../../data/statistics-cards-data';
+import {statisticsChartsData} from '../../../data/statistics-charts-data';
+import {CheckCircleIcon, ClockIcon} from '@heroicons/react/24/solid';
+import {projectsTableData} from '../../../data/projects-table-data';
+import {ordersOverviewData} from '../../../data/orders-overview-data';
+export function Home () {
+  useEffect (() => {
+    AOS.init ();
+  });
   return (
     <div className="mt-12">
-      <div className="mb-12 grid gap-y-10 gap-x-6 md:grid-cols-2 xl:grid-cols-4">
-        {statisticsCardsData.map(({ icon, title, footer, ...rest }) => (
+      <div
+        className="mb-12 grid gap-y-10 gap-x-6 md:grid-cols-2 xl:grid-cols-4"
+        data-aos="fade-left"
+        data-aos-duration="1000"
+      >
+        {statisticsCardsData.map (({icon, title, footer, ...rest}) => (
           <StatisticsCard
             key={title}
             {...rest}
             title={title}
-            icon={React.createElement(icon, {
-              className: "w-6 h-6 text-white",
+            icon={React.createElement (icon, {
+              className: 'w-6 h-6 text-white',
             })}
             footer={
               <Typography className="font-normal text-blue-gray-600">
@@ -45,8 +52,12 @@ export function Home() {
           />
         ))}
       </div>
-      <div className="mb-6 grid grid-cols-1 gap-y-12 gap-x-6 md:grid-cols-2 xl:grid-cols-3">
-        {statisticsChartsData.map((props) => (
+      <div
+        className="mb-6 grid grid-cols-1 gap-y-12 gap-x-6 md:grid-cols-2 xl:grid-cols-3"
+        data-aos="fade-up"
+        data-aos-duration="1000"
+      >
+        {statisticsChartsData.map (props => (
           <StatisticsChart
             key={props.title}
             {...props}
@@ -55,14 +66,21 @@ export function Home() {
                 variant="small"
                 className="flex items-center font-normal text-blue-gray-600"
               >
-                <ClockIcon strokeWidth={2} className="h-4 w-4 text-blue-gray-400" />
+                <ClockIcon
+                  strokeWidth={2}
+                  className="h-4 w-4 text-blue-gray-400"
+                />
                 &nbsp;{props.footer}
               </Typography>
             }
           />
         ))}
       </div>
-      <div className="mb-4 grid grid-cols-1 gap-6 xl:grid-cols-3">
+      <div
+        className="mb-4 grid grid-cols-1 gap-6 xl:grid-cols-3"
+        data-aos="fade-left"
+        data-aos-duration="1000"
+      >
         <Card className="overflow-hidden xl:col-span-2 border border-blue-gray-100 shadow-sm">
           <CardHeader
             floated={false}
@@ -78,7 +96,10 @@ export function Home() {
                 variant="small"
                 className="flex items-center gap-1 font-normal text-blue-gray-600"
               >
-                <CheckCircleIcon strokeWidth={3} className="h-4 w-4 text-blue-gray-200" />
+                <CheckCircleIcon
+                  strokeWidth={3}
+                  className="h-4 w-4 text-blue-gray-200"
+                />
                 <strong>5 Members</strong> Present Today
               </Typography>
             </div>
@@ -103,31 +124,25 @@ export function Home() {
             <table className="w-full min-w-[640px] table-auto">
               <thead>
                 <tr>
-                  {["Members", "Time", "Status", "Progress"].map(
-                    (el) => (
-                      <th
-                        key={el}
-                        className="border-b border-blue-gray-50 py-3 px-6 text-left"
+                  {['Members', 'Time', 'Status', 'Progress'].map (el => (
+                    <th
+                      key={el}
+                      className="border-b border-blue-gray-50 py-3 px-6 text-left"
+                    >
+                      <Typography
+                        variant="small"
+                        className="text-[11px] font-medium uppercase text-blue-gray-400"
                       >
-                        <Typography
-                          variant="small"
-                          className="text-[11px] font-medium uppercase text-blue-gray-400"
-                        >
-                          {el}
-                        </Typography>
-                      </th>
-                    )
-                  )}
+                        {el}
+                      </Typography>
+                    </th>
+                  ))}
                 </tr>
               </thead>
               <tbody>
-                {projectsTableData.map(
-                  ({ img, name, members, budget, completion }, key) => {
-                    const className = `py-3 px-5 ${
-                      key === projectsTableData.length - 1
-                        ? ""
-                        : "border-b border-blue-gray-50"
-                    }`;
+                {projectsTableData.map (
+                  ({img, name, members, budget, completion}, key) => {
+                    const className = `py-3 px-5 ${key === projectsTableData.length - 1 ? '' : 'border-b border-blue-gray-50'}`;
 
                     return (
                       <tr key={name}>
@@ -144,16 +159,14 @@ export function Home() {
                           </div>
                         </td>
                         <td className={className}>
-                          {members.map(({ img, name }, key) => (
+                          {members.map (({img, name}, key) => (
                             <Tooltip key={name} content={name}>
                               <Avatar
                                 src={img}
                                 alt={name}
                                 size="xs"
                                 variant="circular"
-                                className={`cursor-pointer border-2 border-white ${
-                                  key === 0 ? "" : "-ml-2.5"
-                                }`}
+                                className={`cursor-pointer border-2 border-white ${key === 0 ? '' : '-ml-2.5'}`}
                               />
                             </Tooltip>
                           ))}
@@ -177,7 +190,7 @@ export function Home() {
                             <Progress
                               value={completion}
                               variant="gradient"
-                              color={completion === 100 ? "green" : "blue"}
+                              color={completion === 100 ? 'green' : 'blue'}
                               className="h-1"
                             />
                           </div>
@@ -212,17 +225,13 @@ export function Home() {
             </Typography>
           </CardHeader>
           <CardBody className="pt-0">
-            {ordersOverviewData.map(
-              ({ icon, color, title, description }, key) => (
+            {ordersOverviewData.map (
+              ({icon, color, title, description}, key) => (
                 <div key={title} className="flex items-start gap-4 py-3">
                   <div
-                    className={`relative p-1 after:absolute after:-bottom-6 after:left-2/4 after:w-0.5 after:-translate-x-2/4 after:bg-blue-gray-50 after:content-[''] ${
-                      key === ordersOverviewData.length - 1
-                        ? "after:h-0"
-                        : "after:h-4/6"
-                    }`}
+                    className={`relative p-1 after:absolute after:-bottom-6 after:left-2/4 after:w-0.5 after:-translate-x-2/4 after:bg-blue-gray-50 after:content-[''] ${key === ordersOverviewData.length - 1 ? 'after:h-0' : 'after:h-4/6'}`}
                   >
-                    {React.createElement(icon, {
+                    {React.createElement (icon, {
                       className: `!w-5 !h-5 ${color}`,
                     })}
                   </div>

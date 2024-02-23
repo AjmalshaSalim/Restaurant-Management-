@@ -8,10 +8,10 @@ import {Link} from 'react-router-dom';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 export function Otp () {
-    useEffect(()=>{
-        AOS.init();
-      })
-//   const navigate = useNavigate ();
+  useEffect (() => {
+    AOS.init ();
+  });
+  //   const navigate = useNavigate ();
   const [formData, setFormData] = useState ({otp: ''});
   const handleChange = e => {
     setFormData ({
@@ -31,7 +31,11 @@ export function Otp () {
   };
   return (
     <section className="m-8 flex gap-4">
-      <div className="w-full lg:w-3/5 mt-24"  data-aos="fade-bottom" data-aos-duration="2000" >
+      <div
+        className="w-full lg:w-3/5 mt-24"
+        data-aos="fade-bottom"
+        data-aos-duration="2000"
+      >
         <div className="text-center">
           <Typography variant="h2" className="font-bold mb-4">
             Enter OTP
@@ -79,8 +83,18 @@ export function Otp () {
         </form>
 
       </div>
-      <div className="w-2/5 h-full hidden lg:block" data-aos="fade-left" data-aos-duration="2000">
-        <img src={Logo} alt="" className=" w-[200px] absolute p-2" data-aos="fade-right" data-aos-duration="2000"/>
+      <div
+        className="w-2/5 h-full hidden lg:block"
+        data-aos="fade-left"
+        data-aos-duration="2000"
+      >
+        <img
+          src={Logo}
+          alt=""
+          className=" w-[200px] absolute p-2"
+          data-aos="fade-right"
+          data-aos-duration="2000"
+        />
         <img
           src={BackgroundImage}
           alt="BackgroundImage"
