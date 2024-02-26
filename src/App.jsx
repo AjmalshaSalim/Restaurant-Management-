@@ -40,7 +40,6 @@ function App() {
       <Route path="/Otp/" element={<Otp />} />
       <Route path="/changepassword/" element={<Changepassword />} /> 
       // OWNER ROUTES
-      <Route path="/" element={<Dashboard/>}/>
         <Route path="/Ownerlogin" element={<OwnerLogin/>}/>
         <Route path="/OwnerRegister" element={<OwnerRegister/>}/>
         <Route path="/OwnerForgetpassword" element={<OwnerForgetpassword/>}/>

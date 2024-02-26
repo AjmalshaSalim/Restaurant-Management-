@@ -13,6 +13,9 @@ import {
   Button,
 } from "@material-tailwind/react";
 import {
+  useMaterialTailwindController
+} from "../../../context/index";
+import {
   HomeIcon,
   ChatBubbleLeftEllipsisIcon,
   Cog6ToothIcon,
@@ -25,12 +28,12 @@ import { platformSettingsData } from "../../../data/platform-settings-data";
 import { conversationsData } from "../../../data/conversations-data";
 import { projectsData } from "../../../data/projects-data";
 export function Profile() {
+  const [controller, dispatch] = useMaterialTailwindController();
+  const { sidenavType} =
+    controller;
   return (
-    <>
-      <div className="relative mt-8 h-72 w-full overflow-hidden rounded-xl bg-white bg-cover	bg-center">
-        <div className="absolute inset-0 h-full w-full bg-gray-900/75" />
-      </div>
-      <Card className="mx-3 -mt-16 mb-6 lg:mx-4 border border-blue-gray-100">
+    <> 
+      <Card className="mx-3 mt-10 mb-6 lg:mx-4 border border-blue-gray-100">
         <CardBody className="p-4">
           <div className="mb-10 flex items-center justify-between flex-wrap gap-6">
             <div className="flex items-center gap-6">
@@ -47,7 +50,9 @@ export function Profile() {
                 </Typography>
                 <Typography
                   variant="small"
-                  className="font-normal text-blue-gray-600"
+                  className={`font-normal ${
+                    sidenavType === "dark" ? "text-white" : "text-blue-gray-600"
+                  }`}
                 >
                   Software Developer
                 </Typography>
@@ -108,7 +113,7 @@ export function Profile() {
                 mobile: "7306129332",
                 email: "achujoseph@gmail.com",
                 location: "Kerala,India",
-                social: (
+                Join: (
                   <div className="flex items-center gap-4">
                     <i className="fa-brands fa-facebook text-blue-700" />
                     <i className="fa-brands fa-twitter text-blue-400" />
@@ -133,7 +138,7 @@ export function Profile() {
                     {...props}
                     action={
                       <Button variant="text" size="sm">
-                        reply
+                        view
                       </Button>
                     }
                   />

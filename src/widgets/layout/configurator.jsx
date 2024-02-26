@@ -46,7 +46,6 @@ export function Configurator() {
   const { openConfigurator, sidenavColor, sidenavType, fixedNavbar } =
     controller;
   const [stars, setStars] = React.useState(0);
-
   const sidenavColors = {
 
     // Themes
@@ -69,7 +68,9 @@ export function Configurator() {
 
   return (
     <aside
-      className={`fixed top-0 right-0 z-50 h-screen w-96 bg-white px-2.5 shadow-lg transition-transform duration-300 ${
+      className={`fixed top-0 right-0 z-50 ${
+        sidenavType === "dark" ? "bg-black" : "bg-white"
+      } h-screen w-96 px-2.5 shadow-lg transition-transform duration-300 ${
         openConfigurator ? "translate-x-0" : "translate-x-96"
       }`}
     >
@@ -78,7 +79,9 @@ export function Configurator() {
           <Typography variant="h5" color="blue-gray">
             Settings
           </Typography>
-          <Typography className="font-normal text-blue-gray-600">
+          <Typography className={`font-normal ${
+      sidenavType === "dark" ? "text-white" : "text-blue-gray-600"
+    }`}>
           </Typography>
         </div>
         <IconButton
