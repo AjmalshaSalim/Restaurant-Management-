@@ -12,6 +12,7 @@ import Homepage from "./pages/User/Homepage";
 import AOS from "aos";
 import "aos/dist/aos.css"; 
 import { useEffect } from "react";
+import Equipments from "./pages/User/Equipments";
 
 function App() {
   useEffect(() => {
@@ -32,9 +33,10 @@ function App() {
       {/* for use login  */}
       <Route path="/home" element={<Homepage />} />
       <Route path="/login/*" element={<Login />} />  
-      <Route path="/Forgetpassword/" element={<Forgetpassword />} />
+      <Route path="/Forgotpassword/" element={<Forgetpassword />} />
       <Route path="/Otp/" element={<Otp />} />
       <Route path="/changepassword/" element={<Changepassword />} /> 
+      <Route path="/equipments/" element={<Equipments />} /> 
     </Routes>
  
   );
