@@ -39,9 +39,8 @@ function App() {
       <Route path="/Forgotpassword/" element={<Forgetpassword />} />
       <Route path="/Otp/" element={<Otp />} />
       <Route path="/changepassword/" element={<Changepassword />} /> 
-
       <Route path="/equipments/" element={<Equipments />} /> 
-    </Routes>
+
  
 
       // OWNER ROUTES

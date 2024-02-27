@@ -31,13 +31,14 @@ export function DashboardNavbar() {
   const { fixedNavbar, openSidenav } = controller;
   const { pathname } = useLocation();
   const [layout, page] = pathname.split("/").filter((el) => el !== "");
-
+  const { sidenavType} =
+    controller;
   return (
     <Navbar
-      color={fixedNavbar ? "white" : "transparent"}
-      className={`rounded-xl transition-all ${
+      color={fixedNavbar ? " " : "transparent"}
+      className={`rounded-xl transition-all ${sidenavType === 'dark'? "bg-black" : "bg-white"} ${
         fixedNavbar
-          ? "sticky top-4 z-40 py-3 shadow-md shadow-blue-gray-500/5"
+          ? "sticky top-4 z-40 py-3 shadow-md shadow-blue-gray-500/5 "
           : "px-0 py-1"
       }`}
       fullWidth
@@ -50,31 +51,31 @@ export function DashboardNavbar() {
               fixedNavbar ? "mt-1" : ""
             }`}
           >
-            <Link to={`/${layout}`}>
+            <Link to={`/`}>
               <Typography
                 variant="small"
-                color="blue-gray"
-                className="font-normal opacity-50 transition-all hover:text-blue-500 hover:opacity-100"
+                color={sidenavType === 'dark' ? "white" : "blue-gray"}
+                className="font-normal opacity-50 transition-all hover:text-red-500 hover:opacity-100"
               >
                 {layout}
               </Typography>
             </Link>
             <Typography
               variant="small"
-              color="blue-gray"
+              color={sidenavType === 'dark'? "white" : "blue-gray"}
               className="font-normal"
             >
               {page}
             </Typography>
           </Breadcrumbs>
-          <Typography variant="h6" color="blue-gray">
+          <Typography variant="h6" color={sidenavType ==='dark' ? "white" : "blue-gray"}>
             {page}
           </Typography>
         </div>
         <div className="flex items-center">
-          <div className="mr-auto md:mr-4 md:w-56">
+          {/* <div className="mr-auto md:mr-4 md:w-56">
             <Input label="Search" />
-          </div>
+          </div> */}
           <IconButton
             variant="text"
             color="blue-gray"
@@ -86,10 +87,12 @@ export function DashboardNavbar() {
           <Link to="/auth/sign-in">
             <Button
               variant="text"
-              color="blue-gray"
+              color={sidenavType === 'dark'? "red" : "blue-gray"}
               className="hidden items-center gap-1 px-4 xl:flex normal-case"
             >
-              <UserCircleIcon className="h-5 w-5 text-blue-gray-500" />
+              <UserCircleIcon className={`h-5 w-5 ${
+                sidenavType === 'dark'? "text-red-500" : "text-blue-gray-500"
+              }`} />
               Sign In
             </Button>
             <IconButton
@@ -103,10 +106,10 @@ export function DashboardNavbar() {
           <Menu>
             <MenuHandler>
               <IconButton variant="text" color="blue-gray">
-                <BellIcon className="h-5 w-5 text-blue-gray-500" />
+                <BellIcon className={`h-5 w-5 ${sidenavType ==='dark'? "text-red-500" : "text-blue-gray-500"}`} />
               </IconButton>
             </MenuHandler>
-            <MenuList className="w-max border-0">
+            <MenuList className={`w-max border-0 ${sidenavType === 'dark'? "bg-black" : "bg-white"} `}>
               <MenuItem className="flex items-center gap-3">
                 <Avatar
                   src="https://avatars.githubusercontent.com/u/98327654?v=4"
@@ -117,14 +120,14 @@ export function DashboardNavbar() {
                 <div>
                   <Typography
                     variant="small"
-                    color="blue-gray"
+                    color={sidenavType === 'dark'? "white" : "blue-gray"}
                     className="mb-1 font-normal"
                   >
                     <strong>New Payment Request</strong> from Achu
                   </Typography>
                   <Typography
                     variant="small"
-                    color="blue-gray"
+                    color={sidenavType === 'dark'? "white" : "blue-gray"}
                     className="flex items-center gap-1 text-xs font-normal opacity-60"
                   >
                     <ClockIcon className="h-3.5 w-3.5" /> 13 minutes ago
@@ -141,14 +144,14 @@ export function DashboardNavbar() {
                 <div>
                   <Typography
                     variant="small"
-                    color="blue-gray"
+                    color={sidenavType === 'dark'? "white" : "blue-gray"}
                     className="mb-1 font-normal"
                   >
                     <strong>New Enquiry</strong> From Ajmalsha
                   </Typography>
                   <Typography
                     variant="small"
-                    color="blue-gray"
+                    color={sidenavType === 'dark'? "white" : "blue-gray"}
                     className="flex items-center gap-1 text-xs font-normal opacity-60"
                   >
                     <ClockIcon className="h-3.5 w-3.5" /> 1 day ago
@@ -162,14 +165,14 @@ export function DashboardNavbar() {
                 <div>
                   <Typography
                     variant="small"
-                    color="blue-gray"
+                    color={sidenavType === 'dark'? "white" : "blue-gray"}
                     className="mb-1 font-normal"
                   >
                     Payment Confirmed successfully
                   </Typography>
                   <Typography
                     variant="small"
-                    color="blue-gray"
+                    color={sidenavType === 'dark'? "white" : "blue-gray"}
                     className="flex items-center gap-1 text-xs font-normal opacity-60"
                   >
                     <ClockIcon className="h-3.5 w-3.5" /> 2 days ago
@@ -180,10 +183,10 @@ export function DashboardNavbar() {
           </Menu>
           <IconButton
             variant="text"
-            color="blue-gray"
+            color={sidenavType === 'dark'? "white" : "blue-gray"}
             onClick={() => setOpenConfigurator(dispatch, true)}
           >
-            <Cog6ToothIcon className="h-5 w-5 text-blue-gray-500" />
+            <Cog6ToothIcon className={`h-5 w-5 ${ sidenavType === 'dark' ? "text-red-500" : "text-blue-gray-500"}`} />
           </IconButton>
         </div>
       </div>

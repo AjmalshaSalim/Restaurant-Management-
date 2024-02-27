@@ -36,7 +36,7 @@ export function Home () {
     controller;
   return (
     <div className={`mt-12 ${
-      sidenavType === "dark" ? "bg-black" : "bg-white"
+      sidenavType === "dark" ? "bg-transparent" : "bg-white"
     }`}>
       <div
         className="mb-12 grid gap-y-10 gap-x-6 md:grid-cols-2 xl:grid-cols-4"
@@ -93,9 +93,9 @@ export function Home () {
         data-aos="fade-left"
         data-aos-duration="1000"
       >
-        <Card className={`overflow-hidden xl:col-span-2 border border-blue-gray-100 shadow-sm
+        <Card className={`overflow-hidden xl:col-span-2 shadow-sm
         ${
-      sidenavType === "dark" ? "bg-black" : "bg-white"
+      sidenavType === "dark" ? "bg-black bg-opacity-75" : "border border-blue-gray-100 bg-white"
     }`}>
           <CardHeader
             floated={false}
@@ -104,7 +104,7 @@ export function Home () {
             className="m-0 flex items-center justify-between p-6"
           >
             <div>
-              <Typography variant="h6" color="blue-gray" className="mb-1">
+              <Typography variant="h6" color={sidenavType === 'dark' ? "white" : "blue-gray"} className="mb-1">
                 Today's Attendance
               </Typography>
               <Typography
@@ -122,7 +122,7 @@ export function Home () {
             </div>
             <Menu placement="left-start">
               <MenuHandler>
-                <IconButton size="sm" variant="text" color="blue-gray">
+                <IconButton size="sm" variant="text" color={sidenavType === 'dark'? "white" : "blue-gray"}>
                   <EllipsisVerticalIcon
                     strokeWidth={3}
                     fill="currenColor"
@@ -130,7 +130,9 @@ export function Home () {
                   />
                 </IconButton>
               </MenuHandler>
-              <MenuList>
+              <MenuList className={` 
+              ${sidenavType === "dark" ? "bg-black text-white" : "bg-white"
+    }`}>
                 <MenuItem>Add Attendance</MenuItem>
                 <MenuItem>Weekly Attendance</MenuItem>
                 <MenuItem>Monthly Attendance</MenuItem>
@@ -144,7 +146,7 @@ export function Home () {
                   {['Members', 'Time', 'Status', 'Progress'].map (el => (
                     <th
                       key={el}
-                      className="border-b border-blue-gray-50 py-3 px-6 text-left"
+                      className="border-b border-gray-700 py-3 px-6 text-left"
                     >
                       <Typography
                         variant="small"
@@ -161,7 +163,7 @@ export function Home () {
               <tbody>
                 {projectsTableData.map (
                   ({img, name, members, budget, completion}, key) => {
-                    const className = `py-3 px-5 ${key === projectsTableData.length - 1 ? '' : 'border-b border-blue-gray-50'}`;
+                    const className = `py-3 px-5 ${key === projectsTableData.length - 1 ? '' : 'border-b border-gray-700'}`;
 
                     return (
                       <tr key={name}>
@@ -170,7 +172,7 @@ export function Home () {
                             <Avatar src={img} alt={name} size="sm" />
                             <Typography
                               variant="small"
-                              color="blue-gray"
+                              color={sidenavType === 'dark'? "white" : "gray"}
                               className="font-bold"
                             >
                               {name}
@@ -226,9 +228,9 @@ export function Home () {
             </table>
           </CardBody>
         </Card>
-        <Card className={`border border-blue-gray-100 shadow-sm
+        <Card className={`shadow-sm
         ${
-      sidenavType === "dark" ? "bg-black" : "bg-white"
+      sidenavType === "dark" ? " bg-black bg-opacity-75" : "border border-blue-gray-100 bg-white"
     }`}>
           <CardHeader
             floated={false}
@@ -236,7 +238,7 @@ export function Home () {
             color="transparent"
             className="m-0 p-6"
           >
-            <Typography variant="h6" color="blue-gray" className="mb-2">
+            <Typography variant="h6" color={sidenavType === 'dark' ? "white" : "blue-gray"} className="mb-2">
               Todo List
             </Typography>
             <Typography
@@ -266,7 +268,7 @@ export function Home () {
                   <div>
                     <Typography
                       variant="small"
-                      color="blue-gray"
+                      color={sidenavType === 'dark' ? "white" : "blue-gray"}
                       className="block font-medium"
                     >
                       {title}
