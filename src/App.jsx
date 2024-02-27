@@ -41,7 +41,7 @@ function App() {
       <Route path="/changepassword/" element={<Changepassword />} /> 
 
       <Route path="/equipments/" element={<Equipments />} /> 
-    </Routes>
+
  
 
       // OWNER ROUTES
