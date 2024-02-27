@@ -71,7 +71,7 @@ export default function Equipments() {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 p-4 mt-16" data-aos="fade-up">
         {equipments.map((equipment) => (
           <div   
-          className="block rounded-lg bg-white shadow-inner shadow-red-900 dark:bg-neutral-700 transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-105 hover:text-red-500">
+          className="block rounded-lg bg-white dark:bg-neutral-700 transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-105 hover:text-red-500">
           <TERipple>
             <div data-aos="fade-up"
           data-aos-delay={`${equipment.id * 100}`} 
