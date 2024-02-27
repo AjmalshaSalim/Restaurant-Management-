@@ -3,6 +3,7 @@ import BackgroundImage from '../../assets/images/gym-bg-login.jpg';
 import logo from '../../assets/images/Gymsoft_Logo1-removebg-preview.png';
 import { useNavigate } from 'react-router-dom';
 
+
 function Forgetpassword() {
     const navigate=useNavigate();
 const [formData,setFormData]=useState({phonenumber:''}) 
@@ -14,12 +15,14 @@ const handleChange = (e) => {
     });
 }
 
-const handleSubmit=(e)=>{
+const handleSubmit= async(e)=>{
     e.preventDefault()
     console.log(formData)
-    // navigate('/login')
     try {
-       
+    //    const response = await CHANGE_PASSWORD(formData);
+    //    if(response.success){
+    //     navigate('/login')
+    //    }
     } catch (error) {
         console.error('error while sending phone number:', error.message);
     }
