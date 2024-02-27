@@ -24,12 +24,12 @@ export function Tables () {
       sidenavType === "dark" ? "bg-black" : "bg-white"
     }`}>
       <Card>
-        <CardHeader variant="gradient" color="gray" className="mb-8 p-6">
+        <CardHeader variant="filled" color="gray" className="mb-8 p-6 bg-red-700">
           <Typography variant="h6" color="white">
             Members List
           </Typography>
         </CardHeader>
-        <CardBody className="overflow-x-scroll px-0 pt-0 pb-2">
+        <CardBody className={`overflow-x-scroll px-0 pt-0 pb-2 ${sidenavType === 'dark'? "bg-black" : "bg-white"}`}>
           <table className="w-full min-w-[640px] table-auto">
             <thead>
               <tr>
@@ -128,7 +128,7 @@ export function Tables () {
         </CardBody>
       </Card>
       <Card>
-        <CardHeader variant="gradient" color="gray" className="mb-8 p-6">
+        <CardHeader variant="filled" color="gray" className="mb-8 p-6 bg-red-700">
           <Typography variant="h6" color="white">
             Enquiry List
           </Typography>

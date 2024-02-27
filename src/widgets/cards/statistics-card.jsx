@@ -15,15 +15,15 @@ export function StatisticsCard({ color, icon, title, value, footer }) {
   const { sidenavType} =
     controller;
   return (
-    <Card className={`border border-blue-gray-100 shadow-sm ${
-      sidenavType === "dark" ? "bg-black" : "bg-white"
+    <Card className={` shadow-sm ${
+      sidenavType === "dark" ? " bg-black bg-opacity-75" : "border border-blue-gray-100 bg-white"
     }`}>
       <CardHeader
         variant="gradient"
-        color={color}
+        // color="red"
         floated={false}
         shadow={false}
-        className="absolute grid h-12 w-12 place-items-center "
+        className="absolute grid h-12 w-12 place-items-center bg-red-700"
       >
         {icon}
       </CardHeader>
@@ -33,12 +33,12 @@ export function StatisticsCard({ color, icon, title, value, footer }) {
     }`}>
           {title}
         </Typography>
-        <Typography variant="h4" color="blue-gray">
+        <Typography variant="h4" color={sidenavType === 'dark' ? "white" : "blue-gray"}>
           {value}
         </Typography>
       </CardBody>
       {footer && (
-        <CardFooter className="border-t border-blue-gray-50 p-4">
+        <CardFooter className="border-t border-gray-700 p-4">
           {footer}
         </CardFooter>
       )}

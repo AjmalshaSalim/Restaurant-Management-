@@ -28,7 +28,7 @@ export function Sidenav({ brandImg, brandName, routes }) {
     <aside
       className={`${sidenavTypes[sidenavType]} ${
         openSidenav ? "translate-x-0" : "-translate-x-80"
-      } absolute inset-0 z-50 my-4 ml-4 max-h-fit w-72 rounded-xl transition-transform duration-300 xl:translate-x-0 border border-opacity-5`}
+      } absolute inset-0 z-50 my-4 ml-4 max-h-fit w-72 rounded-xl transition-transform duration-300 xl:translate-x-0 ${sidenavType === 'dark'? "bg-opacity-50" : "border border-opacity-5"}`}
     >
       <div
         className={`relative`}
@@ -74,7 +74,7 @@ export function Sidenav({ brandImg, brandName, routes }) {
                 <NavLink to={`/${layout}${path}`}>
                   {({ isActive }) => (
                     <Button
-                      variant={isActive ? "gradient" : "text"}
+                      variant={isActive ? "red" : "text"}
                       color={
                         isActive
                           ? sidenavColor

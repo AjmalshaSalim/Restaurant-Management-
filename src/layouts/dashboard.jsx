@@ -5,6 +5,7 @@ import {Sidenav} from "../widgets/layout/sidenav";
 import {DashboardNavbar} from "../widgets/layout/dashboard-navbar";
 import {Configurator} from "../widgets/layout/configurator";
 import { Footer} from "../widgets/layout/footer";
+import BgImage from "../assets/images/hero-bg.jpg"
 
 import routes from "../routes";
 import { useMaterialTailwindController, setOpenConfigurator } from "../context/index";
@@ -14,9 +15,17 @@ export function Dashboard() {
   const { sidenavType } = controller;
 
   return (
-    <div className={`min-h-screen ${
-      sidenavType === "dark" ? "bg-black" : "bg-white"
-    }`}>
+    <div
+      className={`min-h-screen ${
+        sidenavType === "dark" ? "bg-black" : "bg-white"
+      }`}
+      style={{
+        backgroundImage:
+          sidenavType === "dark" ? `url(${BgImage})` : "none",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
       <Sidenav
         routes={routes}
         brandImg={
