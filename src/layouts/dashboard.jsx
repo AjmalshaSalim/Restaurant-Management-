@@ -14,7 +14,9 @@ export function Dashboard() {
   const { sidenavType } = controller;
 
   return (
-    <div className="min-h-screen bg-blue-gray-50/50">
+    <div className={`min-h-screen ${
+      sidenavType === "dark" ? "bg-black" : "bg-white"
+    }`}>
       <Sidenav
         routes={routes}
         brandImg={
@@ -42,7 +44,9 @@ export function Dashboard() {
               ))
           )}
         </Routes>
-        <div className="text-blue-gray-600">
+        <div className={`${
+      sidenavType === "dark" ? "text-white" : "text-blue-gray-600"
+    }`}>
           <Footer />
         </div>
       </div>

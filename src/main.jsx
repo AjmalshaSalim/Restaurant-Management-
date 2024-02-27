@@ -11,7 +11,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <BrowserRouter>
       <ThemeProvider>
         <MaterialTailwindControllerProvider>
-          <App />
+          <App/>
         </MaterialTailwindControllerProvider>
       </ThemeProvider>
     </BrowserRouter>

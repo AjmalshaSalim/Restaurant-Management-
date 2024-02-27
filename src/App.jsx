@@ -1,6 +1,3 @@
-
-
-
 import { Routes, Route, Navigate } from "react-router-dom";
 import { Dashboard } from "../src/layouts/dashboard";
 import { Auth } from "../src/layouts/auth";
@@ -12,7 +9,13 @@ import Homepage from "./pages/User/Homepage";
 import AOS from "aos";
 import "aos/dist/aos.css"; 
 import { useEffect } from "react";
+
 import Equipments from "./pages/User/Equipments";
+import OwnerLogin from "../src/pages/Owner/auth/sign-in"
+import OwnerRegister from "../src/pages/Owner/auth/sign-up"
+import OwnerForgetpassword from "../src/pages/Owner/auth/Forgot-pw"
+import OwnerOtp from "../src/pages/Owner/auth/Otp"
+import OwnerChangepassword from "../src/pages/Owner/auth/Reset-pw"
 
 function App() {
   useEffect(() => {
@@ -25,8 +28,8 @@ function App() {
     AOS.refresh();
   }, []);
   return (
-  
     <Routes>
+       // USER ROUTES
       <Route path="/dashboard/*" element={<Dashboard />} />
       <Route path="/auth/*" element={<Auth />} />
       <Route path="*" element={<Navigate to="/dashboard/home" replace />} />
@@ -36,9 +39,19 @@ function App() {
       <Route path="/Forgotpassword/" element={<Forgetpassword />} />
       <Route path="/Otp/" element={<Otp />} />
       <Route path="/changepassword/" element={<Changepassword />} /> 
+
       <Route path="/equipments/" element={<Equipments />} /> 
     </Routes>
  
+
+      // OWNER ROUTES
+        <Route path="/Ownerlogin" element={<OwnerLogin/>}/>
+        <Route path="/OwnerRegister" element={<OwnerRegister/>}/>
+        <Route path="/OwnerForgetpassword" element={<OwnerForgetpassword/>}/>
+        <Route path ="/OwnerOtp" element={<OwnerOtp/>}/>
+        <Route path="/OwnerChangepassword" element={<OwnerChangepassword/>}/>
+    </Routes> 
+
   );
 }
 

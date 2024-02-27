@@ -8,13 +8,21 @@ import {
   Tooltip,
   Progress,
 } from '@material-tailwind/react';
+import {
+  useMaterialTailwindController
+} from "../../../context/index";
 import {EllipsisVerticalIcon} from '@heroicons/react/24/outline';
 import {authorsTableData} from '../../../data/authors-table-data';
 import {projectsTableData} from '../../../data/projects-table-data';
 
 export function Tables () {
+  const [controller, dispatch] = useMaterialTailwindController();
+  const { sidenavType} =
+    controller;
   return (
-    <div className="mt-12 mb-8 flex flex-col gap-12">
+    <div className={`mt-12 mb-8 flex flex-col gap-12 ${
+      sidenavType === "dark" ? "bg-black" : "bg-white"
+    }`}>
       <Card>
         <CardHeader variant="gradient" color="gray" className="mb-8 p-6">
           <Typography variant="h6" color="white">
@@ -76,7 +84,9 @@ export function Tables () {
                         </div>
                       </td>
                       <td className={className}>
-                        <Typography className="text-xs font-semibold text-blue-gray-600">
+                        <Typography className={`text-xs font-semibold ${
+      sidenavType === "dark" ? "text-white" : "text-blue-gray-600"
+    }`}>
                           {job[0]}
                         </Typography>
                         <Typography className="text-xs font-normal text-blue-gray-500">
@@ -92,7 +102,9 @@ export function Tables () {
                         />
                       </td>
                       <td className={className}>
-                        <Typography className="text-xs font-semibold text-blue-gray-600">
+                        <Typography className={`text-xs font-semibold ${
+      sidenavType === "dark" ? "text-white" : "text-blue-gray-600"
+    }`}>
                           {date}
                         </Typography>
                       </td>
@@ -100,7 +112,9 @@ export function Tables () {
                         <Typography
                           as="a"
                           href="#"
-                          className="text-xs font-semibold text-blue-gray-600"
+                          className={`text-xs font-semibold ${
+                            sidenavType === "dark" ? "text-white" : "text-blue-gray-600"
+                          }`}
                         >
                           Edit
                         </Typography>
@@ -130,7 +144,9 @@ export function Tables () {
                   >
                     <Typography
                       variant="small"
-                      className="text-[11px] font-bold uppercase text-blue-gray-400"
+                      className={`text-[11px] font-bold uppercase ${
+                        sidenavType === "dark" ? "text-white" : "text-blue-gray-600"
+                      }`}
                     >
                       {el}
                     </Typography>
@@ -173,7 +189,9 @@ export function Tables () {
                       <td className={className}>
                         <Typography
                           variant="small"
-                          className="text-xs font-medium text-blue-gray-600"
+                          className={`text-xs font-medium ${
+                            sidenavType === "dark" ? "text-white" : "text-blue-gray-600"
+                          }`}
                         >
                           {budget}
                         </Typography>
@@ -182,7 +200,9 @@ export function Tables () {
                         <div className="w-10/12">
                           <Typography
                             variant="small"
-                            className="mb-1 block text-xs font-medium text-blue-gray-600"
+                            className={`mb-1 block text-xs font-medium ${
+                              sidenavType === "dark" ? "text-white" : "text-blue-gray-600"
+                            }`}
                           >
                             {completion}%
                           </Typography>
@@ -198,7 +218,9 @@ export function Tables () {
                         <Typography
                           as="a"
                           href="#"
-                          className="text-xs font-semibold text-blue-gray-600"
+                          className={`text-xs font-semibold ${
+                            sidenavType === "dark" ? "text-white" : "text-blue-gray-600"
+                          }`}
                         >
                           <EllipsisVerticalIcon
                             strokeWidth={2}

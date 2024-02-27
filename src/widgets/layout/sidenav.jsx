@@ -19,6 +19,7 @@ export function Sidenav({ brandImg, brandName, routes }) {
     white: "bg-white shadow-sm",
     transparent: "bg-transparent",
   };
+ 
 
   // Conditional logo based on sidenavType
   const logoSrc = sidenavType === 'dark' ? Logo2 : Logo;
@@ -27,7 +28,7 @@ export function Sidenav({ brandImg, brandName, routes }) {
     <aside
       className={`${sidenavTypes[sidenavType]} ${
         openSidenav ? "translate-x-0" : "-translate-x-80"
-      } fixed inset-0 z-50 my-4 ml-4 h-[calc(100vh-32px)] w-72 rounded-xl transition-transform duration-300 xl:translate-x-0 border border-blue-gray-100`}
+      } absolute inset-0 z-50 my-4 ml-4 max-h-fit w-72 rounded-xl transition-transform duration-300 xl:translate-x-0 border border-opacity-5`}
     >
       <div
         className={`relative`}
