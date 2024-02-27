@@ -43,7 +43,13 @@ function App() {
         <Route path="/Otp/" element={<Otp />} />
         <Route path="/changepassword/" element={<Changepassword />} /> 
 
+
+      <Route path="/equipments/" element={<Equipments />} /> 
+
+ 
+
         <Route path="/equipments/" element={<Equipments />} /> 
+
 
         {/* OWNER ROUTES  */}
         <Route path="/Ownerlogin" element={<OwnerLogin/>}/>
