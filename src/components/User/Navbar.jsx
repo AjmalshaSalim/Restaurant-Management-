@@ -84,7 +84,7 @@ const Navbar = () => {
             className="text-2xl sm:text-3xl md:text-4xl font-bold flex items-center gap-2 tracking-wider"
             onClick={() => {/* handle action here */}}
           >
-            <img src={Logo} alt="Logo" className="w-32 sm:w-36 md:w-64" />
+            <img src={Logo} alt="Logo" className="w-36 sm:w-36 md:w-64" />
           </button>
         </div>
 

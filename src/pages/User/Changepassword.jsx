@@ -24,9 +24,12 @@ const handleSubmit = async (e) => {
         return;
     }
     console.log(formData);
-    const response=await CHANGE_PASSWORD(formData)
-    // navigate('/login')
+   
     try {
+        const response=await CHANGE_PASSWORD(formData)
+        if(response.success){
+navigate('/login')
+        }
     } catch (error) {
         console.error('error while sending phone number:', error.message);
     }
