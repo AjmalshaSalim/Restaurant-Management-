@@ -66,8 +66,8 @@ function Forgetpassword() {
                                     Phone Number
                                 </label>
                                 <input
-                                    onChange={handleChange} type="number" id="phonenumber" value={formData.phonenumber} required
-                                    className="block w-full px-4 py-2 mt-2 text-black bg-white border rounded-md focus:red-purple-400 focus:ring-red-300 focus:outline-none focus:ring focus:ring-opacity-40 hover:transform hover:scale-105 transition-transform duration-500 ease-in-out"
+                                    onChange={handleChange} type="text" pattern="\d*" id="phonenumber" value={formData.phonenumber} required
+                                    className="block w-full px-4 py-2 mt-2 text-white bg-transparent border rounded-md focus:border-red-purple-400 focus:ring-red-300 focus:outline-none focus:ring focus:ring-opacity-40 hover:transform hover:scale-105 transition-transform duration-500 ease-in-out"
                                 />
                             </div>
                             <div className="mt-6 flex justify-center">

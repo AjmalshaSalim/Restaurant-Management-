@@ -17,7 +17,7 @@ const handleChange = (e) => {
 const handleSubmit=(e)=>{
     e.preventDefault()
     console.log(formData)
-    navigate('/login')
+    // navigate('/login')
     try {
        
     } catch (error) {
@@ -38,25 +38,25 @@ const handleSubmit=(e)=>{
         <form onSubmit={handleSubmit} className="mt-6">
         <div className="mb-2">
                     <label
-                        for="password"
+                        htmlFor="newPassword"
                         className="block text-sm font-semibold text-white"
                     >
                       New Password
                     </label>
                     <input
-                       type="password" id="password" value={formData.password} required onChange={handleChange}
+                       type="password" id="newPassword" value={formData.newPassword} required minLength="7" onChange={handleChange}
                         className="block w-full px-4 py-2 mt-2 text-black bg-white border rounded-md focus:border-red-400 focus:ring-red-300 focus:outline-none focus:ring focus:ring-opacity-40 hover:transform hover:scale-105 transition-transform duration-500 ease-in-out"
                     />
                 </div>
                 <div className="mb-2">
                     <label
-                        for="password"
+                        htmlFor="confirmPassword"
                         className="block text-sm font-semibold text-white"
                     >
                        Confirm Password
                     </label>
                     <input
-                       type="password" id="password" value={formData.password} required onChange={handleChange}
+                       type="password" id="confirmPassword" value={formData.confirmPassword} required minLength="7" onChange={handleChange}
                         className="block w-full px-4 py-2 mt-2 text-black bg-white border rounded-md focus:border-red-400 focus:ring-red-300 focus:outline-none focus:ring focus:ring-opacity-40 hover:transform hover:scale-105 transition-transform duration-500 ease-in-out"
                     />
                 </div>
