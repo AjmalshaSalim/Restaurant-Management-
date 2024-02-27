@@ -44,11 +44,9 @@ function App() {
         <Route path="/changepassword/" element={<Changepassword />} /> 
 
 
-      <Route path="/equipments/" element={<Equipments />} /> 
+   
 
- 
 
-        <Route path="/equipments/" element={<Equipments />} /> 
 
 
         {/* OWNER ROUTES  */}
@@ -57,6 +55,7 @@ function App() {
         <Route path="/OwnerForgetpassword" element={<OwnerForgetpassword/>}/>
         <Route path ="/OwnerOtp" element={<OwnerOtp/>}/>
         <Route path="/OwnerChangepassword" element={<OwnerChangepassword/>}/>
+        <Route path="/equipments/" element={<Equipments />} /> 
       </Routes> 
     </PhoneNumberProvider>
   );
