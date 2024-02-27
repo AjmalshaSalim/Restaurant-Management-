@@ -1,14 +1,14 @@
-import { useLocation, useNavigate } from 'react-router-dom';
+import {  useNavigate } from 'react-router-dom';
 import BackgroundImage from '../../assets/images/bg-gitl-login.jpg';
 import logo from '../../assets/images/Gymsoft_Logo1-removebg-preview.png';
-import { useRef, useState,useEffect } from 'react';
+import { useRef, useState,useEffect, useContext } from 'react';
 import { VERIFY_OTP } from '../../actions/AuthActions';
+import { PhoneNumberContext } from '../../context/phoneNumberContext';
 
 function Otp() {
-    const location = useLocation();
+    const { phoneNumber } = useContext(PhoneNumberContext);
 
 
-    const phoneNumber = location.state.phoneNumber;
     console.log("Phone Number:", phoneNumber); 
     const [otp,setOtp]=useState('')
     const [minutes,setMinutes]=useState(1)

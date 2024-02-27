@@ -16,6 +16,7 @@ import OwnerRegister from "../src/pages/Owner/auth/sign-up"
 import OwnerForgetpassword from "../src/pages/Owner/auth/Forgot-pw"
 import OwnerOtp from "../src/pages/Owner/auth/Otp"
 import OwnerChangepassword from "../src/pages/Owner/auth/Reset-pw"
+import { PhoneNumberProvider } from "./context/phoneNumberContext"; // Import PhoneNumberProvider
 
 function App() {
   useEffect(() => {
@@ -27,30 +28,36 @@ function App() {
     });
     AOS.refresh();
   }, []);
+
   return (
-    <Routes>
-       // USER ROUTES
-      <Route path="/dashboard/*" element={<Dashboard />} />
-      <Route path="/auth/*" element={<Auth />} />
-      <Route path="*" element={<Navigate to="/dashboard/home" replace />} />
-      {/* for use login  */}
-      <Route path="/home" element={<Homepage />} />
-      <Route path="/login/*" element={<Login />} />  
-      <Route path="/Forgotpassword/" element={<Forgetpassword />} />
-      <Route path="/Otp/" element={<Otp />} />
-      <Route path="/changepassword/" element={<Changepassword />} /> 
-      <Route path="/equipments/" element={<Equipments />} /> 
+    <PhoneNumberProvider> {/* Wrap PhoneNumberProvider around your Routes */}
+      <Routes>
+        {/* USER ROUTES */}
+        <Route path="/dashboard/*" element={<Dashboard />} />
+        <Route path="/auth/*" element={<Auth />} />
+        <Route path="*" element={<Navigate to="/dashboard/home" replace />} />
+        {/* for use login  */}
+        <Route path="/home" element={<Homepage />} />
+        <Route path="/login/*" element={<Login />} />  
+        <Route path="/Forgotpassword/" element={<Forgetpassword />} />
+        <Route path="/Otp/" element={<Otp />} />
+        <Route path="/changepassword/" element={<Changepassword />} /> 
 
- 
 
-      // OWNER ROUTES
+   
+
+
+
+
+        {/* OWNER ROUTES  */}
         <Route path="/Ownerlogin" element={<OwnerLogin/>}/>
         <Route path="/OwnerRegister" element={<OwnerRegister/>}/>
         <Route path="/OwnerForgetpassword" element={<OwnerForgetpassword/>}/>
         <Route path ="/OwnerOtp" element={<OwnerOtp/>}/>
         <Route path="/OwnerChangepassword" element={<OwnerChangepassword/>}/>
-    </Routes> 
-
+        <Route path="/equipments/" element={<Equipments />} /> 
+      </Routes> 
+    </PhoneNumberProvider>
   );
 }
 

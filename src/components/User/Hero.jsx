@@ -2,9 +2,8 @@ import React, { useState } from "react";
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
-
 const Hero = () => {
-  const [percentage,setPercentage]=useState(90)
+  const [percentage, setPercentage] = useState(50);
   return (
     <>
       <div className="min-h-screen bg-black flex justify-center items-center text-white relative">
@@ -27,20 +26,39 @@ const Hero = () => {
               <p data-aos="fade-up"
                 data-aos-once="true" className="text-lg" >Motivates users with benefits and positive reinforcement and offer modifications and progress tracking</p>
             </div>
-            <div className="flex space-x-4" data-aos="fade-right">
-        <div className="text-center transition duration-300 ease-in-out hover:scale-105">
-            <h3 className="text-lg font-semibold mb-2">Finished</h3>
-            <CircularProgressbar  title="Finished" value={percentage} text={`${percentage}%`} styles={{ path: { stroke: `rgba(255, 0, 0, ${percentage / 100})` }, text: { fill: '#dc143c', fontSize: '16px' }, trail: { stroke: '#d6d6d6' }, background: { fill: '#dc143c' }, }} />
-        </div>
-        <div className="text-center transition duration-300 ease-in-out hover:scale-105">
-            <h3 className="text-lg font-semibold mb-2">In Progress</h3>
-            <CircularProgressbar title="In Progress" value={percentage} text={`${percentage}%`} styles={{ path: { stroke: `rgba(50, 255, 0 , ${percentage / 100})` }, text: { fill: '#ff0000', fontSize: '16px' }, trail: { stroke: '#d6d6d6' }, background: { fill: '#ff0000' }, }} />
-        </div>
-        <div className="text-center transition duration-300 ease-in-out hover:scale-105">
-            <h3 className="text-lg font-semibold mb-2">Your Progress</h3>
-            <CircularProgressbar title="Your Progress" value={percentage} text={`${percentage}%`} styles={{ path: { stroke: `rgba(0, 43, 255 , ${percentage / 100})` }, text: { fill: '#ff0000', fontSize: '16px' }, trail: { stroke: '#d6d6d6' }, background: { fill: '#ffffff' }, }} />
-        </div>
-    </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-12 md:pt-0" data-aos="fade-up" data-aos-anchor-placement="bottom-bottom">
+            {/* Finished Workouts */}
+            <div className="bg-black bg-opacity-50 p-4 rounded-lg shadow-lg" data-aos="fade-up" data-aos-anchor-placement="bottom-bottom">
+              <h2 className="text-xl font-semibold mb-2 text-center md:text-left">Completed Workouts</h2>
+              <p className="text-4xl font-bold text-center md:text-left">12</p>
+              <p className="text-sm text-gray-400 text-center md:text-left">Workouts</p>
+            </div>
+            {/* In Progress Workouts */}
+            <div className="bg-black bg-opacity-50 p-4 rounded-lg shadow-lg" data-aos="fade-up" data-aos-anchor-placement="bottom-bottom">
+              <h2 className="text-xl font-semibold mb-2 text-center md:text-left">In Progress</h2>
+              <p className="text-4xl font-bold text-center md:text-left">2</p>
+              <p className="text-sm text-gray-400 text-center md:text-left">Workouts</p>
+            </div>
+            {/* Your Progress */}
+            <div className="bg-black bg-opacity-50 p-2 rounded-lg shadow-lg flex flex-col items-center justify-center" data-aos="fade-up" data-aos-anchor-placement="bottom-bottom">
+              <h2 className="text-xl font-semibold mb-2 text-center">Your Progress</h2>
+              <p className="text-lg pb-2 text-center">Weight Gain</p>
+              <div style={{ width: '60%', height: '60%' }} className="flex items-center justify-center pt-4 sm:pt-4">
+                <CircularProgressbar value={percentage} text={`${percentage}%`} styles={{
+                  path: {
+                    stroke: `red`,
+                  },
+                  trail: {
+                    stroke: 'white',
+                  },
+                  text: {
+                    fill: 'white',
+                    fontSize: '20px',
+                  },
+                }} />
+              </div>
+            </div>
+          </div>
           </div>
         </div>
       </div>
