@@ -5,12 +5,14 @@ import  Navbar  from "../../components/User/Navbar.jsx"
 
 function Homepage() {
     return (
-        <>
+        <div className="bg-black">
             <Navbar />
             <Hero />
+            <div className="bg-white">
             <Services />
+            </div>
 
-        </>
+        </div>
     )
 }
 

@@ -1,14 +1,16 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import BackgroundImage from '../../assets/images/bg-image-girl2.jpg';
 import logo from '../../assets/images/Gymsoft_Logo1-removebg-preview.png';
 import { useNavigate } from 'react-router-dom';
 import { SEND_OTP } from '../../actions/AuthActions';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { PhoneNumberContext } from '../../context/phoneNumberContext';
 
 function Forgetpassword() {  
     const navigate = useNavigate();
     const [formData, setFormData] = useState({ phonenumber: '' });
+    const { updatePhoneNumber } = useContext(PhoneNumberContext); 
   
     const handleChange = (e) => {
         setFormData({
@@ -20,6 +22,7 @@ function Forgetpassword() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
+            // Assuming SEND_OTP function works as expected
             const response = await SEND_OTP(formData);
             toast.success('OTP sent successfully!', {
                 position: "top-right",
@@ -30,7 +33,8 @@ function Forgetpassword() {
                 draggable: true,
                 progress: undefined,
             });
-            navigate('/Otp', { state: { phoneNumber: formData.phonenumber } });
+            updatePhoneNumber(formData.phonenumber); 
+            navigate('/Otp');
         } catch (error) {
             toast.error('Error while sending OTP. Please try again later.', {
                 position: "top-right",
