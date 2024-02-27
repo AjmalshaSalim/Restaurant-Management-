@@ -46,14 +46,16 @@ export function Configurator() {
   const { openConfigurator, sidenavColor, sidenavType, fixedNavbar } =
     controller;
   const [stars, setStars] = React.useState(0);
-
   const sidenavColors = {
-    white: "from-gray-100 to-gray-100 border-gray-200",
-    dark: "from-red-500 to-orange-500 border-gray-200",
-    green: "from-red-500 to-green-700",
-    orange: "from-orange-400 to-orange-600",
-    red: "from-red-600 to-red-800",
-    pink: "from-red-500 to-red-700",
+
+    // Themes
+    // white: "from-gray-100 to-gray-100 border-gray-200",
+    // dark: "from-red-500 to-orange-500 border-gray-200",
+    // green: "from-red-500 to-green-700",
+    // orange: "from-orange-400 to-orange-600",
+    // red: "from-red-600 to-red-800",
+    // pink: "from-red-500 to-red-700",
+    // Themes
   };
 
   React.useEffect(() => {
@@ -66,7 +68,9 @@ export function Configurator() {
 
   return (
     <aside
-      className={`fixed top-0 right-0 z-50 h-screen w-96 bg-white px-2.5 shadow-lg transition-transform duration-300 ${
+      className={`fixed top-0 right-0 z-50 ${
+        sidenavType === "dark" ? "bg-black" : "bg-white"
+      } h-screen w-96 px-2.5 shadow-lg transition-transform duration-300 ${
         openConfigurator ? "translate-x-0" : "translate-x-96"
       }`}
     >
@@ -75,7 +79,9 @@ export function Configurator() {
           <Typography variant="h5" color="blue-gray">
             Settings
           </Typography>
-          <Typography className="font-normal text-blue-gray-600">
+          <Typography className={`font-normal ${
+      sidenavType === "dark" ? "text-white" : "text-blue-gray-600"
+    }`}>
           </Typography>
         </div>
         <IconButton
@@ -87,7 +93,9 @@ export function Configurator() {
         </IconButton>
       </div>
       <div className="py-4 px-6">
-        <div className="mb-12">
+
+{/* Themes */}
+        {/* <div className="mb-12">
           <Typography variant="h6" color="blue-gray">
             Themes
           </Typography>
@@ -104,7 +112,9 @@ export function Configurator() {
               />
             ))}
           </div>
-        </div>
+        </div> */}
+{/* Themes */}
+
         <div className="mb-12">
           <Typography variant="h6" color="blue-gray">
             Mode

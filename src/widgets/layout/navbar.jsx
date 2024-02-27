@@ -8,6 +8,9 @@ import {
   Button,
   IconButton,
 } from "@material-tailwind/react";
+import {
+  useMaterialTailwindController
+} from "../../context/index";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
 export function Navbar({ brandName, routes, action }) {
@@ -19,7 +22,9 @@ export function Navbar({ brandName, routes, action }) {
       () => window.innerWidth >= 960 && setOpenNav(false)
     );
   }, []);
-
+  const [controller, dispatch] = useMaterialTailwindController();
+  const { sidenavType} =
+    controller;
   const navList = (
     <ul className="mb-4 mt-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
       {routes.map(({ name, path, icon }) => (
@@ -44,7 +49,7 @@ export function Navbar({ brandName, routes, action }) {
 
   return (
     <MTNavbar className="p-3">
-      <div className="container mx-auto flex items-center justify-between text-blue-gray-900">
+      <div className="container mx-auto flex items-center justify-between text-blue-gray-900 bg-green-300">
         <Link to="/">
           <Typography
             variant="small"

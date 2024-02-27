@@ -6,10 +6,18 @@ import {
   Typography,
 } from "@material-tailwind/react";
 import PropTypes from "prop-types";
+import {
+  useMaterialTailwindController
+} from "../../context/index";
 
 export function StatisticsCard({ color, icon, title, value, footer }) {
+  const [controller, dispatch] = useMaterialTailwindController();
+  const { sidenavType} =
+    controller;
   return (
-    <Card className="border border-blue-gray-100 shadow-sm">
+    <Card className={`border border-blue-gray-100 shadow-sm ${
+      sidenavType === "dark" ? "bg-black" : "bg-white"
+    }`}>
       <CardHeader
         variant="gradient"
         color={color}
@@ -20,7 +28,9 @@ export function StatisticsCard({ color, icon, title, value, footer }) {
         {icon}
       </CardHeader>
       <CardBody className="p-4 text-right ">
-        <Typography variant="small" className="font-normal text-blue-gray-600">
+        <Typography variant="small" className={`font-normal ${
+      sidenavType === "dark" ? "text-white" : "text-blue-gray-600"
+    }`}>
           {title}
         </Typography>
         <Typography variant="h4" color="blue-gray">

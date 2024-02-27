@@ -3,6 +3,9 @@ import {useEffect} from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import {
+  useMaterialTailwindController
+} from "../../../context/index";
+import {
   Typography,
   Card,
   CardHeader,
@@ -28,8 +31,13 @@ export function Home () {
   useEffect (() => {
     AOS.init ();
   });
+  const [controller, dispatch] = useMaterialTailwindController();
+  const { sidenavType} =
+    controller;
   return (
-    <div className="mt-12">
+    <div className={`mt-12 ${
+      sidenavType === "dark" ? "bg-black" : "bg-white"
+    }`}>
       <div
         className="mb-12 grid gap-y-10 gap-x-6 md:grid-cols-2 xl:grid-cols-4"
         data-aos="fade-left"
@@ -44,7 +52,9 @@ export function Home () {
               className: 'w-6 h-6 text-white',
             })}
             footer={
-              <Typography className="font-normal text-blue-gray-600">
+              <Typography className={`font-normal ${
+                sidenavType === "dark" ? "text-white" : "text-blue-gray-600"
+              }`}>
                 <strong className={footer.color}>{footer.value}</strong>
                 &nbsp;{footer.label}
               </Typography>
@@ -64,11 +74,13 @@ export function Home () {
             footer={
               <Typography
                 variant="small"
-                className="flex items-center font-normal text-blue-gray-600"
+                className={`flex items-center font-normal ${
+                  sidenavType === "dark" ? "text-white" : "text-blue-gray-600"
+                }`}
               >
                 <ClockIcon
                   strokeWidth={2}
-                  className="h-4 w-4 text-blue-gray-400"
+                  className="h-4 w-4 text-red-gray-400"
                 />
                 &nbsp;{props.footer}
               </Typography>
@@ -81,7 +93,10 @@ export function Home () {
         data-aos="fade-left"
         data-aos-duration="1000"
       >
-        <Card className="overflow-hidden xl:col-span-2 border border-blue-gray-100 shadow-sm">
+        <Card className={`overflow-hidden xl:col-span-2 border border-blue-gray-100 shadow-sm
+        ${
+      sidenavType === "dark" ? "bg-black" : "bg-white"
+    }`}>
           <CardHeader
             floated={false}
             shadow={false}
@@ -94,7 +109,9 @@ export function Home () {
               </Typography>
               <Typography
                 variant="small"
-                className="flex items-center gap-1 font-normal text-blue-gray-600"
+                className={`flex items-center gap-1 font-normal ${
+                  sidenavType === "dark" ? "text-white" : "text-blue-gray-600"
+                }`}
               >
                 <CheckCircleIcon
                   strokeWidth={3}
@@ -131,7 +148,9 @@ export function Home () {
                     >
                       <Typography
                         variant="small"
-                        className="text-[11px] font-medium uppercase text-blue-gray-400"
+                        className={`text-[11px] font-medium uppercase ${
+                          sidenavType === "dark" ? "text-white" : "text-blue-gray-600"
+                        }`}
                       >
                         {el}
                       </Typography>
@@ -174,7 +193,9 @@ export function Home () {
                         <td className={className}>
                           <Typography
                             variant="small"
-                            className="text-xs font-medium text-blue-gray-600"
+                            className={`text-xs font-medium ${
+                              sidenavType === "dark" ? "text-white" : "text-blue-gray-600"
+                            }`}
                           >
                             {budget}
                           </Typography>
@@ -183,7 +204,9 @@ export function Home () {
                           <div className="w-10/12">
                             <Typography
                               variant="small"
-                              className="mb-1 block text-xs font-medium text-blue-gray-600"
+                              className={`mb-1 block text-xs font-medium ${
+                                sidenavType === "dark" ? "text-white" : "text-blue-gray-600"
+                              }`}
                             >
                               {completion}%
                             </Typography>
@@ -203,7 +226,10 @@ export function Home () {
             </table>
           </CardBody>
         </Card>
-        <Card className="border border-blue-gray-100 shadow-sm">
+        <Card className={`border border-blue-gray-100 shadow-sm
+        ${
+      sidenavType === "dark" ? "bg-black" : "bg-white"
+    }`}>
           <CardHeader
             floated={false}
             shadow={false}
@@ -215,7 +241,9 @@ export function Home () {
             </Typography>
             <Typography
               variant="small"
-              className="flex items-center gap-1 font-normal text-blue-gray-600"
+              className={`flex items-center gap-1 font-normal ${
+                sidenavType === "dark" ? "text-white" : "text-blue-gray-600"
+              }`}
             >
               <ArrowUpIcon
                 strokeWidth={3}
@@ -246,7 +274,9 @@ export function Home () {
                     <Typography
                       as="span"
                       variant="small"
-                      className="text-xs font-medium text-blue-gray-500"
+                      className={`text-xs font-medium ${
+                        sidenavType === "dark" ? "text-white" : "text-blue-gray-600"
+                      }`}
                     >
                       {description}
                     </Typography>
