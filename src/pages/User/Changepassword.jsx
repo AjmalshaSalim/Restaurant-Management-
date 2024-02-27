@@ -3,6 +3,8 @@ import BackgroundImage from '../../assets/images/gym-bg-login.jpg';
 import logo from '../../assets/images/Gymsoft_Logo1-removebg-preview.png';
 import { useNavigate } from 'react-router-dom';
 import { CHANGE_PASSWORD } from '../../actions/AuthActions';
+
+
 function Forgetpassword() {
     const navigate=useNavigate();
 const [formData,setFormData]=useState({phonenumber:''}) 
