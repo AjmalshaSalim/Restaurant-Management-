@@ -6,11 +6,14 @@ import img5 from '../../../assets/gym-equipments/img5.png'
 import img6 from '../../../assets/gym-equipments/img6.png'
 import img7 from '../../../assets/gym-equipments/img7.png'
 import img8 from '../../../assets/gym-equipments/img8.png'
+import {ADD_Equipments} from '../../../actions/EquipmentsActions'
+import { useNavigate } from 'react-router-dom';
 import {
   useMaterialTailwindController
 } from "../../../context/index";
 
 export default function GymEquipments() {
+  const navigate=useNavigate()
   const [controller, dispatch] = useMaterialTailwindController();
   const { sidenavType } = controller;
 
@@ -20,70 +23,121 @@ export default function GymEquipments() {
 
   function AddEquipmentForm() {
     const [equipmentData, setEquipmentData] = useState({
-      photo: '',
+      image: null,
       name: '',
-      description: '',
-      purchaseDate: '',
-      guaranteeDate: '',
-      serviceDate: '',
+      category: '',
+      model_number: '',
+      purchase_date: '',
+      manufacturer:'',
+      purchase_price: 0,
+      warranty_information: '',
+      warranty_expiration_date: '',
+      condition: '',
+      maintenance_charge: 0,
+      availability: false,
+      additional_notes: '',
     });
 
     const handleChange = (e) => {
-      const { name, value } = e.target;
+      const { name, value, type, checked } = e.target;
       setEquipmentData(prevState => ({
         ...prevState,
-        [name]: value,
+        [name]: type === 'checkbox' ? checked : value,
       }));
     };
 
     const handlePhotoChange = (e) => {
       setEquipmentData(prevState => ({
         ...prevState,
-        photo: e.target.files[0],
+        image: e.target.files[0],
       }));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
       e.preventDefault();
-      console.log(equipmentData);
+     try {
+     const response= await ADD_Equipments(equipmentData);
+      if(response.success){
+        console.log('sucess');
+        navigate('/dashboard/gym-equipments')
+      }
+     } catch (error) {
+      console.error('failed to add equipments',error);
+     }
     };
 
     return (
       <>
         <div className='flex flex-row justify-between items-center'>
-          <h1 className='font-semibold text-center flex-grow '>Add Equipments</h1>
+          <h1 className='font-semibold text-center flex-grow '>Add Equipment</h1>
           <button onClick={toggleAddEquipmentForm} className="py-1 px-3 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-gray-600 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
             Back
           </button>
         </div>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label htmlFor="photo" className="block text-sm font-medium text-gray-700">Equipment Photo</label>
-            <input type="file" name="photo" onChange={handlePhotoChange} className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 text-gray-700"/>
+            <label htmlFor="image" className="block text-sm font-medium text-gray-900">Equipment Image</label>
+            <input type="file" name="image" id="image" onChange={handlePhotoChange} className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 text-gray-700"/>
           </div>
           <div>
-            <label htmlFor="name" className="block text-sm font-medium text-gray-700">Equipment Name</label>
+            <label htmlFor="name" className="block text-sm font-medium text-gray-900">Equipment Name</label>
             <input type="text" name="name" value={equipmentData.name} onChange={handleChange} className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 text-gray-700"/>
           </div>
           <div>
-            <label htmlFor="description" className="block text-sm font-medium text-gray-700">Description</label>
-            <textarea name="description" value={equipmentData.description} onChange={handleChange} className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 text-gray-700"></textarea>
+            <label htmlFor="category" className="block text-sm font-medium text-gray-900">Equipment Category</label>
+            <select name="category" value={equipmentData.category} onChange={handleChange} className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 text-gray-700">
+              <option value="">Select Category</option>
+              <option value="cardio">Cardio</option>
+              <option value="strength">Strength</option>
+              <option value="free_weights">Free Weights</option>
+              <option value="machines">Machines</option>
+              <option value="other">Other</option>
+            </select>
           </div>
           <div>
-            <label htmlFor="purchaseDate" className="block text-sm font-medium text-gray-700">Date of Purchase</label>
-            <input type="date" name="purchaseDate" value={equipmentData.purchaseDate} onChange={handleChange} className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 text-gray-700"/>
+            <label htmlFor="modelNumber" className="block text-sm font-medium text-gray-900">Model Number</label>
+            <input type="text" name="model_number" value={equipmentData.model_number} onChange={handleChange} className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 text-gray-700"/>
           </div>
           <div>
-            <label htmlFor="guaranteeDate" className="block text-sm font-medium text-gray-700">Guarantee Date</label>
-            <input type="date" name="guaranteeDate" value={equipmentData.guaranteeDate} onChange={handleChange} className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 text-gray-700"/>
+            <label htmlFor="purchaseDate" className="block text-sm font-medium text-gray-900">Purchase Date (YYYY-MM-DD)</label>
+            <input type="text" name="purchase_date" value={equipmentData.purchase_date} onChange={handleChange} pattern="\d{4}-\d{2}-\d{2}" placeholder="YYYY-MM-DD" className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 text-gray-700"/>
           </div>
           <div>
-            <label htmlFor="serviceDate" className="block text-sm font-medium text-gray-700">Service Date</label>
-            <input type="date" name="serviceDate" value={equipmentData.serviceDate} onChange={handleChange} className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 text-gray-700"/>
+            <label htmlFor="purchasePrice" className="block text-sm font-medium text-gray-900">Purchase Price</label>
+            <input type="number" name="purchase_price" value={equipmentData.purchase_price} onChange={handleChange} className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 text-gray-700" step="any" style={{appearance: "textfield"}}/>
           </div>
           <div>
-            <label htmlFor="price" className="block text-sm font-medium text-gray-700">Price</label>
-            <input type="text" name="price" value={equipmentData.price} onChange={handleChange} className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 text-gray-700"/>
+            <label htmlFor="manufacturer" className="block text-sm font-medium text-gray-900">Manufacturer</label>
+            <input type="text" name="manufacturer" value={equipmentData.manufacturer} onChange={handleChange} className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 text-gray-700"/>
+          </div>
+          <div>
+            <label htmlFor="warrantyInformation" className="block text-sm font-medium text-gray-900">Warranty Information</label>
+            <input type="text" name="warranty_information" value={equipmentData.warranty_information} onChange={handleChange} className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 text-gray-700"/>
+          </div>
+          <div>
+            <label htmlFor="warrantyExpirationDate" className="block text-sm font-medium text-gray-900">Warranty Expiration Date (YYYY-MM-DD)</label>
+            <input type="text" name="warranty_expiration_date" value={equipmentData.warranty_expiration_date} onChange={handleChange} pattern="\d{4}-\d{2}-\d{2}" placeholder="YYYY-MM-DD" className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 text-gray-700"/>
+          </div>
+          <div>
+            <label htmlFor="condition" className="block text-sm font-medium text-gray-900">Condition</label>
+            <select name="condition" value={equipmentData.condition} onChange={handleChange} className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 text-gray-700">
+              <option value="">Select Condition</option>
+              <option value="new">New</option>
+              <option value="used">Used</option>
+              <option value="refurbished">Refurbished</option>
+            </select>
+          </div>
+          <div>
+            <label htmlFor="maintenanceCharge" className="block text-sm font-medium text-gray-900">Maintenance Charge</label>
+            <input type="number" name="maintenance_charge" value={equipmentData.maintenance_charge} onChange={handleChange} className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 text-gray-700"/>
+          </div>
+          <div>
+            <label htmlFor="availability" className="block text-sm font-medium text-gray-900">Availability</label>
+            <input type="checkbox" name="availability" checked={equipmentData.availability} onChange={handleChange} className="mt-1"/>
+          </div>
+          <div>
+            <label htmlFor="additionalNotes" className="block text-sm font-medium text-gray-900">Additional Notes</label>
+            <textarea name="additional_notes" value={equipmentData.additional_notes} onChange={handleChange} className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 text-gray-700"></textarea>
           </div>
           <button type="submit" className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-gray-600 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
             Add Equipment
@@ -92,7 +146,6 @@ export default function GymEquipments() {
       </>
     );
   }
-
   const equipments=[{
     id:1,
     img:img7,
@@ -212,7 +265,13 @@ export default function GymEquipments() {
           </div>
           <div className="flex flex-wrap justify-between">
             {equipments.map((equipment, index) => (
-              <div key={index} className={`flex flex-col lg:flex-row items-center shadow-lg ${sidenavType === 'dark' ? "bg-black border-1 border-gray-900" : "bg-white"} rounded overflow-hidden my-2 mx-4 w-full lg:w-auto`}>
+              <div key={index} className={`relative flex flex-col lg:flex-row items-center shadow-lg ${sidenavType === 'dark' ? "bg-black border-1 border-gray-900" : "bg-white"} rounded overflow-hidden my-2 mx-4 w-full lg:w-auto`}>
+                <div className="absolute top-0 right-0 p-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-gray-600 hover:text-gray-800 cursor-pointer" fill="none" viewBox="0 0 24 24" stroke="currentColor" title="Edit">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                  </svg>
+                  <span className="sr-only">Edit</span>
+                </div>
                 <img className="w-full lg:w-48 h-auto object-contain" src={equipment.img} alt={equipment.title} />
                 <div className="px-6 py-4 flex-grow">
                   <div className={`font-bold text-xl mb-2 ${sidenavType === 'dark' ? "text-white" : "text-black"}`}>{equipment.title}</div>
@@ -225,9 +284,6 @@ export default function GymEquipments() {
                     <span className="inline-block mb-3 bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">Service Date: {equipment.serviceDate}</span>
                     <span className="inline-block mb-3 bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">Price: ${equipment.price}</span>
                   </div>
-                  <button onClick={toggleAddEquipmentForm} className="inline-flex justify-center py-2 px-4 mb-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-gray-600 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
-                    Add equipment
-                  </button>
                 </div>
               </div>
             ))}
