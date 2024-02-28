@@ -35,11 +35,11 @@ export function DashboardNavbar() {
     controller;
   return (
     <Navbar
-      color={fixedNavbar ? " " : "transparent"}
+      color={fixedNavbar ? "blue-gray" : "transparent"}
       className={`rounded-xl transition-all ${sidenavType === 'dark'? "bg-black" : "bg-white"} ${
         fixedNavbar
           ? "sticky top-4 z-40 py-3 shadow-md shadow-blue-gray-500/5 "
-          : "px-0 py-1"
+          : "px-4 py-1"
       }`}
       fullWidth
       blurred={fixedNavbar}
@@ -87,11 +87,11 @@ export function DashboardNavbar() {
           <Link to="/auth/sign-in">
             <Button
               variant="text"
-              color={sidenavType === 'dark'? "red" : "blue-gray"}
+              color={sidenavType === 'dark'? "white" : "blue-gray"}
               className="hidden items-center gap-1 px-4 xl:flex normal-case"
             >
               <UserCircleIcon className={`h-5 w-5 ${
-                sidenavType === 'dark'? "text-red-500" : "text-blue-gray-500"
+                sidenavType === 'dark'? "text-white" : "text-blue-gray-500"
               }`} />
               Sign In
             </Button>
@@ -106,7 +106,7 @@ export function DashboardNavbar() {
           <Menu>
             <MenuHandler>
               <IconButton variant="text" color="blue-gray">
-                <BellIcon className={`h-5 w-5 ${sidenavType ==='dark'? "text-red-500" : "text-blue-gray-500"}`} />
+                <BellIcon className={`h-5 w-5 ${sidenavType ==='dark'? "text-white" : "text-blue-gray-500"}`} />
               </IconButton>
             </MenuHandler>
             <MenuList className={`w-max border-0 ${sidenavType === 'dark'? "bg-black" : "bg-white"} `}>
@@ -186,7 +186,7 @@ export function DashboardNavbar() {
             color={sidenavType === 'dark'? "white" : "blue-gray"}
             onClick={() => setOpenConfigurator(dispatch, true)}
           >
-            <Cog6ToothIcon className={`h-5 w-5 ${ sidenavType === 'dark' ? "text-red-500" : "text-blue-gray-500"}`} />
+            <Cog6ToothIcon className={`h-5 w-5 ${ sidenavType === 'dark' ? "text-white" : "text-blue-gray-500"}`} />
           </IconButton>
         </div>
       </div>

@@ -7,8 +7,14 @@ import img6 from '../../../assets/gym-equipments/img6.png'
 import img7 from '../../../assets/gym-equipments/img7.png'
 import img8 from '../../../assets/gym-equipments/img8.png'
 import { LuDumbbell } from "react-icons/lu";
+import {
+  useMaterialTailwindController
+} from "../../../context/index";
 
     export default function GymEquipments() {
+      const [controller, dispatch] = useMaterialTailwindController();
+      const { sidenavType} =
+        controller;
        const equipments=[{
             id:1,
             img:img7,
@@ -136,7 +142,6 @@ import { LuDumbbell } from "react-icons/lu";
           e.preventDefault();
           console.log(equipmentData);
         };
-
         return (
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
@@ -176,19 +181,20 @@ import { LuDumbbell } from "react-icons/lu";
 
       return (
         <>
-          <div className="max-w-4xl mx-auto py-12 px-4 sm:px-6 lg:px-8 flex justify-between items-center flex-col lg:flex-row">
+          <div className="max-w-4xl mx-auto py-3 -mb-6 px-4 sm:px-6 lg:px-8 flex justify-between items-center flex-col lg:flex-row">
             <div className="flex items-center mb-4 lg:mb-0">
-              <i className=" text-gray-900 mr-2">{<LuDumbbell />} </i>
-              <h2 className="text-2xl font-extrabold tracking-tight text-gray-900">Equipments</h2>
+              <i className={` mr-2 ${sidenavType === 'dark'? "text-white" : "text-gray-900" }`}>{<LuDumbbell />} </i>
+              <h2 className={`text-2xl font-extrabold tracking-tight  ${sidenavType === 'dark'? "text-white" : "text-gray-900" }`}>Equipments</h2>
             </div>
             <div className="flex items-center flex-col lg:flex-row">
               <div className="relative border-2 py-2 rounded-lg mb-4 lg:mb-0 lg:mr-4">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                   <svg className="h-5 w-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clipRule="evenodd" /></svg>
                 </div>
-                <input type="text" placeholder="Search Equipments..." className="block w-full pl-10 pr-12 sm:text-sm rounded-md focus:outline-none" />
+                <input type="text" placeholder="Search Equipments..." className={`block w-full pl-10 pr-12 sm:text-sm rounded-md focus:outline-none bg-transparent ${sidenavType === "dark" ? " placeholder-white" : " placeholder-blue-gray-700"
+    }`} />
               </div>
-              <button onClick={toggleAddEquipmentForm} className="inline-flex justify-center py-2 px-4 mb-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+              <button onClick={toggleAddEquipmentForm} className="inline-flex justify-center py-2 px-4 mb-4 shadow-sm text-sm font-medium rounded-md text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                 {showAddEquipmentForm ? 'Hide' : 'Add equipment'}
               </button>
             </div>
@@ -196,16 +202,16 @@ import { LuDumbbell } from "react-icons/lu";
           </div>
           <div className="flex flex-wrap justify-between">
             {equipments.map((equipment, index) => (
-              <div key={index} className="flex flex-col lg:flex-row items-center bg-white shadow-lg rounded overflow-hidden my-4 mx-2 w-full lg:w-auto">
+              <div key={index} className={`flex flex-col lg:flex-row items-center shadow-lg ${sidenavType === 'dark'? "bg-black border-1 border-gray-900" : "bg-white"} rounded overflow-hidden my-2 mx-4 w-full lg:w-auto`}>
                 <img className="w-full lg:w-48 h-auto object-contain" src={equipment.img} alt={equipment.title} />
                 <div className="px-6 py-4 flex-grow">
-                  <div className="font-bold text-xl mb-2">{equipment.title}</div>
+                  <div className={`font-bold text-xl mb-2 ${sidenavType === 'dark'? "text-white" : "text-black"}`}>{equipment.title}</div>
                   <p className="text-gray-700 text-base">
                     {equipment.description}
                   </p>
                   <div className="mt-4">
                     <span className="inline-block mb-3 bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">Purchase Date: {equipment.purchaseDate}</span>
-                    <span className="inline-block mb-3 bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">Guarantee Date: {equipment.guaranteeDate}</span>
+                    <span className="inline-block mb-3 bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">Warranty period: {equipment.guaranteeDate}</span>
                     <span className="inline-block mb-3 bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">Service Date: {equipment.serviceDate}</span>
                     <span className="inline-block mb-3 bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">Price: ${equipment.price}</span>
                   </div>

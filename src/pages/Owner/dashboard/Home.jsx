@@ -35,9 +35,7 @@ export function Home () {
   const { sidenavType} =
     controller;
   return (
-    <div className={`mt-12 ${
-      sidenavType === "dark" ? "bg-transparent" : "bg-white"
-    }`}>
+    <div className="mt-12 bg-transparent">
       <div
         className="mb-12 grid gap-y-10 gap-x-6 md:grid-cols-2 xl:grid-cols-4"
         data-aos="fade-left"

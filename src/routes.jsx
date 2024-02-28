@@ -9,6 +9,7 @@ import {
 import { CgGym } from "react-icons/cg";
 import {Home} from './pages/Owner/dashboard/Home';
 import {Profile} from './pages/Owner/dashboard/profile';
+import {UserList} from './pages/Owner/dashboard/UserList'
 import GymEquipments from './pages/Owner/dashboard/GymEquipments';
 import {Tables} from './pages/Owner/dashboard/tables';
 import {Notifications} from './pages/Owner/dashboard/notifications';
@@ -37,6 +38,12 @@ export const routes = [
         name: 'profile',
         path: '/profile',
         element: <Profile />,
+      },
+      {
+        icon: <UserCircleIcon {...icon} />,
+        name: 'User List',
+        path: '/UserList',
+        element: <UserList/>,
       },
       {
         icon: <CgGym {...icon} />,
