@@ -26,21 +26,21 @@ const Hero = () => {
               <p data-aos="fade-up"
                 data-aos-once="true" className="text-lg" >Motivates users with benefits and positive reinforcement and offer modifications and progress tracking</p>
             </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-12 md:pt-0">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-12 md:pt-0" data-aos="fade-up" data-aos-anchor-placement="bottom-bottom">
             {/* Finished Workouts */}
-            <div className="bg-black bg-opacity-50 p-4 rounded-lg shadow-lg">
+            <div className="bg-black bg-opacity-50 p-4 rounded-lg shadow-lg" data-aos="fade-up" data-aos-anchor-placement="bottom-bottom">
               <h2 className="text-xl font-semibold mb-2 text-center md:text-left">Completed Workouts</h2>
               <p className="text-4xl font-bold text-center md:text-left">12</p>
               <p className="text-sm text-gray-400 text-center md:text-left">Workouts</p>
             </div>
             {/* In Progress Workouts */}
-            <div className="bg-black bg-opacity-50 p-4 rounded-lg shadow-lg">
+            <div className="bg-black bg-opacity-50 p-4 rounded-lg shadow-lg" data-aos="fade-up" data-aos-anchor-placement="bottom-bottom">
               <h2 className="text-xl font-semibold mb-2 text-center md:text-left">In Progress</h2>
               <p className="text-4xl font-bold text-center md:text-left">2</p>
               <p className="text-sm text-gray-400 text-center md:text-left">Workouts</p>
             </div>
             {/* Your Progress */}
-            <div className="bg-black bg-opacity-50 p-2 rounded-lg shadow-lg flex flex-col items-center justify-center">
+            <div className="bg-black bg-opacity-50 p-2 rounded-lg shadow-lg flex flex-col items-center justify-center" data-aos="fade-up" data-aos-anchor-placement="bottom-bottom">
               <h2 className="text-xl font-semibold mb-2 text-center">Your Progress</h2>
               <p className="text-lg pb-2 text-center">Weight Gain</p>
               <div style={{ width: '60%', height: '60%' }} className="flex items-center justify-center pt-4 sm:pt-4">
@@ -53,7 +53,7 @@ const Hero = () => {
                   },
                   text: {
                     fill: 'white',
-                    fontSize: '20px', // Adjust text size for better visibility on all devices
+                    fontSize: '20px',
                   },
                 }} />
               </div>

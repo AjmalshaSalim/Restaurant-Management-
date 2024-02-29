@@ -15,16 +15,16 @@ export function StatisticsChart({ color, chart, title, description, footer }) {
   const { sidenavType} =
     controller;
   return (
-    <Card className={`border border-blue-gray-100 shadow-sm ${
-      sidenavType === "dark" ? "bg-black" : "bg-white"
+    <Card className={` shadow-sm ${
+      sidenavType === "dark" ? " bg-black" : "border border-blue-gray-100 bg-white"
     }`}>
       <CardHeader variant="gradient" color={color} floated={false} shadow={false}>
         <Chart className={`${
-      sidenavType === "dark" ? "bg-black" : "bg-white"
+      sidenavType === "dark" ? " bg-black" : "bg-white"
     }`} {...chart} />
       </CardHeader>
       <CardBody className="px-6 pt-0">
-        <Typography variant="h6" color="blue-gray">
+        <Typography variant="h6" color={sidenavType === 'dark' ? "white" : "blue-gray"}>
           {title}
         </Typography>
         <Typography variant="small" className={`font-normal ${
@@ -34,7 +34,7 @@ export function StatisticsChart({ color, chart, title, description, footer }) {
         </Typography>
       </CardBody>
       {footer && (
-        <CardFooter className="border-t border-blue-gray-50 px-6 py-5">
+        <CardFooter className="border-t border-gray-700 px-6 py-5">
           {footer}
         </CardFooter>
       )}

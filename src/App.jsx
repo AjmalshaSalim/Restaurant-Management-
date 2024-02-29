@@ -16,6 +16,7 @@ import OwnerRegister from "../src/pages/Owner/auth/sign-up"
 import OwnerForgetpassword from "../src/pages/Owner/auth/Forgot-pw"
 import OwnerOtp from "../src/pages/Owner/auth/Otp"
 import OwnerChangepassword from "../src/pages/Owner/auth/Reset-pw"
+import OwnerUserList from "./pages/Owner/dashboard/UserList"
 import { PhoneNumberProvider } from "./context/phoneNumberContext"; // Import PhoneNumberProvider
 
 function App() {
@@ -44,11 +45,9 @@ function App() {
         <Route path="/changepassword/" element={<Changepassword />} /> 
 
 
-      <Route path="/equipments/" element={<Equipments />} /> 
+   
 
- 
 
-        <Route path="/equipments/" element={<Equipments />} /> 
 
 
         {/* OWNER ROUTES  */}
@@ -57,6 +56,8 @@ function App() {
         <Route path="/OwnerForgetpassword" element={<OwnerForgetpassword/>}/>
         <Route path ="/OwnerOtp" element={<OwnerOtp/>}/>
         <Route path="/OwnerChangepassword" element={<OwnerChangepassword/>}/>
+        <Route path="/equipments/" element={<Equipments />} /> 
+        <Route path="/UserList/" element={<OwnerUserList />} />
       </Routes> 
     </PhoneNumberProvider>
   );

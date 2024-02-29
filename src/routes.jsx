@@ -6,8 +6,11 @@ import {
   ServerStackIcon,
   RectangleStackIcon,
 } from '@heroicons/react/24/solid';
+import { CgGym } from "react-icons/cg";
 import {Home} from './pages/Owner/dashboard/Home';
 import {Profile} from './pages/Owner/dashboard/profile';
+import {UserList} from './pages/Owner/dashboard/UserList'
+import GymEquipments from './pages/Owner/dashboard/GymEquipments';
 import {Tables} from './pages/Owner/dashboard/tables';
 import {Notifications} from './pages/Owner/dashboard/notifications';
 import {SignIn} from './pages/Owner/auth/sign-in';
@@ -35,6 +38,18 @@ export const routes = [
         name: 'profile',
         path: '/profile',
         element: <Profile />,
+      },
+      {
+        icon: <UserCircleIcon {...icon} />,
+        name: 'User List',
+        path: '/UserList',
+        element: <UserList/>,
+      },
+      {
+        icon: <CgGym {...icon} />,
+        name: 'Equipments',
+        path: '/gym-equipments',
+        element: <GymEquipments />,
       },
       {
         icon: <TableCellsIcon {...icon} />,

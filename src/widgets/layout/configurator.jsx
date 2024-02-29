@@ -76,7 +76,7 @@ export function Configurator() {
     >
       <div className="flex items-start justify-between px-6 pt-8 pb-6">
         <div>
-          <Typography variant="h5" color="blue-gray">
+          <Typography variant="h5" color={sidenavType === 'dark' ? "white" : "blue-gray"}>
             Settings
           </Typography>
           <Typography className={`font-normal ${
@@ -86,7 +86,7 @@ export function Configurator() {
         </div>
         <IconButton
           variant="text"
-          color="blue-gray"
+          color={sidenavType === 'dark' ? "white" : "blue-gray"}
           onClick={() => setOpenConfigurator(dispatch, false)}
         >
           <XMarkIcon strokeWidth={2.5} className="h-5 w-5" />
@@ -116,7 +116,7 @@ export function Configurator() {
 {/* Themes */}
 
         <div className="mb-12">
-          <Typography variant="h6" color="blue-gray">
+          <Typography variant="h6" color={sidenavType === 'dark' ? "white" : "blue-gray"}>
             Mode
           </Typography>
           <Typography variant="small" color="gray">
@@ -135,14 +135,14 @@ export function Configurator() {
               onClick={() => setSidenavType(dispatch, "white")}
               className="rounded-full"
             >
-              <MdWbSunny className=" text-lg"/>
+              <MdWbSunny className="text-lg text-white"/>
             </Button>
           </div>
         </div>
         <div className="mb-12">
           <hr />
           <div className="flex items-center justify-between py-5">
-            <Typography variant="h6" color="blue-gray">
+            <Typography variant="h6" color={sidenavType === 'dark' ? "white" : "blue-gray"}>
               Navbar Fixed
             </Typography>
             <Switch

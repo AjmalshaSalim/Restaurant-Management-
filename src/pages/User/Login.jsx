@@ -22,6 +22,8 @@ function Login() {
             const response= DemoAction1(formData)
             if(response.success) {
                 navigate('/home')
+            }else{
+                navigate('/login')
             }
         } catch (error) {
             console.error('Login failed:', error.message);
