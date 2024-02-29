@@ -12,3 +12,13 @@ export const ADD_Equipments = async data => {
       throw error;
     }
   };
+
+  export const List_Equipments=async data =>{
+  try {
+    const response=await axios.get(API_URLS.LIST_EQUIPMENTS)
+    return response.data
+  } catch (error) {
+    console.error ('while fetching equipments', error);
+    throw error;
+  }
+  }
