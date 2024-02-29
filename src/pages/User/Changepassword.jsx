@@ -1,11 +1,14 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import BackgroundImage from '../../assets/images/gym-bg-login.jpg';
 import logo from '../../assets/images/Gymsoft_Logo1-removebg-preview.png';
 import { useNavigate } from 'react-router-dom';
 import { CHANGE_PASSWORD } from '../../actions/AuthActions';
+import { PhoneNumberContext } from '../../context/phoneNumberContext';
 function Forgetpassword() {
     const navigate=useNavigate();
-const [formData,setFormData]=useState({phonenumber:''}) 
+
+const { phoneNumber } = useContext(PhoneNumberContext);
+const [formData,setFormData]=useState({phonenumber:phoneNumber}) 
 
 const handleChange = (e) => {
     setFormData({
@@ -21,7 +24,7 @@ const handleSubmit = async (e) => {
         alert('New password and confirm password do not match.');
         return;
     }
-    console.log(formData);
+    console.log("formDataformDataformDataformDataformData",formData);
     const response=await CHANGE_PASSWORD(formData)
     // navigate('/login')
     try {
