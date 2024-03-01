@@ -1,10 +1,7 @@
 import { useEffect, useState } from 'react';
-
+import axios from 'axios';
 import {ADD_Equipments} from '../../../actions/EquipmentsActions'
 import {List_Equipments} from '../../../actions/EquipmentsActions'
-
-
-import {ADD_Equipments,List_Equipments} from '../../../actions/EquipmentsActions'
 import { useNavigate } from 'react-router-dom';
 import {
   useMaterialTailwindController
@@ -67,19 +64,20 @@ export default function GymEquipments() {
     const handleSubmit = async (e) => {
       e.preventDefault();
       const formData = new FormData();
-      Object.keys(equipmentData).forEach(key => {
-        if (key === 'image') {
-          formData.append(key, equipmentData[key], equipmentData[key].name);
-        } else {
-          formData.append(key, equipmentData[key]);
-        }
+      Object.entries(equipmentData).forEach(([key, value]) => {
+        formData.append(key, value); 
       });
+      
       try {
-        const response = await ADD_Equipments(formData);
-        console.log(response);
-        navigate('/home');
+        const response = await axios.post('http://127.0.0.1:8000/api/add-equipment/', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        });
+        console.log(response.data);
+    
       } catch (error) {
-        console.error('failed to add equipments', error);
+        console.error('Error adding product:', error);
       }
     };
 
