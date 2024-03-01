@@ -22,3 +22,13 @@ export const ADD_Equipments = async data => {
     throw error;
   }
   }
+
+  export const Edit_Equipments=async data =>{
+    try {
+      const response =await axios.put(API_URLS.EDIT_EQUIPMENTS)
+      return response.data
+    } catch (error) {
+      console.error ('while editing equipments', error);
+      throw error;
+    }
+  }

@@ -1,11 +1,15 @@
 import { useEffect, useState } from 'react';
+
 import {ADD_Equipments} from '../../../actions/EquipmentsActions'
 import {List_Equipments} from '../../../actions/EquipmentsActions'
 
+
+import {ADD_Equipments,List_Equipments} from '../../../actions/EquipmentsActions'
 import { useNavigate } from 'react-router-dom';
 import {
   useMaterialTailwindController
 } from "../../../context/index";
+import EditEquipmentsForm from '../../../components/Owner/EditEquipments';
 
 export default function GymEquipments() {
   const navigate=useNavigate()
@@ -25,7 +29,7 @@ export default function GymEquipments() {
 
   const [showAddEquipmentForm, setShowAddEquipmentForm] = useState(false);
   const [equipments,setEquipments]=useState([]);
-
+  const [showEditEquipmentForm,setShowEditEquipmentForm]=useState(false)
   const toggleAddEquipmentForm = () => setShowAddEquipmentForm(!showAddEquipmentForm);
 
   function AddEquipmentForm() {
@@ -62,13 +66,21 @@ export default function GymEquipments() {
 
     const handleSubmit = async (e) => {
       e.preventDefault();
-     try {
-     const response= await ADD_Equipments(equipmentData);
-     console.log(response);
-     navigate('/home')
-     } catch (error) {
-      console.error('failed to add equipments',error);
-     }
+      const formData = new FormData();
+      Object.keys(equipmentData).forEach(key => {
+        if (key === 'image') {
+          formData.append(key, equipmentData[key], equipmentData[key].name);
+        } else {
+          formData.append(key, equipmentData[key]);
+        }
+      });
+      try {
+        const response = await ADD_Equipments(formData);
+        console.log(response);
+        navigate('/home');
+      } catch (error) {
+        console.error('failed to add equipments', error);
+      }
     };
 
     return (
@@ -79,7 +91,7 @@ export default function GymEquipments() {
             Back
           </button>
         </div>
-        <form onSubmit={handleSubmit} className="space-y-4 bg-white border border-gray-300 p-4 rounded-xl">
+        <form onSubmit={handleSubmit} className="space-y-4 bg-white border border-gray-300 p-4 rounded-xl" encType="multipart/form-data">
           <div>
             <label htmlFor="image" className="block text-sm font-medium text-black">Equipment Image</label>
             <input type="file" name="image" id="image" onChange={handlePhotoChange} className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 text-black" />          </div>
@@ -179,10 +191,12 @@ export default function GymEquipments() {
             {equipments.map((equipment, index) => (
               <div key={index} className={`relative flex flex-col lg:flex-row items-center shadow-lg ${sidenavType === 'dark' ? "bg-black border-1 border-gray-900" : "bg-white"} rounded overflow-hidden my-2 mx-4 w-full lg:w-auto`}>
                 <div className="absolute top-0 right-0 p-2">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-gray-600 hover:text-gray-800 cursor-pointer" fill="none" viewBox="0 0 24 24" stroke="currentColor" title="Edit">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
-                  </svg>
-                  <span className="sr-only">Edit</span>
+                  <button onClick={() => setShowEditEquipmentForm(true)} className="p-1 rounded-full hover:bg-gray-200">
+                    {showEditEquipmentForm && <EditEquipmentsForm />}
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-gray-600 hover:text-gray-800" fill="none" viewBox="0 0 24 24" stroke="currentColor" title="Edit">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                    </svg>
+                  </button>
                 </div>
                 <img className="w-full lg:w-48 h-auto object-contain" src={equipment.img} alt={equipment.title} />
                 <div className="px-6 py-4 flex-grow">
@@ -213,5 +227,11 @@ export default function GymEquipments() {
     </>
   );
 }
+
+
+
+
+
+
 
 
