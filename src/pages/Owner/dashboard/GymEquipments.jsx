@@ -1,11 +1,4 @@
 import { useEffect, useState } from 'react';
-// import img2 from '../../../assets/gym-equipments/img2.png'
-// import img3 from '../../../assets/gym-equipments/img3.png'
-// import img4 from '../../../assets/gym-equipments/img4.png'
-// import img5 from '../../../assets/gym-equipments/img5.png'
-// import img6 from '../../../assets/gym-equipments/img6.png'
-// import img7 from '../../../assets/gym-equipments/img7.png'
-// import img8 from '../../../assets/gym-equipments/img8.png'
 import {ADD_Equipments} from '../../../actions/EquipmentsActions'
 import {List_Equipments} from '../../../actions/EquipmentsActions'
 
@@ -27,7 +20,6 @@ export default function GymEquipments() {
         console.error('Failed to fetch equipments', error);
       }
     };
-
     fetchEquipments();
   }, []);
 
@@ -90,8 +82,7 @@ export default function GymEquipments() {
         <form onSubmit={handleSubmit} className="space-y-4 bg-white border border-gray-300 p-4 rounded-xl">
           <div>
             <label htmlFor="image" className="block text-sm font-medium text-black">Equipment Image</label>
-            <input type="file" name="image" id="image" onChange={handlePhotoChange} className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 text-black"/>
-          </div>
+            <input type="file" name="image" id="image" onChange={handlePhotoChange} className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 text-black" />          </div>
           <div>
             <label htmlFor="name" className="block text-sm font-medium text-black">Equipment Name</label>
             <input type="text" name="name" value={equipmentData.name} onChange={handleChange} className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 text-black"/>
@@ -159,99 +150,7 @@ export default function GymEquipments() {
       </>
     );
   }
-//   const equipments=[{
-//     id:1,
-//     img:img7,
-//     title:'Equipment 1',
-//     description:'The gym equipment enhances your strength.',
-//     purchaseDate: '25-05-2022',
-//     guaranteeDate:'25-05-2025',
-//     serviceDate:'16-2-2024',
-//     price:'2034320',
-// },{
-//     id:2,
-//     img:img2,
-//     title:'Equipment 2',
-//     description:'The gym equipment enhances your strength.',
-//     purchaseDate: '25-05-2022',
-//     guaranteeDate:'25-05-2025',
-//     serviceDate:'16-2-2024',
-//     price:'2034320',
-// },{
-//     id:3,
-//     img:img3,
-//     title:'Equipment 3',
-//     description:'The gym equipment enhances your strength.',
-//     purchaseDate: '25-05-2022',
-//     guaranteeDate:'25-05-2025',
-//     serviceDate:'16-2-2024',
-//     price:'2034320',
-// },{
-//     id:4,
-//     img:img4,
-//     title:'Equipment 4',
-//     description:'The gym equipment enhances your strength.',
-//     purchaseDate: '25-05-2022',
-//     guaranteeDate:'25-05-2025',
-//     serviceDate:'16-2-2024',
-//     price:'2034320',
-// },{
-//     id:5,
-//     img:img5,
-//     title:'Equipment 5',
-//     description:'The gym equipment enhances your strength.',
-//     purchaseDate: '25-05-2022',
-//     guaranteeDate:'25-05-2025',
-//     serviceDate:'16-2-2024',
-//     price:'2034320',
-// },{
-//     id:6,
-//     img:img6,
-//     title:'Equipment 6',
-//     description:'The gym equipment enhances your strength.',
-//     purchaseDate: '25-05-2022',
-//     guaranteeDate:'25-05-2025',
-//     serviceDate:'16-2-2024',
-//     price:'2034320',
-// },{
-//     id:7,
-//     img:img7,
-//     title:'Equipment 7',
-//     description:'The gym equipment enhances your strength.',
-//     purchaseDate: '25-05-2022',
-//     guaranteeDate:'25-05-2025',
-//     serviceDate:'16-2-2024',
-//     price:'2034320',
-// },{
-//     id:8,
-//     img:img8,
-//     title:'Equipment 8',
-//     description:'The gym equipment enhances your strength.',
-//     purchaseDate: '25-05-2022',
-//     guaranteeDate:'25-05-2025',
-//     serviceDate:'16-2-2024',
-//     price:'2034320',
-// },
-// {
-//     id:9,
-//     img:img4,
-//     title:'Equipment 8',
-//     description:'The gym equipment enhances your strength.',
-//     purchaseDate: '25-05-2022',
-//     guaranteeDate:'25-05-2025',
-//     serviceDate:'16-2-2024',
-//     price:'2034320',
-// },
-// {
-//     id:10,
-//     img:img3,
-//     title:'Equipment 8',
-//     description:'The gym equipment enhances your strength.',
-//     purchaseDate: '25-05-2022',
-//     guaranteeDate:'25-05-2025',
-//     serviceDate:'16-2-2024',
-//     price:'2034320',
-// }]
+
 
   return (
     <>
