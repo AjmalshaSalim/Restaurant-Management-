@@ -29,6 +29,7 @@ export function Sidenav({ brandImg, brandName, routes }) {
       className={`${sidenavTypes[sidenavType]} ${
         openSidenav ? "translate-x-0" : "-translate-x-80"
       } absolute inset-0 z-50 my-4 ml-4 max-h-fit w-72 rounded-xl transition-transform duration-300 xl:translate-x-0 ${sidenavType === 'dark'? "bg-opacity-50" : "border border-opacity-5 "}`}
+    
     >
       <div
         className={`relative`}
@@ -62,7 +63,7 @@ export function Sidenav({ brandImg, brandName, routes }) {
               <li className="mx-3.5 mt-4 mb-2">
                 <Typography
                   variant="small"
-                  color={sidenavType === "dark" ? "white" : "blue-gray"}
+                  color={sidenavType === "dark" ? "white" : "black"}
                   className="font-black uppercase opacity-75"
                 >
                   {title}
@@ -80,9 +81,9 @@ export function Sidenav({ brandImg, brandName, routes }) {
                           ? sidenavColor
                           : sidenavType === "dark"
                           ? "white"
-                          : "blue-gray"
+                          : "black"
                       }
-                      className="flex items-center gap-4 px-4 capitalize"
+                      className={sidenavType === 'dark' ? `flex items-center gap-4 px-4 capitalize ${isActive ? "bg-red-700" : "bg-transparent"}` : `flex items-center gap-4 px-4 capitalize ${isActive ? "bg-black" : "bg-transparent"}`}
                       fullWidth
                     >
                       {icon}

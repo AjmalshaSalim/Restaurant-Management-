@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 import {
   Card,
   CardHeader,
@@ -6,8 +7,8 @@ import {
   Typography,
   Avatar,
   Chip,
-  Tooltip,
-  Progress,
+  Button,
+
 } from '@material-tailwind/react';
 import {
   useMaterialTailwindController
@@ -28,6 +29,12 @@ export function UserList() {
           </Typography>
         </CardHeader>
         <CardBody className={`overflow-x-scroll px-0 pt-0 pb-2 ${sidenavType === 'dark'? "bg-black" : "bg-white"}`}>
+        <div className='w-full flex justify-between items-center pr-6'>
+  <div></div>
+  <Link to='/dashboard/AddMember'>
+  <Button size='sm' className='bg-black'>Add Member</Button>
+  </Link>
+</div>    
           <table className="w-full min-w-[640px] table-auto">
             <thead>
               <tr>

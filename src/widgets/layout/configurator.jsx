@@ -123,17 +123,17 @@ export function Configurator() {
           </Typography>
           <div className="mt-3 flex items-center gap-2">
             <Button
-              variant={sidenavType === "dark" ? "gradient" : "outlined"}
+              // variant={sidenavType === "dark" ? "gradient" : "outlined"}
               onClick={() => setSidenavType(dispatch, "dark")}
-              className="rounded-full"
+              className={`rounded-full ${sidenavType === "dark" ? "bg-white text-black " : "outline outline-black text-black bg-transparent"}`}
             >
               <MdNightlight  className=" text-lg"/>
             </Button>
             
             <Button
-              variant={sidenavType === "white" ? "gradient" : "outlined"}
+              // variant={sidenavType === "white" ? "gradient" : "outlined"}
               onClick={() => setSidenavType(dispatch, "white")}
-              className="rounded-full"
+              className={`rounded-full ${sidenavType === "white" ? "bg-black " : "outline outline-white bg-transparent"}`}
             >
               <MdWbSunny className="text-lg text-white"/>
             </Button>
