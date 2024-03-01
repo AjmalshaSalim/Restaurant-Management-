@@ -25,6 +25,7 @@ export default function GymEquipments() {
 
   const [showAddEquipmentForm, setShowAddEquipmentForm] = useState(false);
   const [equipments,setEquipments]=useState([]);
+  const [equipmentData,setEquipmentData]=useState({})
   const [showEditEquipmentForm,setShowEditEquipmentForm]=useState(false)
   const toggleAddEquipmentForm = () => setShowAddEquipmentForm(!showAddEquipmentForm);
 
@@ -54,6 +55,7 @@ export default function GymEquipments() {
     };
 
     const handlePhotoChange = (e) => {
+      console.log(e.target.files[0]);
       setEquipmentData(prevState => ({
         ...prevState,
         image: e.target.files[0],
@@ -62,9 +64,11 @@ export default function GymEquipments() {
 
     const handleSubmit = async (e) => {
       e.preventDefault();
+     
+      console.log('FormData:', equipmentData); //
       const formData = new FormData();
       Object.keys(equipmentData).forEach(key => {
-        if (key === 'image') {
+        if (key === 'image' && equipmentData[key]) {
           formData.append(key, equipmentData[key], equipmentData[key].name);
         } else {
           formData.append(key, equipmentData[key]);
@@ -78,7 +82,7 @@ export default function GymEquipments() {
         console.error('failed to add equipments', error);
       }
     };
-
+    
     return (
       <>
         <div className='flex flex-row justify-between items-center mt-16 mb-5 '>
@@ -189,8 +193,8 @@ export default function GymEquipments() {
             {equipments.map((equipment, index) => (
               <div key={index} className={`relative flex flex-col lg:flex-row items-center shadow-lg ${sidenavType === 'dark' ? "bg-black border-1 border-gray-900" : "bg-white"} rounded overflow-hidden my-2 mx-4 w-full lg:w-auto`}>
                 <div className="absolute top-0 right-0 p-2">
-                  <button onClick={() => setShowEditEquipmentForm(true)} className="p-1 rounded-full hover:bg-gray-200">
-                    {showEditEquipmentForm && <EditEquipmentsForm />}
+                  <button onClick={() => {setShowEditEquipmentForm(true); setEquipmentData(equipment);}} className="p-1 rounded-full hover:bg-gray-200">
+                    {showEditEquipmentForm && <EditEquipmentsForm equipmentData={equipmentData} />}
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-gray-600 hover:text-gray-800" fill="none" viewBox="0 0 24 24" stroke="currentColor" title="Edit">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
                     </svg>
@@ -225,6 +229,7 @@ export default function GymEquipments() {
     </>
   );
 }
+
 
 
 

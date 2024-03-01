@@ -7,23 +7,19 @@ const instance = axios.create({
 
 // Function to set headers dynamically
 function setHeaders(isFormData = false, hasFile = false) {
-  if (hasFile) {
-    return {
-      'Accept': 'application/json',
-    };
-  } else {
-    return {
-      'Content-Type': isFormData ? 'multipart/form-data' : 'application/json',
-      'Accept': 'application/json',
-    };
-  }
+  let headers = {
+    'Accept': 'application/json',
+  };
+  // Removed the condition that prevents setting the Content-Type header when hasFile is true
+  headers['Content-Type'] = isFormData ? 'multipart/form-data' : 'application/json';
+  return headers;
 }
 
 instance.interceptors.request.use(
   (config) => {
     // Check if the request contains a file
     const isFormData = config.data instanceof FormData;
-    const hasFile = isFormData && Array.from(config.data.values()).some(value => value instanceof File);
+    const hasFile = isFormData && Array.from(config.data.values()).some(value => value instanceof File || value instanceof Blob);
     config.headers = setHeaders(isFormData, hasFile);
     return config;
   },
