@@ -7,6 +7,7 @@ import {
   Tabs,
   TabsHeader,
   Tab,
+  Input,
   Switch,
   Tooltip,
   Button,
@@ -21,13 +22,26 @@ import {
   PencilIcon,
 } from "@heroicons/react/24/solid";
 import { ProfileInfoCard } from "../../../widgets/cards/profile-info-card";
-import { platformSettingsData } from "../../../data/platform-settings-data";
-import { conversationsData } from "../../../data/conversations-data";
+
 
 export function Profile() {
   const [controller] = useMaterialTailwindController();
   const { sidenavType } = controller;
-  const [isEditing, setIsEditing] = useState(false); // State to toggle edit mode
+  //toggle
+  const [isEditing, setIsEditing] = useState(false);
+
+  const [formData, setFormData] = useState({
+    firstname: "Achu Joseph",
+    lastname: "SL",
+    mobilenumber: "9876543210",
+    email: "achujoseph@gmail.com",
+    gender: "male",
+    age: "25",
+    height: "180",
+    weight: "80",
+    proffession: "Software Developer",
+    address: "trivandreum,kerala,India"
+  })
 
   // Function to handle saving changes
   const handleSaveChanges = () => {
@@ -37,7 +51,7 @@ export function Profile() {
 
   return (
     <>
-      <Card className={`mx-3 mt-10 mb-6 lg:mx-4  ${sidenavType === 'dark' ? "bg-black" : "bg-white border border-blue-gray-100"}`}>
+      <Card className={`mt-10 mb-6 w-full  ${sidenavType === 'dark' ? "bg-black" : "bg-white border border-blue-gray-100"}`}>
         <CardBody className="p-4">
           <div className="mb-10 flex items-center justify-between flex-wrap gap-6">
             <div className="flex items-center gap-6">
@@ -50,15 +64,14 @@ export function Profile() {
               />
               <div>
                 <Typography variant="h5" color={sidenavType === 'dark' ? "white" : "blue-gray"} className="mb-1">
-                  Achu Joseph
+                  {formData.firstname + formData.lastname}
                 </Typography>
                 <Typography
                   variant="small"
-                  className={`font-normal ${
-                    sidenavType === "dark" ? "text-white" : "text-blue-gray-600"
-                  }`}
+                  className={`font-normal ${sidenavType === "dark" ? "text-white" : "text-blue-gray-600"
+                    }`}
                 >
-                  Software Developer
+                  {formData.proffession}
                 </Typography>
               </div>
             </div>
@@ -82,35 +95,232 @@ export function Profile() {
             </div>
           </div>
           {/* Profile Information */}
-          <div className="gird-cols-1 mb-12 grid gap-12 px-4 lg:grid-cols-2 xl:grid-cols-3">
+          <div className=" grid-cols-1 mb-12 grid px-4 lg:grid-cols-2 xl:grid-cols-3 w-full">
             {/* Editable Profile Information */}
             {isEditing ? (
               // Render editable profile info fields when in edit mode
-              <div>
-                {/* Fields for editing profile info */}
-                {/* Add your input fields here for editing */}
-                {/* Example:
-                <input type="text" placeholder="First Name" />
-                */}
-                <Button onClick={handleSaveChanges}>Save Changes</Button>
-              </div>
+
+              <form
+                // onSubmit={handleSubmit}
+                className="lg:mt-8 mb-2 pr-10 w-80 max-w-screen-lg lg:w-1/2"
+              >
+                <div className="flex flex-col md:flex-row md:gap-6 lg:mb-2">
+                  <div className="mb-1 flex flex-col flex-grow">
+                    <Typography
+                      variant="small"
+                      color={sidenavType === 'dark' ? "white" : "blue-gray"}
+                      className=" font-medium "
+                    >
+                      First name
+                    </Typography>
+                    <Input
+                      size="lg"
+                      type="string"
+                      // onChange={handleChange}
+                      value={formData.firstname}
+                      id="firstname"
+                      placeholder=""
+                      className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
+                      labelProps={{
+                        className: 'before:content-none after:content-none',
+                      }}
+                    />
+                  </div>
+                  <div className="mb-1 flex flex-col flex-grow">
+                    <Typography
+                      variant="small"
+                      color={sidenavType === 'dark' ? "white" : "blue-gray"}
+                      className=" font-medium"
+                    >
+                      Last name
+                    </Typography>
+                    <Input
+                      size="lg"
+                      type="string"
+                      // onChange={handleChange}
+                      value={formData.lastname}
+                      id="lastname"
+                      placeholder=""
+                      className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
+                      labelProps={{
+                        className: 'before:content-none after:content-none',
+                      }}
+                    />
+                  </div>
+                </div>
+                <div className="flex flex-col md:flex-row md:gap-6 lg:mb-2">
+                  <div className="mb-1 flex flex-col flex-grow">
+                    <Typography
+                      variant="small"
+                      color={sidenavType === 'dark' ? "white" : "blue-gray"}
+                      className=" font-medium"
+                    >
+                      Mobile number
+                    </Typography>
+                    <Input
+                      size="lg"
+                      type="number"
+                      // onChange={handleChange}
+                      value={formData.mobilenumber}
+                      id="mobilenumber"
+                      placeholder=""
+                      className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
+                      labelProps={{
+                        className: 'before:content-none after:content-none',
+                      }}
+                    />
+                  </div>
+                  <div className="mb-1 flex flex-col flex-grow">
+                    <Typography
+                      variant="small"
+                      color={sidenavType === 'dark' ? "white" : "blue-gray"}
+                      className=" font-medium"
+                    >
+                      Email
+                    </Typography>
+                    <Input
+                      size="lg"
+                      type="email"
+                      // onChange={handleChange}
+                      value={formData.email}
+                      id="email"
+                      placeholder=""
+                      className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
+                      labelProps={{
+                        className: 'before:content-none after:content-none',
+                      }}
+                    />
+                  </div>
+                </div>
+                <div className="flex flex-col md:flex-row md:gap-6 lg:mb-2">
+                  <div className="mb-1 flex flex-col flex-grow">
+                    <Typography
+                      variant="small"
+                      color={sidenavType === 'dark' ? "white" : "blue-gray"}
+                      className=" font-medium"
+                    >
+                      Gender
+                    </Typography>
+                    <Input
+                      size="lg"
+                      type="string"
+                      // onChange={handleChange}
+                      value={formData.gender}
+                      id="gender"
+                      placeholder=""
+                      className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
+                      labelProps={{
+                        className: 'before:content-none after:content-none',
+                      }}
+                    />
+                  </div>
+                  <div className="mb-1 flex flex-col flex-grow">
+                    <Typography
+                      variant="small"
+                      color={sidenavType === 'dark' ? "white" : "blue-gray"}
+                      className=" font-medium"
+                    >
+                      Age
+                    </Typography>
+                    <Input
+                      size="lg"
+                      type="number"
+                      // onChange={handleChange}
+                      value={formData.age}
+                      id="age"
+                      placeholder=""
+                      className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
+                      labelProps={{
+                        className: 'before:content-none after:content-none',
+                      }}
+                    />
+                  </div>
+                </div>
+                <div className="flex flex-col md:flex-row md:gap-6 lg:mb-2">
+                  <div className="mb-1 flex flex-col flex-grow">
+                    <Typography
+                      variant="small"
+                      color={sidenavType === 'dark' ? "white" : "blue-gray"}
+                      className=" font-medium"
+                    >
+                      Height
+                    </Typography>
+                    <Input
+                      size="lg"
+                      type="number"
+                      // onChange={handleChange}
+                      value={formData.height}
+                      id="height"
+                      placeholder=""
+                      className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
+                      labelProps={{
+                        className: 'before:content-none after:content-none',
+                      }}
+                    />
+                  </div>
+                  <div className="mb-1 flex flex-col flex-grow">
+                    <Typography
+                      variant="small"
+                      color={sidenavType === 'dark' ? "white" : "blue-gray"}
+                      className=" font-medium"
+                    >
+                      Weight
+                    </Typography>
+                    <Input
+                      size="lg"
+                      type="number"
+                      // onChange={handleChange}
+                      value={formData.weight}
+                      id="weight"
+                      placeholder=""
+                      className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
+                      labelProps={{
+                        className: 'before:content-none after:content-none',
+                      }}
+                    />
+                  </div>
+                </div>
+                <div className="mb-2 flex flex-col gap-6">
+                  <Typography
+                    variant="small"
+                    color={sidenavType === 'dark' ? "white" : "blue-gray"}
+                    className="-mb-6 font-medium"
+                  >
+                    Address
+                  </Typography>
+                  <Input
+                    size="lg"
+                    type="string"
+                    // onChange={handleChange}
+                    value={formData.address}
+                    id="address"
+                    placeholder=""
+                    className=" !border-t-blue-gray-200 focus:!border-t-gray-900 lg:w-[425px]"
+                    labelProps={{
+                      className: 'before:content-none after:content-none',
+                    }}
+                  />
+                  <Button onClick={handleSaveChanges} className={` w-[100%] lg:w-[150px] ${sidenavType === 'dark' ? "bg-red-700" : "bg-black"}`}>Save Changes</Button>
+                </div>
+                <div></div>
+              </form>
+
+
             ) : (
               // Render non-editable profile info when not in edit mode
               <ProfileInfoCard
                 title="Profile Information"
                 description=""
                 details={{
-                  "first name": "Achu joseph SL",
-                  mobile: "7306129332",
-                  email: "achujoseph@gmail.com",
-                  location: "Kerala,India",
-                  Join: (
-                    <div className="flex items-center gap-4">
-                      <i className="fa-brands fa-facebook text-blue-700" />
-                      <i className="fa-brands fa-twitter text-blue-400" />
-                      <i className="fa-brands fa-instagram text-purple-500" />
-                    </div>
-                  ),
+                  Name: formData.firstname + formData.lastname,
+                  Mobile: formData.mobilenumber,
+                  Email: formData.email,
+                  Gender: formData.gender,
+                  Age: formData.age,
+                  Height: formData.height,
+                  Weight: formData.weight,
+                  Proffession: formData.proffession,
+                  Address: formData.address
                 }}
                 action={
                   <Tooltip content="Edit Profile" className=" border">

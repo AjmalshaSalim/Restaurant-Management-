@@ -24,12 +24,23 @@ export function Dashboard() {
       className={`min-h-screen ${
         sidenavType === "dark" ? "bg-black" : "bg-white"
       }`}
+      // style={{
+      //   backgroundImage:
+      //     sidenavType === "dark" ? `url(${BgImageDark})` : `url(${BgImageWhite})`,
+      //   backgroundSize: "cover",
+      //   backgroundPosition: "center",
+      // }}
       style={{
-        backgroundImage:
-          sidenavType === "dark" ? `url(${BgImageDark})` : `url(${BgImageWhite})`,
+        backgroundImage: `
+          linear-gradient(
+            rgba(0, 0, 0, 0.5), 
+            rgba(0, 0, 0, 0.5)
+          ), 
+          ${sidenavType === "dark" ? `url(${BgImageDark})` : `url(${BgImageWhite})`}`,
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
+      
     >
       <div data-aos="fade-right"
         data-aos-duration="1000">
