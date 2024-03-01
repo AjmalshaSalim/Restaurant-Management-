@@ -3,7 +3,7 @@ import {API_URLS} from '../constants/config';
 
 export const ADD_Equipments = async data => {
     console.log ('equipments adding');
-    console.log ('data', data);
+    console.log ('dataaaaaaaaaa', data);
     try {
       const response = await axios.post (API_URLS.ADD_EQUIPMENTS, data);
       return response.data;

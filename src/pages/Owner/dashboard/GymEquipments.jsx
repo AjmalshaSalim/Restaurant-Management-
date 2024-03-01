@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
-import {ADD_Equipments,List_Equipments} from '../../../actions/EquipmentsActions'
+import axios from 'axios';
+import {ADD_Equipments} from '../../../actions/EquipmentsActions'
+import {List_Equipments} from '../../../actions/EquipmentsActions'
 import { useNavigate } from 'react-router-dom';
 import {
   useMaterialTailwindController
@@ -19,7 +21,6 @@ export default function GymEquipments() {
         console.error('Failed to fetch equipments', error);
       }
     };
-
     fetchEquipments();
   }, []);
 
@@ -67,19 +68,20 @@ export default function GymEquipments() {
      
       console.log('FormData:', equipmentData); //
       const formData = new FormData();
-      Object.keys(equipmentData).forEach(key => {
-        if (key === 'image' && equipmentData[key]) {
-          formData.append(key, equipmentData[key], equipmentData[key].name);
-        } else {
-          formData.append(key, equipmentData[key]);
-        }
+      Object.entries(equipmentData).forEach(([key, value]) => {
+        formData.append(key, value); 
       });
+      
       try {
-        const response = await ADD_Equipments(formData);
-        console.log(response);
-        navigate('/home');
+        const response = await axios.post('http://127.0.0.1:8000/api/add-equipment/', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        });
+        console.log(response.data);
+    
       } catch (error) {
-        console.error('failed to add equipments', error);
+        console.error('Error adding product:', error);
       }
     };
     
@@ -94,8 +96,7 @@ export default function GymEquipments() {
         <form onSubmit={handleSubmit} className="space-y-4 bg-white border border-gray-300 p-4 rounded-xl" encType="multipart/form-data">
           <div>
             <label htmlFor="image" className="block text-sm font-medium text-black">Equipment Image</label>
-            <input type="file" name="image" id="image" onChange={handlePhotoChange} className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 text-black"/>
-          </div>
+            <input type="file" name="image" id="image" onChange={handlePhotoChange} className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 text-black" />          </div>
           <div>
             <label htmlFor="name" className="block text-sm font-medium text-black">Equipment Name</label>
             <input type="text" name="name" value={equipmentData.name} onChange={handleChange} className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 text-black"/>
@@ -164,7 +165,6 @@ export default function GymEquipments() {
     );
   }
 
- 
 
   return (
     <>
