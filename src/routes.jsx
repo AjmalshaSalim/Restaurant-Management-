@@ -18,6 +18,7 @@ import {SignUp} from './pages/Owner/auth/sign-up';
 import {ForgotPassword} from './pages/Owner/auth/Forgot-pw';
 import {Otp} from './pages/Owner/auth/Otp';
 import {ResetPwd} from './pages/Owner/auth/Reset-pw';
+import {AddMember} from './pages/Owner/dashboard/AddMember'
 
 const icon = {
   className: 'w-5 h-5 text-inherit',
@@ -56,6 +57,12 @@ export const routes = [
         name: 'tables',
         path: '/tables',
         element: <Tables />,
+      },
+      {
+        icon: <TableCellsIcon {...icon} />,
+        name: 'AddMember',
+        path: '/AddMember',
+        element: <AddMember />,
       },
       {
         icon: <InformationCircleIcon {...icon} />,
