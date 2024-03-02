@@ -1,17 +1,31 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import {ADD_Equipments} from '../../../actions/EquipmentsActions'
-import {List_Equipments} from '../../../actions/EquipmentsActions'
+import ReactPaginate from 'react-paginate';
+import { List_Equipments } from '../../../actions/EquipmentsActions';
 import { useNavigate } from 'react-router-dom';
 import {
   useMaterialTailwindController
 } from "../../../context/index";
-import EditEquipmentsForm from '../../../components/Owner/EditEquipments';
+import {
+  Card,
+  CardHeader,
+  CardBody,
+  CardFooter,
+  Typography,
+  Tooltip,
+} from "@material-tailwind/react";
+
 
 export default function GymEquipments() {
-  const navigate=useNavigate()
+  const navigate = useNavigate();
   const [controller, dispatch] = useMaterialTailwindController();
   const { sidenavType } = controller;
+  const [equipments, setEquipments] = useState([]);
+  const [showAddEquipmentForm, setShowAddEquipmentForm] = useState(false);
+  const [pageNumber, setPageNumber] = useState(0);
+  const equipmentsPerPage = 6;
+  const pagesVisited = pageNumber * equipmentsPerPage;
+
   useEffect(() => {
     const fetchEquipments = async () => {
       try {
@@ -24,10 +38,12 @@ export default function GymEquipments() {
     fetchEquipments();
   }, []);
 
-  const [showAddEquipmentForm, setShowAddEquipmentForm] = useState(false);
-  const [equipments,setEquipments]=useState([]);
-  const [equipmentData,setEquipmentData]=useState({})
-  const [showEditEquipmentForm,setShowEditEquipmentForm]=useState(false)
+  const pageCount = Math.ceil(equipments.length / equipmentsPerPage);
+
+  const changePage = ({ selected }) => {
+    setPageNumber(selected);
+  };
+
   const toggleAddEquipmentForm = () => setShowAddEquipmentForm(!showAddEquipmentForm);
 
   function AddEquipmentForm() {
@@ -73,12 +89,13 @@ export default function GymEquipments() {
       });
       
       try {
-        const response = await axios.post('http://127.0.0.1:8000/api/add-equipment/', formData, {
+        const response = await axios.post('https://achujozef.pythonanywhere.com/api/add-equipment/', formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },
         });
         console.log(response.data);
+        navigate ('/dashboard/gym-equipments')
     
       } catch (error) {
         console.error('Error adding product:', error);
@@ -168,65 +185,81 @@ export default function GymEquipments() {
 
   return (
     <>
-      {showAddEquipmentForm ? (
-        <AddEquipmentForm />
-      ) : (
-        <>
-          <div className="max-w-4xl mx-auto py-12 px-4 sm:px-6 lg:px-8 flex justify-between items-center flex-col lg:flex-row">
-            <div className="flex items-center mb-4 lg:mb-0">
-              <h2 className="text-2xl font-extrabold tracking-tight text-gray-900">Equipments</h2>
-            </div>
-            <div className="flex items-center flex-col lg:flex-row">
-              <div className="relative border-2 py-2 rounded-lg mb-4 lg:mb-0 lg:mr-4">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <svg className="h-5 w-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clipRule="evenodd" /></svg>
-                </div>
-                <input type="text" placeholder="Search Equipments..." className="block w-full pl-10 pr-12 sm:text-sm rounded-md focus:outline-none" />
-              </div>
-              <button onClick={toggleAddEquipmentForm} className="inline-flex justify-center py-2 px-4 mb-4 shadow-sm text-sm font-medium rounded-md text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                {showAddEquipmentForm ? 'Hide' : 'Add equipment'}
-              </button>
-            </div>
-            {showAddEquipmentForm && <AddEquipmentForm />}
+    {showAddEquipmentForm ? (
+      <AddEquipmentForm />
+    ) : (
+      <>
+        <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8 flex justify-between items-center flex-col lg:flex-row">
+          <div className="flex items-center mb-4 lg:mb-0">
+            <h2 className="text-3xl font-extrabold tracking-tight text-gray-900">Equipments</h2>
           </div>
-          <div className="flex flex-wrap justify-between">
-            {equipments.map((equipment, index) => (
-              <div key={index} className={`relative flex flex-col lg:flex-row items-center shadow-lg ${sidenavType === 'dark' ? "bg-black border-1 border-gray-900" : "bg-white"} rounded overflow-hidden my-2 mx-4 w-full lg:w-auto`}>
-                <div className="absolute top-0 right-0 p-2">
-                  <button onClick={() => {setShowEditEquipmentForm(true); setEquipmentData(equipment);}} className="p-1 rounded-full hover:bg-gray-200">
-                    {showEditEquipmentForm && <EditEquipmentsForm equipmentData={equipmentData} />}
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-gray-600 hover:text-gray-800" fill="none" viewBox="0 0 24 24" stroke="currentColor" title="Edit">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
-                    </svg>
-                  </button>
-                </div>
-                <img className="w-full lg:w-48 h-auto object-contain" src={equipment.img} alt={equipment.title} />
-                <div className="px-6 py-4 flex-grow">
-                  <div className={`font-bold text-xl mb-2 ${sidenavType === 'dark' ? "text-white" : "text-black"}`}>{equipment.title}</div>
-                  <p className="text-gray-700 text-base">
-                    {equipment.description}
-                  </p>
-                  <div className="mt-4">
-                    <span className="inline-block mb-3 bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">Name: {equipment.name}</span>
-                    <span className="inline-block mb-3 bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">Category: {equipment.category}</span>
-                    <span className="inline-block mb-3 bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">Model Number: {equipment.model_number}</span>
-                    <span className="inline-block mb-3 bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">Purchase Date: {equipment.purchase_date}</span>
-                    <span className="inline-block mb-3 bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">Manufacturer: {equipment.manufacturer}</span>
-                    <span className="inline-block mb-3 bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">Purchase Price: ${equipment.purchase_price}</span>
-                    <span className="inline-block mb-3 bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">Warranty Information: {equipment.warranty_information}</span>
-                    <span className="inline-block mb-3 bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">Warranty Expiration Date: {equipment.warranty_expiration_date}</span>
-                    <span className="inline-block mb-3 bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">Condition: {equipment.condition}</span>
-                    <span className="inline-block mb-3 bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">Maintenance Charge: ${equipment.maintenance_charge}</span>
-                    <span className="inline-block mb-3 bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">Availability: {equipment.availability ? 'Yes' : 'No'}</span>
-                    <span className="inline-block mb-3 bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">Description: {equipment.additional_notes}</span>
-                  </div>
-                </div>
+          <div className="flex items-center flex-col lg:flex-row">
+            <div className="relative border-2 py-2 rounded-lg mb-4 lg:mb-0 lg:mr-4 bg-white">
+              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <svg className="h-5 w-5 text-gray-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clipRule="evenodd" /></svg>
+              </div>
+              <input type="text" placeholder="Search Equipments..." className="block w-full pl-10 pr-12 sm:text-sm rounded-md focus:outline-none" />
+            </div>
+            <button onClick={toggleAddEquipmentForm} className="inline-flex justify-center py-2 px-4 mb-4 shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+              {showAddEquipmentForm ? 'Hide' : 'Add Equipment'}
+            </button>
+          </div>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 animate-fade-in-down">
+          {equipments
+            .slice(pagesVisited, pagesVisited + equipmentsPerPage)
+            .map((equipment, index) => (
+              <div
+                key={index}
+                className={`relative flex flex-col items-center shadow-lg transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 ${
+                  sidenavType === 'dark'
+                    ? 'bg-gray-800 text-white'
+                    : 'bg-white text-gray-900'
+                } rounded-lg overflow-hidden my-2 mx-4`}
+              >
+                <Card className="w-full">
+                  <CardHeader floated={false} className="h-48">
+                    <img src={equipment.image} alt="equipment" className="w-full h-full object-cover"/>
+                  </CardHeader>
+                  <CardBody className="text-center">
+                    <Typography variant="h5" color="blue-gray" className="mb-2">
+                      {equipment.name}
+                    </Typography>
+                    <Typography color="blue-gray" className="font-medium">
+                      {equipment.category}
+                    </Typography>
+                  </CardBody>
+                  <CardFooter className="flex justify-center gap-4 pt-2">
+                    <Tooltip content="Edit">
+                      <button className="text-blue-500 hover:text-blue-600">
+                        <i className="fas fa-edit" />
+                      </button>
+                    </Tooltip>
+                    <Tooltip content="Delete">
+                      <button className="text-red-500 hover:text-red-600">
+                        <i className="fas fa-trash" />
+                      </button>
+                    </Tooltip>
+                  </CardFooter>
+                </Card>
               </div>
             ))}
-          </div>
-        </>
-      )}
-    </>
+        </div>
+        <ReactPaginate
+          previousLabel={'Previous'}
+          nextLabel={'Next'}
+          pageCount={pageCount}
+          onPageChange={changePage}
+          containerClassName={'flex justify-center items-center my-8'}
+          pageLinkClassName={'mx-2 px-4 py-2 rounded-md text-black hover:bg-blue-100'}
+          previousLinkClassName={'mx-2 px-4 py-2 rounded-md text-black hover:bg-blue-100'}
+          nextLinkClassName={'mx-2 px-4 py-2 rounded-md text-black hover:bg-blue-100'}
+          disabledClassName={'opacity-50 cursor-not-allowed'}
+          activeClassName={'bg-blue-600 text-white'}
+        />
+      </>
+    )}
+  </>
   );
 }
 
