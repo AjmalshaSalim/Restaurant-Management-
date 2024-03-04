@@ -1,18 +1,32 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: 'https://achujozef.pythonanywhere.com',
-  // baseURL: 'http://127.0.0.1:8000',
+  // baseURL: 'https://achujozef.pythonanywhere.com',
+  baseURL: 'http://127.0.0.1:8000',
 });
 
 // Function to set headers dynamically
 function setHeaders(isFormData = false, hasFile = false) {
+
   let headers = {
     'Accept': 'application/json',
   };
   // Removed the condition that prevents setting the Content-Type header when hasFile is true
   headers['Content-Type'] = isFormData ? 'multipart/form-data' : 'application/json';
   return headers;
+
+  if (hasFile) {
+    return {
+      'Content-Type':'application/json',
+      'Accept': 'application/json',
+    };
+  } else {
+    return {
+      'Content-Type': isFormData ? 'multipart/form-data' : 'application/json',
+      'Accept': 'application/json',
+    };
+  }
+
 }
 
 instance.interceptors.request.use(

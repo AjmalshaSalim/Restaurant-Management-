@@ -6,16 +6,16 @@ import {
   CardHeader,
   CardBody,
 } from '@material-tailwind/react';
-import {InformationCircleIcon} from '@heroicons/react/24/outline';
+import { InformationCircleIcon } from '@heroicons/react/24/outline';
 
-export function Notifications () {
-  const [showAlerts, setShowAlerts] = React.useState ({
+export function Notifications() {
+  const [showAlerts, setShowAlerts] = React.useState({
     blue: true,
     green: true,
     orange: true,
     red: true,
   });
-  const [showAlertsWithIcon, setShowAlertsWithIcon] = React.useState ({
+  const [showAlertsWithIcon, setShowAlertsWithIcon] = React.useState({
     blue: true,
     green: true,
     orange: true,
@@ -37,13 +37,13 @@ export function Notifications () {
           </Typography>
         </CardHeader>
         <CardBody className="flex flex-col gap-4 p-4">
-          {alerts.map (color => (
+          {alerts.map(color => (
             <Alert
               key={color}
               open={showAlerts[color]}
               color={color}
               onClose={() =>
-                setShowAlerts (current => ({...current, [color]: false}))}
+                setShowAlerts(current => ({ ...current, [color]: false }))}
             >
               A simple {color} alert with an <a href="#">example link</a>. Give
               it a click if you like.
@@ -63,7 +63,7 @@ export function Notifications () {
           </Typography>
         </CardHeader>
         <CardBody className="flex flex-col gap-4 p-4">
-          {alerts.map (color => (
+          {alerts.map(color => (
             <Alert
               key={color}
               open={showAlertsWithIcon[color]}
@@ -72,7 +72,7 @@ export function Notifications () {
                 <InformationCircleIcon strokeWidth={2} className="h-6 w-6" />
               }
               onClose={() =>
-                setShowAlertsWithIcon (current => ({
+                setShowAlertsWithIcon(current => ({
                   ...current,
                   [color]: false,
                 }))}

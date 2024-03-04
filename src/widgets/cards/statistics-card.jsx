@@ -23,7 +23,9 @@ export function StatisticsCard({ color, icon, title, value, footer }) {
         // color="red"
         floated={false}
         shadow={false}
-        className="absolute grid h-12 w-12 place-items-center bg-red-700"
+        className={`absolute grid h-12 w-12 place-items-center ${
+          sidenavType === "dark"? "bg-red-700" : "bg-black"
+        }`}
       >
         {icon}
       </CardHeader>

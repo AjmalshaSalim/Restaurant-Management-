@@ -10,6 +10,7 @@ import AOS from "aos";
 import "aos/dist/aos.css"; 
 import { useEffect } from "react";
 
+import AddMember from "./pages/Owner/dashboard/AddMember";
 import Equipments from "./pages/User/Equipments";
 import OwnerLogin from "../src/pages/Owner/auth/sign-in"
 import OwnerRegister from "../src/pages/Owner/auth/sign-up"
@@ -58,6 +59,7 @@ function App() {
         <Route path="/OwnerChangepassword" element={<OwnerChangepassword/>}/>
         <Route path="/equipments/" element={<Equipments />} /> 
         <Route path="/UserList/" element={<OwnerUserList />} />
+        <Route path="/AddMember/" element={<AddMember />} />
       </Routes> 
     </PhoneNumberProvider>
   );
