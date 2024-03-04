@@ -31,6 +31,7 @@ export default function GymEquipments() {
   const toggleAddEquipmentForm = () => setShowAddEquipmentForm(!showAddEquipmentForm);
 
   function AddEquipmentForm() {
+
     const [equipmentData, setEquipmentData] = useState({
       image: null,
       name: '',
@@ -75,10 +76,6 @@ export default function GymEquipments() {
         } else {
           formData.append(key, equipmentData[key]);
         }
-
-      Object.entries(equipmentData).forEach(([key, value]) => {
-        formData.append(key, value); 
-
       });
       
       try {
@@ -88,11 +85,10 @@ export default function GymEquipments() {
           },
         });
         console.log(response.data);
-    
+      
       } catch (error) {
         console.error('Error adding product:', error);
       }
-    };
     
     return (
       <>
@@ -173,8 +169,7 @@ export default function GymEquipments() {
       </>
     );
   }
-
-
+  }
   return (
     <>
       {showAddEquipmentForm ? (
@@ -237,8 +232,6 @@ export default function GymEquipments() {
       )}
     </>
   );
-
-}
 
 }
 
