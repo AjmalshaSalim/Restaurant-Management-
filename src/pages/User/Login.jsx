@@ -46,7 +46,7 @@ function Login() {
             </h1>
             <form onSubmit={(e) => {
                 e.preventDefault();
-                if (formData.username.length === 10) {
+                if (formData.username.length == 10) {
                     handleSubmit(e);
                 } else {
                     alert("Phone number must be 10 digits.");
@@ -60,7 +60,7 @@ function Login() {
                         Phone Number
                     </label>
                     <input
-                        type="text" value={formData.phonenumber} id="phonenumber" onChange={handleChange} required pattern="\d{10}"
+                        type="text" value={formData.username} id="username" onChange={handleChange} required pattern="\d{10}"
                         className="block w-full px-4 py-2 mt-2 text-white bg-transparent border rounded-md focus:border-red-purple-400 focus:ring-red-300 focus:outline-none focus:ring focus:ring-opacity-40 hover:transform hover:scale-105 transition-transform duration-500 ease-in-out"
                         title="Phone number must be 10 digits"
                         maxLength="10"
