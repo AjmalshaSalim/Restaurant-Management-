@@ -15,7 +15,7 @@ export function StatisticsCard({ color, icon, title, value, footer }) {
   const { sidenavType} =
     controller;
   return (
-    <Card className={` shadow-sm ${
+    <Card className={` shadow-sm  ${
       sidenavType === "dark" ? " bg-black bg-opacity-75" : "border border-blue-gray-100 bg-white"
     }`}>
       <CardHeader
@@ -23,7 +23,7 @@ export function StatisticsCard({ color, icon, title, value, footer }) {
         // color="red"
         floated={false}
         shadow={false}
-        className={`absolute grid h-12 w-12 place-items-center ${
+        className={`absolute grid h-12 rounded-full w-12 place-items-center ${
           sidenavType === "dark"? "bg-red-700" : "bg-black"
         }`}
       >

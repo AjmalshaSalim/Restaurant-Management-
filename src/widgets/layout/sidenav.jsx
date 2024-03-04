@@ -19,9 +19,6 @@ export function Sidenav({ brandImg, brandName, routes }) {
     white: "bg-white shadow-sm",
     transparent: "bg-transparent",
   };
- 
-
-  // Conditional logo based on sidenavType
   const logoSrc = sidenavType === 'dark' ? Logo2 : Logo;
 
   return (
