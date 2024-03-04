@@ -82,7 +82,7 @@ export default function GymEquipments() {
       });
       
       try {
-        const response = await axios.post('http://127.0.0.1:8000/api/add-equipment/', formData, {
+        const response = await axios.post('https://achujozef.pythonanywhere.com/api/add-equipment/', formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },
@@ -237,7 +237,11 @@ export default function GymEquipments() {
       )}
     </>
   );
+
 }
+
+}
+
 
 
 
