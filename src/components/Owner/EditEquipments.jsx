@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import {Edit_Equipments} from '../../actions/EquipmentsActions'
 
-function EditEquipmentsForm() {
+function EditEquipmentsForm({data}) {
 const [ equipmentData, setEquipmentData ]=useState({
     image: null,
     name: '',
@@ -17,6 +17,7 @@ const [ equipmentData, setEquipmentData ]=useState({
     availability: false,
     additional_notes: '',  
 })
+
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -42,6 +43,7 @@ const [ equipmentData, setEquipmentData ]=useState({
 
   return (
     <form onSubmit={handleSubmit}>
+      <div>
       <div>
         <label htmlFor="name" className="block text-sm font-medium text-black">Name</label>
         <input type="text" name="name" value={equipmentData.name} onChange={handleChange} className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 text-black"/>
@@ -98,6 +100,7 @@ const [ equipmentData, setEquipmentData ]=useState({
       <button type="submit" className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-gray-600 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
         Save Changes
       </button>
+      </div>
     </form>
   )
 }
