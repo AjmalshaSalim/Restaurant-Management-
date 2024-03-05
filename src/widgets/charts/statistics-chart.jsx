@@ -14,6 +14,11 @@ export function StatisticsChart({ color, chart, title, description, footer }) {
   const [controller, dispatch] = useMaterialTailwindController();
   const { sidenavType} =
     controller;
+  //   const options = {
+  //      grid: {
+  //   show: true
+  // }
+    // };
   return (
     <Card className={` shadow-sm ${
       sidenavType === "dark" ? " bg-black" : "border border-blue-gray-100 bg-white"
@@ -21,7 +26,9 @@ export function StatisticsChart({ color, chart, title, description, footer }) {
       <CardHeader variant="gradient" color={color} floated={false} shadow={false}>
         <Chart className={`${
       sidenavType === "dark" ? " bg-black" : "bg-white"
-    }`} {...chart} />
+    }`} {...chart}
+    // options={options}
+     />
       </CardHeader>
       <CardBody className="px-6 pt-0">
         <Typography variant="h6" color={sidenavType === 'dark' ? "white" : "blue-gray"}>

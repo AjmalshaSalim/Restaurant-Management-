@@ -35,9 +35,9 @@ export function Home () {
   const { sidenavType} =
     controller;
   return (
-    <div className="mt-12 bg-transparent">
+    <div className="mt-10 bg-transparent">
       <div
-        className="mb-12 grid gap-y-10 gap-x-6 md:grid-cols-2 xl:grid-cols-4"
+        className="mb-10 grid gap-y-10 gap-x-6 md:grid-cols-2 xl:grid-cols-4"
         data-aos="fade-left"
         data-aos-duration="1000"
       >
@@ -47,11 +47,11 @@ export function Home () {
             {...rest}
             title={title}
             icon={React.createElement (icon, {
-              className: 'w-6 h-6 text-white',
+              className: 'w-5 h-5 text-white ',
             })}
             footer={
               <Typography className={`font-normal ${
-                sidenavType === "dark" ? "text-white" : "text-blue-gray-600"
+                sidenavType === "dark" ? "text-white" : "text-blue-gray-600 "
               }`}>
                 <strong className={footer.color}>{footer.value}</strong>
                 &nbsp;{footer.label}

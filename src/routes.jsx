@@ -1,12 +1,14 @@
 import {
   HomeIcon,
-  UserCircleIcon,
+  UserPlusIcon,
   TableCellsIcon,
   InformationCircleIcon,
   ServerStackIcon,
   RectangleStackIcon,
 } from '@heroicons/react/24/solid';
-import { CgGym } from "react-icons/cg";
+import { FaDumbbell } from "react-icons/fa";
+import { HiUserCircle } from "react-icons/hi";
+import { FaUsers } from "react-icons/fa";
 import {Home} from './pages/Owner/dashboard/Home';
 import {Profile} from './pages/Owner/dashboard/profile';
 import {UserList} from './pages/Owner/dashboard/UserList'
@@ -35,19 +37,19 @@ export const routes = [
         element: <Home />,
       },
       {
-        icon: <UserCircleIcon {...icon} />,
-        name: 'profile',
+        icon: <HiUserCircle {...icon} />,
+        name: 'User Profile',
         path: '/profile',
         element: <Profile />,
       },
       {
-        icon: <UserCircleIcon {...icon} />,
-        name: 'User List',
+        icon: <FaUsers {...icon} />,
+        name: 'All Members',
         path: '/UserList',
         element: <UserList/>,
       },
       {
-        icon: <CgGym {...icon} />,
+        icon: <FaDumbbell {...icon} />,
         name: 'Equipments',
         path: '/gym-equipments',
         element: <GymEquipments />,
@@ -59,8 +61,8 @@ export const routes = [
         element: <Tables />,
       },
       {
-        icon: <TableCellsIcon {...icon} />,
-        name: 'AddMember',
+        icon: <UserPlusIcon {...icon} />,
+        name: 'Add Members',
         path: '/AddMember',
         element: <AddMember />,
       },

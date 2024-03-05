@@ -47,6 +47,7 @@ export default function GymEquipments() {
   const toggleAddEquipmentForm = () => setShowAddEquipmentForm(!showAddEquipmentForm);
 
   function AddEquipmentForm() {
+
     const [equipmentData, setEquipmentData] = useState({
       image: null,
       name: '',
@@ -100,7 +101,6 @@ export default function GymEquipments() {
       } catch (error) {
         console.error('Error adding product:', error);
       }
-    };
     
     return (
       <>
@@ -181,8 +181,7 @@ export default function GymEquipments() {
       </>
     );
   }
-
-
+  }
   return (
     <>
     {showAddEquipmentForm ? (
@@ -261,7 +260,9 @@ export default function GymEquipments() {
     )}
   </>
   );
+
 }
+
 
 
 

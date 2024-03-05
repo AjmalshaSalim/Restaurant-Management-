@@ -3,11 +3,15 @@ import BackgroundImage from '../../../assets/images/backgroundlog.jpg';
 import Logo from '../../../assets/images/Gymsoft_Logo1-removebg-preview.png';
 import {Input, Button, Typography} from '@material-tailwind/react';
 import {AiOutlineEye, AiOutlineEyeInvisible} from 'react-icons/ai';
-import {Link} from 'react-router-dom';
+import {Link, redirect} from 'react-router-dom';
 import AOS from 'aos';
+import { DemoAction1 } from '../../../actions/DemoActions';
 import 'aos/dist/aos.css';
+import { useNavigate } from 'react-router-dom';
 
 export function SignIn () {
+  const navigate=useNavigate();
+
   useEffect (() => {
     AOS.init ();
   }, []);
@@ -24,14 +28,22 @@ export function SignIn () {
       [e.target.id]: e.target.value,
     });
   };
-  const handleSubmit = e => {
-    e.preventDefault ();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log(formData);
     try {
-      console.log (formData);
+        const response= DemoAction1(formData)
+        if(response.success) {
+          alert("Login Success")
+            navigate('/')
+        }else{
+          alert("Login Failed")
+            redirect('/sign-in')
+        }
     } catch (error) {
-      console.error ('Login failed:', error.message);
+        console.error('Login failed:', error.message);
     }
-  };
+}
   return (
     <section className="m-8 flex gap-4">
       <div

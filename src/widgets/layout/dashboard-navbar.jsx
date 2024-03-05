@@ -36,7 +36,7 @@ export function DashboardNavbar() {
   return (
     <Navbar
       color={fixedNavbar ? "blue-gray" : "transparent"}
-      className={`rounded-xl transition-all ${sidenavType === 'dark'? "bg-black" : "bg-white"} ${
+      className={`rounded-lg transition-all ${sidenavType === 'dark'? "bg-black" : "bg-white"} ${
         fixedNavbar
           ? "sticky top-4 z-40 py-3 shadow-md shadow-blue-gray-500/5 "
           : "px-4 py-1"

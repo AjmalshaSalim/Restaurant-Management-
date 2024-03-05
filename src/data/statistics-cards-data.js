@@ -4,11 +4,15 @@ import {
   UsersIcon,
   ChartBarIcon,
 } from "@heroicons/react/24/solid";
+import { PiUsersThreeFill } from "react-icons/pi";
+import { FaUserCheck } from "react-icons/fa";
+import { FaPersonCircleQuestion } from "react-icons/fa6";
+import { FaMoneyCheck } from "react-icons/fa";
 
 export const statisticsCardsData = [
   {
     color: "gray",
-    icon: BanknotesIcon,
+    icon: FaMoneyCheck,
     title: "Pending Payments",
     value: "5",
     footer: {
@@ -19,7 +23,7 @@ export const statisticsCardsData = [
   },
   {
     color: "gray",
-    icon: UsersIcon,
+    icon: PiUsersThreeFill,
     title: "Today's Attendance",
     value: "21/30",
     footer: {
@@ -30,7 +34,7 @@ export const statisticsCardsData = [
   },
   {
     color: "gray",
-    icon: UserPlusIcon,
+    icon: FaPersonCircleQuestion,
     title: "New Enquiries",
     value: "11",
     footer: {
@@ -41,7 +45,7 @@ export const statisticsCardsData = [
   },
   {
     color: "gray",
-    icon: ChartBarIcon,
+    icon: FaUserCheck,
     title: "Active Members",
     value: "10",
     footer: {

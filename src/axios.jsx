@@ -24,7 +24,7 @@ instance.interceptors.request.use(
   (config) => {
     // Check if the request contains a file
     const isFormData = config.data instanceof FormData;
-    const hasFile = isFormData && Array.from(config.data.values()).some(value => value instanceof File || value instanceof Blob);
+    const hasFile = isFormData && Array.from(config.data.values()).some(value => value instanceof File);
     config.headers = setHeaders(isFormData, hasFile);
     return config;
   },
