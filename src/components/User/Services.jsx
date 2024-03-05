@@ -11,61 +11,43 @@ const ServicesData = [
   {
     id: 1,
     img: Img1,
-    link:'/slot-booking'
-    ,
+    link:'/slot-booking',
     name: "Slot Booking",
-    description:
-      "Lorem ipsum dolor sit amet ipsum dolor sit ametipsum dolor sit amet ipsum dolor sit amet.",
     aosDelay: "100",
   },
   {
     id: 2,
     img: Img2,
     name: "Trainer",
-    link:'/trainer'
-    ,
-    description:
-      "Lorem ipsum dolor sit amet ipsum dolor sit ametipsum dolor sit amet ipsum dolor sit amet",
+    link:'/trainer',
     aosDelay: "300",
   },
   {
     id: 3,
     img: Img3,
     name: "Diet",
-    link:'/diet'
-    ,
-    description:
-      "Lorem ipsum dolor sit amet ipsum dolor sit ametipsum dolor sit amet ipsum dolor sit amet",
+    link:'/diet',
     aosDelay: "500",
   },
   {
     id: 4,
     img: Img4,
     name: "Equipments",
-    link:'/equipments'
-    ,
-    description:
-      "Lorem ipsum dolor sit amet ipsum dolor sit ametipsum dolor sit amet ipsum dolor sit amet",
+    link:'/equipments',
     aosDelay: "500",
   },
   {
     id: 5,
     img: Img5,
     name: "Workout Plan",
-    link:'/workout-plan'
-    ,
-    description:
-      "Lorem ipsum dolor sit amet ipsum dolor sit ametipsum dolor sit amet ipsum dolor sit amet",
+    link:'/workout-plan',
     aosDelay: "500",
   },
   {
     id: 6,
     img: Img6,
     name: "Feedback",
-    link:'/feedback'
-    ,
-    description:
-      "Lorem ipsum dolor sit amet ipsum dolor sit ametipsum dolor sit amet ipsum dolor sit amet",
+    link:'/feedback',
     aosDelay: "500",
   },
 ];
@@ -88,10 +70,10 @@ const Services = () => {
             <div key={service.id}
             data-aos="fade-up"
             data-aos-delay={`${service.id*100}`}
-            className="rounded-lg bg-black relative shadow-md duration-300 group mx-auto w-11/12 sm:w-auto"
-            style={{ maxWidth: "556px", margin: "0 auto" }}
+            className="rounded-lg bg-black relative shadow-md duration-300 group mx-auto"
+            style={{ width: "100%", maxWidth: "556px", margin: "0 auto" }}
           ><Link to={service.link}>
-            <div className="h-[61px] ">
+            <div className="h-[61px] bg-black" style={{ width: "80px", margin: "0 auto" }}>
               <img
                 src={service.img}
                 alt=""
@@ -105,9 +87,6 @@ const Services = () => {
             <div className="p-2 text-center">
               <div className="w-full"></div>
               <h1 className="text-md text-white font-medium">{service.name}</h1>
-              <p className="text-white group-hover:duration-300 text-xs line-clamp-2">
-                {service.description}
-              </p>
             </div>
           </div>
             ))}
