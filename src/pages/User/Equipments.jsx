@@ -75,7 +75,7 @@ export default function Equipments() {
                         <div className="flex items-center bg-red-500 text-white rounded-md w-full sm:w-3/4 md:w-1/2 lg:w-1/3">
                             <input
                                 type="text"
-                                placeholder="Search Equipments..."
+                                placeholder="Search Equipments.."
                                 className="px-2 py-2 w-full text-black rounded-l-md focus:outline-none text-sm"
                             />
                             <button
