@@ -1,9 +1,3 @@
-import {
-  BanknotesIcon,
-  UserPlusIcon,
-  UsersIcon,
-  ChartBarIcon,
-} from "@heroicons/react/24/solid";
 import { PiUsersThreeFill } from "react-icons/pi";
 import { FaUserCheck } from "react-icons/fa";
 import { FaPersonCircleQuestion } from "react-icons/fa6";

@@ -135,12 +135,13 @@ export function AddMember() {
               >
                 First Name
               </Typography>
-              <Input
+              <input
                 type="text"
-                placeholder="First Name"
-                value={formData.firstname}
+                placeholder="Enter first name"
+                // value={formData.firstname}
                 name="firstname"
                 onChange={handleChange}
+                className=" py-2  pl-2 pr-20 rounded-lg bg-transparent border"
               />
             </div>
 
@@ -152,12 +153,13 @@ export function AddMember() {
               >
                 Last Name
               </Typography>
-              <Input
+              <input
                 type="text"
                 placeholder="Last Name"
-                value={formData.lastname}
+                // value={formData.lastname}
                 name="lastname"
                 onChange={handleChange}
+                className=" py-2  pl-2 pr-20 rounded-lg bg-transparent border"
               />
             </div>
 
@@ -169,12 +171,13 @@ export function AddMember() {
               >
                 Phone
               </Typography>
-              <Input
+              <input
                 type="tel"
                 placeholder="Mobile Number"
-                value={formData.mobilenumber}
+                // value={formData.mobilenumber}
                 name="mobilenumber"
                 onChange={handleChange}
+                className=" py-2  pl-2 pr-20 rounded-lg bg-transparent border"
               />
             </div>
 
@@ -186,16 +189,17 @@ export function AddMember() {
               >
                 Email
               </Typography>
-              <Input
+              <input
                 type="email"
                 placeholder="Email"
                 value={formData.email}
                 name="email"
                 onChange={handleChange}
+                className=" py-2  pl-2 pr-20 rounded-lg bg-transparent border"
               />
             </div>
 
-            <div>
+            <div className="pr-2">
               <Typography
                 variant="small"
                 color={sidenavType === 'dark' ? "white" : "blue-gray"}
@@ -203,14 +207,15 @@ export function AddMember() {
               >
                 Gender
               </Typography>
-              <Select
+              <select
                 value={formData.gender}
                 onChange={handleChange}
                 name="gender"
+                className={`py-2 pl-2 rounded-lg bg-transparent border w-full ${sidenavType ? " text-gray-400" : " text-blue-gray-600"}`}
               >
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-              </Select>
+                <option value="male" className={`${sidenavType === 'dark' ? "bg-black" : "bg-white"}`}>Male</option>
+                <option value="female" className={`${sidenavType === 'dark' ? "bg-black" : "bg-white"}`}>Female</option>
+              </select>
             </div>
 
 
@@ -222,12 +227,13 @@ export function AddMember() {
               >
                 Age
               </Typography>
-              <Input
+              <input
                 type="number"
                 placeholder="Age"
-                value={formData.age}
+                // value={formData.age}
                 name="age"
                 onChange={handleChange}
+                className=" py-2  pl-2 pr-20 rounded-lg bg-transparent border"
               />
             </div>
 
@@ -239,12 +245,13 @@ export function AddMember() {
               >
                 Height
               </Typography>
-              <Input
+              <input
                 type="text"
                 placeholder="Height"
-                value={formData.height}
+                // value={formData.height}
                 name="height"
                 onChange={handleChange}
+                className=" py-2  pl-2 pr-20 rounded-lg bg-transparent border"
               />
             </div>
 
@@ -257,12 +264,13 @@ export function AddMember() {
               >
                 Weight
               </Typography>
-              <Input
+              <input
                 type="text"
                 placeholder="Weight"
-                value={formData.weight}
+                // value={formData.weight}
                 name="weight"
                 onChange={handleChange}
+                className=" py-2  pl-2 pr-20 rounded-lg bg-transparent border"
               />
             </div>
 
@@ -275,12 +283,13 @@ export function AddMember() {
               >
                 Proffession
               </Typography>
-              <Input
+              <input
                 type="text"
                 placeholder="Profession"
-                value={formData.proffession}
+                // value={formData.proffession}
                 name="proffession"
                 onChange={handleChange}
+                className=" py-2  pl-2 pr-20 rounded-lg bg-transparent border"
               />
             </div>
 
@@ -293,12 +302,13 @@ export function AddMember() {
               >
                 Address
               </Typography>
-              <Input
+              <input
                 type="text"
                 placeholder="Address"
-                value={formData.address}
+                // value={formData.address}
                 name="address"
                 onChange={handleChange}
+                className=" py-2  pl-2 pr-20 rounded-lg bg-transparent border"
               />
             </div>
             <div className=" pt-3 pl-5">

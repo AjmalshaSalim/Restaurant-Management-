@@ -61,7 +61,7 @@ export function Sidenav({ brandImg, brandName, routes }) {
                 <Typography
                   variant="small"
                   color={sidenavType === "dark" ? "white" : "black"}
-                  className="font-black uppercase opacity-75"
+                  className="font-black uppercase opacity-75 text-xs"
                 >
                   {title}
                 </Typography>
@@ -86,7 +86,7 @@ export function Sidenav({ brandImg, brandName, routes }) {
                       {icon}
                       <Typography
                         color="inherit"
-                        className="font-medium capitalize"
+                        className="font-medium capitalize text-sm"
                       >
                         {name}
                       </Typography>

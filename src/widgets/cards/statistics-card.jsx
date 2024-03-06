@@ -20,11 +20,10 @@ export function StatisticsCard({ color, icon, title, value, footer }) {
     }`}>
       <CardHeader
         variant="gradient"
-        // color="red"
         floated={false}
         shadow={false}
         className={`absolute grid h-12 rounded-full w-12 place-items-center ${
-          sidenavType === "dark"? "bg-red-700" : "bg-black"
+          sidenavType === "dark"? "bg-red-800" : "bg-black"
         }`}
       >
         {icon}
@@ -35,12 +34,12 @@ export function StatisticsCard({ color, icon, title, value, footer }) {
     }`}>
           {title}
         </Typography>
-        <Typography variant="h4" color={sidenavType === 'dark' ? "white" : "blue-gray"}>
+        <Typography variant="h5" color={sidenavType === 'dark' ? "white" : "blue-gray"} className=" text-center pl-6">
           {value}
         </Typography>
       </CardBody>
       {footer && (
-        <CardFooter className="border-t border-gray-700 p-4">
+        <CardFooter className={`border-t p-4 ${sidenavType=== 'dark'? "border-gray-900" : "border-gray-300"}`}>
           {footer}
         </CardFooter>
       )}
