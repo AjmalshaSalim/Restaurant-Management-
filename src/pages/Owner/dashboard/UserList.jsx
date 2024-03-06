@@ -32,7 +32,7 @@ export function UserList() {
         <div className='w-full flex justify-between items-center pr-6'>
   <div></div>
   <Link to='/dashboard/AddMember'>
-  <Button size='sm' className='bg-black'>Add Member</Button>
+  <Button size='sm' className='bg-black py-3'>Add Members</Button>
   </Link>
 </div>    
           <table className="w-full min-w-[640px] table-auto">

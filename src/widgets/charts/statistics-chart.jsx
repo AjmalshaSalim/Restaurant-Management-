@@ -35,13 +35,13 @@ export function StatisticsChart({ color, chart, title, description, footer }) {
           {title}
         </Typography>
         <Typography variant="small" className={`font-normal ${
-      sidenavType === "dark" ? "text-white" : "text-blue-gray-600"
+      sidenavType === "dark" ? "text-gray-600" : "text-blue-gray-600"
     }`}>
           {description}
         </Typography>
       </CardBody>
       {footer && (
-        <CardFooter className="border-t border-gray-700 px-6 py-5">
+        <CardFooter className={` px-6 py-5 ${sidenavType ==='dark'? "border-t border-gray-900" : "border-t border-gray-300"}`}>
           {footer}
         </CardFooter>
       )}

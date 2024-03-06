@@ -144,7 +144,7 @@ export function Home () {
                   {['Members', 'Time', 'Status', 'Progress'].map (el => (
                     <th
                       key={el}
-                      className="border-b border-gray-700 py-3 px-6 text-left"
+                      className={` py-3 px-6 text-left ${sidenavType ==='dark'? "border-b border-gray-900" : "border-b border-gray-300"}`}
                     >
                       <Typography
                         variant="small"
@@ -158,10 +158,77 @@ export function Home () {
                   ))}
                 </tr>
               </thead>
+              {sidenavType === 'dark'?
               <tbody>
+              {projectsTableData.map (
+                ({img, name, members, budget, completion}, key) => {
+                  const className = `py-3 px-5 ${key === projectsTableData.length - 1 ? '' : 'border-b border-gray-900'}`;
+
+                  return (
+                    <tr key={name}>
+                      <td className={className}>
+                        <div className="flex items-center gap-4">
+                          <Avatar src={img} alt={name} size="sm" />
+                          <Typography
+                            variant="small"
+                            color={sidenavType === 'dark'? "white" : "gray"}
+                            className="font-bold"
+                          >
+                            {name}
+                          </Typography>
+                        </div>
+                      </td>
+                      <td className={className}>
+                        {members.map (({img, name}, key) => (
+                          <Tooltip key={name} content={name}>
+                            <Avatar
+                              src={img}
+                              alt={name}
+                              size="xs"
+                              variant="circular"
+                              className={`cursor-pointer border-2 border-white ${key === 0 ? '' : '-ml-2.5'}`}
+                            />
+                          </Tooltip>
+                        ))}
+                      </td>
+                      <td className={className}>
+                        <Typography
+                          variant="small"
+                          className={`text-xs font-medium ${
+                            sidenavType === "dark" ? "text-white" : "text-blue-gray-600"
+                          }`}
+                        >
+                          {budget}
+                        </Typography>
+                      </td>
+                      <td className={className}>
+                        <div className="w-10/12">
+                          <Typography
+                            variant="small"
+                            className={`mb-1 block text-xs font-medium ${
+                              sidenavType === "dark" ? "text-white" : "text-blue-gray-600"
+                            }`}
+                          >
+                            {completion}%
+                          </Typography>
+                          <Progress
+                            value={completion}
+                            variant="gradient"
+                            color={completion === 100 ? 'green' : 'blue'}
+                            className="h-1"
+                          />
+                        </div>
+                      </td>
+                    </tr>
+                  );
+                }
+              )}
+            </tbody>
+            :
+            <tbody>
                 {projectsTableData.map (
                   ({img, name, members, budget, completion}, key) => {
-                    const className = `py-3 px-5 ${key === projectsTableData.length - 1 ? '' : 'border-b border-gray-700'}`;
+                    const className = `py-3 px-5 ${key === projectsTableData.length - 1 ? '' : 'border-b border-gray-300'}`;
 
                     return (
                       <tr key={name}>
@@ -222,7 +289,7 @@ export function Home () {
                     );
                   }
                 )}
-              </tbody>
+              </tbody>}
             </table>
           </CardBody>
         </Card>

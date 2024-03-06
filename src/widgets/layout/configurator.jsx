@@ -125,17 +125,17 @@ export function Configurator() {
             <Button
               // variant={sidenavType === "dark" ? "gradient" : "outlined"}
               onClick={() => setSidenavType(dispatch, "dark")}
-              className={`rounded-full ${sidenavType === "dark" ? "bg-white text-black " : "outline outline-black text-black bg-transparent"}`}
+              className={`rounded-full outline-none ${sidenavType === "dark" ? "bg-white text-black " : " border text-black bg-transparent"}`}
             >
-              <MdNightlight  className=" text-lg"/>
+              <MdNightlight  className=" text-md"/>
             </Button>
             
             <Button
               // variant={sidenavType === "white" ? "gradient" : "outlined"}
               onClick={() => setSidenavType(dispatch, "white")}
-              className={`rounded-full ${sidenavType === "white" ? "bg-black " : "outline outline-white bg-transparent"}`}
+              className={`rounded-full outline-none ${sidenavType === "white" ? "bg-black " : " border bg-transparent"}`}
             >
-              <MdWbSunny className="text-lg text-white"/>
+              <MdWbSunny className="text-md text-white"/>
             </Button>
           </div>
         </div>
