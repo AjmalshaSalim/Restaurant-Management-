@@ -65,7 +65,7 @@ export const equipments = [{
 
 export default function Equipments() {
     return (
-        <div className='min-h-screen bg-black'>
+        <div className='min-h-screen bg-black '>
             <Navbar bgColor="bg-black" />
             <h1 className="text-4xl font-bold text-white text-center pt-32 " data-aos="fade-down"> Equipments</h1>
             <div className="flex flex-wrap justify-between items-center my-4">

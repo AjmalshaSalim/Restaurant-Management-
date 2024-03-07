@@ -6,6 +6,7 @@ import { List_Equipments } from '../../../actions/EquipmentsActions';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { FaDumbbell } from "react-icons/fa";
 import {
   useMaterialTailwindController
 } from "../../../context/index";
@@ -112,7 +113,7 @@ export default function GymEquipments() {
 
     return (
       <>
-        <div className='flex flex-row justify-between items-center mt-16 mb-5 '>
+        <div className='flex flex-row justify-between items-center mt-8 mb-3 '>
           <h1 className={`text-3xl font-extrabold tracking-tight flex-grow ${sidenavType === 'dark' ? "text-white" : "text-black"}`}>Add Equipments</h1>
           <Button onClick={handleAddEquipmentFormToggle} className={` px-4 shadow-sm font-medium py-3 ${sidenavType === 'dark' ? "bg-red-700" : "bg-black"}`}>
             Back
@@ -199,7 +200,9 @@ export default function GymEquipments() {
         <AddEquipmentForm />
       ) : (
         <>
-          <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8 flex justify-between items-center flex-col lg:flex-row">
+        {equipments.length > 0 ?
+        <div>
+<div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8 flex justify-between items-center flex-col lg:flex-row">
             <div className="flex items-center mb-4 lg:mb-0">
               <h2 className={`text-3xl font-extrabold tracking-tight ${sidenavType === 'dark' ? "text-white" : "text-black"}`}>Equipments</h2>
             </div>
@@ -266,6 +269,38 @@ export default function GymEquipments() {
             disabledClassName={'opacity-50 cursor-not-allowed'}
             activeClassName={'bg-red-700 px-1 py-2 rounded-md text-white'}
           />
+        </div>:
+        <div className=' w-full h-[800px]'>
+          <div className='flex w-full pt-5'>
+<div className='w-1/2'>
+</div>
+          <div className="w-1/2 flex items-center flex-col lg:flex-row">
+              <div className={`relative border-2 py-2 rounded-lg mb-4 lg:mb-0 lg:mr-4 ${sidenavType === 'dark' ? "bg-black" : "bg-white"}`}>
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <svg className="h-5 w-5 text-gray-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clipRule="evenodd" /></svg>
+                </div>
+                <input type="text" placeholder="Search Equipments..." className="block w-full pl-10 pr-12 sm:text-sm rounded-md focus:outline-none bg-transparent" />
+              </div>
+              <Button size='sm' onClick={toggleAddEquipmentForm} className={`py-3 -mt-6 ${sidenavType === 'dark' ? "bg-red-700" : "bg-black"}`}>
+                {showAddEquipmentForm ? 'Hide' : 'Add Equipments'}
+              </Button>
+            </div>
+          </div>
+          <div className={`w-[80%] h-2/6 mt-12 mx-auto rounded-3xl ${sidenavType === 'dark'? "bg-black" : "bg-white"}`}>
+<div className='w-full h-1/2 pt-5'>
+<FaDumbbell className={` mx-auto text-7xl ${sidenavType === 'dark'? "text-white" : "text-black"}`}/>
+</div>
+<div className='w-full text-center h-1/2 pt-4'>
+ <Typography
+ className=' text-sm'
+ color={sidenavType === 'dark'? 'white' : 'black'}
+ >
+  No Equipments Found
+ </Typography>
+</div>
+          </div>
+        </div> }
+          
         </>
       )}
     </>

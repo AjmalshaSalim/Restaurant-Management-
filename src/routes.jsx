@@ -13,7 +13,7 @@ import {Home} from './pages/Owner/dashboard/Home';
 import {Profile} from './pages/Owner/dashboard/profile';
 import {UserList} from './pages/Owner/dashboard/UserList'
 import GymEquipments from './pages/Owner/dashboard/GymEquipments';
-import {Tables} from './pages/Owner/dashboard/tables';
+// import {Tables} from './pages/Owner/dashboard/tables';
 import {Notifications} from './pages/Owner/dashboard/notifications';
 import {SignIn} from './pages/Owner/auth/sign-in';
 import {SignUp} from './pages/Owner/auth/sign-up';
@@ -54,24 +54,24 @@ export const routes = [
         path: '/gym-equipments',
         element: <GymEquipments />,
       },
-      {
-        icon: <TableCellsIcon {...icon} />,
-        name: 'tables',
-        path: '/tables',
-        element: <Tables />,
-      },
+      // {
+      //   icon: <TableCellsIcon {...icon} />,
+      //   name: 'tables',
+      //   path: '/tables',
+      //   element: <Tables />,
+      // },
       {
         icon: <UserPlusIcon {...icon} />,
         name: 'Add Members',
         path: '/AddMember',
         element: <AddMember />,
       },
-      {
-        icon: <InformationCircleIcon {...icon} />,
-        name: 'notifications',
-        path: '/notifications',
-        element: <Notifications />,
-      },
+      // {
+      //   icon: <InformationCircleIcon {...icon} />,
+      //   name: 'notifications',
+      //   path: '/notifications',
+      //   element: <Notifications />,
+      // },
     ],
   },
   {
