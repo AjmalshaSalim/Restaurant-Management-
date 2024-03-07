@@ -7,7 +7,7 @@ import {DashboardNavbar} from "../widgets/layout/dashboard-navbar";
 import {Configurator} from "../widgets/layout/configurator";
 import { Footer} from "../widgets/layout/footer";
 import BgImageDark from "../assets/images/hero-bg.jpg"
-import BgImageWhite from "../assets/images/Dumbel_Workout.jpg"
+import BgImageWhite from "../assets/images/Dumbel_Workout1.jpg"
 import routes from "../routes";
 import { useMaterialTailwindController, setOpenConfigurator } from "../context/index";
 import AOS from 'aos';
@@ -24,12 +24,6 @@ export function Dashboard() {
       className={`min-h-screen ${
         sidenavType === "dark" ? "bg-black" : "bg-white"
       }`}
-      // style={{
-      //   backgroundImage:
-      //     sidenavType === "dark" ? `url(${BgImageDark})` : `url(${BgImageWhite})`,
-      //   backgroundSize: "cover",
-      //   backgroundPosition: "center",
-      // }}
       style={{
         backgroundImage: `
           linear-gradient(
