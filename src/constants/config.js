@@ -17,11 +17,7 @@ export const API_URLS = {
     ADD_EQUIPMENTS:`${Add_equipments}`,
     LIST_EQUIPMENTS:`${List_equipments}`,
     EDIT_EQUIPMENTS:`${Edit_equipments}`,
-<<<<<<< HEAD
-    fetchProfileData:`${fetchProfileData}`
-=======
+    fetchProfileData:`${fetchProfileData}`,
     ADD_MEMBERS:`${Add_members}`
->>>>>>> 2e9ddbdff603ca9162ec6b2cd0edacca73653f0e
-
 }
 
