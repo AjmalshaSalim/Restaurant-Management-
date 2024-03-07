@@ -1,4 +1,7 @@
+import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
 import React, { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import {
   Card,
   CardBody,
@@ -26,13 +29,14 @@ import { ProfileInfoCard } from "../../../widgets/cards/profile-info-card";
 import { Link } from "react-router-dom";
 
 
-export function AddMember() {
+export  function AddMember() {
+  const navigate = useNavigate();
   const [controller] = useMaterialTailwindController();
   const { sidenavType } = controller;
   //toggle
   const [isEditing, setIsEditing] = useState(false);
 
-  const [formData, setFormData] = useState({
+  const [userData, setUserData] = useState({
     profileImage: null,
     firstname: " ",
     lastname: " ",
@@ -49,7 +53,7 @@ export function AddMember() {
   // Function to handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prevData) => ({
+    setUserData((prevData) => ({
       ...prevData,
       [name]: value
     }));
@@ -58,7 +62,7 @@ export function AddMember() {
   // Function to handle image file upload
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
-    setFormData((prevData) => ({
+    setUserData((prevData) => ({
       ...prevData,
       profileImage: file
     }));
@@ -70,22 +74,41 @@ export function AddMember() {
     setIsEditing(false); // Once changes are saved, exit edit mode
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log('FormData:', userData); //
+    const formData = new FormData();
+    Object.entries(userData).forEach(([key, value]) => {
+      formData.append(key, value);
+    });
+
+    try {
+      const response = await axios.post('https://achujozef.pythonanywhere.com/api/add_user/', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+
+      console.log(response.data);
+      toast("User Created Successfully")
+      navigate('/dashboard/UserList')
+    } catch (error) {
+      console.error('Error adding member:', error);
+    }
+  }
   return (
     <>
       <Card className={`mt-10 ml mb-6  w-full  ${sidenavType === 'dark' ? "bg-black" : "bg-white border border-blue-gray-100"}`}>
         <CardBody className="p-4">
           <div className="mb-10 flex items-center justify-between flex-wrap gap-6">
             <div className="w-96">
-              {/* <Avatar
-                  image={formData.profileImage ? URL.createObjectURL(formData.profileImage) : {UserIcon}}
-                  size="lg"
-                /> */}
+              
 
 
-              {formData.profileImage ?
+              {userData.profileImage ?
                 <div className="relative w-36 h-36 -mb-5">
                   <Avatar
-                    src={URL.createObjectURL(formData.profileImage)}
+                    src={URL.createObjectURL(userData.profileImage)}
                     alt="Profile Image"
                     size="xl"
                     variant="rounded"
@@ -192,7 +215,7 @@ export function AddMember() {
               <input
                 type="email"
                 placeholder="Email"
-                value={formData.email}
+                value={userData.email}
                 name="email"
                 onChange={handleChange}
                 className=" py-2  pl-2 pr-20 rounded-lg bg-transparent border"
@@ -208,7 +231,7 @@ export function AddMember() {
                 Gender
               </Typography>
               <select
-                value={formData.gender}
+                value={userData.gender}
                 onChange={handleChange}
                 name="gender"
                 className={`py-2 pl-2 rounded-lg bg-transparent border w-full ${sidenavType ? " text-gray-400" : " text-blue-gray-600"}`}
@@ -313,7 +336,7 @@ export function AddMember() {
             </div>
             <div className=" pt-3 pl-5">
               <Link to="/">
-                <Button className={` w-[100%] lg:w-[180px] ${sidenavType === 'dark' ? "bg-red-700" : "bg-black"}`}>Save changes</Button>
+                <Button type="submit" onClick={handleSubmit} className={` w-[100%] lg:w-[180px] ${sidenavType === 'dark' ? "bg-red-700" : "bg-black"}`}>create user</Button>
               </Link>
             </div>
 
