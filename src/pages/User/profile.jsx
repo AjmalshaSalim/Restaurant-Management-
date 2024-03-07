@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect,useState } from "react";
+import { fetchProfileData } from '../../actions/AuthActions';
 import {
   Card,
   CardBody,
@@ -14,14 +15,14 @@ import {
 } from "@material-tailwind/react";
 import {
   useMaterialTailwindController
-} from "../../../context/index";
+} from "../../context/index";
 import {
   HomeIcon,
   ChatBubbleLeftEllipsisIcon,
   Cog6ToothIcon,
   PencilIcon,
 } from "@heroicons/react/24/solid";
-import { ProfileInfoCard } from "../../../widgets/cards/profile-info-card";
+import { ProfileInfoCard } from "../../widgets/cards/profile-info-card";
 
 
 export function Profile() {
@@ -31,18 +32,50 @@ export function Profile() {
   const [isEditing, setIsEditing] = useState(false);
 
   const [formData, setFormData] = useState({
-    firstname: "Achu Joseph",
-    lastname: "SL",
-    mobilenumber: "9876543210",
-    email: "achujoseph@gmail.com",
-    gender: "male",
-    age: "25",
-    height: "180",
-    weight: "80",
-    proffession: "Software Developer",
-    address: "trivandreum,kerala,India"
-  })
+    id: null,
+    gender: "",
+    date_of_birth: "",
+    contact_number: "",
+    email: "",
+    address: "",
+    joining_date: "",
+    membership_expiry_date: "",
+    is_active: false,
+    health_conditions: "",
+    fitness_goals: "",
+    workout_schedule: "",
+    exercise_restrictions: "",
+    emergency_contact_name: "",
+    emergency_contact_phone_number: "",
+    emergency_contact_relationship: "",
+    membership_id_number: "",
+    access_information: "",
+    assigned_personal_trainer: null,
+    trainer_contact_information: null,
+    assigned_locker_number: "",
+    feedback: "",
+    documents: "",
+    profile_picture: "",
+    weight: 0,
+    user: null,
+    membership_type: null
+  });
+  useEffect(() => {
+    async function fetchData(){
+      try{
+        const response = await fetchProfileData();
+        setFormData(prevFormData => ({
+          ...prevFormData,
+          ...response
+        }));
 
+      } catch(error){
+        console.error('Failed to fetch profile details', error);
+      }
+    }
+    fetchData()
+  }, []);
+  console.log(formData.contact_number);
   // Function to handle saving changes
   const handleSaveChanges = () => {
     // Logic to save changes goes here
@@ -161,9 +194,9 @@ export function Profile() {
                       size="lg"
                       type="number"
                       // onChange={handleChange}
-                      value={formData.mobilenumber}
+                      value={formData.contact_number}
                       id="mobilenumber"
-                      placeholder=""
+               
                       className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
                       labelProps={{
                         className: 'before:content-none after:content-none',

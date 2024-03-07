@@ -36,3 +36,15 @@ export const CHANGE_PASSWORD = async data => {
     throw error;
   }
 };
+
+
+export const fetchProfileData = async ()=> {
+
+  try {
+    const response = await axios.get (API_URLS.fetchProfileData);
+    return response.data;
+  } catch (error) {
+    console.error ('Error Sending Password:', error);
+    throw error;
+  }
+};

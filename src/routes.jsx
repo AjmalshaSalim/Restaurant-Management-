@@ -10,7 +10,7 @@ import { FaDumbbell } from "react-icons/fa";
 import { HiUserCircle } from "react-icons/hi";
 import { FaUsers } from "react-icons/fa";
 import {Home} from './pages/Owner/dashboard/Home';
-import {Profile} from './pages/Owner/dashboard/profile';
+import {Profile} from './pages/User/profile';
 import {UserList} from './pages/Owner/dashboard/UserList'
 import GymEquipments from './pages/Owner/dashboard/GymEquipments';
 import {Tables} from './pages/Owner/dashboard/tables';
