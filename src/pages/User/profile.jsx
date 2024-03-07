@@ -28,11 +28,14 @@ import { ProfileInfoCard } from "../../widgets/cards/profile-info-card";
 export function Profile() {
   const [controller] = useMaterialTailwindController();
   const { sidenavType } = controller;
+  const [menu, setMenu]=useState(0)
   //toggle
   const [isEditing, setIsEditing] = useState(false);
 
   const [formData, setFormData] = useState({
     id: null,
+    firstname:"",
+    lastname:"",
     gender: "",
     date_of_birth: "",
     contact_number: "",
@@ -56,7 +59,9 @@ export function Profile() {
     feedback: "",
     documents: "",
     profile_picture: "",
-    weight: 0,
+    height:"",
+    proffession:"",
+    weight: "",
     user: null,
     membership_type: null
   });
@@ -81,7 +86,7 @@ export function Profile() {
     // Logic to save changes goes here
     setIsEditing(false); // Once changes are saved, exit edit mode
   };
-
+console.log(">>>>"+menu)
   return (
     <>
       <Card className={`mt-10 mb-6 w-full  ${sidenavType === 'dark' ? "bg-black" : "bg-white border border-blue-gray-100"}`}>
@@ -97,7 +102,7 @@ export function Profile() {
               />
               <div>
                 <Typography variant="h5" color={sidenavType === 'dark' ? "white" : "blue-gray"} className="mb-1">
-                  {formData.firstname + formData.lastname}
+                  {formData.firstname + " " + formData.lastname}
                 </Typography>
                 <Typography
                   variant="small"
@@ -111,15 +116,15 @@ export function Profile() {
             <div className="w-96">
               <Tabs value="app">
                 <TabsHeader>
-                  <Tab value="app">
+                  <Tab value="app" onClick={()=>setMenu(0)}>
                     <HomeIcon className="-mt-1 mr-2 inline-block h-5 w-5" />
                     About
                   </Tab>
-                  <Tab value="message">
+                  <Tab value="message" onClick={()=>setMenu(1)}>
                     <ChatBubbleLeftEllipsisIcon className="-mt-0.5 mr-2 inline-block h-5 w-5" />
                     Details
                   </Tab>
-                  <Tab value="settings">
+                  <Tab value="settings" onClick={()=>setMenu(2)}>
                     <Cog6ToothIcon className="-mt-1 mr-2 inline-block h-5 w-5" />
                     Payments
                   </Tab>
@@ -340,30 +345,41 @@ export function Profile() {
 
 
             ) : (
-              // Render non-editable profile info when not in edit mode
+              
               <ProfileInfoCard
-                title="Profile Information"
-                description=""
-                details={{
-                  Name: formData.firstname + formData.lastname,
-                  Mobile: formData.mobilenumber,
+              title="Profile Information"
+              description=""
+              details={
+                menu === 0 && {
+                  Name: formData.firstname + " " + formData.lastname,
+                  Mobile: formData.contact_number,
                   Email: formData.email,
                   Gender: formData.gender,
-                  Age: formData.age,
+                  DOB: formData.date_of_birth,                                  
+                  Proffession: formData.proffession,
+                  Address: formData.address,
+                  place: formData.address
+                }
+                || menu === 1 && {
                   Height: formData.height,
                   Weight: formData.weight,
-                  Proffession: formData.proffession,
-                  Address: formData.address
-                }}
-                action={
-                  <Tooltip content="Edit Profile" className=" border">
-                    <PencilIcon
-                      className="h-4 w-4 cursor-pointer text-blue-gray-500"
-                      onClick={() => setIsEditing(true)} // Enable edit mode when clicked
-                    />
-                  </Tooltip>
+                  DOB: formData.date_of_birth,
+                  Height: formData.height,
                 }
-              />
+                || menu === 2 && {
+                  Membership_Expiry: formData.membership_expiry_date,
+                }
+              }
+              action={
+                <Tooltip content="Edit Profile" className=" border">
+                  <PencilIcon
+                    className="h-4 w-4 cursor-pointer text-blue-gray-500"
+                    onClick={() => setIsEditing(true)} // Enable edit mode when clicked
+                  />
+                </Tooltip>
+              }
+            />
+            
             )}
             {/* Other sections */}
             {/* Add other sections like Personal Trainers here */}
