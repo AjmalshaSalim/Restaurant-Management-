@@ -1,5 +1,7 @@
 import React, { useEffect,useState } from "react";
 import { fetchProfileData } from '../../actions/AuthActions';
+import UserIcon from "../../assets/gym -icons/User_Icon.svg"
+import UserIconDark from "../../assets/gym -icons/User_Icon1.svg"
 import {
   Card,
   CardBody,
@@ -34,11 +36,12 @@ export function Profile() {
 
   const [formData, setFormData] = useState({
     id: null,
-    firstname:"",
-    lastname:"",
+    first_name:"",
+    last_name:"",
     gender: "",
     date_of_birth: "",
     contact_number: "",
+    joining_date: "",
     email: "",
     address: "",
     joining_date: "",
@@ -89,20 +92,43 @@ export function Profile() {
 console.log(">>>>"+menu)
   return (
     <>
-      <Card className={`mt-10 mb-6 w-full  ${sidenavType === 'dark' ? "bg-black" : "bg-white border border-blue-gray-100"}`}>
+      <Card className={`mt-10 mb-6 w-full lg:h-[700px]  ${sidenavType === 'dark' ? "bg-black" : "bg-white border border-blue-gray-100"}`}>
         <CardBody className="p-4">
           <div className="mb-10 flex items-center justify-between flex-wrap gap-6">
             <div className="flex items-center gap-6">
-              <Avatar
-                src="/img/Achu.jpeg"
-                alt="bruce-mars"
-                size="xl"
-                variant="rounded"
-                className="rounded-lg shadow-lg shadow-blue-gray-500/40"
-              />
+               {formData.profile_picture ?
+                <div className="relative w-32 h-32 -mb-10">
+                  <Avatar
+                    src={formData.profile_picture}
+                    alt="Profile Image"
+                    size="xl"
+                    variant="rounded"
+                    className="rounded-lg shadow-lg shadow-blue-gray-500/40 border hover:w-90"
+                  />
+                </div> :
+                <div className="relative w-36 h-36 -mb-16" >
+                  {sidenavType == 'dark' ?
+                    <Avatar
+                      src={UserIconDark}
+                      alt="Profile Image"
+                      size="xl"
+                      variant="rounded"
+                      className="rounded-lg shadow-lg shadow-blue-gray-500/40 p-2 border"
+                    /> :
+                    <Avatar
+                      src={UserIcon}
+                      alt="Profile Image"
+                      size="xl"
+                      variant="rounded"
+                      className="rounded-lg shadow-lg shadow-blue-gray-500/40 p-2 border"
+                    />
+                  }
+
+                </div>
+              }
               <div>
                 <Typography variant="h5" color={sidenavType === 'dark' ? "white" : "blue-gray"} className="mb-1">
-                  {formData.firstname + " " + formData.lastname}
+                  {formData.first_name + " " + formData.last_name}
                 </Typography>
                 <Typography
                   variant="small"
@@ -351,20 +377,30 @@ console.log(">>>>"+menu)
               description=""
               details={
                 menu === 0 && {
-                  Name: formData.firstname + " " + formData.lastname,
+                  Name: formData.first_name + " " + formData.last_name,
                   Mobile: formData.contact_number,
                   Email: formData.email,
                   Gender: formData.gender,
                   DOB: formData.date_of_birth,                                  
                   Proffession: formData.proffession,
                   Address: formData.address,
-                  place: formData.address
+                  Emergency_Contact: formData.emergency_contact_name,
+                  Contact_Number: formData.emergency_contact_phone_number,
+                  Relationship: formData.emergency_contact_relationship
                 }
                 || menu === 1 && {
+                  Membership_ID: formData.membership_id_number,
+                  Locker_Number: formData.assigned_locker_number,
+                  Joined: formData.joining_date,
                   Height: formData.height,
                   Weight: formData.weight,
-                  DOB: formData.date_of_birth,
-                  Height: formData.height,
+                  Health: formData.health_conditions,
+                  Goal: formData.fitness_goals,
+                  Schedule: formData.workout_schedule,
+                  Restrictions: formData.exercise_restrictions,
+                  Personal_Trainer: formData.assigned_personal_trainer,
+                  Trainer_Contact: formData.trainer_contact_information,
+
                 }
                 || menu === 2 && {
                   Membership_Expiry: formData.membership_expiry_date,

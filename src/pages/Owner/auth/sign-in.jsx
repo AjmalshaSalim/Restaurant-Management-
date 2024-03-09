@@ -16,7 +16,8 @@ export function SignIn () {
     AOS.init ();
   }, []);
   const [showPassword, setShowPassword] = useState (false);
-  const handleTogglePassword = () => {
+  const handleTogglePassword = (e) => {
+    e.preventDefault();
     setShowPassword (!showPassword);
   };
   const [formData, setFormData] = useState ({username: '', password: ''});
@@ -30,10 +31,12 @@ export function SignIn () {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
+    console.log("formData>>>>",formData);
     try {
-        const response= DemoAction1(formData)
-        if(response.success) {
+        const response = await DemoAction1(formData)
+        console.log("response>>>>",response);
+        console.log("status>>>>",response.status);
+        if(response.access) {
           alert("Login Success")
             navigate('/')
         }else{
@@ -41,7 +44,7 @@ export function SignIn () {
             redirect('/sign-in')
         }
     } catch (error) {
-        console.error('Login failed:', error.message);
+        console.error('Login error:', error.message);
     }
 }
   return (
