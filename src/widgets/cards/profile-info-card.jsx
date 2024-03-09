@@ -5,8 +5,12 @@ import {
   CardBody,
   Typography,
 } from "@material-tailwind/react";
-
+import {
+  useMaterialTailwindController
+} from "../../context/index";
 export function ProfileInfoCard({ title, description, details, action }) {
+  const [controller] = useMaterialTailwindController();
+  const { sidenavType } = controller;
   return (
     <Card color="transparent" shadow={false}>
       <CardHeader
@@ -15,7 +19,7 @@ export function ProfileInfoCard({ title, description, details, action }) {
         floated={false}
         className="mx-0 mt-0 mb-4 flex items-center justify-between gap-4"
       >
-        <Typography variant="h6" color="blue-gray">
+        <Typography variant="h6" color={sidenavType === 'dark'? "white" : "blue-gray"}>
           {title}
         </Typography>
         {action}
@@ -38,8 +42,8 @@ export function ProfileInfoCard({ title, description, details, action }) {
               <li key={key} className="flex items-center gap-4">
                 <Typography
                   variant="small"
-                  color="blue-gray"
-                  className="font-semibold capitalize"
+                  color={sidenavType === 'dark'? "white" : "blue-gray"}
+                  className=" font-medium capitalize"
                 >
                   {el}:
                 </Typography>
