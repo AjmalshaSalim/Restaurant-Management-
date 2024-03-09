@@ -91,7 +91,7 @@ export  function AddMember() {
 
       console.log(response.data);
       toast("User Created Successfully")
-      navigate('/dashboard/UserList')
+      navigate('/dashboard/MembersList')
     } catch (error) {
       console.error('Error adding member:', error);
     }

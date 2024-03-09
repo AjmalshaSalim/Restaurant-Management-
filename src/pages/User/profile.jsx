@@ -11,7 +11,6 @@ import {
   TabsHeader,
   Tab,
   Input,
-  Switch,
   Tooltip,
   Button,
 } from "@material-tailwind/react";
@@ -92,7 +91,7 @@ export function Profile() {
 console.log(">>>>"+menu)
   return (
     <>
-      <Card className={`mt-10 mb-6 w-full lg:h-[700px]  ${sidenavType === 'dark' ? "bg-black" : "bg-white border border-blue-gray-100"}`}>
+      <Card className={`mt-10 mb-6 w-full h-[700px]  ${sidenavType === 'dark' ? "bg-black" : "bg-white border border-blue-gray-100"}`}>
         <CardBody className="p-4">
           <div className="mb-10 flex items-center justify-between flex-wrap gap-6">
             <div className="flex items-center gap-6">
@@ -141,7 +140,7 @@ console.log(">>>>"+menu)
             </div>
             <div className="w-96">
               <Tabs value="app">
-                <TabsHeader>
+                <TabsHeader> 
                   <Tab value="app" onClick={()=>setMenu(0)}>
                     <HomeIcon className="-mt-1 mr-2 inline-block h-5 w-5" />
                     About

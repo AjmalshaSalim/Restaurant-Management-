@@ -14,7 +14,20 @@ import {
   useMaterialTailwindController
 } from "../../../context/index";
 import {authorsTableData} from '../../../data/authors-table-data';
-export function UserList() {
+export function MembersList() {
+
+  // useEffect(() => {
+  //   const fetchMembers = async () => {
+  //     try {
+  //       const response = await List_Equipments();
+  //       setEquipments(response);
+  //     } catch (error) {
+  //       console.error('Failed to fetch equipments', error);
+  //     }
+  //   };
+  //   fetchEquipments();
+  // }, []);
+
   const [controller, dispatch] = useMaterialTailwindController();
   const { sidenavType} =
     controller;
@@ -136,4 +149,4 @@ export function UserList() {
   )
 }
 
-export default UserList
+export default MembersList;
