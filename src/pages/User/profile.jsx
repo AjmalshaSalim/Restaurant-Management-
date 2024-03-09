@@ -1,5 +1,7 @@
 import React, { useEffect,useState } from "react";
 import { fetchProfileData } from '../../actions/AuthActions';
+import UserIcon from "../../assets/gym -icons/User_Icon.svg"
+import UserIconDark from "../../assets/gym -icons/User_Icon1.svg"
 import {
   Card,
   CardBody,
@@ -9,7 +11,6 @@ import {
   TabsHeader,
   Tab,
   Input,
-  Switch,
   Tooltip,
   Button,
 } from "@material-tailwind/react";
@@ -28,14 +29,18 @@ import { ProfileInfoCard } from "../../widgets/cards/profile-info-card";
 export function Profile() {
   const [controller] = useMaterialTailwindController();
   const { sidenavType } = controller;
+  const [menu, setMenu]=useState(0)
   //toggle
   const [isEditing, setIsEditing] = useState(false);
 
   const [formData, setFormData] = useState({
     id: null,
+    first_name:"",
+    last_name:"",
     gender: "",
     date_of_birth: "",
     contact_number: "",
+    joining_date: "",
     email: "",
     address: "",
     joining_date: "",
@@ -56,7 +61,9 @@ export function Profile() {
     feedback: "",
     documents: "",
     profile_picture: "",
-    weight: 0,
+    height:"",
+    proffession:"",
+    weight: "",
     user: null,
     membership_type: null
   });
@@ -81,23 +88,46 @@ export function Profile() {
     // Logic to save changes goes here
     setIsEditing(false); // Once changes are saved, exit edit mode
   };
-
+console.log(">>>>"+menu)
   return (
     <>
-      <Card className={`mt-10 mb-6 w-full  ${sidenavType === 'dark' ? "bg-black" : "bg-white border border-blue-gray-100"}`}>
+      <Card className={`mt-10 mb-6 w-full h-[700px]  ${sidenavType === 'dark' ? "bg-black" : "bg-white border border-blue-gray-100"}`}>
         <CardBody className="p-4">
           <div className="mb-10 flex items-center justify-between flex-wrap gap-6">
             <div className="flex items-center gap-6">
-              <Avatar
-                src="/img/Achu.jpeg"
-                alt="bruce-mars"
-                size="xl"
-                variant="rounded"
-                className="rounded-lg shadow-lg shadow-blue-gray-500/40"
-              />
+               {formData.profile_picture ?
+                <div className="relative w-32 h-32 -mb-10">
+                  <Avatar
+                    src={formData.profile_picture}
+                    alt="Profile Image"
+                    size="xl"
+                    variant="rounded"
+                    className="rounded-lg shadow-lg shadow-blue-gray-500/40 border hover:w-90"
+                  />
+                </div> :
+                <div className="relative w-36 h-36 -mb-16" >
+                  {sidenavType == 'dark' ?
+                    <Avatar
+                      src={UserIconDark}
+                      alt="Profile Image"
+                      size="xl"
+                      variant="rounded"
+                      className="rounded-lg shadow-lg shadow-blue-gray-500/40 p-2 border"
+                    /> :
+                    <Avatar
+                      src={UserIcon}
+                      alt="Profile Image"
+                      size="xl"
+                      variant="rounded"
+                      className="rounded-lg shadow-lg shadow-blue-gray-500/40 p-2 border"
+                    />
+                  }
+
+                </div>
+              }
               <div>
                 <Typography variant="h5" color={sidenavType === 'dark' ? "white" : "blue-gray"} className="mb-1">
-                  {formData.firstname + formData.lastname}
+                  {formData.first_name + " " + formData.last_name}
                 </Typography>
                 <Typography
                   variant="small"
@@ -110,16 +140,16 @@ export function Profile() {
             </div>
             <div className="w-96">
               <Tabs value="app">
-                <TabsHeader>
-                  <Tab value="app">
+                <TabsHeader> 
+                  <Tab value="app" onClick={()=>setMenu(0)}>
                     <HomeIcon className="-mt-1 mr-2 inline-block h-5 w-5" />
                     About
                   </Tab>
-                  <Tab value="message">
+                  <Tab value="message" onClick={()=>setMenu(1)}>
                     <ChatBubbleLeftEllipsisIcon className="-mt-0.5 mr-2 inline-block h-5 w-5" />
                     Details
                   </Tab>
-                  <Tab value="settings">
+                  <Tab value="settings" onClick={()=>setMenu(2)}>
                     <Cog6ToothIcon className="-mt-1 mr-2 inline-block h-5 w-5" />
                     Payments
                   </Tab>
@@ -340,30 +370,51 @@ export function Profile() {
 
 
             ) : (
-              // Render non-editable profile info when not in edit mode
+              
               <ProfileInfoCard
-                title="Profile Information"
-                description=""
-                details={{
-                  Name: formData.firstname + formData.lastname,
-                  Mobile: formData.mobilenumber,
+              title="Profile Information"
+              description=""
+              details={
+                menu === 0 && {
+                  Name: formData.first_name + " " + formData.last_name,
+                  Mobile: formData.contact_number,
                   Email: formData.email,
                   Gender: formData.gender,
-                  Age: formData.age,
+                  DOB: formData.date_of_birth,                                  
+                  Proffession: formData.proffession,
+                  Address: formData.address,
+                  Emergency_Contact: formData.emergency_contact_name,
+                  Contact_Number: formData.emergency_contact_phone_number,
+                  Relationship: formData.emergency_contact_relationship
+                }
+                || menu === 1 && {
+                  Membership_ID: formData.membership_id_number,
+                  Locker_Number: formData.assigned_locker_number,
+                  Joined: formData.joining_date,
                   Height: formData.height,
                   Weight: formData.weight,
-                  Proffession: formData.proffession,
-                  Address: formData.address
-                }}
-                action={
-                  <Tooltip content="Edit Profile" className=" border">
-                    <PencilIcon
-                      className="h-4 w-4 cursor-pointer text-blue-gray-500"
-                      onClick={() => setIsEditing(true)} // Enable edit mode when clicked
-                    />
-                  </Tooltip>
+                  Health: formData.health_conditions,
+                  Goal: formData.fitness_goals,
+                  Schedule: formData.workout_schedule,
+                  Restrictions: formData.exercise_restrictions,
+                  Personal_Trainer: formData.assigned_personal_trainer,
+                  Trainer_Contact: formData.trainer_contact_information,
+
                 }
-              />
+                || menu === 2 && {
+                  Membership_Expiry: formData.membership_expiry_date,
+                }
+              }
+              action={
+                <Tooltip content="Edit Profile" className=" border">
+                  <PencilIcon
+                    className="h-4 w-4 cursor-pointer text-blue-gray-500"
+                    onClick={() => setIsEditing(true)} // Enable edit mode when clicked
+                  />
+                </Tooltip>
+              }
+            />
+            
             )}
             {/* Other sections */}
             {/* Add other sections like Personal Trainers here */}
