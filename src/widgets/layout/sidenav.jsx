@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import { Link, NavLink } from "react-router-dom";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import Logo from "../../assets/images/Gymsoft_Logo.jpg"
-import Logo2 from "../../assets/images/Gymsoft_Logo1.jpg"
+import Logo2 from "../../assets/images/Gymsoft_Logo1-removebg-preview.png"
 import {
   Avatar,
   Button,
@@ -15,7 +15,7 @@ export function Sidenav({ brandImg, brandName, routes }) {
   const [controller, dispatch] = useMaterialTailwindController();
   const { sidenavColor, sidenavType, openSidenav } = controller;
   const sidenavTypes = {
-    dark: "bg-black to-orange-500",
+    dark: "bg-gray-800 to-orange-500",
     white: "bg-white shadow-sm",
     transparent: "bg-transparent",
   };
@@ -25,14 +25,14 @@ export function Sidenav({ brandImg, brandName, routes }) {
     <aside
       className={`${sidenavTypes[sidenavType]} ${
         openSidenav ? "translate-x-0" : "-translate-x-80"
-      } absolute inset-0 z-50 my-4 ml-4 max-h-fit w-72 rounded-xl transition-transform duration-300 xl:translate-x-0 ${sidenavType === 'dark'? "bg-opacity-50" : "border border-opacity-5 "}`}
+      } absolute inset-0 z-50 my-4 ml-4 max-h-fit w-72 rounded-xl transition-transform duration-300 xl:translate-x-0 ${sidenavType === 'dark'? "bg-opacity-50 border-x border-y border-gray-800" : "border border-opacity-5 "}`}
     
     >
       <div
         className={`relative`}
       >
         <div className=" w-full">
-          <img src={logoSrc} alt="Gymsoft" className=" px-5 pt-2"/>
+          <img src={logoSrc} alt="Gymsoft" className=" px-4 pt-2"/>
         </div>
         <Link to="/" className="py-6 px-8 text-center">
           <Typography

@@ -14,20 +14,50 @@ export function StatisticsChart({ color, chart, title, description, footer }) {
   const [controller, dispatch] = useMaterialTailwindController();
   const { sidenavType} =
     controller;
-  //   const options = {
-  //      grid: {
-  //   show: true
-  // }
-    // };
+    const options = {
+       grid: {
+    show: false
+  },
+  chart: {
+    toolbar: {
+      show: false,
+    },
+  },
+  yaxis: {
+    labels: {
+      style: {
+        colors: "#fff",
+        fontSize: "12px",
+        fontFamily: "inherit",
+        fontWeight: 400,
+      },
+    },
+  },
+  xaxis: {
+    labels: {
+      style: {
+        colors: "#fff",
+        fontSize: "12px",
+        fontFamily: "inherit",
+        fontWeight: 400,
+      },
+    },
+  },
+  colors: ["#C62828", "#43AF50"],
+    stroke: {
+      lineCap: "round",
+      curve: "smooth",
+    },
+    };
   return (
     <Card className={` shadow-sm ${
-      sidenavType === "dark" ? " bg-black" : "border border-blue-gray-100 bg-white"
+      sidenavType === "dark" ? " bg-gray-800 bg-opacity-50 border-x border-y border-gray-800" : "border border-blue-gray-100 bg-white"
     }`}>
       <CardHeader variant="gradient" color={color} floated={false} shadow={false}>
         <Chart className={`${
-      sidenavType === "dark" ? " bg-black" : "bg-white"
+      sidenavType === "dark" ? " bg-gray-800 border-x border-y border-gray-700 rounded-md" : "bg-white"
     }`} {...chart}
-    // options={options}
+    options={options}
      />
       </CardHeader>
       <CardBody className="px-6 pt-0">

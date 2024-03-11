@@ -33,19 +33,19 @@ export function MembersList() {
     controller;
   return (
     <div className={`mt-12 mb-8 flex flex-col gap-12 rounded-t-xl ${
-      sidenavType === "dark" ? "bg-black" : "bg-white"
+      sidenavType === "dark" ? "bg-gray-900 border-x border-y border-gray-800" : "bg-white"
     }`}>
-    <Card className={`${sidenavType === 'dark'? "bg-black" : "bg-white"}`}>
-        <CardHeader variant="filled" color="gray" className={`mb-8 p-6 ${sidenavType === 'dark'? "bg-red-700" : "bg-black"}`}>
+    <Card className={`${sidenavType === 'dark'? "bg-gray-900" : "bg-white"}`}>
+        <CardHeader variant="filled" color="gray" className={`mb-8 p-6 ${sidenavType === 'dark'? "bg-gray-900 border-x border-y border-gray-800" : "bg-gray-900"}`}>
           <Typography variant="h6" color="white">
             Members List
           </Typography>
         </CardHeader>
-        <CardBody className={`overflow-x-scroll px-0 pt-0 pb-2 ${sidenavType === 'dark'? "bg-black" : "bg-white"}`}>
+        <CardBody className={`overflow-x-scroll px-0 pt-0 pb-2 ${sidenavType === 'dark'? "bg-gray-900" : "bg-white"}`}>
         <div className='w-full flex justify-between items-center pr-6'>
   <div></div>
   <Link to='/dashboard/AddMember'>
-  <Button size='sm' className={`bg-black py-3 ${sidenavType === 'dark'? "bg-red-700" : "bg-black"}`}>Add Members</Button>
+  <Button size='sm' className={` py-3 ${sidenavType === 'dark'? "bg-red-700" : "bg-black"}`}>Add Members</Button>
   </Link>
 </div>    
           <table className="w-full min-w-[640px] table-auto">

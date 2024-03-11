@@ -286,7 +286,7 @@ export default function GymEquipments() {
               </Button>
             </div>
           </div>
-          <div className={`w-[80%] h-2/6 mt-12 mx-auto rounded-3xl ${sidenavType === 'dark'? "bg-black" : "bg-white"}`}>
+          <div className={`w-[80%] h-2/6 mt-12 mx-auto rounded-3xl ${sidenavType === 'dark'? "bg-gray-900 bg-opacity-90 border-x border-y border-gray-800" : "bg-white"}`}>
 <div className='w-full h-1/2 pt-5'>
 <FaDumbbell className={` mx-auto text-7xl ${sidenavType === 'dark'? "text-white" : "text-black"}`}/>
 </div>

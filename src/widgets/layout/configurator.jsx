@@ -69,7 +69,7 @@ export function Configurator() {
   return (
     <aside
       className={`fixed top-0 right-0 z-50 ${
-        sidenavType === "dark" ? "bg-black" : "bg-white"
+        sidenavType === "dark" ? "bg-gray-900 bg-opacity-90 border-l border-gray-800" : "bg-white"
       } h-screen w-96 px-2.5 shadow-lg transition-transform duration-300 ${
         openConfigurator ? "translate-x-0" : "translate-x-96"
       }`}
