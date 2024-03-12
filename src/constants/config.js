@@ -19,7 +19,6 @@ export const API_URLS = {
     EDIT_EQUIPMENTS:`${Edit_equipments}`,
     fetchProfileData:`${fetchProfileData}`,
     ADD_MEMBERS:`${Add_members}`
->>>>>>> 2e9ddbdff603ca9162ec6b2cd0edacca73653f0e
 
 }
 
