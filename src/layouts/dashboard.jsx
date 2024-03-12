@@ -6,6 +6,7 @@ import {Sidenav} from "../widgets/layout/sidenav";
 import {DashboardNavbar} from "../widgets/layout/dashboard-navbar";
 import {Configurator} from "../widgets/layout/configurator";
 import { Footer} from "../widgets/layout/footer";
+// import BgImageDark from "../assets/images/hero-bg.jpg"
 import BgImageDark from "../assets/images/hero-bg.jpg"
 import BgImageWhite from "../assets/images/Dumbel_Workout1.jpg"
 import routes from "../routes";
@@ -32,7 +33,7 @@ export function Dashboard() {
           ), 
           ${sidenavType === "dark" ? `url(${BgImageDark})` : `url(${BgImageWhite})`}`,
         backgroundSize: "cover",
-        backgroundPosition: "center",
+        backgroundPosition: "center", 
       }}
       
     >
@@ -52,15 +53,15 @@ export function Dashboard() {
         <DashboardNavbar />
         </div>
         <Configurator />
-        <IconButton
+        {/* <IconButton
           size="lg"
-          color="white"
+          color={sidenavType==='dark'? "black" : "white"}
           className="fixed bottom-8 right-8 z-40 rounded-full shadow-blue-gray-900/10"
           ripple={false}
           onClick={() => setOpenConfigurator(dispatch, true)}
         >
           <Cog6ToothIcon className="h-5 w-5" />
-        </IconButton>
+        </IconButton> */}
         <Routes>
           {routes.map(
             ({ layout, pages }) =>

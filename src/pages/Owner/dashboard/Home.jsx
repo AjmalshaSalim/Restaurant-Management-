@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {useEffect} from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { IoAdd } from "react-icons/io5";
+
 import {
   useMaterialTailwindController
 } from "../../../context/index";
@@ -34,24 +36,54 @@ export function Home () {
   const [controller, dispatch] = useMaterialTailwindController();
   const { sidenavType} =
     controller;
+    const [cardData,setCardData]=useState(
+      {
+        color: "gray",
+        icon: IoAdd,
+        title: "Pending Payments",
+        value: "5",
+        footer: {
+          color: "text-green-500",
+          value: "-5%",
+          label: "than last week",
+        },
+      }
+    )
+      
+    
   return (
     <div className="mt-10 bg-transparent">
       <div
         className="mb-10 grid gap-y-10 gap-x-6 md:grid-cols-2 xl:grid-cols-4"
-        data-aos="fade-left"
+        data-aos="fade-up"
         data-aos-duration="1000"
       >
+        <StatisticsCard
+        key={cardData.title}
+        title={cardData.title}
+        icon={React.createElement (cardData.icon, {
+          className: 'w-8 h-8 text-white hover:scale-125 duration-1000',
+        })}
+        footer={
+          <Typography className={`font-normal ${
+            sidenavType === "dark" ? "text-white" : "text-blue-gray-600 "
+          }`}>
+            <strong className={cardData.footer.color}>{cardData.footer.value}</strong>
+            &nbsp;{cardData.footer.label}
+          </Typography>
+        }
+        />
         {statisticsCardsData.map (({icon, title, footer, ...rest}) => (
           <StatisticsCard
             key={title}
             {...rest}
             title={title}
             icon={React.createElement (icon, {
-              className: 'w-5 h-5 text-white ',
+              className: 'w-5 h-5 text-white',
             })}
             footer={
               <Typography className={`font-normal ${
-                sidenavType === "dark" ? "text-white" : "text-blue-gray-600 "
+                sidenavType === "dark" ? "text-white" : "text-blue-gray-600"
               }`}>
                 <strong className={footer.color}>{footer.value}</strong>
                 &nbsp;{footer.label}
@@ -88,12 +120,12 @@ export function Home () {
       </div>
       <div
         className="mb-4 grid grid-cols-1 gap-6 xl:grid-cols-3"
-        data-aos="fade-left"
+        data-aos="fade-up"
         data-aos-duration="1000"
       >
         <Card className={`overflow-hidden xl:col-span-2 shadow-sm
         ${
-      sidenavType === "dark" ? "bg-black bg-opacity-75" : "border border-blue-gray-100 bg-white"
+      sidenavType === "dark" ? "bg-gray-800 bg-opacity-50 border-x border-y border-gray-800" : "border border-blue-gray-100 bg-white"
     }`}>
           <CardHeader
             floated={false}
@@ -295,7 +327,7 @@ export function Home () {
         </Card>
         <Card className={`shadow-sm
         ${
-      sidenavType === "dark" ? " bg-black bg-opacity-75" : "border border-blue-gray-100 bg-white"
+      sidenavType === "dark" ? "bg-gray-800 bg-opacity-50 border-x border-y border-gray-800" : "border border-blue-gray-100 bg-white"
     }`}>
           <CardHeader
             floated={false}

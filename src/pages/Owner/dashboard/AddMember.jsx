@@ -98,7 +98,7 @@ export  function AddMember() {
   }
   return (
     <>
-      <Card className={`mt-10 ml mb-6  w-full  ${sidenavType === 'dark' ? "bg-black" : "bg-white border border-blue-gray-100"}`}>
+      <Card className={`mt-10 ml mb-6  w-full  ${sidenavType === 'dark' ? "bg-gray-900 bg-opacity-90 border-x border-y border-gray-800" : "bg-white border border-blue-gray-100"}`}>
         <CardBody className="p-4">
           <div className="mb-10 flex items-center justify-between flex-wrap gap-6">
             <div className="w-96">

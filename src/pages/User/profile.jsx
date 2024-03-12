@@ -91,7 +91,7 @@ export function Profile() {
 console.log(">>>>"+menu)
   return (
     <>
-      <Card className={`mt-10 mb-6 w-full h-[700px]  ${sidenavType === 'dark' ? "bg-black" : "bg-white border border-blue-gray-100"}`}>
+      <Card className={`mt-10 mb-6 w-full h-[700px]  ${sidenavType === 'dark' ? "bg-gray-900 border-x border-y border-gray-800" : "bg-white border border-blue-gray-100"}`}>
         <CardBody className="p-4">
           <div className="mb-10 flex items-center justify-between flex-wrap gap-6">
             <div className="flex items-center gap-6">
