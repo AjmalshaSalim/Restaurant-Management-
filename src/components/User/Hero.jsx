@@ -1,9 +1,16 @@
 import React, { useState } from "react";
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
+import { MdOutlineQrCodeScanner } from "react-icons/md";
+// QR Code Scanner
+import React, { Component } from 'react'
+import QrReader from 'react-qr-scanner'
 
 const Hero = () => {
   const [percentage, setPercentage] = useState(50);
+  const ScanQrHandleClick =(()=>{
+    alert('open Qr Scanner')
+  })
   return (
     <>
       <div className="min-h-screen bg-black flex justify-center items-center text-white relative">
@@ -57,6 +64,10 @@ const Hero = () => {
                   },
                 }} />
               </div>
+            </div>
+            <div className=" bg-red-900 h-20 w-30 rounded-lg text-center bg-opacity-60" onClick={ScanQrHandleClick}>
+            <MdOutlineQrCodeScanner className=" w-10 h-10 mx-auto mt-2" />
+              <h3 className=" mt-1">Add Attendance</h3>
             </div>
           </div>
           </div>
