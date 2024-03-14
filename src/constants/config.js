@@ -9,6 +9,9 @@ const List_equipments='/api/list-equipment/'
 const Add_members='/api/add_user/'
 const Edit_equipments='/api/edit-equipment/id:/'
 const fetchProfileData ='/api/user-profile/'
+const Fetch_Dash = '/api/dash/count/'
+
+
 export const API_URLS = {
     LOGIN_API_PATH: `${LOGIN_API_PATH}`,
     FORGOT_PASSWORD : `${Forgot_password}`,
@@ -18,7 +21,8 @@ export const API_URLS = {
     LIST_EQUIPMENTS:`${List_equipments}`,
     EDIT_EQUIPMENTS:`${Edit_equipments}`,
     fetchProfileData:`${fetchProfileData}`,
-    ADD_MEMBERS:`${Add_members}`
+    ADD_MEMBERS:`${Add_members}`,
+    Fetch_Dash :`${Fetch_Dash}`
 
 }
 
