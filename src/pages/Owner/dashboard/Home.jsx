@@ -4,7 +4,14 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { IoAdd } from "react-icons/io5";
 import { IoMdClose } from "react-icons/io";
-
+import { EllipsisVerticalIcon, ArrowUpIcon } from '@heroicons/react/24/outline';
+import { StatisticsCard } from '../../../widgets/cards/statistics-card';
+import { StatisticsChart } from '../../../widgets/charts/statistics-chart';
+import { statisticsCardsData } from '../../../data/statistics-cards-data';
+import { statisticsChartsData } from '../../../data/statistics-charts-data';
+import { CheckCircleIcon, ClockIcon } from '@heroicons/react/24/solid';
+import { projectsTableData } from '../../../data/projects-table-data';
+import { ordersOverviewData } from '../../../data/orders-overview-data';
 import {
   useMaterialTailwindController
 } from "../../../context/index";
@@ -23,14 +30,7 @@ import {
   Progress,
   Select
 } from '@material-tailwind/react';
-import { EllipsisVerticalIcon, ArrowUpIcon } from '@heroicons/react/24/outline';
-import { StatisticsCard } from '../../../widgets/cards/statistics-card';
-import { StatisticsChart } from '../../../widgets/charts/statistics-chart';
-import { statisticsCardsData } from '../../../data/statistics-cards-data';
-import { statisticsChartsData } from '../../../data/statistics-charts-data';
-import { CheckCircleIcon, ClockIcon } from '@heroicons/react/24/solid';
-import { projectsTableData } from '../../../data/projects-table-data';
-import { ordersOverviewData } from '../../../data/orders-overview-data';
+
 export function Home() {
   useEffect(() => {
     AOS.init();
@@ -38,6 +38,8 @@ export function Home() {
   const [controller, dispatch] = useMaterialTailwindController();
   const { sidenavType } =
     controller;
+
+  //Attendence Toggle
   const [showAddAttendanceForm, setShowAddAttendanceForm] = useState(false);
   const handleClick = () => {
     setShowAddAttendanceForm(!showAddAttendanceForm)
@@ -49,6 +51,8 @@ export function Home() {
   const handleSubmitAttendance = (() => {
     alert(attendanceFormData.attendance, '>>>')
   })
+
+  //Attendance Card
   const [AttendanceCardData, setAttendanceCardData] = useState(
     {
       color: "gray",
@@ -62,6 +66,22 @@ export function Home() {
       },
     }
   )
+
+  //Add Enquiry
+  const [showAddEnquiryForm, setShowAddEnquiryForm] = useState(false);
+  const handleEnquiry = () => {
+    setShowAddEnquiryForm(!showAddEnquiryForm)
+  };
+  const [EnquiryFormData, setEnquiryFormData] = useState({
+    member_id: null,
+    enquiry: ''
+  })
+  const handleSubmitEnquiry = (() => {
+    // alert(attendanceFormData.attendance)
+    alert('>>>> success')
+  })
+
+  //Add Enquiry Card
   const [EnquiryCardData, setEnquiryCardData] = useState(
     {
       color: "gray",
@@ -83,6 +103,8 @@ export function Home() {
         data-aos="fade-up"
         data-aos-duration="1000"
       >
+
+        {/* Add Attendance Card */}
         <div className='' onClick={handleClick}>
           <StatisticsCard
             onClick={handleClick}
@@ -102,7 +124,11 @@ export function Home() {
           />
         </div>
         {showAddAttendanceForm ?
-          <div className={` ${sidenavType === 'dark' ? "bg-gray-900 border-gray-800 shadow-2xl" : "bg-white border-blue-gray-100 shadow-2xl"} border-x border-y rounded-xl w-[40%] h-[400px] z-1 absolute left-[30%]`}>
+
+          // Add Attendance Toggle
+          <div className={` ${sidenavType === 'dark' ? "bg-gray-900 border-gray-800 shadow-2xl" : "bg-white border-blue-gray-100 shadow-2xl"} border-x border-y rounded-xl w-[40%] h-[400px] z-1 absolute left-[30%]`}
+            data-aos="fade-up"
+            data-aos-duration="500">
             <div className='w-full h-10'>
               <button className={`${sidenavType === 'dark' ? " bg-gray-700 hover:bg-gray-600" : " bg-blue-gray-200 hover:bg-blue-gray-300"} w-8 h-8 rounded-full absolute right-2 top-2`} onClick={handleClick}>
                 <IoMdClose className='w-5 h-5 m-auto' />
@@ -132,21 +158,61 @@ export function Home() {
           :
           ''
         }
-        <StatisticsCard
-          key={EnquiryCardData.title}
-          {...EnquiryCardData}
-          title={EnquiryCardData.title}
-          icon={React.createElement(EnquiryCardData.icon, {
-            className: 'w-8 h-8 text-white hover:scale-125 duration-1000',
-          })}
-          footer={
-            <Typography className={`font-normal ${sidenavType === "dark" ? "text-white" : "text-blue-gray-600 "
-              }`}>
-              <strong className={EnquiryCardData.footer.color}>{EnquiryCardData.footer.value}</strong>
-              &nbsp;{EnquiryCardData.footer.label}
-            </Typography>
-          }
-        />
+
+        {/* Add Enquiry Card */}
+        <div className='' onClick={handleEnquiry}>
+          <StatisticsCard
+            key={EnquiryCardData.title}
+            {...EnquiryCardData}
+            title={EnquiryCardData.title}
+            icon={React.createElement(EnquiryCardData.icon, {
+              className: 'w-8 h-8 text-white hover:scale-125 duration-1000',
+            })}
+            footer={
+              <Typography className={`font-normal ${sidenavType === "dark" ? "text-white" : "text-blue-gray-600 "
+                }`}>
+                <strong className={EnquiryCardData.footer.color}>{EnquiryCardData.footer.value}</strong>
+                &nbsp;{EnquiryCardData.footer.label}
+              </Typography>
+            }
+          />
+        </div>
+        {showAddEnquiryForm ?
+          <div className={` ${sidenavType === 'dark' ? "bg-gray-900 border-gray-800 shadow-2xl" : "bg-white border-blue-gray-100 shadow-2xl"} border-x border-y rounded-xl w-[40%] h-[auto] z-1 absolute left-[30%]`} data-aos="fade-up" data-aos-duration="500">
+            <div className='w-full h-10'>
+              <button className={`${sidenavType === 'dark' ? " bg-gray-700 hover:bg-gray-600" : " bg-blue-gray-200 hover:bg-blue-gray-300"} w-8 h-8 rounded-full absolute right-2 top-2`} onClick={handleClick}>
+                <IoMdClose className='w-5 h-5 m-auto' />
+              </button>
+            </div>
+            <div className="flex flex-col">
+              <label htmlFor="name" className={`mx-5 mt-2 ${sidenavType === 'dark' ? "text-white" : "text-black"}`}>Name</label>
+              <input type="text" id="name" placeholder="Name" className="mx-5 mb-2 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500 border border-gray-300" onChange={(e) => setEnquiryFormData({ ...EnquiryFormData, name: e.target.value })} />
+              <label htmlFor="phone" className={`mx-5 mt-2 ${sidenavType === 'dark' ? "text-white" : "text-black"}`}>Phone Number</label>
+              <input type="tel" id="phone" placeholder="Phone Number" className="mx-5 mb-2 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500 border border-gray-300" onChange={(e) => setEnquiryFormData({ ...EnquiryFormData, phone: e.target.value })} />
+              <label htmlFor="place" className={`mx-5 mt-2 ${sidenavType === 'dark' ? "text-white" : "text-black"}`}>Place</label>
+              <input type="text" id="place" placeholder="Place" className="mx-5 mb-2 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500 border border-gray-300" onChange={(e) => setEnquiryFormData({ ...EnquiryFormData, place: e.target.value })} />
+              <label htmlFor="email" className={`mx-5 mt-2 ${sidenavType === 'dark' ? "text-white" : "text-black"}`}>Email</label>
+              <input type="email" id="email" placeholder="Email" className="mx-5 mb-2 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500 border border-gray-300" onChange={(e) => setEnquiryFormData({ ...EnquiryFormData, email: e.target.value })} />
+              <label htmlFor="plan" className={`mx-5 mt-2 ${sidenavType === 'dark' ? "text-white" : "text-black"}`}>Choose Plan</label>
+              <input type="text" id="plan" placeholder="Choose Plan" className="mx-5 mb-2 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500 border border-gray-300" onChange={(e) => setEnquiryFormData({ ...EnquiryFormData, plan: e.target.value })} />
+              <label htmlFor="joinDate" className={`mx-5 mt-2 ${sidenavType === 'dark' ? "text-white" : "text-black"}`}>Expected Joining Date</label>
+              <input type="date" id="joinDate" className="mx-5 mb-2 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500 border border-gray-300" onChange={(e) => setEnquiryFormData({ ...EnquiryFormData, joinDate: e.target.value })} />
+              <label htmlFor="followUpDate" className={`mx-5 mt-2 ${sidenavType === 'dark' ? "text-white" : "text-black"}`}>Follow Up Date</label>
+              <input type="date" id="followUpDate" className="mx-5 mb-2 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500 border border-gray-300" onChange={(e) => setEnquiryFormData({ ...EnquiryFormData, followUpDate: e.target.value })} />
+              <label htmlFor="source" className={`mx-5 mt-2 ${sidenavType === 'dark' ? "text-white" : "text-black"}`}>Enquiry Source</label>
+              <input type="text" id="source" placeholder="Enquiry Source" className="mx-5 mb-2 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500 border border-gray-300" onChange={(e) => setEnquiryFormData({ ...EnquiryFormData, source: e.target.value })} />
+              <label htmlFor="remarks" className={`mx-5 mt-2 ${sidenavType === 'dark' ? "text-white" : "text-black"}`}>Remarks</label>
+              <input type="text" id="remarks" placeholder="Remarks" className="mx-5 mb-2 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500 border border-gray-300" onChange={(e) => setEnquiryFormData({ ...EnquiryFormData, remarks: e.target.value })} />
+            </div>
+            <div className='mx-5'>
+              <button className='px-3 py-2 w-full mt-10 rounded-lg bg-red-700 hover:bg-red-900 text-white' onClick={handleSubmitAttendance}>Submit Attendance</button>
+            </div>
+          </div>
+          :
+          ''
+        }
+
+        {/* Other Cards */}
         {statisticsCardsData.map(({ icon, title, footer, ...rest }) => (
           <StatisticsCard
             key={title}
@@ -164,6 +230,7 @@ export function Home() {
             }
           />
         ))}
+
       </div>
       <div
         className="mb-6 grid grid-cols-1 gap-y-12 gap-x-6 md:grid-cols-2 xl:grid-cols-3"
