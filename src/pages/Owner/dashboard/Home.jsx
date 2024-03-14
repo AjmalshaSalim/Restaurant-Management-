@@ -132,6 +132,8 @@ export function Home() {
           :
           ''
         }
+
+        {/* mapping cards */}
         <StatisticsCard
           key={EnquiryCardData.title}
           {...EnquiryCardData}
