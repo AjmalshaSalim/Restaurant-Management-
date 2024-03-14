@@ -1,14 +1,12 @@
 import axios from '../axios';
 import {API_URLS} from '../constants/config';
 
-export const SEND_OTP = async data => {
-  console.log ('thgjhbjhjjhjh');
-  console.log ('data', data);
+export const Fetch_Dash = async () => {
   try {
-    const response = await axios.post (API_URLS.FORGOT_PASSWORD, data);
+    const response = await axios.get (API_URLS.Fetch_Dash);
     return response.data;
   } catch (error) {
-    console.error ('Error Sending OTP:', error);
+    console.error ('Error Fetching Dash:', error);
     throw error;
   }
 };

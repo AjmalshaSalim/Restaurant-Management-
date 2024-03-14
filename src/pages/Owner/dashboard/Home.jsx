@@ -7,11 +7,11 @@ import { IoMdClose } from "react-icons/io";
 import { EllipsisVerticalIcon, ArrowUpIcon } from '@heroicons/react/24/outline';
 import { StatisticsCard } from '../../../widgets/cards/statistics-card';
 import { StatisticsChart } from '../../../widgets/charts/statistics-chart';
-import { statisticsCardsData } from '../../../data/statistics-cards-data';
 import { statisticsChartsData } from '../../../data/statistics-charts-data';
 import { CheckCircleIcon, ClockIcon } from '@heroicons/react/24/solid';
 import { projectsTableData } from '../../../data/projects-table-data';
 import { ordersOverviewData } from '../../../data/orders-overview-data';
+import { Fetch_Dash } from '../../../actions/DashAction,'
 import {
   useMaterialTailwindController
 } from "../../../context/index";
@@ -32,8 +32,20 @@ import {
 } from '@material-tailwind/react';
 
 export function Home() {
-  useEffect(() => {
-    AOS.init();
+  const [statisticsCardsData, setStatisticsCardsData] = useState(null);
+  useEffect(() =>{
+    // AOS.init();
+    const fetchDashCount = async () => {
+      alert('Fetching')
+      try {
+        const response = await Fetch_Dash();
+        setStatisticsCardsData(response);
+        
+      } catch (error) {
+        console.error('Failed to fetch equipments', error);
+      }
+    };
+    fetchDashCount();
   });
   const [controller, dispatch] = useMaterialTailwindController();
   const { sidenavType } =
@@ -41,6 +53,7 @@ export function Home() {
 
   //Attendence Toggle
   const [showAddAttendanceForm, setShowAddAttendanceForm] = useState(false);
+
   const handleClick = () => {
     setShowAddAttendanceForm(!showAddAttendanceForm)
   };
@@ -95,7 +108,7 @@ export function Home() {
       },
     }
   )
-
+  console.log(statisticsCardsData);
   return (
     <div className="mt-10 bg-transparent">
       <div
@@ -213,7 +226,7 @@ export function Home() {
         }
 
         {/* Other Cards */}
-        {statisticsCardsData.map(({ icon, title, footer, ...rest }) => (
+        {/* {statisticsCardsData.map(({ icon, title, footer, ...rest }) => (
           <StatisticsCard
             key={title}
             {...rest}
@@ -229,7 +242,7 @@ export function Home() {
               </Typography>
             }
           />
-        ))}
+        ))} */}
 
       </div>
       <div
