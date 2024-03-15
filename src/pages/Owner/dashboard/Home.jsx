@@ -135,7 +135,23 @@ const [AddMemberCardData, SetAddMemberCardData] = useState(
   }
 )
  //4,Todays Attendance
+ const handleTodaysAttendanceClick= (()=>{
+  alert('attendance list')
+ })
 //Todays Attendance Card data
+const [TodaysAttendanceCardData, SetTodaysAttendanceCardData] = useState(
+  {
+    color: "gray",
+    icon: IoAdd,
+    title: "Today's Attendance",
+    value: "",
+    footer: {
+      color: "text-green-500",
+      value: "",
+      label: "",
+    },
+  }
+)
 
  //5, Todays Enquiry Followup
 //Todays Enquiry Followup Card data
@@ -293,19 +309,19 @@ const [AddMemberCardData, SetAddMemberCardData] = useState(
         </div>
 
                 {/* Todays Attendance  */}
-                <div className='' onClick={handleAddMemberClick}>
+                <div className='' onClick={handleTodaysAttendanceClick}>
           <StatisticsCard
-            key={AddMemberCardData.title}
-            {...AddMemberCardData}
-            title={AddMemberCardData.title}
-            icon={React.createElement(AddMemberCardData.icon, {
+            key={TodaysAttendanceCardData.title}
+            {...TodaysAttendanceCardData}
+            title={TodaysAttendanceCardData.title}
+            icon={React.createElement(TodaysAttendanceCardData.icon, {
               className: 'w-8 h-8 text-white hover:scale-125 duration-1000',
             })}
             footer={
               <Typography className={`font-normal ${sidenavType === "dark" ? "text-white" : "text-blue-gray-600 "
                 }`}>
-                <strong className={AddMemberCardData.footer.color}>{AddMemberCardData.footer.value}</strong>
-                &nbsp;{AddMemberCardData.footer.label}
+                <strong className={TodaysAttendanceCardData.footer.color}>{TodaysAttendanceCardData.footer.value}</strong>
+                &nbsp;{TodaysAttendanceCardData.footer.label}
               </Typography>
             }
           />
