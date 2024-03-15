@@ -12,6 +12,14 @@ import { CheckCircleIcon, ClockIcon } from '@heroicons/react/24/solid';
 import { projectsTableData } from '../../../data/projects-table-data';
 import { ordersOverviewData } from '../../../data/orders-overview-data';
 import { Fetch_Dash } from '../../../actions/DashAction,'
+import { LuClipboardCheck } from "react-icons/lu";
+import { MdOutlinePendingActions } from "react-icons/md";
+import { CgSandClock } from "react-icons/cg";
+import { TbUserExclamation } from "react-icons/tb";
+import { MdOutlineNoteAlt } from "react-icons/md";
+import { BiMessageAltError } from "react-icons/bi";
+
+
 import {
   useMaterialTailwindController
 } from "../../../context/index";
@@ -33,14 +41,14 @@ import {
 
 export function Home() {
   const [statisticsCardsData, setStatisticsCardsData] = useState(null);
-  useEffect(() =>{
+  useEffect(() => {
     AOS.init();
     const fetchDashCount = async () => {
       try {
         const response = await Fetch_Dash();
         setStatisticsCardsData(response);
         console.log(response)
-        
+
       } catch (error) {
         console.error('Failed to fetch equipments', error);
       }
@@ -101,7 +109,7 @@ export function Home() {
     {
       color: "gray",
       icon: IoAdd,
-      title: "Add Enquiry",
+      title: "Add New Enquiry",
       value: "",
       footer: {
         color: "text-green-500",
@@ -120,56 +128,123 @@ export function Home() {
     member_id: null,
     enquiry: ''
   })
-//Add Member Card data
-const [AddMemberCardData, SetAddMemberCardData] = useState(
-  {
-    color: "gray",
-    icon: IoAdd,
-    title: "Add Member",
-    value: "",
-    footer: {
-      color: "text-green-500",
+  //Add Member Card data
+  const [AddMemberCardData, SetAddMemberCardData] = useState(
+    {
+      color: "gray",
+      icon: IoAdd,
+      title: "Add New Member",
       value: "",
-      label: "",
-    },
-  }
-)
- //4,Todays Attendance
- const handleTodaysAttendanceClick= (()=>{
-  alert('attendance list')
- })
-//Todays Attendance Card data
-const [TodaysAttendanceCardData, SetTodaysAttendanceCardData] = useState(
-  {
-    color: "gray",
-    icon: IoAdd,
-    title: "Today's Attendance",
-    value: "",
-    footer: {
-      color: "text-green-500",
+      footer: {
+        color: "text-green-500",
+        value: "",
+        label: "",
+      },
+    }
+  )
+
+  //4, My transactions
+  // My Transaction Card Data
+
+  //5,Todays Attendance
+  const handleTodaysAttendanceClick = (() => {
+    alert('attendance list')
+  })
+  //Todays Attendance Card data
+  const [TodaysAttendanceCardData, SetTodaysAttendanceCardData] = useState(
+    {
+      color: "gray",
+      icon: MdOutlineNoteAlt,
+      title: "Today's Attendance",
       value: "",
-      label: "",
-    },
-  }
-)
+      footer: {
+        color: "text-green-500",
+        value: "",
+        label: " Present Today",
+      },
+    }
+  )
 
- //5, Todays Enquiry Followup
-//Todays Enquiry Followup Card data
+  //6, Todays Enquiry Followup
+  //Todays Enquiry Followup Card data
+  const [EnquiryFollowupCardData, SetEnquiryFollowupCardData] = useState(
+    {
+      color: "gray",
+      icon: BiMessageAltError,
+      title: "Followup Enquiries",
+      value: "",
+      footer: {
+        color: "text-green-500",
+        value: "",
+        label: " Remains Today",
+      },
+    }
+  )
 
- //6, Payments To Confirm
-// Payments To Confirm Card data
+  //7, Payments To Confirm
+  // Payments To Confirm Card data
+  const [PaymentsToConfirmCardData, SetPaymentsToConfirmCardData] = useState(
+    {
+      color: "gray",
+      icon: LuClipboardCheck,
+      title: " Payments to Confirm",
+      value: "",
+      footer: {
+        color: "text-green-500",
+        value: "",
+        label: " Remains To Confirm",
+      },
+    }
+  )
 
-//7, Pending Payments
-// Pending Payment Card Data
+  //8, Pending Payments
+  // Pending Payment Card Data
+  const [PendingPaymentsCardData, SetPendingPaymentsCardData] = useState(
+    {
+      color: "gray",
+      icon: MdOutlinePendingActions,
+      title: "Pending Payments",
+      value: "",
+      footer: {
+        color: "text-green-500",
+        value: "",
+        label: " Payments Pending",
+      },
+    }
+  )
 
-//8, Upcoming Renewals
-// Upcoming Renewals Card Data
+  //9, Upcoming Renewals
+  // Upcoming Renewals Card Data
+  const [UpcomingRenewalsCardData, SetUpcomingRenewalsCardData] = useState(
+    {
+      color: "gray",
+      icon: CgSandClock,
+      title: "Upcoming Renewals",
+      value: "",
+      footer: {
+        color: "text-green-500",
+        value: "",
+        label: " Remains Today",
+      },
+    }
+  ) 
 
-//9, Irregular Members
-// Irregular Members Card Data
+  //10, Irregular Members
+  // Irregular Members Card Data
+  const [IrregularMembersCardData, SetIrregularMembersCardData] = useState(
+    {
+      color: "gray",
+      icon: TbUserExclamation,
+      title: "Irregular Members",
+      value: "",
+      footer: {
+        color: "text-green-500",
+        value: "",
+        label: " Not coming Regular",
+      },
+    }
+  ) 
 
-//10, My transactions
-// My Transaction Card Data
 
   console.log(statisticsCardsData);
   return (
@@ -181,7 +256,7 @@ const [TodaysAttendanceCardData, SetTodaysAttendanceCardData] = useState(
       >
 
         {/* Add Attendance Card */}
-        <div className='' onClick={handleAttendanceClick}>
+        <div onClick={handleAttendanceClick}>
           <StatisticsCard
             onClick={handleAttendanceClick}
             key={AttendanceCardData.title}
@@ -255,7 +330,7 @@ const [TodaysAttendanceCardData, SetTodaysAttendanceCardData] = useState(
         </div>
 
         {showAddEnquiryForm ?
-          <div className={` ${sidenavType === 'dark' ? "bg-gray-900 border-gray-800 shadow-2xl" : "bg-white border-blue-gray-100 shadow-2xl"} border-x border-y rounded-xl w-[40%] h-[auto] z-1 absolute left-[30%] top-6`} data-aos="fade-up" data-aos-duration="500">
+          <div className={` ${sidenavType === 'dark' ? "bg-gray-900 border-gray-800 shadow-2xl" : "bg-white border-blue-gray-100 shadow-2xl"} border-x border-y rounded-xl md:w-[40%] h-[auto] z-1 absolute md:left-[30%] left-[12%] top-6`} data-aos="fade-up" data-aos-duration="500">
             <div className='w-full h-10'>
               <button className={`${sidenavType === 'dark' ? " bg-gray-700 hover:bg-gray-600" : " bg-blue-gray-200 hover:bg-blue-gray-300"} w-8 h-8 rounded-full absolute right-2 top-2`} onClick={handleEnquiryClick}>
                 <IoMdClose className='w-5 h-5 m-auto' />
@@ -308,20 +383,141 @@ const [TodaysAttendanceCardData, SetTodaysAttendanceCardData] = useState(
           />
         </div>
 
-                {/* Todays Attendance  */}
-                <div className='' onClick={handleTodaysAttendanceClick}>
+        {/* Add New Member */}
+        <div className='' onClick={handleAddMemberClick}>
           <StatisticsCard
-            key={TodaysAttendanceCardData.title}
-            {...TodaysAttendanceCardData}
-            title={TodaysAttendanceCardData.title}
-            icon={React.createElement(TodaysAttendanceCardData.icon, {
+            key={AddMemberCardData.title}
+            {...AddMemberCardData}
+            title={AddMemberCardData.title}
+            icon={React.createElement(AddMemberCardData.icon, {
               className: 'w-8 h-8 text-white hover:scale-125 duration-1000',
             })}
             footer={
               <Typography className={`font-normal ${sidenavType === "dark" ? "text-white" : "text-blue-gray-600 "
                 }`}>
-                <strong className={TodaysAttendanceCardData.footer.color}>{TodaysAttendanceCardData.footer.value}</strong>
+                <strong className={AddMemberCardData.footer.color}>{AddMemberCardData.footer.value}</strong>
+                &nbsp;{AddMemberCardData.footer.label}
+              </Typography>
+            }
+          />
+        </div>
+
+
+        {/* Todays Attendance  */}
+        <div className='' onClick={handleTodaysAttendanceClick}>
+          <StatisticsCard
+            key={TodaysAttendanceCardData.title}
+            // {...TodaysAttendanceCardData}
+            value={statisticsCardsData ? statisticsCardsData.attendance_count : "00"}
+            title={TodaysAttendanceCardData.title}
+            icon={React.createElement(TodaysAttendanceCardData.icon, {
+              className: 'w-6 h-6 text-white hover:scale-125 duration-1000',
+            })}
+            footer={
+              <Typography className={`font-normal ${sidenavType === "dark" ? "text-white" : "text-blue-gray-600 "
+                }`}>
+                <strong className={TodaysAttendanceCardData.footer.color}>{statisticsCardsData ? statisticsCardsData.attendance_count : '00'}</strong>
                 &nbsp;{TodaysAttendanceCardData.footer.label}
+              </Typography>
+            }
+          />
+        </div>
+
+        {/* Todays Enquiry Followup  */}
+        <div className='' onClick={handleTodaysAttendanceClick}>
+          <StatisticsCard
+            key={EnquiryFollowupCardData.title}
+            // {...TodaysAttendanceCardData}
+            value={statisticsCardsData ? statisticsCardsData.enquiry_count : "00"}
+            title={EnquiryFollowupCardData.title}
+            icon={React.createElement(EnquiryFollowupCardData.icon, {
+              className: 'w-6 h-6 text-white hover:scale-125 duration-1000',
+            })}
+            footer={
+              <Typography className={`font-normal ${sidenavType === "dark" ? "text-white" : "text-blue-gray-600 "
+                }`}>
+                <strong className={EnquiryFollowupCardData.footer.color}>{statisticsCardsData ? statisticsCardsData.enquiry_count : '00'}</strong>
+                &nbsp;{EnquiryFollowupCardData.footer.label}
+              </Typography>
+            }
+          />
+        </div>
+
+        {/* Payments to Confirm  */}
+        <div className='' onClick={handleTodaysAttendanceClick}>
+          <StatisticsCard
+            key={PaymentsToConfirmCardData.title}
+            // {...TodaysAttendanceCardData}
+            value={statisticsCardsData ? statisticsCardsData.enquiry_count : "00"}
+            title={PaymentsToConfirmCardData.title}
+            icon={React.createElement(PaymentsToConfirmCardData.icon, {
+              className: 'w-6 h-6 text-white hover:scale-125 duration-1000',
+            })}
+            footer={
+              <Typography className={`font-normal ${sidenavType === "dark" ? "text-white" : "text-blue-gray-600 "
+                }`}>
+                <strong className={PaymentsToConfirmCardData.footer.color}>{statisticsCardsData ? statisticsCardsData.enquiry_count : '00'}</strong>
+                &nbsp;{PaymentsToConfirmCardData.footer.label}
+              </Typography>
+            }
+          />
+        </div>
+
+        {/* Pending Payments  */}
+        <div className='' onClick={handleTodaysAttendanceClick}>
+          <StatisticsCard
+            key={PendingPaymentsCardData.title}
+            // {...TodaysAttendanceCardData}
+            value={statisticsCardsData ? statisticsCardsData.enquiry_count : "00"}
+            title={PendingPaymentsCardData.title}
+            icon={React.createElement(PendingPaymentsCardData.icon, {
+              className: 'w-6 h-6 text-white hover:scale-125 duration-1000',
+            })}
+            footer={
+              <Typography className={`font-normal ${sidenavType === "dark" ? "text-white" : "text-blue-gray-600 "
+                }`}>
+                <strong className={PendingPaymentsCardData.footer.color}>{statisticsCardsData ? statisticsCardsData.enquiry_count : '00'}</strong>
+                &nbsp;{PendingPaymentsCardData.footer.label}
+              </Typography>
+            }
+          />
+        </div>
+
+        {/* Upcoming Renewals  */}
+        <div className='' onClick={handleTodaysAttendanceClick}>
+          <StatisticsCard
+            key={UpcomingRenewalsCardData.title}
+            // {...TodaysAttendanceCardData}
+            value={statisticsCardsData ? statisticsCardsData.enquiry_count : "00"}
+            title={UpcomingRenewalsCardData.title}
+            icon={React.createElement(UpcomingRenewalsCardData.icon, {
+              className: 'w-6 h-6 text-white hover:scale-125 duration-1000',
+            })}
+            footer={
+              <Typography className={`font-normal ${sidenavType === "dark" ? "text-white" : "text-blue-gray-600 "
+                }`}>
+                <strong className={UpcomingRenewalsCardData.footer.color}>{statisticsCardsData ? statisticsCardsData.enquiry_count : '00'}</strong>
+                &nbsp;{UpcomingRenewalsCardData.footer.label}
+              </Typography>
+            }
+          />
+        </div>
+
+        {/* Upcoming Renewals  */}
+        <div className='' onClick={handleTodaysAttendanceClick}>
+          <StatisticsCard
+            key={IrregularMembersCardData.title}
+            // {...TodaysAttendanceCardData}
+            value={statisticsCardsData ? statisticsCardsData.enquiry_count : "00"}
+            title={IrregularMembersCardData.title}
+            icon={React.createElement(IrregularMembersCardData.icon, {
+              className: 'w-6 h-6 text-white hover:scale-125 duration-1000',
+            })}
+            footer={
+              <Typography className={`font-normal ${sidenavType === "dark" ? "text-white" : "text-blue-gray-600 "
+                }`}>
+                <strong className={IrregularMembersCardData.footer.color}>{statisticsCardsData ? statisticsCardsData.enquiry_count : '00'}</strong>
+                &nbsp;{IrregularMembersCardData.footer.label}
               </Typography>
             }
           />
