@@ -48,3 +48,16 @@ export const fetchProfileData = async ()=> {
     throw error;
   }
 };
+
+
+export const OWNER_REGISTER = async data => {
+  console.log ('thgjhbjhjjhjh');
+  console.log ('data', data);
+  try {
+    const response = await axios.post (API_URLS.OWNER_REGISTER, data);
+    return response.data;
+  } catch (error) {
+    console.error ('Error Sending OTP:', error);
+    throw error;
+  }
+};

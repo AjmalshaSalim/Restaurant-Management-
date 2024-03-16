@@ -54,7 +54,7 @@ export function Home() {
       }
     };
     fetchDashCount();
-  });
+  },[]);
   const [controller, dispatch] = useMaterialTailwindController();
   const { sidenavType } =
     controller;

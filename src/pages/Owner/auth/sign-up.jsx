@@ -6,8 +6,15 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import {Input, Button, Typography} from '@material-tailwind/react';
 import {Link} from 'react-router-dom';
+import { OWNER_REGISTER } from '../../../actions/AuthActions';
+import { useNavigate } from 'react-router-dom';
+import {redirect} from 'react-router-dom';
 
 export function SignUp () {
+
+  const navigate=useNavigate();
+
+
   useEffect (() => {
     AOS.init ();
   }, []);
@@ -16,16 +23,17 @@ export function SignUp () {
   const handleTogglePassword = () => {
     setShowPassword (!showPassword);
   };
-  const handleToggleConfirmPassword = () => {
+  const handleToggleConfirmPassword = (e) => {
+    e.preventDefault ()
     setShowConfirmPassword (!showConfirmPassword);
   };
   const [formData, setFormData] = useState ({
-    firstname: '',
-    lastname: '',
-    mobilenumber: '',
+    first_name: '',
+    last_name: '',
+    phone_number: '',
     password: '',
     confirmPw: '',
-    nameOfGym: '',
+    gym_name: '',
     city: '',
     pincode: '',
     address: '',
@@ -36,10 +44,26 @@ export function SignUp () {
       [e.target.id]: e.target.value,
     });
   };
-  const handleSubmit = e => {
-    e.preventDefault ();
-    console.log (formData);
-  };
+
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log("formData>>>>",formData);
+    try {
+        const response = await OWNER_REGISTER(formData)
+        console.log("response>>>>",response);
+        console.log("status>>>>",response.status);
+        if(response.message=== 
+          "Gym owner registered successfully.") {
+            navigate('/Ownerlogin/')
+        }else{
+          alert("Register Failed")
+            redirect('/OwnerRegister')
+        }
+    } catch (error) {
+        console.error('Login error:', error.message);
+    }
+}
   return (
     <section className="m-8 flex">
       <div
@@ -88,8 +112,8 @@ export function SignUp () {
                 size="lg"
                 type="string"
                 onChange={handleChange}
-                value={formData.firstname}
-                id="firstname"
+                value={formData.first_name}
+                id="first_name"
                 placeholder=""
                 className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
                 labelProps={{
@@ -109,8 +133,8 @@ export function SignUp () {
                 size="lg"
                 type="string"
                 onChange={handleChange}
-                value={formData.lastname}
-                id="lastname"
+                value={formData.last_name}
+                id="last_name"
                 placeholder=""
                 className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
                 labelProps={{
@@ -132,8 +156,8 @@ export function SignUp () {
                 size="lg"
                 type="number"
                 onChange={handleChange}
-                value={formData.mobilenumber}
-                id="mobilenumber"
+                value={formData.phone_number}
+                id="phone_number"
                 placeholder=""
                 className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
                 labelProps={{
@@ -153,8 +177,8 @@ export function SignUp () {
                 size="lg"
                 type="string"
                 onChange={handleChange}
-                value={formData.nameOfGym}
-                id="nameOfGym"
+                value={formData.gym_name}
+                id="gym_name"
                 placeholder=""
                 className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
                 labelProps={{
@@ -213,7 +237,7 @@ export function SignUp () {
               color="blue-gray"
               className="-mb-6 font-medium"
             >
-              Address
+              Full Address
             </Typography>
             <Input
               size="lg"

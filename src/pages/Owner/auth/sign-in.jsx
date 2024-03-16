@@ -37,7 +37,6 @@ export function SignIn () {
         console.log("response>>>>",response);
         console.log("status>>>>",response.status);
         if(response.access) {
-          alert("Login Success")
             navigate('/')
         }else{
           alert("Login Failed")

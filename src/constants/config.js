@@ -10,7 +10,7 @@ const Add_members='/api/add_user/'
 const Edit_equipments='/api/edit-equipment/id:/'
 const fetchProfileData ='/api/user-profile/'
 const Fetch_Dash = '/api/dash/count/'
-
+const Owner_Register ='/api/register-gym-owner/'
 
 export const API_URLS = {
     LOGIN_API_PATH: `${LOGIN_API_PATH}`,
@@ -22,7 +22,8 @@ export const API_URLS = {
     EDIT_EQUIPMENTS:`${Edit_equipments}`,
     fetchProfileData:`${fetchProfileData}`,
     ADD_MEMBERS:`${Add_members}`,
-    Fetch_Dash :`${Fetch_Dash}`
+    Fetch_Dash :`${Fetch_Dash}`,
+    OWNER_REGISTER :`${Owner_Register}`,
 
 }
 
