@@ -16,7 +16,7 @@ export function StatisticsCard({ color, icon, title, value, footer }) {
     controller;
   return (
     <Card className={` shadow-sm  ${
-      sidenavType === "dark" ? " bg-gray-800 bg-opacity-50 border-y border-x border-gray-800 hover:border-gray-600 shadow-gray-900 shadow-2xl hover:scale-105 ease-in-out duration-500" : "border border-blue-gray-100 bg-white"
+      sidenavType === "dark" ? " bg-gray-800 bg-opacity-50 border-y border-x border-gray-800 hover:border-gray-600 shadow-gray-900 shadow-2xl hover:scale-x-105 ease-in-out duration-500" : "border border-blue-gray-100 bg-white"
     }`}>
       <CardHeader
         variant="gradient"
@@ -39,7 +39,7 @@ export function StatisticsCard({ color, icon, title, value, footer }) {
         </Typography>
       </CardBody>
       {footer && (
-        <CardFooter className={`border-t p-4 ${sidenavType=== 'dark'? "border-gray-900" : "border-gray-300"}`}>
+        <CardFooter className={`border-t p-3 ${sidenavType=== 'dark'? "border-gray-900" : "border-gray-300"}`}>
           {footer}
         </CardFooter>
       )}
