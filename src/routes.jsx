@@ -21,7 +21,7 @@ import {ForgotPassword} from './pages/Owner/auth/Forgot-pw';
 import {Otp} from './pages/Owner/auth/Otp';
 import {ResetPwd} from './pages/Owner/auth/Reset-pw';
 import {AddMember} from './pages/Owner/dashboard/AddMember'
-import {AddAttendance} from './pages/Owner/dashboard/AddAttendance'
+import {AttendanceList} from './pages/Owner/dashboard/AttendanceList'
 import {AddEnquiries} from './pages/Owner/dashboard/AddEnquiries'
 import {AllStaffs} from './pages/Owner/dashboard/AllStaffs'
 const icon = {
@@ -40,9 +40,9 @@ export const routes = [
       },
       {
         icon: <UserPlusIcon {...icon} />,
-        name: 'Add Attendance',
-        path: '/AddAttendance',
-        element: <AddAttendance />,
+        name: 'Attendance List',
+        path: '/AttendanceList',
+        element: <AttendanceList />,
       },
       {
         icon: <UserPlusIcon {...icon} />,
