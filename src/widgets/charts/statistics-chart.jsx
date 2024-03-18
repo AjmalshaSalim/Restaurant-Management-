@@ -71,7 +71,7 @@ export function StatisticsChart({ color, chart, title, description, footer }) {
         </Typography>
       </CardBody>
       {footer && (
-        <CardFooter className={` px-6 py-5 ${sidenavType ==='dark'? "border-t border-gray-900" : "border-t border-gray-300"}`}>
+        <CardFooter className={` px-6 py-5 ${sidenavType ==='dark'? "border-t border-gray-800" : "border-t border-gray-300"}`}>
           {footer}
         </CardFooter>
       )}
