@@ -18,7 +18,8 @@ import { CgSandClock } from "react-icons/cg";
 import { TbUserExclamation } from "react-icons/tb";
 import { MdOutlineNoteAlt } from "react-icons/md";
 import { BiMessageAltError } from "react-icons/bi";
-
+import { Link } from 'react-router-dom';
+import { GrTransaction } from "react-icons/gr";
 
 import {
   useMaterialTailwindController
@@ -121,9 +122,6 @@ export function Home() {
 
   //3, Add New Member
   const [showAddMemberForm, setShowAddMemberForm] = useState(false);
-  const handleAddMemberClick = () => {
-    setShowAddMemberForm(!showAddMemberForm)
-  };
   const [AddMemberFormData, setAddMemberFormData] = useState({
     member_id: null,
     enquiry: ''
@@ -144,7 +142,23 @@ export function Home() {
   )
 
   //4, My transactions
+  const handleTransactionClick = (() => {
+    alert('My Transactions not Added')
+  })
   // My Transaction Card Data
+  const [TransactionCardData, SetTransactionCardData] = useState(
+    {
+      color: "gray",
+      icon: GrTransaction,
+      title: "My Transactions",
+      value: "",
+      footer: {
+        color: "text-green-500",
+        value: "",
+        label: "",
+      },
+    }
+  )
 
   //5,Todays Attendance
   const handleTodaysAttendanceClick = (() => {
@@ -248,11 +262,13 @@ export function Home() {
 
   console.log(statisticsCardsData);
   return (
+    <>
+    <div className=" w-full h-[870px] overflow-scroll">
     <div className="mt-10 bg-transparent">
       <div
-        className="mb-10 grid gap-y-10 gap-x-6 md:grid-cols-2 xl:grid-cols-4"
+        className="mb-10 grid gap-y-10 gap-x-6 md:grid-cols-2 xl:grid-cols-4 mx-2"
         data-aos="fade-up"
-        data-aos-duration="1000"
+        data-aos-duration="700"
       >
 
         {/* Add Attendance Card */}
@@ -365,7 +381,8 @@ export function Home() {
         }
 
         {/* Add New Member */}
-        <div className='' onClick={handleAddMemberClick}>
+        <div className=''>
+          <Link to="/dashboard/AddMember">
           <StatisticsCard
             key={AddMemberCardData.title}
             {...AddMemberCardData}
@@ -381,22 +398,23 @@ export function Home() {
               </Typography>
             }
           />
+          </Link>
         </div>
 
-        {/* Add New Member */}
-        <div className='' onClick={handleAddMemberClick}>
+        {/* My Transactions */}
+        <div className='' onClick={handleTransactionClick}>
           <StatisticsCard
-            key={AddMemberCardData.title}
-            {...AddMemberCardData}
-            title={AddMemberCardData.title}
-            icon={React.createElement(AddMemberCardData.icon, {
-              className: 'w-8 h-8 text-white hover:scale-125 duration-1000',
+            key={TransactionCardData.title}
+            {...TransactionCardData}
+            title={TransactionCardData.title}
+            icon={React.createElement(TransactionCardData.icon, {
+              className: 'w-6 h-6 text-white hover:scale-125 duration-1000',
             })}
             footer={
               <Typography className={`font-normal ${sidenavType === "dark" ? "text-white" : "text-blue-gray-600 "
                 }`}>
-                <strong className={AddMemberCardData.footer.color}>{AddMemberCardData.footer.value}</strong>
-                &nbsp;{AddMemberCardData.footer.label}
+                <strong className={TransactionCardData.footer.color}>{TransactionCardData.footer.value}</strong>
+                &nbsp;{TransactionCardData.footer.label}
               </Typography>
             }
           />
@@ -468,7 +486,7 @@ export function Home() {
           <StatisticsCard
             key={PendingPaymentsCardData.title}
             // {...TodaysAttendanceCardData}
-            value={statisticsCardsData ? statisticsCardsData.enquiry_count : "00"}
+            value={statisticsCardsData ? statisticsCardsData.expired_membership_count : "00"}
             title={PendingPaymentsCardData.title}
             icon={React.createElement(PendingPaymentsCardData.icon, {
               className: 'w-6 h-6 text-white hover:scale-125 duration-1000',
@@ -476,7 +494,7 @@ export function Home() {
             footer={
               <Typography className={`font-normal ${sidenavType === "dark" ? "text-white" : "text-blue-gray-600 "
                 }`}>
-                <strong className={PendingPaymentsCardData.footer.color}>{statisticsCardsData ? statisticsCardsData.enquiry_count : '00'}</strong>
+                <strong className={PendingPaymentsCardData.footer.color}>{statisticsCardsData ? statisticsCardsData.expired_membership_count : '00'}</strong>
                 &nbsp;{PendingPaymentsCardData.footer.label}
               </Typography>
             }
@@ -488,7 +506,7 @@ export function Home() {
           <StatisticsCard
             key={UpcomingRenewalsCardData.title}
             // {...TodaysAttendanceCardData}
-            value={statisticsCardsData ? statisticsCardsData.enquiry_count : "00"}
+            value={statisticsCardsData ? statisticsCardsData.expiring_users_count : "00"}
             title={UpcomingRenewalsCardData.title}
             icon={React.createElement(UpcomingRenewalsCardData.icon, {
               className: 'w-6 h-6 text-white hover:scale-125 duration-1000',
@@ -496,19 +514,19 @@ export function Home() {
             footer={
               <Typography className={`font-normal ${sidenavType === "dark" ? "text-white" : "text-blue-gray-600 "
                 }`}>
-                <strong className={UpcomingRenewalsCardData.footer.color}>{statisticsCardsData ? statisticsCardsData.enquiry_count : '00'}</strong>
+                <strong className={UpcomingRenewalsCardData.footer.color}>{statisticsCardsData ? statisticsCardsData.expiring_users_count : '00'}</strong>
                 &nbsp;{UpcomingRenewalsCardData.footer.label}
               </Typography>
             }
           />
         </div>
 
-        {/* Upcoming Renewals  */}
+        {/* Irregular Members  */}
         <div className='' onClick={handleTodaysAttendanceClick}>
           <StatisticsCard
             key={IrregularMembersCardData.title}
             // {...TodaysAttendanceCardData}
-            value={statisticsCardsData ? statisticsCardsData.enquiry_count : "00"}
+            value={statisticsCardsData ? statisticsCardsData.absentees_count : "00"}
             title={IrregularMembersCardData.title}
             icon={React.createElement(IrregularMembersCardData.icon, {
               className: 'w-6 h-6 text-white hover:scale-125 duration-1000',
@@ -516,7 +534,7 @@ export function Home() {
             footer={
               <Typography className={`font-normal ${sidenavType === "dark" ? "text-white" : "text-blue-gray-600 "
                 }`}>
-                <strong className={IrregularMembersCardData.footer.color}>{statisticsCardsData ? statisticsCardsData.enquiry_count : '00'}</strong>
+                <strong className={IrregularMembersCardData.footer.color}>{statisticsCardsData ? statisticsCardsData.absentees_count : '00'}</strong>
                 &nbsp;{IrregularMembersCardData.footer.label}
               </Typography>
             }
@@ -526,8 +544,6 @@ export function Home() {
       </div>
       <div
         className="mb-6 grid grid-cols-1 gap-y-12 gap-x-6 md:grid-cols-2 xl:grid-cols-3"
-        data-aos="fade-up"
-        data-aos-duration="1000"
       >
         {statisticsChartsData.map(props => (
           <StatisticsChart
@@ -551,8 +567,6 @@ export function Home() {
       </div>
       <div
         className="mb-4 grid grid-cols-1 gap-6 xl:grid-cols-3"
-        data-aos="fade-up"
-        data-aos-duration="1000"
       >
         <Card className={`overflow-hidden xl:col-span-2 shadow-sm
         ${sidenavType === "dark" ? "bg-gray-800 bg-opacity-50 border-x border-y border-gray-800" : "border border-blue-gray-100 bg-white"
@@ -808,6 +822,8 @@ export function Home() {
         </Card>
       </div>
     </div>
+    </div>
+    </>
   );
 }
 export default Home;
