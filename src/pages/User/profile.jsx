@@ -2,6 +2,8 @@ import React, { useEffect,useState } from "react";
 import { fetchProfileData } from '../../actions/AuthActions';
 import UserIcon from "../../assets/gym -icons/User_Icon.svg"
 import UserIconDark from "../../assets/gym -icons/User_Icon1.svg"
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import {
   Card,
   CardBody,
@@ -68,6 +70,7 @@ export function Profile() {
     membership_type: null
   });
   useEffect(() => {
+    AOS.init();
     async function fetchData(){
       try{
         const response = await fetchProfileData();
@@ -91,7 +94,10 @@ export function Profile() {
 console.log(">>>>"+menu)
   return (
     <>
-      <Card className={`mt-10 mb-6 w-full h-[700px]  ${sidenavType === 'dark' ? "bg-gray-900 border-x border-y border-gray-800" : "bg-white border border-blue-gray-100"}`}>
+    <div className=" w-full h-[870px] overflow-hidden">
+      <Card className={`mt-10 mb-6 w-full h-[700px]  ${sidenavType === 'dark' ? "bg-gray-900 bg-opacity-90 border-x border-y border-gray-800" : "bg-white border border-blue-gray-100"}`}
+      data-aos="fade-up"
+      data-aos-duration="700">
         <CardBody className="p-4">
           <div className="mb-10 flex items-center justify-between flex-wrap gap-6">
             <div className="flex items-center gap-6">
@@ -112,7 +118,7 @@ console.log(">>>>"+menu)
                       alt="Profile Image"
                       size="xl"
                       variant="rounded"
-                      className="rounded-lg shadow-lg shadow-blue-gray-500/40 p-2 border"
+                      className={`rounded-lg shadow-lg shadow-blue-gray-500/40 p-2 border-x border-y ${sidenavType === 'dark' ?  "border-gray-700" : "border-blue-gray-200"}`}
                     /> :
                     <Avatar
                       src={UserIcon}
@@ -138,19 +144,19 @@ console.log(">>>>"+menu)
                 </Typography>
               </div>
             </div>
-            <div className="w-96">
+            <div className="w-96 text-red-700">
               <Tabs value="app">
-                <TabsHeader> 
-                  <Tab value="app" onClick={()=>setMenu(0)}>
-                    <HomeIcon className="-mt-1 mr-2 inline-block h-5 w-5" />
+                <TabsHeader className={`${sidenavType === 'dark' ? "bg-gray-800" : " bg-blue-gray-100"}`} > 
+                  <Tab value="app" className={` ${sidenavType=== 'dark'? "text-gray-500" : " text-blue-gray-900"}`} onClick={()=>setMenu(0)}>
+                    <HomeIcon className={`-mt-1 mr-2 inline-block h-5 w-5 ${sidenavType=== 'dark'? "text-gray-500" : " text-blue-gray-900"}`} />
                     About
                   </Tab>
-                  <Tab value="message" onClick={()=>setMenu(1)}>
-                    <ChatBubbleLeftEllipsisIcon className="-mt-0.5 mr-2 inline-block h-5 w-5" />
+                  <Tab value="message" className={` ${sidenavType=== 'dark'? "text-gray-500" : " text-blue-gray-900"}`} onClick={()=>setMenu(1)}>
+                    <ChatBubbleLeftEllipsisIcon className={`-mt-0.5 mr-2 inline-block h-5 w-5 ${sidenavType=== 'dark'? "text-gray-500" : " text-blue-gray-900"}`} />
                     Details
                   </Tab>
-                  <Tab value="settings" onClick={()=>setMenu(2)}>
-                    <Cog6ToothIcon className="-mt-1 mr-2 inline-block h-5 w-5" />
+                  <Tab value="settings" className={` ${sidenavType=== 'dark'? "text-gray-500" : " text-blue-gray-900"}`} onClick={()=>setMenu(2)}>
+                    <Cog6ToothIcon className={`-mt-1 mr-2 inline-block h-5 w-5 ${sidenavType=== 'dark'? "text-gray-500" : " text-blue-gray-900"}`}    />
                     Payments
                   </Tab>
                 </TabsHeader>
@@ -421,6 +427,7 @@ console.log(">>>>"+menu)
           </div>
         </CardBody>
       </Card>
+      </div>
     </>
   );
 }

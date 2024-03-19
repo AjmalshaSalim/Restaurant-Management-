@@ -39,7 +39,7 @@ export function StatisticsCard({ color, icon, title, value, footer }) {
         </Typography>
       </CardBody>
       {footer && (
-        <CardFooter className={`border-t p-3 ${sidenavType=== 'dark'? "border-gray-900" : "border-gray-300"}`}>
+        <CardFooter className={` p-3 ${sidenavType=== 'dark'? "border-gray-800" : "border-gray-300"}`}>
           {footer}
         </CardFooter>
       )}
