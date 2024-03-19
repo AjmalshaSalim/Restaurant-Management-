@@ -51,7 +51,7 @@ export function SignUp () {
     console.log("formData>>>>",formData);
     try {
         const response = await OWNER_REGISTER(formData)
-        console.log("response>>>>",response);
+
         console.log("status>>>>",response.status);
         if(response.message=== 
           "Gym owner registered successfully.") {

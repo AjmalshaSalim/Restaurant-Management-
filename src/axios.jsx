@@ -34,14 +34,16 @@ instance.interceptors.request.use(
 );
 
 instance.interceptors.response.use(
+
   (response) => response,
+ 
   async (error) => {
     const originalRequest = error.config;
     if (error.response.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
       try {
-        const response = await axios.post('/api/token/refresh/', {
-          refresh: localStorage.getItem('userRefreshToken'),
+        const response = await axios.post('https://achujozef.pythonanywhere.com/api/token/refresh/', {
+          refresh : localStorage.getItem('userRefreshToken'),
         }, {
           headers: setHeaders(),
         });
@@ -58,4 +60,4 @@ instance.interceptors.response.use(
   }
 );
 
-export default instance;
+ export default instance;
