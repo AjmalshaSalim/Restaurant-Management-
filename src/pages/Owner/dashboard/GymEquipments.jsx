@@ -234,8 +234,8 @@ export default function GymEquipments() {
                           } rounded-lg overflow-hidden my-2 mx-4`}
                       >
                         <Card className={`w-full ${sidenavType === 'dark' ? "bg-black" : "bg-white"}`}>
-                          <CardHeader floated={false} className="h-48">
-                            <img src={equipment.image} alt="equipment" className="w-full h-full object-cover duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110" />
+                          <CardHeader floated={false} className="h-64">
+                            <img src={equipment.image} alt="equipment" className="w-full h-full object-contain duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110" />
                           </CardHeader>
                           <CardBody className="text-center">
                             <Typography variant="h5" color={sidenavType === 'dark' ? "white" : "blue-gray"} className="mb-2">

@@ -112,7 +112,7 @@ console.log(">>>>"+menu)
                   />
                 </div> :
                 <div className="relative w-36 h-36 -mb-16" >
-                  {sidenavType == 'dark' ?
+                  {sidenavType === 'dark' ?
                     <Avatar
                       src={UserIconDark}
                       alt="Profile Image"
