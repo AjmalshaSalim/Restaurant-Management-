@@ -2,40 +2,46 @@ import React, { useState, useRef, useEffect } from "react";
 import Logo from "../../assets/images/Gymsoft_Logo1-removebg-preview.png";
 import ResponsiveNavbar from "./ResponsiveNavbar.jsx";
 import { Link } from "react-router-dom";
-import { FaUserCircle, FaHome, FaAppleAlt, FaDumbbell, FaUserFriends, FaBars, FaTimes } from "react-icons/fa";
+import { FaBars, FaTimes } from "react-icons/fa";
 
 export const Menu = [
   {
     id: 1,
     name: "Home",
     link: "/home",
-    icon: <FaHome className="pt-1 align-middle" />,
+
   },
   {
     id: 2,
     name: "Diet",
     link: "/diet",
-    icon: <FaAppleAlt className="align-middle" />,
+
   },
   {
     id: 3,
     name: "Equipments",
     link: "/equipments",
-    icon: <FaDumbbell className="pt-1 align-middle" />,
+
   },
   {
     id: 4,
     name: "Trainers",
     link: "/community",
-    icon: <FaUserFriends className="pt-1 align-middle" />,
+
   },
   {
     id: 5,
     name: "Profile",
     link: "/profile",
-    icon: <FaUserCircle className="align-middle" />,
+
   },
- 
+  {
+    id: 6,
+    name: "Slot-Booking",
+    link: "/slot-booking",
+
+  },
+
 ];
 
 const Navbar = () => {
@@ -82,13 +88,13 @@ const Navbar = () => {
         <div className="flex items-center" data-aos="fade-down" data-aos-once="true">
           <button
             className="text-2xl sm:text-3xl md:text-4xl font-bold flex items-center gap-2 tracking-wider"
-            onClick={() => {/* handle action here */}}
+            onClick={() => {/* handle action here */ }}
           >
             <img src={Logo} alt="Logo" className="w-36 sm:w-36 md:w-64" />
           </button>
         </div>
 
-        {/* Hamburger menu for mobile devices */}
+
         <div className="md:hidden">
           <button onClick={toggleMenu} ref={menuButtonRef}>
             {isMenuOpen ? <FaTimes className="text-2xl" /> : <FaBars className="text-2xl" />}
@@ -107,16 +113,21 @@ const Navbar = () => {
         >
           <ul className="flex flex-row items-center gap-4">
             {Menu.map((menu) => (
-              <li key={menu.id}>
+              <li key={menu.id} className="relative group">
                 <Link
                   to={menu.link}
                   className="text-sm sm:text-base md:text-lg lg:text-base py-2 px-2 hover:text-red-900 transition duration-200 flex items-center gap-2"
                 >
-                  {menu.icon}<span className="align-middle">{menu.name}</span>
+                  <span className="align-middle font-poppins">{menu.name}</span>
                 </Link>
+                {/* third hover effect */}
+                <p className="absolute -bottom-1 left-0 w-full">
+                  <span className="absolute -bottom-2 left-0 w-0 h-1 bg-red-900 transition-all group-hover:w-full"></span>
+                </p>
               </li>
             ))}
           </ul>
+
         </div>
       </div>
     </nav>
