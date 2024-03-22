@@ -3,15 +3,15 @@ import BackgroundImage from '../../../assets/images/backgroundlog.jpg';
 import Logo from '../../../assets/images/Gymsoft_Logo1-removebg-preview.png';
 import {Input, Button, Typography} from '@material-tailwind/react';
 import {AiOutlineEye, AiOutlineEyeInvisible} from 'react-icons/ai';
-import {Link, redirect} from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom'; // Ensure useNavigate is imported
 import AOS from 'aos';
 import { DemoAction1 } from '../../../actions/DemoActions';
 import 'aos/dist/aos.css';
-import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 export function SignIn () {
-  const navigate=useNavigate();
-
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   useEffect (() => {
     AOS.init ();
   }, []);
@@ -31,21 +31,22 @@ export function SignIn () {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("formData>>>>",formData);
+    console.log("formData>>>>", formData);
     try {
-        const response = await DemoAction1(formData)
-        console.log("response>>>>",response);
-        console.log("status>>>>",response.status);
-        if(response.access) {
-            navigate('/')
-        }else{
-          alert("Login Failed")
-            redirect('/sign-in')
-        }
+      const response = await DemoAction1(formData,dispatch);
+      console.log("response>>>>", response);
+      console.log("status>>>>", response.status);
+      if (response.access) {
+        console.log("acesses grantedc >>>>");
+        navigate('/')
+      } else {
+        alert("Login Failed");
+        navigate('/sign-in'); // Use navigate instead of redirect
+      }
     } catch (error) {
-        console.error('Login error:', error.message);
+      console.error('Login error:', error.message);
     }
-}
+  }
   return (
     <section className="m-8 flex gap-4">
       <div
