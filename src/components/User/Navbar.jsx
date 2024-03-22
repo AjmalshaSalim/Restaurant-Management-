@@ -121,8 +121,8 @@ const Navbar = () => {
                   <span className="align-middle font-poppins">{menu.name}</span>
                 </Link>
                 {/* third hover effect */}
-                <p className="absolute -bottom-1 left-0 w-full">
-                  <span className="absolute -bottom-2 left-0 w-0 h-1 bg-red-900 transition-all group-hover:w-full"></span>
+                <p className="absolute -bottom-0 left-0 w-full">
+                  <span className="absolute  left-0 w-0 h-1 bg-red-900 transition-all group-hover:w-full"></span>
                 </p>
               </li>
             ))}

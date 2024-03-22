@@ -17,10 +17,9 @@ function Login() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(formData);
         try {
-            const response = DemoAction1(formData)
-            if (response.success) {
+            const response = await DemoAction1(formData)
+            if (response) {
                 navigate('/home')
             } else {
                 navigate('/login')

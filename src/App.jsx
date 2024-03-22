@@ -19,12 +19,9 @@ import OwnerForgetpassword from "../src/pages/Owner/auth/Forgot-pw"
 import OwnerOtp from "../src/pages/Owner/auth/Otp"
 import OwnerChangepassword from "../src/pages/Owner/auth/Reset-pw"
 import OwnerUserList from "./pages/Owner/dashboard/MembersList"
-import { PhoneNumberProvider } from "./context/phoneNumberContext"; // Import PhoneNumberProvider
+import { PhoneNumberProvider } from "./context/phoneNumberContext";
 import SlotBooking from "./components/User/SlotBooking";
-//testing 
-//testing 
-//testing 
-//testing 
+
 function App() {
   useEffect(() => {
     AOS.init({
