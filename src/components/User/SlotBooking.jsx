@@ -7,6 +7,7 @@ const SlotBooking = () => {
     const [selectedSlot, setSelectedSlot] = useState(null);
     const [selectedDate, setSelectedDate] = useState(new Date());
     const [availableSlots, setAvailableSlots] = useState([]);
+    const [bookingDetails, setBookingDetails] = useState(null);
 
     const fetchAvailableSlots = (date) => {
         const dummyAvailableSlots = [
@@ -28,6 +29,7 @@ const SlotBooking = () => {
         setSelectedDate(date);
         fetchAvailableSlots(date);
         setSelectedSlot(null);
+        setBookingDetails(null);
     };
 
     const handleSlotSelect = (slot) => {
@@ -40,6 +42,7 @@ const SlotBooking = () => {
 
     const handleBooking = () => {
         if (selectedSlot) {
+            setBookingDetails(selectedSlot);
             alert(`You have successfully booked the slot: ${selectedSlot.time}`);
         } else {
             alert('Please select a slot before booking.');
@@ -69,10 +72,17 @@ const SlotBooking = () => {
         <div className="flex flex-col md:flex-row bg-black h-screen text-white overflow-x-hidden">
             <Navbar />
             <div className="flex-1 p-8 pt-16 md:pt-36">
+                {bookingDetails && (
+                    <div className="mb-4 text-center">
+                        <h3 className="text-xl font-semibold text-white">Current Booking Details:</h3>
+                        <p>Date: {selectedDate.toDateString()}</p>
+                        <p>Time: {bookingDetails.time}</p>
+                    </div>
+                )}
                 <h2 className="text-3xl font-poppins mb-4 text-center" data-aos="fade-down">Slot Booking</h2>
-                <div className="mb-4 flex justify-center" >
+                <div className="mb-4 flex-row items-center justify-center" >
                     <p className='font-poppins text-xl pr-5' data-aos="fade-left">Select Date:</p>
-                    <div data-aos="flip-left">
+                    <div className='flex items-center justify-center ' data-aos="flip-left">
                         <Calendar
                             className="text-black bg-white rounded-lg shadow p-4"
                             onChange={handleDateChange}
@@ -87,7 +97,7 @@ const SlotBooking = () => {
                 </div>
             </div>
             <div className="flex-1 p-8 pt-16 md:pt-36" >
-                <h2 className="text-3xl font-poppins mb-4 text-center" data-aos="fade-down">Available Slots</h2>
+                <h2 className="text-3xl flex font-poppins mb-4 text-center" data-aos="fade-down">Available Slots</h2>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 justify-center">
                     {availableSlots.map((slot) => (
                         <div

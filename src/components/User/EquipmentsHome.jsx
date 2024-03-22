@@ -27,6 +27,7 @@ const EquipmentsHome = () => {
     const fetchEquipments = async () => {
       try {
         const response = await List_Equipments();
+        console.log(response);
         setEquipments(response);
       } catch (error) {
         console.error('Failed to fetch equipments', error);
@@ -44,13 +45,13 @@ const EquipmentsHome = () => {
         className="mySwiper w-full sm:w-3/4"
         onSwiper={setSwiperInstance}
       >
-        {equipments.map((equipment) => (
+        {equipments.slice(0, 20).map((equipment) => (
           <SwiperSlide key={equipment.id}>
             <div className="equipment-card bg-white transition-colors duration-300 p-4 shadow-xl rounded-xl mx-auto max-w-xs sm:max-w-sm hover:cursor-pointer">
-              <img src={equipment.img} alt={equipment.title} className="equipment-image w-full h-48 sm:h-64 object-contain rounded-t-lg" />
+              <img src={equipment.image} alt={equipment.title} className="equipment-image w-full h-48 sm:h-64 object-contain rounded-t-lg" />
               <div className="equipment-info p-4">
-                <h3 className="equipment-title text-lg sm:text-xl font-semibold mb-2">{equipment.title}</h3>
-                <p className="equipment-description text-gray-700 text-sm sm:text-base">{equipment.description}</p>
+                <h3 className="equipment-title text-lg sm:text-xl font-semibold mb-2">{equipment.name}</h3>
+                <p className="equipment-description text-gray-700 text-sm sm:text-base">{equipment.category}</p>
               </div>
             </div>
           </SwiperSlide>
