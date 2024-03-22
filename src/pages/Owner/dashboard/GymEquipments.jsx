@@ -121,76 +121,76 @@ export default function GymEquipments() {
           </Button>
         </div>
 
-        <form onSubmit={handleSubmit} className={` rounded-xl space-y-4 p-4 rounded-xl" encType="multipart/form-data ${sidenavType === 'dark' ? "bg-black text-white" : "bg-white text-black"}`}>
-          <div>
-            <label htmlFor="image" className="block text-sm font-medium ">Equipment Image</label>
-            <input type="file" name="image" id="image" onChange={handlePhotoChange} className="mt-1 block w-full border border-gray-500 rounded-md shadow-sm p-2" />
-          </div>
-          <div>
-            <label htmlFor="name" className="block text-sm font-medium ">Equipment Name</label>
-            <input type="text" name="name" placeholder='Eg : Dumbel' value={equipmentData.name} onChange={handleChange} className={`mt-1 placeholder-blue-gray-400 block w-full border border-gray-500 rounded-md shadow-sm p-2 ${sidenavType === 'dark' ? "bg-black" : "bg-white"}`} />
-          </div>
-          <div>
-            <label htmlFor="category" className="block text-sm font-medium">Equipment Category</label>
-            <select name="category" value={equipmentData.category} onChange={handleChange} className={`mt-1 block w-full border border-gray-500 rounded-md shadow-sm p-2 ${sidenavType === 'dark' ? "bg-black" : "bg-white"}`}>
-              <option value="">Select Category</option>
-              <option value="cardio">Cardio</option>
-              <option value="strength">Strength</option>
-              <option value="free_weights">Free Weights</option>
-              <option value="machines">Machines</option>
-              <option value="other">Other</option>
-            </select>
-          </div>
-          <div>
+        <form onSubmit={handleSubmit} encType="multipart/form-data" className={`grid-cols-1 border-x border-y rounded-lg mb-12 pt-10 pb-10 grid gap-y-5 gap-x-5 pl-16 md:pl-20 lg:grid-cols-2 xl:grid-cols-3 w-full ${sidenavType === 'dark' ? "bg-gray-900 bg-opacity-90 border-gray-800 text-white" : "bg-white text-black"}`}>
+  <div>
+    <Typography variant="small" className="font-medium">Equipment Image</Typography>
+    <input type="file" name="image" id="image" onChange={handlePhotoChange} className="w-[280px] py-2 pl-2 rounded-lg bg-transparent border-x border-y border-gray-500" />
+  </div>
+  <div>
+    <Typography variant="small" className="font-medium">Equipment Name</Typography>
+    <input type="text" name="name" placeholder="Eg : Dumbel" value={equipmentData.name} onChange={handleChange} className={`w-[280px] py-2 pl-2 pr-20 rounded-lg bg-transparent border-x border-y border-gray-500 ${sidenavType === 'dark' ? "border-gray-600" : "border-blue-gray-100"}`} />
+  </div>
+  <div>
+    <Typography variant="small" className="font-medium">Equipment Category</Typography>
+    <select name="category" value={equipmentData.category} onChange={handleChange} className={`w-[280px] py-2 pl-2 pr-20 rounded-lg bg-transparent border-x border-y border-gray-500 ${sidenavType === 'dark' ? "border-gray-600" : "border-blue-gray-100"}`}>
+      <option value="">Select Category</option>
+      <option value="cardio">Cardio</option>
+      <option value="strength">Strength</option>
+      <option value="free_weights">Free Weights</option>
+      <option value="machines">Machines</option>
+      <option value="other">Other</option>
+    </select>
+  </div>
+  <div>
+    <Typography variant="small" className="font-medium">Model Number</Typography>
+    <input type="text" name="model_number" placeholder="Eg : 001" value={equipmentData.model_number} onChange={handleChange} className={`w-[280px] py-2 pl-2 pr-20 rounded-lg bg-transparent border-x border-y border-gray-500 ${sidenavType === 'dark' ? "border-gray-600" : "border-blue-gray-100"}`} />
+  </div>
+  <div>
+    <Typography variant="small" className="font-medium">Purchase Date (YYYY-MM-DD)</Typography>
+    <input type="text" name="purchase_date" value={equipmentData.purchase_date} onChange={handleChange} pattern="\d{4}-\d{2}-\d{2}" placeholder="YYYY-MM-DD" className={`w-[280px] py-2 pl-2 pr-20 rounded-lg bg-transparent border-x border-y border-gray-500 ${sidenavType === 'dark' ? "border-gray-600" : "border-blue-gray-100"}`} />
+  </div>
+  <div>
+    <Typography variant="small" className="font-medium">Purchase Price</Typography>
+    <input type="number" name="purchase_price" value={equipmentData.purchase_price} onChange={handleChange} className={`w-[280px] py-2 pl-2 pr-20 rounded-lg bg-transparent border-x border-y border-gray-500 ${sidenavType === 'dark' ? "border-gray-600" : "border-blue-gray-100"}`} step="any" style={{ appearance: "textfield" }} />
+  </div>
+  <div>
+    <Typography variant="small" className="font-medium">Manufacturer</Typography>
+    <input type="text" name="manufacturer" placeholder="Eg : Hitachee" value={equipmentData.manufacturer} onChange={handleChange} className={`w-[280px] py-2 pl-2 pr-20 rounded-lg bg-transparent border-x border-y border-gray-500 ${sidenavType === 'dark' ? "border-gray-600" : "border-blue-gray-100"}`} />
+  </div>
+  <div>
+    <Typography variant="small" className="font-medium">Warranty Information</Typography>
+    <input type="text" name="warranty_information" placeholder="Eg : 6 months" value={equipmentData.warranty_information} onChange={handleChange} className={`w-[280px] py-2 pl-2 pr-20 rounded-lg bg-transparent border-x border-y border-gray-500 ${sidenavType === 'dark' ? "border-gray-600" : "border-blue-gray-100"}`} />
+  </div>
+  <div>
+    <Typography variant="small" className="font-medium">Warranty Expiration Date (YYYY-MM-DD)</Typography>
+    <input type="text" name="warranty_expiration_date" value={equipmentData.warranty_expiration_date} onChange={handleChange} pattern="\d{4}-\d{2}-\d{2}" placeholder="YYYY-MM-DD" className={`w-[280px] py-2 pl-2 pr-20 rounded-lg bg-transparent border-x border-y border-gray-500 ${sidenavType === 'dark' ? "border-gray-600" : "border-blue-gray-100"}`} />
+  </div>
+  <div>
+    <Typography variant="small" className="font-medium">Condition</Typography>
+    <select name="condition" value={equipmentData.condition} onChange={handleChange} className={`py-2 pl-2 pr-20 w-[280px] rounded-lg bg-transparent border-x border-y border-gray-500 ${sidenavType === 'dark' ? "border-gray-600" : "border-blue-gray-100"}`}>
+      <option value="">Select Condition</option>
+      <option value="new">New</option>
+      <option value="used">Used</option>
+      <option value="refurbished">Refurbished</option>
+    </select>
+  </div>
+  <div>
+    <Typography variant="small" className="font-medium">Maintenance Charge</Typography>
+    <input type="number" name="maintenance_charge" value={equipmentData.maintenance_charge} onChange={handleChange} className={`w-[280px] py-2 pl-2 pr-20 rounded-lg bg-transparent border-x border-y border-gray-500 ${sidenavType === 'dark' ? "border-gray-600" : "border-blue-gray-100"}`} />
+  </div>
+  <div>
+    <Typography variant="small" className="font-medium">Availability</Typography>
+    <input type="checkbox" name="availability" checked={equipmentData.availability} onChange={handleChange} className="w-[280px] py-2 pl-2 pr-20 rounded-lg bg-transparent border-x border-y border-gray-500" />
+  </div>
+  <div>
+    <Typography variant="small" className="font-medium">Additional Notes</Typography>
+    <textarea name="additional_notes" value={equipmentData.additional_notes} onChange={handleChange} className={`py-2 pl-2 pr-20 w-[280px] rounded-lg bg-transparent border-x border-y border-gray-500 ${sidenavType === 'dark' ? "border-gray-600" : "border-blue-gray-100"}`}></textarea>
+  </div>
+  <div className="pt-3 pl-10 md:mr-10 mt-3">
+    <Button type="submit" onClick={handleSubmit} className={`${sidenavType === 'dark' ? "bg-red-700" : "bg-black"}`}>Add Equipment</Button>
+  </div>
+</form>
 
-            <label htmlFor="modelNumber" className="block text-sm font-medium">Model Number</label>
-            <input type="text" name="model_number" placeholder='Eg : 001' value={equipmentData.model_number} onChange={handleChange} className={`mt-1 block w-full border border-gray-500 rounded-md shadow-sm p-2 placeholder-blue-gray-400 ${sidenavType === 'dark' ? "bg-black" : "bg-white"}`} />
-          </div>
-          <div>
-            <label htmlFor="purchaseDate" className="block text-sm font-medium">Purchase Date (YYYY-MM-DD)</label>
-            <input type="text" name="purchase_date" value={equipmentData.purchase_date} onChange={handleChange} pattern="\d{4}-\d{2}-\d{2}" placeholder="YYYY-MM-DD" className={`mt-1 block w-full border border-gray-500 rounded-md shadow-sm p-2 ${sidenavType === 'dark' ? "bg-black" : "bg-white"}`} />
-          </div>
-          <div>
-            <label htmlFor="purchasePrice" className="block text-sm font-medium">Purchase Price</label>
-            <input type="number" name="purchase_price" value={equipmentData.purchase_price} onChange={handleChange} className={`mt-1 block w-full border border-gray-500 rounded-md shadow-sm p-2 ${sidenavType === 'dark' ? "bg-black" : "bg-white"}`} step="any" style={{ appearance: "textfield" }} />
-          </div>
-          <div>
-            <label htmlFor="manufacturer" className="block text-sm font-medium ">Manufacturer</label>
-            <input type="text" name="manufacturer" placeholder='Eg : Hitachee' value={equipmentData.manufacturer} onChange={handleChange} className={`mt-1 block w-full border placeholder-blue-gray-400 border-gray-500 rounded-md shadow-sm p-2 ${sidenavType === 'dark' ? "bg-black" : "bg-white"}`} />
-          </div>
-          <div>
-            <label htmlFor="warrantyInformation" className="block text-sm font-medium">Warranty Information</label>
-            <input type="text" name="warranty_information" placeholder='Eg : 6 months' value={equipmentData.warranty_information} onChange={handleChange} className={`mt-1 block w-full border border-gray-500 placeholder-blue-gray-400 rounded-md shadow-sm p-2 ${sidenavType === 'dark' ? "bg-black" : "bg-white"}`} />
-          </div>
-          <div>
-            <label htmlFor="warrantyExpirationDate" className="block text-sm font-medium">Warranty Expiration Date (YYYY-MM-DD)</label>
-            <input type="text" name="warranty_expiration_date" value={equipmentData.warranty_expiration_date} onChange={handleChange} pattern="\d{4}-\d{2}-\d{2}" placeholder="YYYY-MM-DD" className={`mt-1 block w-full border border-gray-500 rounded-md shadow-sm p-2 ${sidenavType === 'dark' ? "bg-black" : "bg-white"}`} />
-          </div>
-          <div>
-            <label htmlFor="condition" className="block text-sm font-medium">Condition</label>
-            <select name="condition" value={equipmentData.condition} onChange={handleChange} className={`mt-1 block w-full border border-gray-500 rounded-md shadow-sm p-2 ${sidenavType === 'dark' ? "bg-black" : "bg-white"}`}>
-              <option value="">Select Condition</option>
-              <option value="new">New</option>
-              <option value="used">Used</option>
-              <option value="refurbished">Refurbished</option>
-            </select>
-          </div>
-          <div>
-            <label htmlFor="maintenanceCharge" className="block text-sm font-medium">Maintenance Charge</label>
-            <input type="number" name="maintenance_charge" value={equipmentData.maintenance_charge} onChange={handleChange} className={`mt-1 block w-full border border-gray-500 rounded-md shadow-sm p-2 ${sidenavType === 'dark' ? "bg-black" : "bg-white"}`} />
-          </div>
-          <div>
-            <label htmlFor="availability" className="block text-sm font-medium">Availability</label>
-            <input type="checkbox" name="availability" checked={equipmentData.availability} onChange={handleChange} className="mt-1" />
-          </div>
-          <div>
-            <label htmlFor="additionalNotes" className="block text-sm font-medium">Additional Notes</label>
-            <textarea name="additional_notes" value={equipmentData.additional_notes} onChange={handleChange} className={`mt-1 block w-full border border-gray-500 rounded-md shadow-sm p-2 ${sidenavType === 'dark' ? "bg-black" : "bg-white"}`}></textarea>
-          </div>
-          <Button type="submit" className={`inline-flex justify-center py-3 px-2 shadow-sm text-sm font-medium rounded-md ${sidenavType === 'dark' ? "bg-red-700" : "bg-black"}`}>
-            Add Equipment
-          </Button>
-        </form>
       </div>
       </>
 
@@ -234,8 +234,8 @@ export default function GymEquipments() {
                           } rounded-lg overflow-hidden my-2 mx-4`}
                       >
                         <Card className={`w-full ${sidenavType === 'dark' ? "bg-black" : "bg-white"}`}>
-                          <CardHeader floated={false} className="h-48">
-                            <img src={equipment.image} alt="equipment" className="w-full h-full object-cover duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110" />
+                          <CardHeader floated={false} className="h-64">
+                            <img src={equipment.image} alt="equipment" className="w-full h-full object-contain duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110" />
                           </CardHeader>
                           <CardBody className="text-center">
                             <Typography variant="h5" color={sidenavType === 'dark' ? "white" : "blue-gray"} className="mb-2">

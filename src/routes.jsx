@@ -9,8 +9,10 @@ import {
 import { FaDumbbell } from "react-icons/fa";
 import { HiUserCircle } from "react-icons/hi";
 import { FaUsers } from "react-icons/fa";
+import { FaClipboardList } from "react-icons/fa";
+import { FaUserTie } from "react-icons/fa";
 import {Home} from './pages/Owner/dashboard/Home';
-import {Profile} from './pages/User/profile';
+import {Profile} from './pages/User/UserProfile';
 import {MembersList} from './pages/Owner/dashboard/MembersList'
 import GymEquipments from './pages/Owner/dashboard/GymEquipments';
 // import {Tables} from './pages/Owner/dashboard/tables';
@@ -39,7 +41,7 @@ export const routes = [
         element: <Home />,
       },
       {
-        icon: <UserPlusIcon {...icon} />,
+        icon: <FaClipboardList {...icon} />,
         name: 'Attendance List',
         path: '/AttendanceList',
         element: <AttendanceList />,
@@ -63,14 +65,14 @@ export const routes = [
         element: <AddMember />,
       },
       {
-        icon: <UserPlusIcon {...icon} />,
+        icon: <FaUserTie {...icon} />,
         name: 'All Staffs',
         path: '/AllStaffs',
         element: <AllStaffs />,
       },
       {
         icon: <HiUserCircle {...icon} />,
-        name: 'Member Profile',
+        name: 'User Profile',
         path: '/profile',
         element: <Profile />,
       },

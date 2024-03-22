@@ -67,7 +67,7 @@ export default function Equipments() {
     return (
         <div className='min-h-screen bg-black '>
             <Navbar bgColor="bg-black" />
-            <h1 className="text-4xl font-bold text-white text-center pt-32 " data-aos="fade-down"> Equipments</h1>
+            <h1 className="text-4xl font-poppins text-white text-center pt-32 " data-aos="fade-down"> Equipments</h1>
             <div className="flex flex-wrap justify-between items-center my-4">
 
                 <div className="flex-1 mx-4">
@@ -89,7 +89,7 @@ export default function Equipments() {
                     </div>
                 </div>
                 <div className="flex items-center mr-2 space-x-2" data-aos="fade-left">
-                    <span className="text-white">Sort by:</span>
+                    <span className="text-white font-poppins">Sort by:</span>
                     <button
                         className="px-3 py-1 border border-red-500 text-white hover:bg-red-500 hover:text-white rounded-md focus:outline-none"
                     >
@@ -104,28 +104,31 @@ export default function Equipments() {
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 lg:m-3 xl:grid-cols-6 gap-3 p-2 mt-8" data-aos="fade-up">
                 {equipments.map((equipment) => (
-                    <motion.div key={equipment.id}
+                    <motion.div
+                        key={equipment.id}
                         initial={{ opacity: 0, scale: 0.8 }}
                         animate={{ opacity: 1, scale: 1 }}
                         whileHover={{ scale: 1.1 }}
-                        transition={{ duration: 0.5, delay: equipment.id * 0.1, type: "spring", stiffness: 400, damping: 10 }}
-                        className="block rounded-md bg-white dark:bg-neutral-600 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:text-red-400 shadow-lg">
-                        <div className="relative overflow-hidden bg-cover bg-no-repeat object-cover h-48">
+                        transition={{ duration: 0.1, type: "tween", stiffness: 200, damping: 10 }}
+                        className="block rounded-md bg-white dark:bg-neutral-600 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:text-red-400 shadow-lg"
+                    >
+                        <div className="relative overflow-hidden bg-cover bg-no-repeat h-48">
                             <img
-                                className="rounded-t-md h-full w-full transition duration-200 ease-in-out"
+                                className="rounded-t-md h-full w-full transition duration-200 ease-in-out object-contain "
                                 src={equipment.img}
-                                alt={equipment.title} />
+                                alt={equipment.title}
+                            />
                         </div>
                         <div className="p-2">
-                            <h5
-                                className="mb-1 text-sm font-medium leading-tight text-neutral-800 dark:text-neutral-50 transition duration-200 ease-in-out">
+                            <h5 className="mb-1 text-lg leading-tight text-neutral-800 dark:text-neutral-50 transition duration-200 ease-in-out font-poppins">
                                 {equipment.title}
                             </h5>
-                            <p className="text-xs text-neutral-500 dark:text-neutral-300 transition duration-200 ease-in-out">
+                            <p className="text-xs text-neutral-500 dark:text-neutral-300 transition duration-200 ease-in-out font-poppins">
                                 {equipment.description}
                             </p>
                         </div>
                     </motion.div>
+
                 ))}
             </div>
         </div>
