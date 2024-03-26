@@ -3,35 +3,40 @@ import axios from "axios";
 const instance = axios.create({
   //  baseURL: 'https://achujozef.pythonanywhere.com',
   baseURL: 'http://127.0.0.1:8000',
+  headers:{
+    'Authorization':localStorage.getItem('userAccessToken')? 'Bearer '+localStorage.getItem('userAccessToken'):null,    'Content-Type':'application/json',
+    'Content-Type':'multipart/form-data',
+    'Accept':'application/json'
+  }
 });
 
 // Function to set headers dynamically
-function setHeaders(isFormData = false, hasFile = false) {
-  if (hasFile) {
-    return {
-      'Authorization':localStorage.getItem('userAccessToken')? 'Bearer '+localStorage.getItem('userAccessToken'):null,
-      'Content-Type':'application/json',
-      'Accept': 'application/json',
-    };
-  } else {
-    return {
-      'Authorization':localStorage.getItem('userAccessToken')? 'Bearer '+localStorage.getItem('userAccessToken'):null,
-      'Content-Type': isFormData ? 'multipart/form-data' : 'application/json',
-      'Accept': 'application/json',
-    };
-  }
-}
+// function setHeaders(isFormData = false, hasFile = false) {
+//   if (hasFile) {
+//     return {
+//       'Authorization':localStorage.getItem('userAccessToken')? 'Bearer '+localStorage.getItem('userAccessToken'):null,
+//       'Content-Type':'application/json',
+//       'Accept': 'application/json',
+//     };
+//   } else {
+//     return {
+//       'Authorization':localStorage.getItem('userAccessToken')? 'Bearer '+localStorage.getItem('userAccessToken'):null,
+//       'Content-Type': isFormData ? 'multipart/form-data' : 'application/json',
+//       'Accept': 'application/json',
+//     };
+//   }
+// }
 
-instance.interceptors.request.use(
-  (config) => {
-    // Check if the request contains a file
-    const isFormData = config.data instanceof FormData;
-    const hasFile = isFormData && Array.from(config.data.values()).some(value => value instanceof File);
-    config.headers = setHeaders(isFormData, hasFile);
-    return config;
-  },
-  (error) => Promise.reject(error)
-);
+// instance.interceptors.request.use(
+//   (config) => {
+//     // Check if the request contains a file
+//     const isFormData = config.data instanceof FormData;
+//     const hasFile = isFormData && Array.from(config.data.values()).some(value => value instanceof File);
+//     config.headers = setHeaders(isFormData, hasFile);
+//     return config;
+//   },
+//   (error) => Promise.reject(error)
+// );
 
 instance.interceptors.response.use(
 
@@ -44,9 +49,11 @@ instance.interceptors.response.use(
       try {
         const response = await axios.post('http://localhost:8000/api/token/refresh/', {
           refresh : localStorage.getItem('userRefreshToken'),
-        }, {
-          headers: setHeaders(),
-        });
+        }, 
+        // {
+        //   headers: setHeaders(),
+        // }
+        );
         const newAccessToken = response.data.access;
         localStorage.setItem('userAccessToken', newAccessToken);
         originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;

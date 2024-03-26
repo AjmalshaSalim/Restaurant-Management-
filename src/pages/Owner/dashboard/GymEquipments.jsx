@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import ReactPaginate from 'react-paginate';
 import { MdEdit, MdDelete } from "react-icons/md";
 import { List_Equipments } from '../../../actions/EquipmentsActions';
@@ -7,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FaDumbbell } from "react-icons/fa";
+import {ADD_Equipments} from '../../../actions/EquipmentsActions'
 import {
   useMaterialTailwindController
 } from "../../../context/index";
@@ -90,26 +90,25 @@ export default function GymEquipments() {
 
     const handleSubmit = async (e) => {
       e.preventDefault();
-      console.log('FormData:', equipmentData); //
+    
       const formData = new FormData();
-      Object.entries(equipmentData).forEach(([key, value]) => {
-        formData.append(key, value);
-      });
-
+      for (const key in equipmentData) {
+        formData.append(key, equipmentData[key]);
+      }
+    
       try {
-        const response = await axios.post('http://127.0.0.1:8000/api/add-equipment/', formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
+        formData.forEach((value, key) => {
+          console.log(key, value);
         });
-
+    
+        const response = await ADD_Equipments(equipmentData);
         console.log(response.data);
-        toast("Added")
-        navigate('/dashboard/gym-equipments')
+        toast("Added");
+        navigate('/dashboard/gym-equipments');
       } catch (error) {
         console.error('Error adding product:', error);
       }
-    }
+    };
 
     return (
       <>

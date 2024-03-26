@@ -21,7 +21,8 @@ import PublicRoutes from "../utils/PublicRoutes";
 import ProtectedRoutes from "../utils/ProtectedRoutes";
 import store from '../store';
 import { Provider } from 'react-redux'; 
-
+import AOS from "aos";
+import "aos/dist/aos.css";
 const MainRoutes = () => {
   const [showRoutes, setShowRoutes] = useState(false);
 
@@ -34,7 +35,15 @@ const MainRoutes = () => {
       clearTimeout(timer);
     };
   }, []);
-
+  useEffect(() => {
+    AOS.init({
+      offset: 100,
+      duration: 1200,
+      easing: "ease-in",
+      delay: 100,
+    });
+    AOS.refresh();
+  }, []);
   return showRoutes ? (
     <Provider store={store}>
       <PhoneNumberProvider>
@@ -50,7 +59,10 @@ const MainRoutes = () => {
             <Route path="/OwnerForgetpassword" element={<OwnerForgetpassword />} />
             <Route path="/OwnerOtp" element={<OwnerOtp />} />
             <Route path="/OwnerChangepassword" element={<OwnerChangepassword />} />
-
+            <Route path="/auth/" element={<Auth/>}/>
+            <Route path="/Otp/" element={<Otp />} />
+            <Route path="/changepassword/" element={<Changepassword />} />
+            <Route path="/Forgotpassword/" element={<Forgetpassword />} />
           </Route>
 
 {/* Private Routes */}
@@ -60,16 +72,10 @@ const MainRoutes = () => {
 
 {/*ithrem sadhanathine onnum chaiyyallee plzzz  */}
             <Route path="/dashboard/*" element={<Dashboard />} />
-            <Route path="/home" element={<Homepage />} />
+            {/* <Route path="/home" element={<Homepage />} /> */}
             <Route path="*" element={<Navigate to="/dashboard/home" replace />} />
 {/*  */}
-
-
-            <Route path="/auth/" element={<Auth/>}/>
-            <Route path="/home" element={<Homepage/> } />
-            <Route path="/Forgotpassword/" element={<Forgetpassword />} />
-            <Route path="/Otp/" element={<Otp />} />
-            <Route path="/changepassword/" element={<Changepassword />} />
+            <Route path="/home123" element={<Homepage/> } />
             <Route path="/equipments/" element={<Equipments />} />
             <Route path="/MembersList/" element={<OwnerUserList/>} />
             <Route path="/AddMember/" element={<AddMember />} />
