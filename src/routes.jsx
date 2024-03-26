@@ -26,6 +26,7 @@ import {AddMember} from './pages/Owner/dashboard/AddMember'
 import {AttendanceList} from './pages/Owner/dashboard/AttendanceList'
 import {AddEnquiries} from './pages/Owner/dashboard/AddEnquiries'
 import {AllStaffs} from './pages/Owner/dashboard/AllStaffs'
+import {CreateSlots} from './pages/Owner/dashboard/CreateSlots'
 const icon = {
   className: 'w-5 h-5 text-inherit',
 };
@@ -75,6 +76,12 @@ export const routes = [
         name: 'User Profile',
         path: '/profile',
         element: <Profile />,
+      },
+      {
+        icon: <HiUserCircle {...icon} />,
+        name: 'Create Slots',
+        path: '/CreateSlots',
+        element: <CreateSlots />,
       },
       {
         icon: <FaDumbbell {...icon} />,
