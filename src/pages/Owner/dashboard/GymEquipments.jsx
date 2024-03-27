@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import ReactPaginate from 'react-paginate';
 import { MdEdit, MdDelete } from "react-icons/md";
-import { List_Equipments, ADD_Equipments } from '../../../actions/EquipmentsActions';
+import { List_Equipments, ADD_Equipments,Edit_Equipments,Delete_Equipments } from '../../../actions/EquipmentsActions';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -28,8 +27,10 @@ export default function GymEquipments() {
   const [controller, dispatch] = useMaterialTailwindController();
   const { sidenavType } = controller;
   const [showAddEquipmentForm, setShowAddEquipmentForm] = useState(false);
+  const [showEditEquipmentForm, setShowEditEquipmentForm] = useState(false);
   const [equipments, setEquipments] = useState([]);
   const [pageNumber, setPageNumber] = useState(0);
+  // const [editing,setEditing]=useState({})
   const equipmentsPerPage = 6;
   const pagesVisited = pageNumber * equipmentsPerPage;
 
@@ -54,7 +55,27 @@ export default function GymEquipments() {
   }
   const handleAddEquipmentFormToggle = () => {
     setShowAddEquipmentForm(prevState => !prevState);
+   
   };
+  const handleEditEquipments=(equipment)=>{
+  //
+setShowEditEquipmentForm(!showEditEquipmentForm)
+// console.log(equipment);
+} 
+const handleEditEquipmentToggle=()=>{
+  setShowEditEquipmentForm(prevState => !prevState);
+}
+const handleDeleteEquipments= async(id)=>{
+try {
+  await Delete_Equipments(id);
+    setEquipments(prevEquipments => prevEquipments.filter(equipment => equipment.id !== id));
+    toast("Equipment deleted successfully");
+} catch (error) {
+  console.error('Failed to delete equipments', error);
+}
+}
+
+
   const AddEquipmentForm = () => {
     const [equipmentData, setEquipmentData] = useState({
       image: null,
@@ -94,25 +115,18 @@ export default function GymEquipments() {
 
     const handleSubmit = async (e) => {
       e.preventDefault();
-
+    
       const formData = new FormData();
-      // Add equipment data fields to formData
-      Object.entries(equipmentData).forEach(([key, value]) => {
-        formData.append(key, value);
-      });
-
+      for (const key in equipmentData) {
+        formData.append(key, equipmentData[key]);
+      }
+    
       try {
-        // Check if image field is set
-        if (!equipmentData.image) {
-          console.error('No image selected');
-          return;
-        }
-
-        const response = await axios.post("https://achujozef.pythonanywhere.com/api/add-equipment/", formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
+        formData.forEach((value, key) => {
+          console.log(key, value);
         });
+    
+        const response = await ADD_Equipments(equipmentData);
         console.log(response.data);
         toast("Added");
         navigate('/dashboard/gym-equipments');
@@ -120,7 +134,6 @@ export default function GymEquipments() {
         console.error('Error adding product:', error);
       }
     };
-
 
     return (
       <>
@@ -207,12 +220,168 @@ export default function GymEquipments() {
 
     );
   }
+  const EditEquipmentForm = ({equipments}) => {
+    const [equipmentData, setEquipmentData] = useState({
+      image: null,
+      name: '',
+      category: '',
+      model_number: '',
+      purchase_date: '',
+      manufacturer: '',
+      purchase_price: 0,
+      warranty_information: '',
+      warranty_expiration_date: '',
+      condition: '',
+      maintenance_charge: 0,
+      availability: false,
+      additional_notes: '',
+    });
+
+  
+    const handleChange = (e) => {
+      const { name, value, type, checked } = e.target;
+      setEquipmentData(prevState => ({
+        ...prevState,
+        [name]: type === 'checkbox' ? checked : value,
+      }));
+    };
+
+    const handlePhotoChange = (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        setEquipmentData(prevState => ({
+          ...prevState,
+          image: file,
+        }));
+      } else {
+        console.error('No file selected');
+      }
+    };
+
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+    console.log(equipments);
+      const formData = new FormData();
+      // // Add equipment data fields to formData
+      // Object.entries(equipmentData).forEach(([key, value]) => {
+      //   formData.append(key, value);
+      // });
+    
+      // // Append file to formData
+      formData.append('image', equipmentData.image);
+    
+      try {
+        // Check if image field is set
+        if (!equipmentData.image) {
+          console.error('No image selected');
+          return;
+        }
+    
+        const response = await Edit_Equipments(equipmentData.id);
+       
+        console.log(response.data);
+        toast("Added");
+        navigate('/dashboard/gym-equipments');
+      } catch (error) {
+        console.error('Error adding product:', error);
+      }
+    };
+
+    return (
+      <>
+        <div className=" w-full h-[870px] overflow-scroll">
+          <div className='flex flex-row justify-between items-center mt-8 mb-3'>
+            <h1 className={`text-3xl font-extrabold tracking-tight flex-grow ${sidenavType === 'dark' ? "text-white" : "text-black"}`}>Edit Equipments</h1>
+            <Button onClick={handleEditEquipmentToggle} className={` px-4 shadow-sm font-medium py-3 ${sidenavType === 'dark' ? "bg-red-700" : "bg-black"}`}>
+              Back
+            </Button>
+          </div>
+
+          <form onSubmit={handleSubmit} encType="multipart/form-data" className={`grid-cols-1 border-x border-y rounded-lg mb-12 pt-10 pb-10 grid gap-y-5 gap-x-5 pl-16 md:pl-20 lg:grid-cols-2 xl:grid-cols-3 w-full ${sidenavType === 'dark' ? "bg-gray-900 bg-opacity-90 border-gray-800 text-white" : "bg-white text-black"}`}>
+            <div>
+              <Typography variant="small" className="font-medium">Equipment Image</Typography>
+              <input type="file" name="image" id="image" onChange={handlePhotoChange} className="w-[280px] py-2 pl-2 rounded-lg bg-transparent border-x border-y border-gray-500" />
+            </div>
+            <div>
+              <Typography variant="small" className="font-medium">Equipment Name</Typography>
+              <input type="text" name="name" placeholder="Eg : Dumbel" value={equipmentData.name} onChange={handleChange} className={`w-[280px] py-2 pl-2 pr-20 rounded-lg bg-transparent border-x border-y border-gray-500 ${sidenavType === 'dark' ? "border-gray-600" : "border-blue-gray-100"}`} />
+            </div>
+            <div>
+              <Typography variant="small" className="font-medium">Equipment Category</Typography>
+              <select name="category" value={equipmentData.category} onChange={handleChange} className={`w-[280px] py-2 pl-2 pr-20 rounded-lg bg-transparent border-x border-y border-gray-500 ${sidenavType === 'dark' ? "border-gray-600" : "border-blue-gray-100"}`}>
+                <option value="">Select Category</option>
+                <option value="cardio">Cardio</option>
+                <option value="strength">Strength</option>
+                <option value="free_weights">Free Weights</option>
+                <option value="machines">Machines</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div>
+              <Typography variant="small" className="font-medium">Model Number</Typography>
+              <input type="text" name="model_number" placeholder="Eg : 001" value={equipmentData.model_number} onChange={handleChange} className={`w-[280px] py-2 pl-2 pr-20 rounded-lg bg-transparent border-x border-y border-gray-500 ${sidenavType === 'dark' ? "border-gray-600" : "border-blue-gray-100"}`} />
+            </div>
+            <div>
+              <Typography variant="small" className="font-medium">Purchase Date (YYYY-MM-DD)</Typography>
+              <input type="text" name="purchase_date" value={equipmentData.purchase_date} onChange={handleChange} pattern="\d{4}-\d{2}-\d{2}" placeholder="YYYY-MM-DD" className={`w-[280px] py-2 pl-2 pr-20 rounded-lg bg-transparent border-x border-y border-gray-500 ${sidenavType === 'dark' ? "border-gray-600" : "border-blue-gray-100"}`} />
+            </div>
+            <div>
+              <Typography variant="small" className="font-medium">Purchase Price</Typography>
+              <input type="number" name="purchase_price" value={equipmentData.purchase_price} onChange={handleChange} className={`w-[280px] py-2 pl-2 pr-20 rounded-lg bg-transparent border-x border-y border-gray-500 ${sidenavType === 'dark' ? "border-gray-600" : "border-blue-gray-100"}`} step="any" style={{ appearance: "textfield" }} />
+            </div>
+            <div>
+              <Typography variant="small" className="font-medium">Manufacturer</Typography>
+              <input type="text" name="manufacturer" placeholder="Eg : Hitachee" value={equipmentData.manufacturer} onChange={handleChange} className={`w-[280px] py-2 pl-2 pr-20 rounded-lg bg-transparent border-x border-y border-gray-500 ${sidenavType === 'dark' ? "border-gray-600" : "border-blue-gray-100"}`} />
+            </div>
+            <div>
+              <Typography variant="small" className="font-medium">Warranty Information</Typography>
+              <input type="text" name="warranty_information" placeholder="Eg : 6 months" value={equipmentData.warranty_information} onChange={handleChange} className={`w-[280px] py-2 pl-2 pr-20 rounded-lg bg-transparent border-x border-y border-gray-500 ${sidenavType === 'dark' ? "border-gray-600" : "border-blue-gray-100"}`} />
+            </div>
+            <div>
+              <Typography variant="small" className="font-medium">Warranty Expiration Date (YYYY-MM-DD)</Typography>
+              <input type="text" name="warranty_expiration_date" value={equipmentData.warranty_expiration_date} onChange={handleChange} pattern="\d{4}-\d{2}-\d{2}" placeholder="YYYY-MM-DD" className={`w-[280px] py-2 pl-2 pr-20 rounded-lg bg-transparent border-x border-y border-gray-500 ${sidenavType === 'dark' ? "border-gray-600" : "border-blue-gray-100"}`} />
+            </div>
+            <div>
+              <Typography variant="small" className="font-medium">Condition</Typography>
+              <select name="condition" value={equipmentData.condition} onChange={handleChange} className={`py-2 pl-2 pr-20 w-[280px] rounded-lg bg-transparent border-x border-y border-gray-500 ${sidenavType === 'dark' ? "border-gray-600" : "border-blue-gray-100"}`}>
+                <option value="">Select Condition</option>
+                <option value="new">New</option>
+                <option value="used">Used</option>
+                <option value="refurbished">Refurbished</option>
+              </select>
+            </div>
+            <div>
+              <Typography variant="small" className="font-medium">Maintenance Charge</Typography>
+              <input type="number" name="maintenance_charge" value={equipmentData.maintenance_charge} onChange={handleChange} className={`w-[280px] py-2 pl-2 pr-20 rounded-lg bg-transparent border-x border-y border-gray-500 ${sidenavType === 'dark' ? "border-gray-600" : "border-blue-gray-100"}`} />
+            </div>
+            <div>
+              <Typography variant="small" className="font-medium">Availability</Typography>
+              <input type="checkbox" name="availability" checked={equipmentData.availability} onChange={handleChange} className="w-[280px] py-2 pl-2 pr-20 rounded-lg bg-transparent border-x border-y border-gray-500" />
+            </div>
+            <div>
+              <Typography variant="small" className="font-medium">Additional Notes</Typography>
+              <textarea name="additional_notes" value={equipmentData.additional_notes} onChange={handleChange} className={`py-2 pl-2 pr-20 w-[280px] rounded-lg bg-transparent border-x border-y border-gray-500 ${sidenavType === 'dark' ? "border-gray-600" : "border-blue-gray-100"}`}></textarea>
+            </div>
+            <div className="pt-3 pl-10 md:mr-10 mt-3">
+              <Button type="submit" onClick={handleSubmit} className={`${sidenavType === 'dark' ? "bg-red-700" : "bg-black"}`}>Save Changes</Button>
+            </div>
+          </form>
+
+        </div>
+      </>
+
+    );
+  }
+ 
   return (
     <>
       <div className=" w-full h-[920px] overflow-scroll">
         <ToastContainer />
         {showAddEquipmentForm ? (
           <AddEquipmentForm />
+        ) : showEditEquipmentForm ? (
+          <EditEquipmentForm /> 
+  
         ) : (
           <>
             {equipments.length > 0 ?
@@ -238,7 +407,7 @@ export default function GymEquipments() {
                     .slice(pagesVisited, pagesVisited + equipmentsPerPage)
                     .map((equipment, index) => (
                       <div
-                        key={index}
+                        key={equipment.id}
                         className={`relative flex flex-col items-center shadow-lg transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-105 ${sidenavType === 'dark'
                           ? 'bg-gray-800 text-white'
                           : 'bg-white text-gray-900'
@@ -258,12 +427,12 @@ export default function GymEquipments() {
                           </CardBody>
                           <CardFooter className="flex justify-center gap-4 pt-2">
                             <Tooltip content="Edit" className=" border">
-                              <Button className=" bg-green-700 text-black py-1 px-3">
+                              <Button className=" bg-green-700 text-black py-1 px-3" onClick={() => handleEditEquipments(equipment.id)}>
                                 <MdEdit className='text-lg' />
                               </Button>
                             </Tooltip>
                             <Tooltip content="Delete" className=" border">
-                              <Button className=" bg-red-700 text-black py-1 px-3">
+                              <Button onClick={() => handleDeleteEquipments(equipment.id)} className=" bg-red-700 text-black py-1 px-3">
                                 <MdDelete className='text-lg' />
                               </Button>
                             </Tooltip>
@@ -322,3 +491,8 @@ export default function GymEquipments() {
     </>
   );
 }
+
+
+
+
+

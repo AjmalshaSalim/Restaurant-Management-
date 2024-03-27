@@ -36,7 +36,7 @@ const Hero = () => {
   return (
     <>
       <div className="min-h-screen bg-black flex justify-center items-center text-white relative">
-        <div className="absolute top-0 left-0 w-full h-full bg-cover bg-center shadow-xl shadow-gray-800" style={{
+        <div className="absolute top-0 left-0 w-full h-full bg-cover bg-center shadow-xl shadow-gray-600" style={{
           backgroundImage: `linear-gradient(to right, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(${require("../../assets/images/hero-bg.jpg")})`,
         }}></div>
 

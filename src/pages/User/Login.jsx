@@ -4,10 +4,11 @@ import logo from '../../assets/images/Gymsoft_Logo1-removebg-preview.png';
 import { Link } from 'react-router-dom';
 import { DemoAction1 } from './../../actions/DemoActions';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 function Login() {
     const [formData, setFormData] = useState({ username: '', password: '' });
     const navigate = useNavigate();
-
+    const dispatch = useDispatch();
     const handleChange = (e) => {
         setFormData({
             ...formData,
@@ -18,8 +19,8 @@ function Login() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await DemoAction1(formData)
-            if (response) {
+            const response = await DemoAction1(formData,dispatch)
+            if (response.access) {
                 navigate('/home')
             } else {
                 navigate('/login')
@@ -78,7 +79,7 @@ function Login() {
                                 className="block w-full px-4 py-2 mt-2 text-white bg-transparent border rounded-md focus:border-red-purple-400 focus:ring-red-300 focus:outline-none focus:ring focus:ring-opacity-40 hover:transform hover:scale-105 transition-transform duration-500 ease-in-out"
                             />
                         </div>
-                        <Link to='/forgotpassword'>
+                        <Link to='/UserForgotpassword'>
                             <button className='text-base text-blue-600 hover:underline'>  Forgot Password?</button>
                         </Link>
 
