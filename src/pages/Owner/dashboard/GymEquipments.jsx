@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ReactPaginate from 'react-paginate';
 import { MdEdit, MdDelete } from "react-icons/md";
-import { List_Equipments, ADD_Equipments } from '../../../actions/EquipmentsActions';
+import { List_Equipments} from '../../../actions/EquipmentsActions';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
