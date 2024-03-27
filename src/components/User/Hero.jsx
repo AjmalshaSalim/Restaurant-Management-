@@ -1,15 +1,38 @@
+import { QrScanner } from "react-qrcode-scanner";
+import { IoIosCloseCircleOutline } from "react-icons/io";
 import React, { useState } from "react";
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import { MdOutlineQrCodeScanner } from "react-icons/md";
+import { Tooltip } from "@material-tailwind/react";
 // QR Code Scanner
 
 
 const Hero = () => {
+  const [qrData, setQrData] = useState('');
+  const [isCameraOpen, setIsCameraOpen] = useState(false);
   const [percentage, setPercentage] = useState(50);
-  const ScanQrHandleClick = (() => {
-    alert('open Qr Scanner')
-  })
+  const handleScan = (data) => {
+    if (data) {
+      setQrData(data);
+      console.log("QR Code Data >>>>>",data);
+    }
+  };
+
+  const handleError = (err) => {
+    console.error(err);
+  };
+
+  const openCamera = () => {
+    setIsCameraOpen(true);
+  };
+
+  const closeCamera = () => {
+    // setIsCameraOpen(false);
+    // setQrData('');
+    window.location.reload()
+  };
+
   return (
     <>
       <div className="min-h-screen bg-black flex justify-center items-center text-white relative">
@@ -32,9 +55,9 @@ const Hero = () => {
               <p data-aos="fade-up"
                 data-aos-once="true" className="text-lg" >Motivates users with benefits and positive reinforcement and offer modifications and progress tracking</p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-12 md:pt-0" >
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-12 md:pt-0" data-aos="fade-up" data-aos-anchor-placement="bottom-bottom">
               {/* Finished Workouts */}
-              <div className="bg-black bg-opacity-50 p-4 rounded-lg shadow-lg" data-aos="fade-left" data-aos-anchor-placement="bottom-bottom">
+              <div className="bg-black bg-opacity-50 p-4 rounded-lg shadow-lg" data-aos="fade-up" data-aos-anchor-placement="bottom-bottom">
                 <h2 className="text-xl font-semibold mb-2 text-center md:text-left">Completed Workouts</h2>
                 <p className="text-4xl font-bold text-center md:text-left">12</p>
                 <p className="text-sm text-gray-400 text-center md:text-left">Workouts</p>
@@ -46,7 +69,7 @@ const Hero = () => {
                 <p className="text-sm text-gray-400 text-center md:text-left">Workouts</p>
               </div>
               {/* Your Progress */}
-              <div className="bg-black bg-opacity-50 p-2 rounded-lg shadow-lg flex flex-col items-center justify-center" data-aos="fade-right" data-aos-anchor-placement="bottom-bottom">
+              <div className="bg-black bg-opacity-50 p-2 rounded-lg shadow-lg flex flex-col items-center justify-center" data-aos="fade-up" data-aos-anchor-placement="bottom-bottom">
                 <h2 className="text-xl font-semibold mb-2 text-center">Your Progress</h2>
                 <p className="text-lg pb-2 text-center">Weight Gain</p>
                 <div style={{ width: '60%', height: '60%' }} className="flex items-center justify-center pt-4 sm:pt-4">
@@ -64,10 +87,29 @@ const Hero = () => {
                   }} />
                 </div>
               </div>
-              <div data-aos="fade-up" className=" bg-red-900 h-20 w-30 rounded-lg text-center bg-opacity-60 cursor-pointer" onClick={ScanQrHandleClick}>
-                <MdOutlineQrCodeScanner className=" w-10 h-10 mx-auto mt-2 " />
+              <div className=" bg-red-900 hover:bg-opacity-70 h-20 w-30 rounded-lg text-center bg-opacity-60" onClick={openCamera}>
+                <MdOutlineQrCodeScanner className=" w-10 h-10 mx-auto mt-2" />
                 <h3 className=" mt-1">Add Attendance</h3>
               </div>
+              {isCameraOpen && (
+        <div className="qr-reader-container md:w-[40%] md:absolute md:left-[35%] md:top-[10%] w-full z-2 fixed border-x border-y border-5 rounded-lg border-gray-900 bg-gray-900 text-center">
+          {/* Render close button */}
+          <h1 className=" py-2 font-extralight text-light-green-400">Scan QR To Add Attendance</h1>
+          <Tooltip content="Close" className=" border text-xs">
+          <button className="close-button absolute right-2 top-2 z-3" onClick={closeCamera}>
+            <IoIosCloseCircleOutline className=" w-7 h-7 text-red-700" />
+          </button>
+          </Tooltip>
+          {/* Render QR code scanner */}
+          <QrScanner
+            delay={300}
+            onError={handleError}
+            onScan={handleScan}
+            style={{ width: '100%' }}
+          />
+        </div>
+      )}
+
             </div>
           </div>
         </div>
