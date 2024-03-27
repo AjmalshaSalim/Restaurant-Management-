@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Route, Routes, Navigate} from "react-router-dom"; 
+import { Route, Routes, Navigate } from "react-router-dom";
 import { Dashboard } from "../layouts/dashboard";
 import { Auth } from "../layouts/auth";
 import Login from "../pages/User/Login";
-import { lazy, Suspense } from "react";
+// import { lazy, Suspense } from "react";
 import Forgetpassword from "../pages/User/Forgetpassword";
 import Changepassword from "../pages/User/Changepassword";
 import Otp from "../pages/User/Otp";
@@ -16,13 +16,22 @@ import OwnerForgetpassword from "../pages/Owner/auth/Forgot-pw";
 import OwnerOtp from "../pages/Owner/auth/Otp";
 import OwnerChangepassword from "../pages/Owner/auth/Reset-pw";
 import OwnerUserList from "../pages/Owner/dashboard/MembersList";
+import EditEquipments from '../components/Owner/EditEquipments'
 import { PhoneNumberProvider } from "../context/phoneNumberContext";
 import PublicRoutes from "../utils/PublicRoutes";
 import ProtectedRoutes from "../utils/ProtectedRoutes";
 import store from '../store';
+<<<<<<< HEAD
+import { Provider } from 'react-redux';
+import SlotBooking from "../components/User/SlotBooking";
+import AOS from "aos";
+import "aos/dist/aos.css";
+
+=======
 import { Provider } from 'react-redux'; 
 import AOS from "aos";
 import "aos/dist/aos.css";
+>>>>>>> upstream/main
 const MainRoutes = () => {
   const [showRoutes, setShowRoutes] = useState(false);
 
@@ -43,16 +52,34 @@ const MainRoutes = () => {
       delay: 100,
     });
     AOS.refresh();
+<<<<<<< HEAD
+  }, []);
+
+
+=======
   }, []);
+>>>>>>> upstream/main
   return showRoutes ? (
     <Provider store={store}>
       <PhoneNumberProvider>
         <div>
           <Routes>
 
-{/* Public Routes */}
-          <Route element={<PublicRoutes />}>
+            {/* Public Routes */}
+            <Route element={<PublicRoutes />}>
 
+<<<<<<< HEAD
+              <Route path="/login/" element={<Login />} />
+              <Route path="/Ownerlogin" element={<OwnerLogin />} />
+              <Route path="/OwnerRegister" element={<OwnerRegister />} />
+              <Route path="/OwnerForgetpassword" element={<OwnerForgetpassword />} />
+              <Route path="/OwnerOtp" element={<OwnerOtp />} />
+              <Route path="/OwnerChangepassword" element={<OwnerChangepassword />} />
+
+            </Route>
+            <Route path="/home" element={<Homepage />} />
+            {/* Private Routes */}
+=======
             <Route path="/login/" element={<Login />} />
             <Route path="/Ownerlogin" element={<OwnerLogin />} />
             <Route path="/OwnerRegister" element={<OwnerRegister />} />
@@ -66,10 +93,31 @@ const MainRoutes = () => {
           </Route>
 
 {/* Private Routes */}
+>>>>>>> upstream/main
 
             <Route element={<ProtectedRoutes />}>
 
 
+<<<<<<< HEAD
+              {/*ithrem sadhanathine onnum chaiyyallee plzzz  */}
+              <Route path="/dashboard/*" element={<Dashboard />} />
+
+              <Route path="*" element={<Navigate to="/dashboard/home" replace />} />
+              {/*  */}
+
+
+              <Route path="/auth/" element={<Auth />} />
+              <Route path="/home" element={<Homepage />} />
+              <Route path="/UserForgotpassword/" element={<Forgetpassword />} />
+              <Route path="/Otp/" element={<Otp />} />
+              <Route path="/changepassword/" element={<Changepassword />} />
+              <Route path="/equipments/" element={<Equipments />} />
+              <Route path="/MembersList/" element={<OwnerUserList />} />
+              <Route path="/AddMember/" element={<AddMember />} />
+              <Route path="/slot-booking/" element={<SlotBooking />} />
+
+
+=======
 {/*ithrem sadhanathine onnum chaiyyallee plzzz  */}
             <Route path="/dashboard/*" element={<Dashboard />} />
             {/* <Route path="/home" element={<Homepage />} /> */}
@@ -79,6 +127,7 @@ const MainRoutes = () => {
             <Route path="/equipments/" element={<Equipments />} />
             <Route path="/MembersList/" element={<OwnerUserList/>} />
             <Route path="/AddMember/" element={<AddMember />} />
+>>>>>>> upstream/main
 
             </Route>
           </Routes>
