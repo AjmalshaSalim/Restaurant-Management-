@@ -1,6 +1,6 @@
 import { QrScanner } from "react-qrcode-scanner";
 import { IoIosCloseCircleOutline } from "react-icons/io";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import { MdOutlineQrCodeScanner } from "react-icons/md";
@@ -15,7 +15,8 @@ const Hero = () => {
   const handleScan = (data) => {
     if (data) {
       setQrData(data);
-      console.log("QR Code Data >>>>>",data);
+      localStorage.setItem('qrData', data); // Add QR data to localStorage
+      window.location.reload(); // Reload the page
     }
   };
 
@@ -28,10 +29,27 @@ const Hero = () => {
   };
 
   const closeCamera = () => {
-    // setIsCameraOpen(false);
-    // setQrData('');
-    window.location.reload()
+    setIsCameraOpen(false); // Close camera forcefully
+    setQrData('');
   };
+
+  useEffect(() => {
+    if (qrData) {
+      closeCamera();
+    }
+  }, [qrData]);
+
+  useEffect(() => {
+    const handleUnload = () => {
+      closeCamera(); // Close camera when the component unloads
+    };
+
+    window.addEventListener('beforeunload', handleUnload);
+
+    return () => {
+      window.removeEventListener('beforeunload', handleUnload);
+    };
+  }, []);
 
   return (
     <>
