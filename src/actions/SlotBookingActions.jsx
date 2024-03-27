@@ -1,3 +1,4 @@
+import ErrorPage from '../components/Owner/ErrorPage';
 import axios from '../axios';
 import { API_URLS } from '../constants/config';
 
@@ -43,3 +44,15 @@ export const Cancel_Bookings = async id => {
         throw error;
     }
 }
+
+export const Create_Slot = async (data )=> {
+    console.log(data);
+    try {
+        const response = await axios.post(API_URLS.CREATE_SLOT,data);
+        return response.data;
+    } catch (error) {
+        <ErrorPage error={error.message} />
+        console.error('Error while creating slot:', error);
+        throw error;
+    }
+};
