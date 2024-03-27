@@ -18,7 +18,7 @@ export const ADD_Equipments = async data => {
 
   };
 
-  export const List_Equipments=async data =>{
+  export const List_Equipments = async data =>{
   try {
     const response=await axios.get(API_URLS.LIST_EQUIPMENTS)
     return response.data
@@ -28,7 +28,7 @@ export const ADD_Equipments = async data => {
   }
   }
 
-  export const Edit_Equipments=async data =>{
+  export const Edit_Equipments= async data =>{
     try {
       // const response = await axios.delete(`${API_URLS.CANCEL_BOOKINGS}${id}`)
       const response =await axios.put(`${API_URLS.EDIT_EQUIPMENTS}${data}`)

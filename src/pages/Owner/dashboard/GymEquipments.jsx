@@ -6,7 +6,6 @@ import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FaDumbbell } from "react-icons/fa";
-
 import {
   useMaterialTailwindController
 } from "../../../context/index";
@@ -118,23 +117,16 @@ try {
       e.preventDefault();
     
       const formData = new FormData();
-      // // Add equipment data fields to formData
-      // Object.entries(equipmentData).forEach(([key, value]) => {
-      //   formData.append(key, value);
-      // });
-    
-      // // Append file to formData
-      formData.append('image', equipmentData.image);
+      for (const key in equipmentData) {
+        formData.append(key, equipmentData[key]);
+      }
     
       try {
-        // Check if image field is set
-        if (!equipmentData.image) {
-          console.error('No image selected');
-          return;
-        }
+        formData.forEach((value, key) => {
+          console.log(key, value);
+        });
     
         const response = await ADD_Equipments(equipmentData);
-       
         console.log(response.data);
         toast("Added");
         navigate('/dashboard/gym-equipments');
@@ -142,11 +134,10 @@ try {
         console.error('Error adding product:', error);
       }
     };
-    
 
     return (
       <>
-        <div className=" w-full h-[870px] overflow-scroll">
+        <div className=" w-full h-[920px] overflow-scroll">
           <div className='flex flex-row justify-between items-center mt-8 mb-3'>
             <h1 className={`text-3xl font-extrabold tracking-tight flex-grow ${sidenavType === 'dark' ? "text-white" : "text-black"}`}>Add Equipments</h1>
             <Button onClick={handleAddEquipmentFormToggle} className={` px-4 shadow-sm font-medium py-3 ${sidenavType === 'dark' ? "bg-red-700" : "bg-black"}`}>
@@ -384,7 +375,7 @@ try {
  
   return (
     <>
-      <div className=" w-full h-[870px] overflow-scroll">
+      <div className=" w-full h-[920px] overflow-scroll">
         <ToastContainer />
         {showAddEquipmentForm ? (
           <AddEquipmentForm />

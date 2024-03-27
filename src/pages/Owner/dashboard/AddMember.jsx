@@ -104,7 +104,7 @@ export function AddMember() {
   }, [])
   return (
     <>
-      <div className=" w-full h-[870px] overflow-hidden">
+      <div className=" w-full h-[920px] overflow-hidden">
         <Card className={`mt-10 ml mb-6  w-full  ${sidenavType === 'dark' ? "bg-gray-900 bg-opacity-90 border-x border-y border-gray-800" : "bg-white border border-blue-gray-100"}`}
           data-aos="fade-up"
           data-aos-duration="700">
@@ -231,7 +231,7 @@ export function AddMember() {
                 />
               </div>
 
-              <div className="pr-2">
+              <div className="pr-2 ">
                 <Typography
                   variant="small"
                   color={sidenavType === 'dark' ? "white" : "blue-gray"}
@@ -243,7 +243,7 @@ export function AddMember() {
                   value={userData.gender}
                   onChange={handleChange}
                   name="gender"
-                  className={`py-2 pl-2 rounded-lg bg-transparent border-x border-y w-full ${sidenavType ? " text-gray-400 border-gray-700" : " text-blue-gray-600 border-blue-gray-100"}`}
+                  className={`py-2 pl-2 pr-20 rounded-lg bg-transparent w-[280px] border-x border-y ${sidenavType ? " text-gray-400 border-gray-700" : " text-blue-gray-600 border-blue-gray-100"}`}
                 >
                   <option value="male" className={`${sidenavType === 'dark' ? "bg-black" : "bg-white"}`}>Male</option>
                   <option value="female" className={`${sidenavType === 'dark' ? "bg-black" : "bg-white"}`}>Female</option>
