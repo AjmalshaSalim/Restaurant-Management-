@@ -47,7 +47,7 @@ instance.interceptors.response.use(
     if (error.response.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
       try {
-        const response = await axios.post('http://localhost:8000/api/token/refresh/', {
+        const response = await axios.post('https://achujozef.pythonanywhere.com/api/token/refresh/', {
           refresh : localStorage.getItem('userRefreshToken'),
         }, 
         // {
@@ -57,7 +57,7 @@ instance.interceptors.response.use(
         const newAccessToken = response.data.access;
         localStorage.setItem('userAccessToken', newAccessToken);
         originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
-        return axios(originalRequest); 
+        return axios(originalRequest);
       } catch (refreshError) {
         console.error('Refresh token failed:', refreshError);
         throw refreshError;
