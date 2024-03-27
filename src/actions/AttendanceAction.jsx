@@ -33,3 +33,16 @@ export const List_Attendance = async () => {
       throw error;
     }
   };
+
+
+  export const findUserById = async (data) => {
+    console.log("Search_user_For_Attendance",data);
+    try {
+      const response = await axios.post (API_URLS.Search_user_For_Attendance, data);
+      console.log("Result Search_user_For_Attendance",response.data);
+      return response.data;
+    } catch (error) {
+      console.error ('Adding equipments:', error);
+      throw error;
+    }
+  };

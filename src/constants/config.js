@@ -19,7 +19,7 @@ const Delete_Equipments='/api/delete-equipment/'
 const Filter_Attendance ='/api/search-attendance/'
 const ADD_Attendance ='/api/mark-attendance/'
 const View_Attendance ='/api/attendance/'
-
+const Search_user_For_Attendance ='/api/user-details/'
 
 
 export const API_URLS = {
@@ -42,6 +42,7 @@ export const API_URLS = {
     Filter_Attendance:`${Filter_Attendance}`,
     ADD_Attendance:`${ADD_Attendance}`,
     View_Attendance:`${View_Attendance}`,
+    Search_user_For_Attendance:`${Search_user_For_Attendance}`,
 
 }
 
