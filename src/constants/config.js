@@ -17,6 +17,11 @@ const My_Bookings='/api/my-bookings/'
 const Cancel_Bookings='/api/cancel-booking/'
 const Delete_Equipments='/api/delete-equipment/'
 const Create_Slot='/api/create-slots/'
+const Filter_Attendance ='/api/search-attendance/'
+const ADD_Attendance ='/api/mark-attendance/'
+const View_Attendance ='/api/attendance/'
+const Search_user_For_Attendance ='/api/user-details/'
+
 
 export const API_URLS = {
     LOGIN_API_PATH: `${LOGIN_API_PATH}`,
@@ -35,8 +40,13 @@ export const API_URLS = {
     MY_BOOKINGS:`${My_Bookings}`,
     CANCEL_BOOKINGS:`${Cancel_Bookings}`,
     DELETE_EQUIPMENTS:`${Delete_Equipments}`,
+
     CREATE_SLOT:`${Create_Slot}`
    
+    Filter_Attendance:`${Filter_Attendance}`,
+    ADD_Attendance:`${ADD_Attendance}`,
+    View_Attendance:`${View_Attendance}`,
+    Search_user_For_Attendance:`${Search_user_For_Attendance}`,
 
 }
 
