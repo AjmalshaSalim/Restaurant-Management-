@@ -25,7 +25,7 @@ export function Sidenav({ brandImg, brandName, routes }) {
     <aside
       className={`${sidenavTypes[sidenavType]} ${
         openSidenav ? "translate-x-0" : "-translate-x-80"
-      } absolute inset-0 z-50 my-4 ml-4 max-h-fit w-72 rounded-xl transition-transform duration-300 xl:translate-x-0 ${sidenavType === 'dark'? "bg-opacity-50 border-x border-y border-gray-800" : "border border-opacity-5 "}`}
+      } absolute inset-0 z-50 my-4 ml-4 max-h-fit w-72 rounded-xl transition-transform duration-300 xl:translate-x-0 ${sidenavType === 'dark'? "lg:bg-opacity-50 lg:bg-gray-800 bg-gray-900 border-x border-y border-gray-800" : "border border-opacity-5 "}`}
     
     >
       <div
@@ -47,10 +47,10 @@ export function Sidenav({ brandImg, brandName, routes }) {
           color="white"
           size="sm"
           ripple={false}
-          className="absolute right-0 top-0 grid rounded-br-none rounded-tl-none xl:hidden"
+          className="absolute right-1 top-1 grid rounded-br-none rounded-tl-none xl:hidden bg-gray-800 rounded-full"
           onClick={() => setOpenSidenav(dispatch, false)}
         >
-          <XMarkIcon strokeWidth={2.5} className="h-5 w-5 text-blue-gray-500" />
+          <XMarkIcon strokeWidth={2.5} className="h-5 w-5 text-gray-600" />
         </IconButton>
       </div>
       <div className="m-4">
