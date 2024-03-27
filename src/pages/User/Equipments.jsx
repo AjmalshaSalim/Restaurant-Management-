@@ -11,7 +11,6 @@ export default function Equipments() {
         const fetchEquipments = async () => {
             try {
                 const response = await List_Equipments();
-                console.log(response);
                 setEquipments(response);
             } catch (error) {
                 console.error('Failed to fetch equipments', error);
@@ -33,11 +32,11 @@ export default function Equipments() {
     return (
         <div className='min-h-screen bg-black'>
             <Navbar bgColor="bg-black" />
-            <h1 className="text-4xl font-poppins text-white text-center pt-32" data-aos="fade-down"> Equipments</h1>
-            <div className="flex flex-wrap justify-between items-center my-4">
+            <h1 className="text-4xl font-poppins text-white text-center pt-16 md:pt-32" data-aos="fade-down"> Equipments</h1>
+            <div className="flex flex-wrap justify-center items-center my-4"> {/* Updated justify-center */}
                 <div className="flex-1 mx-4">
-                    <div className="flex justify-center items-center w-full ml-28" data-aos="fade-right">
-                        <div className="flex items-center bg-red-500 text-white rounded-md w-full sm:w-3/4 md:w-1/2 lg:w-1/3">
+                    <div className="flex justify-center items-center w-full" data-aos="fade-right"> {/* Removed ml-28 */}
+                        <div className="flex items-center justify-center bg-red-500 text-white rounded-md w-full sm:w-3/4 md:w-1/2 lg:w-1/3">
                             <input
                                 type="text"
                                 placeholder="Search Equipments..."
@@ -57,7 +56,7 @@ export default function Equipments() {
                 </div>
                 {/* Sort by buttons */}
             </div>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 lg:m-3 xl:grid-cols-6 gap-3 p-2 mt-8" data-aos="fade-up">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 p-2 mt-8"> {/* Updated grid classes */}
                 {filteredEquipments.map((equipment) => (
                     <motion.div
                         key={equipment.id}

@@ -16,6 +16,7 @@ const Book_Slot='/api/book-slot/'
 const My_Bookings='/api/my-bookings/'
 const Cancel_Bookings='/api/cancel-booking/'
 const Delete_Equipments='/api/delete-equipment/'
+const Create_Slot='/api/create-slots/'
 
 export const API_URLS = {
     LOGIN_API_PATH: `${LOGIN_API_PATH}`,
@@ -33,7 +34,8 @@ export const API_URLS = {
     BOOK_SLOT:`${Book_Slot}`,
     MY_BOOKINGS:`${My_Bookings}`,
     CANCEL_BOOKINGS:`${Cancel_Bookings}`,
-    DELETE_EQUIPMENTS:`${Delete_Equipments}`
+    DELETE_EQUIPMENTS:`${Delete_Equipments}`,
+    CREATE_SLOT:`${Create_Slot}`
    
 
 }
