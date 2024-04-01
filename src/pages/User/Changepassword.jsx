@@ -29,14 +29,6 @@ function Forgetpassword() {
             alert('New password and confirm password do not match.');
             return;
         }
-
-        // console.log("formDataformDataformDataformDataformData", formData);
-        // const response = await CHANGE_PASSWORD(formData)
-        // navigate('/login')
-
-        // console.log(formData);
-
-
         try {
             const response = await CHANGE_PASSWORD(formData)
             if (response.success) {

@@ -9,6 +9,7 @@ import {Link} from 'react-router-dom';
 import { OWNER_REGISTER } from '../../../actions/AuthActions';
 import { useNavigate } from 'react-router-dom';
 import {redirect} from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
 
 export function SignUp () {
 
@@ -30,13 +31,16 @@ export function SignUp () {
   const [formData, setFormData] = useState ({
     first_name: '',
     last_name: '',
-    phone_number: '',
+    phone_number: null,
+    email:'',
     password: '',
-    confirmPw: '',
     gym_name: '',
+    address:'',
+    state:'',
     city: '',
-    pincode: '',
-    address: '',
+    branch_count: null,
+    district:'',
+    gym_contact: null
   });
   const handleChange = e => {
     setFormData ({
@@ -52,20 +56,23 @@ export function SignUp () {
     try {
         const response = await OWNER_REGISTER(formData)
 
-        console.log("status>>>>",response.status);
-        if(response.message=== 
-          "Gym owner registered successfully.") {
+        console.log("status>>>>",response);
+        if(response.message === 'Gym owner registered successfully.') {
+          toast.success("Gym owner registered successfully.")
             navigate('/Ownerlogin/')
-        }else{
-          alert("Register Failed")
+           
+        } else {
+          toast.error('Register Failed');
             redirect('/OwnerRegister')
         }
     } catch (error) {
-        console.error('Login error:', error.message);
+      toast.error('Register Failed add all input fields');
+        console.error('Registration error:', error.message);
     }
 }
   return (
     <section className="m-8 flex">
+      <ToastContainer />
       <div
         className="w-2/5 h-full hidden lg:block"
         data-aos="fade-right"
@@ -114,7 +121,6 @@ export function SignUp () {
                 onChange={handleChange}
                 value={formData.first_name}
                 id="first_name"
-                placeholder=""
                 className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
                 labelProps={{
                   className: 'before:content-none after:content-none',
@@ -135,7 +141,6 @@ export function SignUp () {
                 onChange={handleChange}
                 value={formData.last_name}
                 id="last_name"
-                placeholder=""
                 className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
                 labelProps={{
                   className: 'before:content-none after:content-none',
@@ -158,7 +163,6 @@ export function SignUp () {
                 onChange={handleChange}
                 value={formData.phone_number}
                 id="phone_number"
-                placeholder=""
                 className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
                 labelProps={{
                   className: 'before:content-none after:content-none',
@@ -179,7 +183,29 @@ export function SignUp () {
                 onChange={handleChange}
                 value={formData.gym_name}
                 id="gym_name"
-                placeholder=""
+                className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
+                labelProps={{
+                  className: 'before:content-none after:content-none',
+                }}
+              />
+            </div>
+           
+          </div>
+          <div className="flex flex-col md:flex-row md:gap-6 lg:mb-2">
+          <div className="mb-1 flex flex-col flex-grow">
+              <Typography
+                variant="small"
+                color="blue-gray"
+                className=" font-medium"
+              >
+                Email
+              </Typography>
+              <Input
+                size="lg"
+                type="email"
+                onChange={handleChange}
+                value={formData.email}
+                id="email"
                 className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
                 labelProps={{
                   className: 'before:content-none after:content-none',
@@ -202,7 +228,6 @@ export function SignUp () {
                 onChange={handleChange}
                 value={formData.city}
                 id="city"
-                placeholder=""
                 className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
                 labelProps={{
                   className: 'before:content-none after:content-none',
@@ -215,22 +240,41 @@ export function SignUp () {
                 color="blue-gray"
                 className=" font-medium"
               >
-                Pincode
+                District
               </Typography>
               <Input
                 size="lg"
-                type="number"
+                type="string"
                 onChange={handleChange}
-                value={formData.pincode}
-                id="pincode"
-                placeholder=""
+                value={formData.district}
+                id="district"
                 className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
                 labelProps={{
                   className: 'before:content-none after:content-none',
                 }}
               />
             </div>
-          </div>
+            <div className="mb-1 flex flex-col flex-grow">
+              <Typography
+                variant="small"
+                color="blue-gray"
+                className=" font-medium"
+              >
+                State
+              </Typography>
+              <Input
+                size="lg"
+                type="string"
+                onChange={handleChange}
+                value={formData.state}
+                id="state"
+                className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
+                labelProps={{
+                  className: 'before:content-none after:content-none',
+                }}
+              />
+            </div>
+            </div>
           <div className="mb-2 flex flex-col gap-6">
             <Typography
               variant="small"
@@ -245,13 +289,54 @@ export function SignUp () {
               onChange={handleChange}
               value={formData.address}
               id="address"
-              placeholder=""
               className=" !border-t-blue-gray-200 focus:!border-t-gray-900 lg:w-[425px]"
               labelProps={{
                 className: 'before:content-none after:content-none',
               }}
             />
           </div>
+          <div className="flex flex-col md:flex-row md:gap-6 lg:mb-2">
+            <div className="mb-1 flex flex-col flex-grow">
+              <Typography
+                variant="small"
+                color="blue-gray"
+                className=" font-medium"
+              >
+                Number of branches
+              </Typography>
+              <Input
+                size="lg"
+                type="number"
+                onChange={handleChange}
+                value={formData.branch_count}
+                id="branch_count"
+                className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
+                labelProps={{
+                  className: 'before:content-none after:content-none',
+                }}
+              />
+            </div>
+            <div className="mb-1 flex flex-col flex-grow">
+              <Typography
+                variant="small"
+                color="blue-gray"
+                className=" font-medium"
+              >
+                Gym Contact
+              </Typography>
+              <Input
+                size="lg"
+                type="number"
+                onChange={handleChange}
+                value={formData.gym_contact}
+                id="gym_contact"
+                className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
+                labelProps={{
+                  className: 'before:content-none after:content-none',
+                }}
+              />
+            </div>
+            </div>
           <div className="flex flex-col md:flex-row md:gap-6 lg:mb-2">
             <div className="mb-1 mt-1 flex flex-col flex-grow">
               <Typography
@@ -306,8 +391,6 @@ export function SignUp () {
               <Input
                 size="lg"
                 type={showConfirmPassword ? 'text' : 'password'}
-                onChange={handleChange}
-                value={formData.confirmPw}
                 id="confirmPw"
                 placeholder=""
                 className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
@@ -338,3 +421,4 @@ export function SignUp () {
 }
 
 export default SignUp;
+
