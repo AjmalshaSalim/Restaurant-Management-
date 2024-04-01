@@ -59,7 +59,7 @@ const Services = () => {
         <div className="container">
           {/* Heading section  */}
           <div className="text-center mb-16">
-            <h1 className="text-2xl font-medium font-cursive">
+            <h1 className="text-2xl font-medium font-cursive text-gray-300"   data-aos="fade-up">
               Explore Our Program
             </h1>
           </div>
@@ -82,9 +82,8 @@ const Services = () => {
                     />
                   </div>
                 </Link>
-                <div className="p-2 text-center">
-                  <div className="w-full"></div>
-                  <h1 className="text-md text-white font-medium">{service.name}</h1>
+                <div className="p-2 text-center">             
+                  <h1 className="text-md text-gray-500 font-medium">{service.name}</h1>
                 </div>
               </div>
             ))}

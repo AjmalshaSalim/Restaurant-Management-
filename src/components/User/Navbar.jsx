@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import Logo from "../../assets/images/Gymsoft_Logo1-removebg-preview.png";
 import ResponsiveNavbar from "./ResponsiveNavbar.jsx";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { FaBars, FaTimes } from "react-icons/fa";
 
 export const Menu = [
@@ -9,39 +9,32 @@ export const Menu = [
     id: 1,
     name: "Home",
     link: "/home",
-
   },
   {
     id: 2,
     name: "Diet",
     link: "/diet",
-
   },
   {
     id: 3,
     name: "Equipments",
     link: "/equipments",
-
   },
   {
     id: 4,
     name: "Trainers",
-    link: "/community",
-
+    link: "/Trainers",
   },
   {
     id: 5,
-    name: "Profile",
-    link: "/profile",
-
+    name: "Slot-Booking",
+    link: "/slot-booking",
   },
   {
     id: 6,
-    name: "Slot-Booking",
-    link: "/slot-booking",
-
+    name: "Profile",
+    link: "/profile",
   },
-
 ];
 
 const Navbar = () => {
@@ -49,6 +42,7 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const navbarRef = useRef();
   const menuButtonRef = useRef();
+  const location = useLocation();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -94,7 +88,6 @@ const Navbar = () => {
           </button>
         </div>
 
-
         <div className="md:hidden">
           <button onClick={toggleMenu} ref={menuButtonRef}>
             {isMenuOpen ? <FaTimes className="text-2xl" /> : <FaBars className="text-2xl" />}
@@ -116,18 +109,13 @@ const Navbar = () => {
               <li key={menu.id} className="relative group">
                 <Link
                   to={menu.link}
-                  className="text-sm sm:text-base md:text-lg lg:text-base py-2 px-2 hover:text-red-900 transition duration-200 flex items-center gap-2"
+                  className={`text-sm sm:text-base md:text-lg lg:text-base py-2 px-2 transition duration-200  flex items-center gap-2 ${location.pathname === menu.link ? 'text-red-900' : 'text-white'}`}
                 >
-                  <span className="align-middle font-poppins">{menu.name}</span>
-                </Link>
-                {/* third hover effect */}
-                <p className="absolute -bottom-0 left-0 w-full">
-                  <span className="absolute  left-0 w-0 h-1 bg-red-900 transition-all group-hover:w-full"></span>
-                </p>
+                  <span className={`align-middle font-poppins ${location.pathname === menu.link ? 'text-red-900' : 'text-gray-300'} hover:text-red-900`}>{menu.name}</span>
+                </Link>           
               </li>
             ))}
           </ul>
-
         </div>
       </div>
     </nav>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ReactPaginate from 'react-paginate';
 import { MdEdit, MdDelete } from "react-icons/md";
-import { List_Equipments, ADD_Equipments,Edit_Equipments,Delete_Equipments } from '../../../actions/EquipmentsActions';
+import { List_Equipments, ADD_Equipments, Edit_Equipments, Delete_Equipments } from '../../../actions/EquipmentsActions';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -21,6 +21,7 @@ import {
   Button,
 } from '@material-tailwind/react';
 
+
 export default function GymEquipments() {
 
   const navigate = useNavigate();
@@ -30,7 +31,9 @@ export default function GymEquipments() {
   const [showEditEquipmentForm, setShowEditEquipmentForm] = useState(false);
   const [equipments, setEquipments] = useState([]);
   const [pageNumber, setPageNumber] = useState(0);
-  // const [editing,setEditing]=useState({})
+  const [searchQuery, setSearchQuery] = useState('');
+
+
   const equipmentsPerPage = 6;
   const pagesVisited = pageNumber * equipmentsPerPage;
 
@@ -55,25 +58,32 @@ export default function GymEquipments() {
   }
   const handleAddEquipmentFormToggle = () => {
     setShowAddEquipmentForm(prevState => !prevState);
-   
+
   };
-  const handleEditEquipments=(equipment)=>{
-  //
-setShowEditEquipmentForm(!showEditEquipmentForm)
-// console.log(equipment);
-} 
-const handleEditEquipmentToggle=()=>{
-  setShowEditEquipmentForm(prevState => !prevState);
-}
-const handleDeleteEquipments= async(id)=>{
-try {
-  await Delete_Equipments(id);
-    setEquipments(prevEquipments => prevEquipments.filter(equipment => equipment.id !== id));
-    toast("Equipment deleted successfully");
-} catch (error) {
-  console.error('Failed to delete equipments', error);
-}
-}
+  const handleEditEquipments = (equipment) => {
+    //
+    setShowEditEquipmentForm(!showEditEquipmentForm)
+    // console.log(equipment);
+  }
+  const handleEditEquipmentToggle = () => {
+    setShowEditEquipmentForm(prevState => !prevState);
+  }
+  const handleDeleteEquipments = async (id) => {
+    try {
+      await Delete_Equipments(id);
+      setEquipments(prevEquipments => prevEquipments.filter(equipment => equipment.id !== id));
+      toast("Equipment deleted successfully");
+    } catch (error) {
+      console.error('Failed to delete equipments', error);
+    }
+  }
+
+  const filteredEquipments = equipments.filter((equipment) =>
+    equipment.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    equipment.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    equipment.id.toString().includes(searchQuery.toLowerCase())
+  );
+
 
 
   const AddEquipmentForm = () => {
@@ -115,17 +125,17 @@ try {
 
     const handleSubmit = async (e) => {
       e.preventDefault();
-    
+
       const formData = new FormData();
       for (const key in equipmentData) {
         formData.append(key, equipmentData[key]);
       }
-    
+
       try {
         formData.forEach((value, key) => {
           console.log(key, value);
         });
-    
+
         const response = await ADD_Equipments(equipmentData);
         console.log(response.data);
         toast("Added");
@@ -220,7 +230,7 @@ try {
 
     );
   }
-  const EditEquipmentForm = ({equipments}) => {
+  const EditEquipmentForm = ({ equipments }) => {
     const [equipmentData, setEquipmentData] = useState({
       image: null,
       name: '',
@@ -237,7 +247,7 @@ try {
       additional_notes: '',
     });
 
-  
+
     const handleChange = (e) => {
       const { name, value, type, checked } = e.target;
       setEquipmentData(prevState => ({
@@ -260,25 +270,25 @@ try {
 
     const handleSubmit = async (e) => {
       e.preventDefault();
-    console.log(equipments);
+      console.log(equipments);
       const formData = new FormData();
       // // Add equipment data fields to formData
       // Object.entries(equipmentData).forEach(([key, value]) => {
       //   formData.append(key, value);
       // });
-    
+
       // // Append file to formData
       formData.append('image', equipmentData.image);
-    
+
       try {
         // Check if image field is set
         if (!equipmentData.image) {
           console.error('No image selected');
           return;
         }
-    
+
         const response = await Edit_Equipments(equipmentData.id);
-       
+
         console.log(response.data);
         toast("Added");
         navigate('/dashboard/gym-equipments');
@@ -372,7 +382,7 @@ try {
 
     );
   }
- 
+
   return (
     <>
       <div className=" w-full h-[920px] overflow-scroll">
@@ -380,8 +390,8 @@ try {
         {showAddEquipmentForm ? (
           <AddEquipmentForm />
         ) : showEditEquipmentForm ? (
-          <EditEquipmentForm /> 
-  
+          <EditEquipmentForm />
+
         ) : (
           <>
             {equipments.length > 0 ?
@@ -395,7 +405,9 @@ try {
                       <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                         <svg className="h-5 w-5 text-gray-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clipRule="evenodd" /></svg>
                       </div>
-                      <input type="text" placeholder="Search Equipments..." className="block w-full pl-10 pr-12 sm:text-sm rounded-md focus:outline-none bg-transparent" />
+
+
+                      <input type="text" placeholder="Search Equipments..."  value={searchQuery}   onChange={(e) => setSearchQuery(e.target.value)} className="block w-full pl-10 pr-12 sm:text-sm rounded-md focus:outline-none bg-transparent text-white " />
                     </div>
                     <Button size='sm' onClick={toggleAddEquipmentForm} className={`py-3 -mt-6 ${sidenavType === 'dark' ? "bg-red-700" : "bg-black"}`}>
                       {showAddEquipmentForm ? 'Hide' : 'Add Equipments'}
@@ -403,7 +415,7 @@ try {
                   </div>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 animate-fade-in-down">
-                  {equipments
+                  {filteredEquipments
                     .slice(pagesVisited, pagesVisited + equipmentsPerPage)
                     .map((equipment, index) => (
                       <div
@@ -491,6 +503,7 @@ try {
     </>
   );
 }
+
 
 
 

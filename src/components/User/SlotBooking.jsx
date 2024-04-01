@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import Navbar from './Navbar.jsx';
 import { Slot_List, Book_Slot, My_Bookings, Cancel_Bookings } from '../../actions/SlotBookingActions.jsx';
 import { MdDelete } from "react-icons/md";
+import "./SlotBooking.css"
+import backgroundImage from "../../assets/images/breadcrumb-bg.jpg"
 
 const SlotBooking = () => {
     const [selectedSlot, setSelectedSlot] = useState(null);
@@ -14,8 +16,11 @@ const SlotBooking = () => {
         try {
             const response = await Slot_List();
             if (response !== null && typeof response === 'object' && !Array.isArray(response)) {
-                setAvailableSlots(response);
-                console.log(response);
+                     const filteredSlots = response.filter(slot => {
+                        const slotDate = new Date(slot.date);
+                        return slotDate >= new Date();
+                    });
+                    setAvailableSlots(filteredSlots);
             } else {
                 console.error('Response is not an object:', response);
                 setAvailableSlots({});
@@ -30,8 +35,8 @@ const SlotBooking = () => {
         try {
             const response = await My_Bookings();
             if (response && Array.isArray(response) && response.length > 0) {
-                setBookings(response); // Store all bookings
-                console.log('Bookings:', response);
+                const filteredBookings = response.filter(booking => new Date(booking.date) >= new Date());
+                setBookings(filteredBookings); // Store all bookings that are not expired
             } else {
                 console.error('No bookings found');
                 setBookings([]);
@@ -133,9 +138,19 @@ const SlotBooking = () => {
     return (
         <>
             <Navbar />
-            <div className="flex flex-col lg:flex-col pt-24 bg-black min-h-screen text-white overflow-hidden">
-                <div className="flex flex-col p-4 lg:p-8 pt-8 lg:pt-16 xl:pt-36 w-full">
-                    <h2 className="text-xl sm:text-2xl md:text-3xl font-poppins mb-4 text-center" data-aos="fade-down">My Booking</h2>
+            <section className="breadcrumb-section set-bg" style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+                <div className="container">
+                    <div className="row">
+                        <div className="col-lg-12 text-center">
+                            <div className="breadcrumb-text" data-aos="fade-up">
+                                <h2>My Bookings</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <div className="flex flex-col lg:flex-col bg-black min-h-screen text-white overflow-hidden">
+                <div className="flex flex-col p-4 lg:p-8 pt-4 lg:pt-5 xl:pt-20 w-full">
                     {bookings.length > 0 && (
                         <div className="mb-4 flex flex-col sm:flex-row flex-wrap justify-center items-center gap-5">
                             {bookings.map((booking, index) => (
@@ -210,6 +225,8 @@ const SlotBooking = () => {
 };
 
 export default SlotBooking;
+
+
 
 
 

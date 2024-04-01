@@ -24,6 +24,7 @@ import { Provider } from 'react-redux';
 import SlotBooking from "../components/User/SlotBooking";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import TrainersPage from "../pages/User/TrainersPage";
 
 const MainRoutes = () => {
   const [showRoutes, setShowRoutes] = useState(false);
@@ -84,6 +85,7 @@ const MainRoutes = () => {
               <Route path="/Otp/" element={<Otp />} />
               <Route path="/changepassword/" element={<Changepassword />} />
               <Route path="/equipments/" element={<Equipments />} />
+              <Route path="/Trainers/" element={<TrainersPage />} />
               <Route path="/MembersList/" element={<OwnerUserList />} />
               <Route path="/AddMember/" element={<AddMember />} />
               <Route path="/slot-booking/" element={<SlotBooking />} />

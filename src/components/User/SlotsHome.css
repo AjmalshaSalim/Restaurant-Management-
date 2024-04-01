@@ -1,0 +1,93 @@
+/* Sample.css */
+
+.pricing-section {
+    background: #000000;
+}
+
+.pricing-section .section-title {
+    margin-bottom: 35px;
+    margin-top: 50px;
+}
+
+.ps-item {
+    text-align: center;
+    padding: 20px 15px 5px;
+    border: 1px solid #464646;
+    transform: skewY(-4deg);
+    transition: all 0.5s;
+    margin-bottom: 30px;
+    position: relative;
+    opacity: 0; 
+    animation: fadeUpAnimation 0.5s ease forwards; 
+}
+
+
+@keyframes fadeUpAnimation {
+    from {
+        transform: skewY(-4deg) translateY(50px); 
+        opacity: 0; 
+    }
+    to {
+        transform: skewY(-4deg) translateY(0);
+        opacity: 1; 
+    }
+}
+
+.ps-item:hover {
+    background: #ffffff;
+    border-color: #ffffff;
+}
+
+.ps-item:hover h3 {
+    color: #111111;
+}
+
+.ps-item:hover ul li {
+    color: #111111;
+    font-weight: 600;
+}
+
+.ps-item:hover .primary-btn.pricing-btn {
+    background: #e60709;
+}
+
+.ps-item h3 {
+    font-size: 28px;
+    color: #aaa9a9;
+    font-weight: 600;
+    margin-bottom: 16px;
+    transform: skewY(4deg);
+}
+
+.ps-item .pi-price {
+    margin-bottom: 30px;
+    transform: skewY(4deg);
+}
+
+.ps-item .pi-price h2 {
+    font-size: 20px;
+    color: #e60709;
+    font-weight: 600;
+}
+
+
+
+
+
+
+
+
+
+
+/* Responsive Styles */
+@media screen and (max-width: 768px) {
+    .ps-item {
+        padding: 30px 20px 42px;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .ps-item {
+        padding: 20px 15px 32px;
+    }
+}

@@ -40,9 +40,7 @@ export const API_URLS = {
     MY_BOOKINGS:`${My_Bookings}`,
     CANCEL_BOOKINGS:`${Cancel_Bookings}`,
     DELETE_EQUIPMENTS:`${Delete_Equipments}`,
-
-    CREATE_SLOT:`${Create_Slot}`
-   
+    CREATE_SLOT:`${Create_Slot}`,
     Filter_Attendance:`${Filter_Attendance}`,
     ADD_Attendance:`${ADD_Attendance}`,
     View_Attendance:`${View_Attendance}`,
