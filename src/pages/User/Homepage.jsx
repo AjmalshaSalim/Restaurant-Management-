@@ -4,6 +4,8 @@ import Navbar from "../../components/User/Navbar.jsx"
 import EquipmentsHome from "../../components/User/EquipmentsHome.jsx"
 import SlotHompage from "../../components/User/SlotsHome.jsx"
 import Footer from "../../components/User/Footer.jsx"
+import GymVideo from "../../components/User/GymVideo.jsx"
+import TrainersHome from "../../components/User/TrainersHome.jsx"
 
 
 function Homepage() {
@@ -16,6 +18,8 @@ function Homepage() {
             </div>
             <EquipmentsHome />
             <SlotHompage />
+            {/* <TrainersHome /> */}
+            <GymVideo />
         <Footer />
         </div>
     )
