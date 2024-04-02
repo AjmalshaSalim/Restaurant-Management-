@@ -43,10 +43,10 @@ export const API_URLS = {
 
     CREATE_SLOT:`${Create_Slot}`
    
-    Filter_Attendance:`${Filter_Attendance}`,
-    ADD_Attendance:`${ADD_Attendance}`,
-    View_Attendance:`${View_Attendance}`,
-    Search_user_For_Attendance:`${Search_user_For_Attendance}`,
+    // Filter_Attendance:`${Filter_Attendance}`,
+    // ADD_Attendance:`${ADD_Attendance}`,
+    // View_Attendance:`${View_Attendance}`,
+    // Search_user_For_Attendance:`${Search_user_For_Attendance}`,
 
 }
 
