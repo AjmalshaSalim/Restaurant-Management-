@@ -4,6 +4,7 @@ import { Slot_List, Book_Slot, My_Bookings, Cancel_Bookings } from '../../action
 import { MdDelete } from "react-icons/md";
 import "./SlotBooking.css"
 import backgroundImage from "../../assets/images/breadcrumb-bg.jpg"
+import Footer from './Footer.jsx';
 
 const SlotBooking = () => {
     const [selectedSlot, setSelectedSlot] = useState(null);
@@ -219,6 +220,7 @@ const SlotBooking = () => {
                         </div>
                     )}
                 </div>
+                <Footer />
             </div>
         </>
     );
