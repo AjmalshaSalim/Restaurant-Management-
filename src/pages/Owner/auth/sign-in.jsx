@@ -8,6 +8,7 @@ import AOS from 'aos';
 import { DemoAction1 } from '../../../actions/DemoActions';
 import 'aos/dist/aos.css';
 import { useDispatch } from 'react-redux';
+import { ToastContainer, toast } from 'react-toastify';
 
 export function SignIn () {
   const navigate = useNavigate();
@@ -29,8 +30,13 @@ export function SignIn () {
       [e.target.id]: e.target.value,
     });
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (formData.username.length !== 10 || formData.password.length < 8) {
+      toast.error('Invalid mobile number or password. Mobile number should be 10 digits and password should be at least 8 characters long.');
+      return;
+    }
     console.log("formData>>>>", formData);
     try {
       const response = await DemoAction1(formData,dispatch);
@@ -40,15 +46,17 @@ export function SignIn () {
         console.log("acesses grantedc >>>>");
         navigate('/')
       } else {
-        alert("Login Failed");
+        toast.error('Login failed');
         navigate('/sign-in'); // Use navigate instead of redirect
       }
     } catch (error) {
       console.error('Login error:', error.message);
     }
   }
+
   return (
     <section className="m-8 flex gap-4">
+      <ToastContainer />
       <div
         className="w-full lg:w-3/5 mt-24"
         data-aos="fade-bottom"
@@ -113,7 +121,7 @@ export function SignIn () {
           <Button type="submit" className="mt-6" fullWidth>
             Sign In
           </Button>
-          <Link to="/auth/Forgot-pw">
+          <Link to="/OwnerForgetpassword">
             <Button className="mt-6" fullWidth>
               Forgot Password
             </Button>
@@ -124,7 +132,7 @@ export function SignIn () {
             className="text-center text-blue-gray-500 font-medium mt-4"
           >
             Not registered?
-            <Link to="/auth/sign-up" className="text-gray-900 ml-1">
+            <Link to="/OwnerRegister" className="text-gray-900 ml-1">
               Create account
             </Link>
           </Typography>

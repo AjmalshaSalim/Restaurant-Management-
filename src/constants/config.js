@@ -40,13 +40,11 @@ export const API_URLS = {
     MY_BOOKINGS:`${My_Bookings}`,
     CANCEL_BOOKINGS:`${Cancel_Bookings}`,
     DELETE_EQUIPMENTS:`${Delete_Equipments}`,
-
-    CREATE_SLOT:`${Create_Slot}`
-   
-    // Filter_Attendance:`${Filter_Attendance}`,
-    // ADD_Attendance:`${ADD_Attendance}`,
-    // View_Attendance:`${View_Attendance}`,
-    // Search_user_For_Attendance:`${Search_user_For_Attendance}`,
+    CREATE_SLOT:`${Create_Slot}`,
+    Filter_Attendance:`${Filter_Attendance}`,
+    ADD_Attendance:`${ADD_Attendance}`,
+    View_Attendance:`${View_Attendance}`,
+    Search_user_For_Attendance:`${Search_user_For_Attendance}`,
 
 }
 

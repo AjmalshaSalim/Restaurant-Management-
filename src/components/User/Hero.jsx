@@ -53,8 +53,8 @@ const Hero = () => {
 
   return (
     <>
-      <div className="min-h-screen bg-black flex justify-center items-center text-white relative">
-        <div className="absolute top-0 left-0 w-full h-full bg-cover bg-center shadow-xl shadow-gray-600" style={{
+      <div className="min-h-screen bg-black flex justify-center items-center text-gray-300 relative">
+        <div className="absolute top-0 left-0 w-full h-full bg-cover bg-center shadow-xl " style={{
           backgroundImage: `linear-gradient(to right, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(${require("../../assets/images/hero-bg.jpg")})`,
         }}></div>
 
@@ -78,13 +78,13 @@ const Hero = () => {
               <div className="bg-black bg-opacity-50 p-4 rounded-lg shadow-lg" data-aos="fade-up" data-aos-anchor-placement="bottom-bottom">
                 <h2 className="text-xl font-semibold mb-2 text-center md:text-left">Completed Workouts</h2>
                 <p className="text-4xl font-bold text-center md:text-left">12</p>
-                <p className="text-sm text-gray-400 text-center md:text-left">Workouts</p>
+                <p className="text-sm text-gray-400 text-center md:text-left">Days</p>
               </div>
               {/* In Progress Workouts */}
               <div className="bg-black bg-opacity-50 p-4 rounded-lg shadow-lg" data-aos="fade-up" data-aos-anchor-placement="bottom-bottom">
                 <h2 className="text-xl font-semibold mb-2 text-center md:text-left">In Progress</h2>
                 <p className="text-4xl font-bold text-center md:text-left">2</p>
-                <p className="text-sm text-gray-400 text-center md:text-left">Workouts</p>
+                <p className="text-sm text-gray-400 text-center md:text-left">Days</p>
               </div>
               {/* Your Progress */}
               <div className="bg-black bg-opacity-50 p-2 rounded-lg shadow-lg flex flex-col items-center justify-center" data-aos="fade-up" data-aos-anchor-placement="bottom-bottom">

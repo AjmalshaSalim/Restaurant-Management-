@@ -1,34 +1,76 @@
 import BackgroundImage from '../../../assets/images/BackgroundValOtp.jpg';
 import Logo from '../../../assets/images/Gymsoft_Logo1-removebg-preview.png';
-import {useState, useEffect} from 'react';
-// import {useNavigate} from 'react-router-dom';
-// import {VERIFY_OTP} from '../../../actions/AuthActions';
-import {Input, Button, Typography} from '@material-tailwind/react';
-import {Link} from 'react-router-dom';
+import { useState, useEffect, useContext } from 'react'; // Added useContext
+import { VERIFY_OTP, SEND_OTP } from '../../../actions/AuthActions';
+import { Input, Button, Typography } from '@material-tailwind/react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-export function Otp () {
-  useEffect (() => {
-    AOS.init ();
-  });
-  //   const navigate = useNavigate ();
-  const [formData, setFormData] = useState ({otp: ''});
-  const handleChange = e => {
-    setFormData ({
-      ...formData,
-      [e.target.id]: e.target.value,
-    });
-  };
-  console.log (formData);
+import { PhoneNumberContext } from '../../../context/phoneNumberContext';
+import { toast } from 'react-toastify'; 
+import { useNavigate } from 'react-router-dom';
 
-  const handleSubmit = async e => {
-    if (formData.otp.trim () === '') {
-      alert ('Please enter your OTP');
-      return;
-    }
-    //   const response = await VERIFY_OTP(formData);
-    // console.log(response);
+
+
+export function Otp() {
+  useEffect(() => {
+    AOS.init();
+  });
+
+  const {phoneNumber, updatePhoneNumber } = useContext(PhoneNumberContext);
+  const navigate = useNavigate()
+  const [otp, setOtp] = useState('');
+  const handleChange = (e) => {
+    setOtp(e.target.value); 
   };
+
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const data = {
+      phoneNumber: phoneNumber,
+      otp: otp, 
+    };
+    try {
+      const response = await VERIFY_OTP(data);
+      if (response.message === 'OTP verified successfully') { 
+        navigate('/OwnerChangepassword');
+      } else {
+        toast.error('Invalid OTP. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error', error);
+    }
+  };
+
+  const handleResend = async () => {
+    try {
+      const response = await SEND_OTP({ phonenumber: updatePhoneNumber });
+      if (response.message === 'OTP sent successfully') {
+        toast.success('OTP sent successfully!', {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      } else {
+        toast.error('Error while sending OTP. Please try again later.', {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      }
+    } catch (error) {
+      console.error('Error while resending OTP:', error.message);
+    }
+  };
+
   return (
     <section className="m-8 flex gap-4">
       <div
@@ -40,7 +82,6 @@ export function Otp () {
           <Typography variant="h2" className="font-bold mb-4">
             Enter OTP
           </Typography>
-
         </div>
         <form className="mt-8 mb-2 mx-auto w-80 max-w-screen-lg lg:w-1/2">
           <div className="mb-1 flex flex-col gap-6">
@@ -60,28 +101,18 @@ export function Otp () {
               id="otp"
               name="otp"
               onChange={handleChange}
-              placeholder="Enter your 6 digit otp"
+              placeholder="Enter your 4 digit otp"
               required
               type="number"
             />
-
           </div>
-
-          <Link to="/auth/Reset-pw">
-            <Button className="mt-6" fullWidth onClick={handleSubmit}>
-              Submit
-            </Button>
-
-          </Link>
-
-          <Link to="/auth/sign-in">
-            <Button className="mt-6" fullWidth>
-              Resend OTP
-            </Button>
-          </Link>
-
+          <Button type='button' className="mt-6" fullWidth onClick={handleSubmit}>
+            Submit
+          </Button>
+          <Button type='button' className="mt-6" fullWidth onClick={handleResend}>
+            Resend OTP
+          </Button>
         </form>
-
       </div>
       <div
         className="w-2/5 h-full hidden lg:block"
@@ -101,9 +132,9 @@ export function Otp () {
           className="h-[600px] w-[600px]  object-cover rounded-3xl"
         />
       </div>
-
     </section>
   );
 }
 
 export default Otp;
+
