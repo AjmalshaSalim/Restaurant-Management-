@@ -46,3 +46,16 @@ export const List_Attendance = async () => {
       throw error;
     }
   };
+
+
+
+  export const TYPE_ATTENDANCE = async data => {
+
+    try {
+      const response = await axios.post (API_URLS.TYPE_ATTENDANCE, data);
+      return response.data;
+    } catch (error) {
+      console.error ('Adding equipments:', error);
+      throw error;
+    }
+  };

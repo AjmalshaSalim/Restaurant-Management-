@@ -21,7 +21,7 @@ const Filter_Attendance ='/api/search-attendance/'
 const ADD_Attendance ='/api/mark-attendance/'
 const View_Attendance ='/api/attendance/'
 const Search_user_For_Attendance ='/api/user-details/'
-
+const Type_Attendance ='/api/attendance/filter/'
 
 export const API_URLS = {
     LOGIN_API_PATH: `${LOGIN_API_PATH}`,
@@ -45,6 +45,6 @@ export const API_URLS = {
     ADD_Attendance:`${ADD_Attendance}`,
     View_Attendance:`${View_Attendance}`,
     Search_user_For_Attendance:`${Search_user_For_Attendance}`,
-
+    TYPE_ATTENDANCE:`${Type_Attendance}`,
 }
 
