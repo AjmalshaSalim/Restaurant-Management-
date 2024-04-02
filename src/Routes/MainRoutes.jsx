@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Route, Routes } from "react-router-dom"; 
+import { Route, Routes, Navigate } from "react-router-dom";
 import { Dashboard } from "../layouts/dashboard";
 import { Auth } from "../layouts/auth";
 import Login from "../pages/User/Login";
-import { lazy, Suspense } from "react";
+// import { lazy, Suspense } from "react";
 import Forgetpassword from "../pages/User/Forgetpassword";
 import Changepassword from "../pages/User/Changepassword";
 import Otp from "../pages/User/Otp";
@@ -20,7 +20,11 @@ import { PhoneNumberProvider } from "../context/phoneNumberContext";
 import PublicRoutes from "../utils/PublicRoutes";
 import ProtectedRoutes from "../utils/ProtectedRoutes";
 import store from '../store';
-import { Provider } from 'react-redux'; 
+import { Provider } from 'react-redux';
+import SlotBooking from "../components/User/SlotBooking";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import TrainersPage from "../pages/User/TrainersPage";
 
 const MainRoutes = () => {
   const [showRoutes, setShowRoutes] = useState(false);
@@ -34,31 +38,61 @@ const MainRoutes = () => {
       clearTimeout(timer);
     };
   }, []);
+  useEffect(() => {
+    AOS.init({
+      offset: 100,
+      duration: 1200,
+      easing: "ease-in",
+      delay: 100,
+    });
+    AOS.refresh();
+  }, []);
+
 
   return showRoutes ? (
     <Provider store={store}>
       <PhoneNumberProvider>
         <div>
           <Routes>
-          <Route element={<PublicRoutes />}>
-          <Route path="/login/" element={<Login />} />
+
+            {/* Public Routes */}
+            <Route element={<PublicRoutes />}>
+
+              <Route path="/login/" element={<Login />} />
+              <Route path="/Ownerlogin" element={<OwnerLogin />} />
+              <Route path="/OwnerRegister" element={<OwnerRegister />} />
+              <Route path="/OwnerForgetpassword" element={<OwnerForgetpassword />} />
+              <Route path="/OwnerOtp" element={<OwnerOtp />} />
+              <Route path="/OwnerChangepassword" element={<OwnerChangepassword />} />
+
             </Route>
-            <Route path="/" element={<ProtectedRoutes component={Dashboard} />} />
-            <Route path="/auth/*" element={<ProtectedRoutes component={Auth} />} />
-            <Route path="/home" element={<ProtectedRoutes component={Homepage} />} />
-            <Route path="/Forgotpassword/" element={<ProtectedRoutes component={Forgetpassword} />} />
-            <Route path="/Otp/" element={<ProtectedRoutes component={Otp} />} />
-            <Route path="/changepassword/" element={<ProtectedRoutes component={Changepassword} />} />
-            
-            <Route path="/Ownerlogin" element={<OwnerLogin />} />
-            <Route path="/OwnerRegister" element={<OwnerRegister />} />
-            <Route path="/OwnerForgetpassword" element={<OwnerForgetpassword />} />
-            <Route path="/OwnerOtp" element={<OwnerOtp />} />
-            <Route path="/OwnerChangepassword" element={<OwnerChangepassword />} />
-            <Route path="/equipments/" element={<ProtectedRoutes component={Equipments} />} />
-            <Route path="/MembersList/" element={<ProtectedRoutes component={OwnerUserList} />} />
-            <Route path="/AddMember/" element={<ProtectedRoutes component={AddMember} />} />
-            {/* Add more routes here */}
+            <Route path="/home" element={<Homepage />} />
+            {/* Private Routes */}
+
+            <Route element={<ProtectedRoutes />}>
+
+
+              {/*ithrem sadhanathine onnum chaiyyallee plzzz  */}
+              <Route path="/dashboard/*" element={<Dashboard />} />
+
+              <Route path="*" element={<Navigate to="/dashboard/home" replace />} />
+              {/*  */}
+
+
+              <Route path="/auth/" element={<Auth />} />
+              <Route path="/home" element={<Homepage />} />
+              <Route path="/UserForgotpassword/" element={<Forgetpassword />} />
+              <Route path="/Otp/" element={<Otp />} />
+              <Route path="/changepassword/" element={<Changepassword />} />
+              <Route path="/equipments/" element={<Equipments />} />
+              <Route path="/Trainers/" element={<TrainersPage />} />
+              <Route path="/MembersList/" element={<OwnerUserList />} />
+              <Route path="/AddMember/" element={<AddMember />} />
+              <Route path="/slot-booking/" element={<SlotBooking />} />
+
+
+
+            </Route>
           </Routes>
         </div>
       </PhoneNumberProvider>

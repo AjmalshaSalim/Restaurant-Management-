@@ -3,9 +3,10 @@ import { useSelector } from 'react-redux'
 import { Navigate, Outlet } from 'react-router-dom'
 
 function PublicRoutes() {
-  const authState = useSelector(state => state.auth)
+  const isAuthenticated  = useSelector(state => state.isAuthenticated)
+  
   return (
-    !authState.auth ? <Outlet/> : <Navigate to='/'/>
+    !isAuthenticated  ? <Outlet/> : <Navigate to='/'/>
   )
 }
 

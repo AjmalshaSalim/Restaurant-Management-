@@ -1,13 +1,13 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
-import { Navigate, Outlet } from 'react-router-dom'
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { Navigate, Outlet } from 'react-router-dom';
 
 function ProtectedRoutes() {
-  const authState = useSelector(state => state.auth)
-  return (
-    authState.auth ? <Outlet/> : <Navigate to='/Ownerlogin/'/>
+  const isAuthenticated = useSelector(state => state.isAuthenticated);
 
-  )
+  return (
+    isAuthenticated ? <Outlet /> : <Navigate to='/Ownerlogin/' />
+  );
 }
 
-export default ProtectedRoutes
+export default ProtectedRoutes;

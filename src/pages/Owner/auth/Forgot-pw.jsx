@@ -1,12 +1,14 @@
 import BackgroundImage from '../../../assets/images/BackgroundForg.jpg';
 import Logo from '../../../assets/images/Gymsoft_Logo1-removebg-preview.png';
-import {useState, useEffect} from 'react';
+import {useState, useEffect, useContext} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {SEND_OTP} from '../../../actions/AuthActions';
 import {Input, Button, Typography} from '@material-tailwind/react';
 import {Link} from 'react-router-dom';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { PhoneNumberContext } from '../../../context/phoneNumberContext';
+import { toast } from 'react-toastify';
 
 export function ForgotPassword () {
   useEffect (() => {
@@ -14,34 +16,44 @@ export function ForgotPassword () {
   });
   const navigate = useNavigate ();
   const [formData, setFormData] = useState ({phonenumber: ''});
-  const handleChange = e => {
-    setFormData ({
-      ...formData,
-      [e.target.id]: e.target.value,
+  const { updatePhoneNumber } = useContext(PhoneNumberContext); 
+  const handleChange = (e) => {
+    setFormData({
+        ...formData,
+        [e.target.id]: e.target.value,
     });
-  };
-  console.log (formData);
-
-  const handleSubmit = async e => {
-    e.preventDefault ();
-    console.log (formData.phonenumber);
+    updatePhoneNumber(e.target.value); 
+}
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     try {
-      const response = await SEND_OTP (formData);
-      navigate ('/Otp');
+     
+        const response = await SEND_OTP(formData);
+        if(response.message === 'OTP sent successfully'){
+        toast.success('OTP sent successfully!', {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
+        navigate('/OwnerOtp');
+      }
     } catch (error) {
-      console.error ('Error while sending phone number:', error.message);
+        toast.error('Error while sending OTP. Please try again later.', {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
+        console.error('Error while sending phone number:', error.message);
     }
-    // e.preventDefault();
-    // console.log(formData.phonenumber);
-    // try {
-    //     const response = await SEND_OTP(formData);
-    //     navigate('/Otp');
-
-    // } catch (error) {
-    //     console.error('Error while sending phone number:', error.message);
-    // }
-  };
-
+}
   return (
     <section className="m-8 flex gap-4">
       <div
@@ -76,11 +88,12 @@ export function ForgotPassword () {
               onChange={handleChange}
               placeholder="Enter your phone number"
               required
-              type="number"
+              type="tel" // Changed type to 'tel' for mobile number input
+              pattern="[0-9]{10}" // Added pattern for 10 digits
             />
 
           </div>
-          <Link to="/auth/Reset-pw">
+         
             <Button
               type="submit"
               className="mt-6"
@@ -89,7 +102,6 @@ export function ForgotPassword () {
             >
               Send OTP
             </Button>
-          </Link>
           <Link to="/auth/sign-in">
             <Button className="mt-6" fullWidth>
               Back to Sign In
@@ -122,3 +134,4 @@ export function ForgotPassword () {
 }
 
 export default ForgotPassword;
+

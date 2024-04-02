@@ -11,7 +11,7 @@ const ServicesData = [
   {
     id: 1,
     img: Img1,
-    link:'/slot-booking',
+    link: '/slot-booking',
     name: "Slot Booking",
     aosDelay: "100",
   },
@@ -19,35 +19,35 @@ const ServicesData = [
     id: 2,
     img: Img2,
     name: "Trainer",
-    link:'/trainer',
+    link: '/trainer',
     aosDelay: "300",
   },
   {
     id: 3,
     img: Img3,
     name: "Diet",
-    link:'/diet',
+    link: '/diet',
     aosDelay: "500",
   },
   {
     id: 4,
     img: Img4,
     name: "Equipments",
-    link:'/equipments',
+    link: '/equipments',
     aosDelay: "500",
   },
   {
     id: 5,
     img: Img5,
     name: "Workout Plan",
-    link:'/workout-plan',
+    link: '/workout-plan',
     aosDelay: "500",
   },
   {
     id: 6,
     img: Img6,
     name: "Feedback",
-    link:'/feedback',
+    link: '/feedback',
     aosDelay: "500",
   },
 ];
@@ -59,40 +59,37 @@ const Services = () => {
         <div className="container">
           {/* Heading section  */}
           <div className="text-center mb-16">
-            <h1 className="text-2xl font-medium font-cursive">
-             Explore Our Program
+            <h1 className="text-2xl font-medium font-cursive text-gray-300"   data-aos="fade-up">
+              Explore Our Program
             </h1>
           </div>
 
           {/* Services Card section  */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 xl:grid-cols-6 gap-5">
+          <div className="grid grid-cols-2  md:grid-cols-3 lg:grid-cols-6 xl:grid-cols-6 gap-5">
             {ServicesData.map((service) => (
-            <div key={service.id}
-            data-aos="fade-up"
-            data-aos-delay={`${service.id*100}`}
-            className="rounded-lg bg-black relative shadow-md duration-300 group mx-auto"
-            style={{ width: "100%", maxWidth: "556px", margin: "0 auto" }}
-          ><Link to={service.link}>
-            <div className="h-[61px] bg-black" style={{ width: "80px", margin: "0 auto" }}>
-              <img
-                src={service.img}
-                alt=""
-                className="max-w-[80px] rounded-lg block mx-auto transform -translate-y-7 group-hover:scale-105 group-hover:rotate-3 
-                
-                duration-300"
-                style={{ filter: "drop-shadow(0 0 0.25rem #000)", color: "black" }}
-              />
-            </div>
-            </Link>
-            <div className="p-2 text-center">
-              <div className="w-full"></div>
-              <h1 className="text-md text-white font-medium">{service.name}</h1>
-            </div>
-          </div>
+              <div key={service.id}
+                data-aos="fade-up"
+                data-aos-delay={`${service.id * 100}`}
+                className="rounded-lg bg-black relative shadow-md duration-300 group mx-auto"
+                style={{ width: "100%", maxWidth: "556px", margin: "0 auto" }}
+              ><Link to={service.link}>
+                  <div className="h-[61px] bg-black" style={{ width: "80px", margin: "0 auto" }}>
+                    <img
+                      src={service.img}
+                      alt=""
+                      className="max-w-[80px] rounded-lg block mx-auto transform -translate-y-7 group-hover:scale-105 group-hover:rotate-3   duration-300"
+                      style={{ filter: "drop-shadow(0 0 0.25rem #000)", color: "black" }}
+                    />
+                  </div>
+                </Link>
+                <div className="p-2 text-center">             
+                  <h1 className="text-md text-gray-500 font-medium">{service.name}</h1>
+                </div>
+              </div>
             ))}
           </div>
         </div>
-        
+
       </div>
     </>
   );
