@@ -8,10 +8,10 @@ import AOS from 'aos';
 import { DemoAction1 } from '../../../actions/DemoActions';
 import 'aos/dist/aos.css';
 import { useNavigate } from 'react-router-dom';
-
+import { useDispatch } from 'react-redux';
 export function SignIn () {
   const navigate=useNavigate();
-
+  const dispatch = useDispatch();
   useEffect (() => {
     AOS.init ();
   }, []);
@@ -33,7 +33,7 @@ export function SignIn () {
     e.preventDefault();
     console.log("formData>>>>",formData);
     try {
-        const response = await DemoAction1(formData)
+        const response = await DemoAction1(formData,dispatch)
         console.log("response>>>>",response);
         console.log("status>>>>",response.status);
         if(response.access) {
