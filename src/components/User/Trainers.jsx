@@ -9,6 +9,7 @@ import team5 from "../../assets/Trainers/team-5.jpg"
 import team6 from "../../assets/Trainers/team-6.jpg"
 import { FaFacebook ,FaYoutube,FaInstagram  } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
+import Footer from './Footer';
 
 export default function Trainers() {
     return (
@@ -115,6 +116,7 @@ export default function Trainers() {
                 </div>
             </div>
         </section>
+        <Footer />
         </div>
     );
 }

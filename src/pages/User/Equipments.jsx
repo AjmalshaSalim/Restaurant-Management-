@@ -5,6 +5,7 @@ import { List_Equipments } from '../../actions/EquipmentsActions';
 import backgroundImage from "../../assets/images/breadcrumb-bg.jpg"
 import "../../components/User/Equipments.css"
 import { FaSearch } from "react-icons/fa";
+import Footer from "../../components/User/Footer.jsx"
 
 export default function Equipments() {
     const [equipments, setEquipments] = useState([]);
@@ -137,6 +138,7 @@ export default function Equipments() {
                     )}
                 </div>
             )}
+            <Footer />
         </div>
     );
 }
