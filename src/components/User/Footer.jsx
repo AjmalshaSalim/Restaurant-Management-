@@ -13,14 +13,14 @@ export default function Footer() {
             <div className="container">
                 <div className="row">
                     <div className="col-lg-4 col-md-6">
-                        <div className="fs-about">
+                        <div className="fs-about flex flex-col items-center justify-center">
                             <div className="fa-logo">
                                 <a href="/home"><img src={Logo} alt="" /></a>
                             </div>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore dolore magna aliqua endisse ultrices gravida lorem.</p>
-                            <div className="fa-social flex pt-2 ">
-                                <a href="#"><i><FaFacebook /></i></a>
-                                <a href="#"><i><FaXTwitter /></i></a>
+                            <div className="fa-social flex pt-4 ">
+                                <a href="#"><i className="hover:text-blue-800"><FaFacebook /></i></a>
+                                <a href="#"><i className="hover:text-"><FaXTwitter /></i></a>
                                 <a href="#"><i><FaYoutube /></i></a>
                                 <a href="#"><i><FaInstagram /></i></a>
                             </div>

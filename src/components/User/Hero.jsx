@@ -5,7 +5,6 @@ import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import { MdOutlineQrCodeScanner } from "react-icons/md";
 import { Tooltip } from "@material-tailwind/react";
-import StaggerText from "react-stagger-text";
 // QR Code Scanner
 
 
@@ -65,25 +64,24 @@ const Hero = () => {
             {/* text content section */}
             <div className="flex flex-col justify-center gap-6 pt-12 sm:pt-0 text-center sm:text-left">
               <h1
-                
+                data-aos="fade-up"
+                data-aos-once="true"
                 className="text-5xl sm:text-6xl lg:text-7xl px-2 py-2 font-bold"
               >
-                 <StaggerText staggerType='letter' staggerDuration={0.4} startDelay={500}>
                 Helps for your ideal body fitness
-                </StaggerText>
               </h1>
               <p data-aos="fade-up"
                 data-aos-once="true" className="text-lg" >Motivates users with benefits and positive reinforcement and offer modifications and progress tracking</p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-12 md:pt-0" data-aos="fade-up" data-aos-anchor-placement="bottom-bottom">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-12 md:pt-0" data-aos="fade-down" >
               {/* Finished Workouts */}
-              <div className="bg-black bg-opacity-50 p-4 rounded-lg shadow-lg" data-aos="fade-up" data-aos-anchor-placement="bottom-bottom">
+              <div className="bg-black bg-opacity-50 p-4 rounded-lg shadow-lg" data-aos="fade-down" >
                 <h2 className="text-xl font-semibold mb-2 text-center md:text-left">Completed Workouts</h2>
                 <p className="text-4xl font-bold text-center md:text-left">12</p>
                 <p className="text-sm text-gray-400 text-center md:text-left">Days</p>
               </div>
               {/* In Progress Workouts */}
-              <div className="bg-black bg-opacity-50 p-4 rounded-lg shadow-lg" data-aos="fade-up" data-aos-anchor-placement="bottom-bottom">
+              <div className="bg-black bg-opacity-50 p-4 rounded-lg shadow-lg" data-aos="fade-up" >
                 <h2 className="text-xl font-semibold mb-2 text-center md:text-left">In Progress</h2>
                 <p className="text-4xl font-bold text-center md:text-left">2</p>
                 <p className="text-sm text-gray-400 text-center md:text-left">Days</p>

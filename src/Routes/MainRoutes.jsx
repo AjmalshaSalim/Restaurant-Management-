@@ -28,6 +28,7 @@ import TrainersPage from "../pages/User/TrainersPage";
 import CreatePlans from "../pages/Owner/dashboard/CreatePlans";
 import ConfirmPayments from "../pages/Owner/dashboard/ConfirmPayments";
 import {PaymentDetail} from "../pages/Owner/dashboard/PaymentDetail";
+import Profile from "../pages/User/Profile"
 
 const MainRoutes = () => {
   const [showRoutes, setShowRoutes] = useState(false);
@@ -96,6 +97,7 @@ const MainRoutes = () => {
               <Route path="/MembersList/" element={<OwnerUserList />} />
               <Route path="/AddMember/" element={<AddMember />} />
               <Route path="/slot-booking/" element={<SlotBooking />} />
+              <Route path="/userprofile/" element={<Profile />} />
 
 
 

@@ -20,6 +20,10 @@ export default function Trainers() {
                         <div className="col-lg-12 text-center">
                             <div className="breadcrumb-text" data-aos="fade-up">
                                 <h2>Our Trainers</h2>
+                                <div class="bt-option">
+                  <a href="/home">Home</a>
+                  <span>Trainers</span>
+                </div>
                             </div>
                         </div>
                     </div>

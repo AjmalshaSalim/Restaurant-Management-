@@ -53,6 +53,10 @@ export default function Equipments() {
                         <div className="col-lg-12 text-center">
                             <div className="breadcrumb-text text-gray-300" data-aos="fade-up">
                                 <h2>Our Equipments</h2>
+                                <div class="bt-option">
+                  <a href="/home">Home</a>
+                  <span>Equipments</span>
+                </div>
                             </div>
                         </div>
                     </div>

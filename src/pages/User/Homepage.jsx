@@ -11,7 +11,7 @@ import PricingPlans from "../../components/User/PricingPlans.jsx"
 
 function Homepage() {
     return (
-        <div className="bg-black">
+        <div className="bg-black overflow-hidden">
             <Navbar />
             <Hero />
             <div className=" pt-10 pb-20">

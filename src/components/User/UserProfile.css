@@ -1,0 +1,246 @@
+.about {
+    position: relative;
+}
+.about p {
+    color: #b1b1b1;
+}
+.about .about-img img:hover {
+    transform: scale(0.95);
+    transition: transform 0.5s ease; 
+}
+.about .about-img img {
+    transition: transform 0.5s ease;
+}
+.about .about-img {
+    position: relative;
+}
+.about .about-img .img {
+    padding: 0 30px 30px 15px;
+    position: relative;
+}
+.about .about-img .img:before {
+    content: '';
+    position: absolute;
+    top: 30px;
+    right: 0;
+    left: 45px;
+    bottom: 0;
+    background-color: #d30000;
+}
+.about .about-img .img:after {
+    content: '';
+    width: 50%;
+    position: absolute;
+    top: -7%;
+    bottom: 60%;
+    left: -3%;
+    background-image: url(../../assets/bg/dots.png);
+    background-repeat: repeat;
+    z-index: 1;
+}
+.about .about-img .img img {
+    position: relative;
+    z-index: 2;
+}
+
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1240px !important;
+    }
+}
+.section-padding {
+    padding: 60px 0;
+}
+.section-title span {
+    color: #d30000;
+}
+[data-overlay-dark] .section-title span {
+    color: #fc0000;
+}
+.section-title.white {
+    color: #fff;
+}
+.section-title.black {
+    color: #0a0a0a;
+}
+.section-title2 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 39px;
+    font-weight: 400;
+    color: #fff;
+    position: relative;
+    margin-bottom: 5px;
+    padding-left: 40px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+.section-title3 {
+    font-size: 17px;
+    font-family: 'Oswald', sans-serif;
+    color: #fff;
+    position: relative;
+    margin-bottom: 5px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+
+span,
+a,
+a:hover {
+    display: inline-block;
+    text-decoration: none;
+    color: inherit;
+}
+
+.about .list {
+    position: relative;
+    display: block;
+    padding-top: 50px;
+}
+.about .list li {
+    position: relative;
+    display: flex;
+    align-items: center;
+   
+}
+.about .list li + li {
+    margin-top: 10px;
+}
+.about .list-icon {
+    display: flex;
+    align-items: center;
+}
+.about .list-icon span {
+
+    font-size: 19px;
+    color: #585857;
+    background-color: transparent;
+}
+.about .list-text {
+    margin-left: 15px;
+}
+.about .list-text p {
+    font-size: 30px;
+    margin: 0;
+    color: #b1b1b1;
+}
+.row {
+    --bs-gutter-x: 1.5rem;
+    --bs-gutter-y: 0;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: calc(-1* var(--bs-gutter-y));
+    margin-right: calc(-.5* var(--bs-gutter-x));
+    margin-left: calc(-.5* var(--bs-gutter-x));
+}
+
+.breadcrumb-section {
+	height: 350px;
+	padding-top: 170px;
+}
+
+.breadcrumb-text h2 {
+	font-size: 60px;
+	color: #ffffff;
+	font-weight: 600;
+	text-transform: uppercase;
+	margin-bottom: 15px;
+}
+
+.breadcrumb-text .bt-option a {
+	font-size: 18px;
+	color: #ffffff;
+	font-weight: 700;
+	display: inline-block;
+	position: relative;
+	margin-right: 20px;
+}
+
+.breadcrumb-text .bt-option a:after {
+	position: absolute;
+	right: -14px;
+	top: 6px;
+	font-family: "FontAwesome";
+	content: "|";
+	font-size: 13px;
+	font-weight: 400;
+}
+.breadcrumb-text .bt-option span {
+	font-size: 18px;
+	color: #f30000cb;
+	font-weight: 700;
+}
+/* Mobile first styles */
+
+/* Adjust padding for smaller screens */
+.section-padding {
+    padding: 30px 0;
+}
+
+/* Decrease font size for smaller screens */
+.section-title2 {
+    font-size: 30px;
+}
+
+/* Adjust font size and spacing for smaller screens */
+.about .list-text p {
+    font-size: 20px;
+    margin: 0;
+    color: #b1b1b1;
+}
+
+/* Adjust font size for smaller screens */
+.breadcrumb-text h2 {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+/* Increase font size for smaller screens */
+.breadcrumb-text .bt-option a,
+.breadcrumb-text .bt-option span {
+    font-size: 16px;
+}
+
+/* Media queries for larger screens */
+@media (min-width: 768px) {
+    /* Increase padding for larger screens */
+    .section-padding {
+        padding: 60px 0;
+    }
+
+    /* Increase font size for larger screens */
+    .section-title2 {
+        font-size: 39px;
+    }
+
+    /* Increase font size for larger screens */
+    .about .list-text p {
+        font-size: 30px;
+    }
+
+    /* Increase font size for larger screens */
+    .breadcrumb-text h2 {
+        font-size: 60px;
+        margin-bottom: 15px;
+    }
+
+    /* Increase font size for larger screens */
+    .breadcrumb-text .bt-option a,
+    .breadcrumb-text .bt-option span {
+        font-size: 18px;
+    }
+}
+
+/* Media queries for extra large screens */
+@media (min-width: 1200px) {
+    /* Increase max-width for larger screens */
+    .container {
+        max-width: 1240px !important;
+    }
+}
+
+
+
+
