@@ -3,7 +3,6 @@ import { Route, Routes, Navigate } from "react-router-dom";
 import { Dashboard } from "../layouts/dashboard";
 import { Auth } from "../layouts/auth";
 import Login from "../pages/User/Login";
-// import { lazy, Suspense } from "react";
 import Forgetpassword from "../pages/User/Forgetpassword";
 import Changepassword from "../pages/User/Changepassword";
 import Otp from "../pages/User/Otp";
