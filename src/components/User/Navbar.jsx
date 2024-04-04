@@ -33,7 +33,7 @@ export const Menu = [
   {
     id: 6,
     name: "Profile",
-    link: "/profile",
+    link: "/userprofile",
   },
 ];
 

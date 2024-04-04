@@ -145,6 +145,10 @@ const SlotBooking = () => {
                         <div className="col-lg-12 text-center">
                             <div className="breadcrumb-text" data-aos="fade-up">
                                 <h2>My Bookings</h2>
+                                <div class="bt-option">
+                  <a href="/home">Home</a>
+                  <span>Slot-Booking</span>
+                </div>
                             </div>
                         </div>
                     </div>
