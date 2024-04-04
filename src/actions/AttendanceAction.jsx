@@ -4,6 +4,7 @@ import {API_URLS} from '../constants/config';
 export const FIlter_Attendance = async data => {
 
     try {
+      console.log("ffffff",data);
       const response = await axios.get (API_URLS.Filter_Attendance, data);
       return response.data;
     } catch (error) {
@@ -26,6 +27,7 @@ export const List_Attendance = async () => {
   export const ADD_Attendance = async data => {
 
     try {
+      console.log(data,"hggghghgh");
       const response = await axios.post (API_URLS.ADD_Attendance, data);
       return response.data;
     } catch (error) {

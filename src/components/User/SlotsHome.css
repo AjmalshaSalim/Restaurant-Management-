@@ -12,7 +12,7 @@
 .ps-item {
     text-align: center;
     padding: 20px 15px 5px;
-    border: 1px solid #464646;
+    border: 2px solid #464646;
     transform: skewY(-4deg);
     transition: all 0.5s;
     margin-bottom: 30px;

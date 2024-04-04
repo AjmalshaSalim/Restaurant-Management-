@@ -2,16 +2,6 @@
     padding: 120px 0;
 }
 
-.section-title {
-    font-size: 60px;
-    font-family: 'Oswald', sans-serif;
-    color: #fff;
-    position: relative;
-    margin-bottom: 15px;
-    text-transform: uppercase;
-    line-height: 1.25em;
-    font-weight: 700;
-}
 .video-wrapper .vid .vid-butn .icon:hover {
     border: 2px solid #C7D300;
 }

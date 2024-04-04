@@ -20,10 +20,11 @@ import { MdOutlineNoteAlt } from "react-icons/md";
 import { BiMessageAltError } from "react-icons/bi";
 import { Link } from 'react-router-dom';
 import { GrTransaction } from "react-icons/gr";
-import {findUserById} from "../../../actions/AttendanceAction"
+import { findUserById, ADD_Attendance } from "../../../actions/AttendanceAction"
 import {
   useMaterialTailwindController
 } from "../../../context/index";
+import { ToastContainer, toast } from 'react-toastify';
 import {
   Typography,
   Card,
@@ -37,12 +38,11 @@ import {
   Avatar,
   Tooltip,
   Progress,
-  Select
 } from '@material-tailwind/react';
 
 export function Home() {
   const [statisticsCardsData, setStatisticsCardsData] = useState(null);
- 
+
   useEffect(() => {
     AOS.init();
     const fetchDashCount = async () => {
@@ -61,29 +61,56 @@ export function Home() {
   const { sidenavType } =
     controller;
 
-  //Add Attendence Toggle
   const [showAddAttendanceForm, setShowAddAttendanceForm] = useState(false);
 
   const handleAttendanceClick = () => {
     setShowAddAttendanceForm(!showAddAttendanceForm)
   };
 
-  // 1, Add Attendance
   const [attendanceFormData, setAttendanceFormData] = useState({
-    userType: '', // Initialize user type state
-    userId: '',   // Initialize user ID state
+    user_type: '', 
+    user_id: null,  
   });
 
-  const { userType, userId } = attendanceFormData;
-  const handleSubmitAttendance = (() => {
-    alert(attendanceFormData.attendance, '>>>')
-  })
+
+  const handleChange = e => {
+    e.preventDefault ();
+    setAttendanceFormData ({
+      ...attendanceFormData,
+      [e.target.id]: e.target.value,
+    });
+    console.log(attendanceFormData);
+  };
+
+  const handleSubmitAttendance = async () => {
+    try {
+      console.log(attendanceFormData);
+      const requestBody = {
+        user_id: attendanceFormData.user_id, 
+        user_type: attendanceFormData.user_type, 
+      };
+     const response= await ADD_Attendance(requestBody);
+      if(response.message === 'Attendance recorded successfully') {
+        toast.success("Attendance recorded successfully")
+        setAttendanceFormData({
+          user_type: '',
+          user_id: null, 
+        });
+         
+      }
+    } catch (error) {
+      toast.error('User does not exist or is not associated with the gym');
+    }
+  }
+
+
+  
   const [userAttendance, setUserAttendance] = useState(null);
 
   // Function to search for a user by ID and set user attendance state
   const searchUserById = () => {
     const { userType, userId } = attendanceFormData;
-    console.log("userType, userId",userType, userId);
+    console.log("userType, userId", userType, userId);
     const foundUser = findUserById(userType, userId);
     if (foundUser) {
       setUserAttendance(foundUser);
@@ -196,6 +223,8 @@ export function Home() {
     }
   )
 
+
+
   //6, Todays Enquiry Followup
   //Todays Enquiry Followup Card data
   const [EnquiryFollowupCardData, SetEnquiryFollowupCardData] = useState(
@@ -281,6 +310,7 @@ export function Home() {
   return (
     <>
       <div className=" w-full h-[920px] overflow-scroll">
+      <ToastContainer />
         <div className="mt-10 bg-transparent">
           <div
             className="mb-10 grid gap-y-10 gap-x-6 md:grid-cols-2 xl:grid-cols-4 mx-2"
@@ -308,53 +338,53 @@ export function Home() {
               />
             </div>
             {showAddAttendanceForm ?
-  // Add Attendance Toggle
-  <div className={` ${sidenavType === 'dark' ? "bg-gray-900 border-gray-800 shadow-2xl" : "bg-white border-blue-gray-100 shadow-2xl"} mx-2 border-x border-y rounded-xl w-[96%] md:w-[40%] h-auto md:h-[400px] z-1 absolute left-0 md:left-[30%]`} data-aos="fade-up" data-aos-duration="500">
-  <div className='w-full text-center py-4'>
-    <h1 className={` font-semibold${sidenavType === 'dark' ? ' text-white text-lg' : ' text-blue-gray-900 text-lg'}`}>Add Attendance</h1>
-  </div>
-  <div className='w-full h-10'>
-    <button className={`${sidenavType === 'dark' ? " bg-gray-700 hover:bg-gray-600" : " bg-blue-gray-200 hover:bg-blue-gray-300"} w-8 h-8 rounded-full absolute right-2 top-2`} onClick={handleAttendanceClick}>
-      <IoMdClose className='w-5 h-5 m-auto' />
-    </button>
-  </div>
-  <div className="flex flex-col">
-    <label htmlFor="attendance" className={`mx-5 mt-2 text-sm mb-1 ${sidenavType === 'dark' ? "text-white" : "text-black"}`}>Attendance Of</label>
-    <select id="attendance" className={`mx-5 mb-2 rounded-md py-1 px-3 border-x border-y   ${sidenavType === 'dark' ? " bg-gray-900 border-gray-800 text-white" : "bg-white border-blue-gray-200 text-black"}`} onChange={(e) => setAttendanceFormData({ ...attendanceFormData, userType: e.target.value })}>
-      <option value="">Select</option>
-      <option value="members">Members</option>
-      <option value="trainers">Trainers</option>
-      <option value="staffs">Other Staffs</option>
-    </select>
-    <div className="mx-5 mb-2 mt-2">
-      <div className=' mt-3 flex'>
-        <div className=' w-4/5'>
-          <label htmlFor="attendance" className={` w-full mt-2 text-sm mb-1 pr-2 ${sidenavType === 'dark' ? "text-white" : "text-black"}`}>Member ID</label>
-          <input type="search" placeholder="Search" onChange={(e) => setAttendanceFormData({ ...attendanceFormData, userId: e.target.value })} className={`border-x border-y w-full  px-3 py-1 rounded-md focus:outline-none focus:border-gray-500 ${sidenavType === 'dark' ? "text-white  bg-gray-900 border-gray-300" : "text-black border-blue-gray-200"}`} />
-        </div>
-        <div className=' w-1/5'>
-          <div className='h-1/2'></div>
-          <button className={` pb-2 -mt-1 px-3 md:px-4 ml-3 rounded pt-1 ${sidenavType === 'dark' ? "bg-red-700 hover:bg-red-900 text-white" : "bg-black hover:bg-gray-900 text-white"}`} onClick={searchUserById}>
-            Search
-          </button>
-        </div>
-      </div>
+              // Add Attendance Toggle
+              <div className={` ${sidenavType === 'dark' ? "bg-gray-900 border-gray-800 shadow-2xl" : "bg-white border-blue-gray-100 shadow-2xl"} mx-2 border-x border-y rounded-xl w-[96%] md:w-[40%] h-auto md:h-[400px] z-1 absolute left-0 md:left-[30%]`} data-aos="fade-up" data-aos-duration="500">
+                <div className='w-full text-center py-4'>
+                  <h1 className={` font-semibold${sidenavType === 'dark' ? ' text-white text-lg' : ' text-blue-gray-900 text-lg'}`}>Add Attendance</h1>
+                </div>
+                <div className='w-full h-10'>
+                  <button className={`${sidenavType === 'dark' ? " bg-gray-700 hover:bg-gray-600" : " bg-blue-gray-200 hover:bg-blue-gray-300"} w-8 h-8 rounded-full absolute right-2 top-2`} onClick={handleAttendanceClick}>
+                    <IoMdClose className='w-5 h-5 m-auto' />
+                  </button>
+                </div>
+                <div className="flex flex-col">
+                  <label htmlFor="attendance" className={`mx-5 mt-2 text-sm mb-1 ${sidenavType === 'dark' ? "text-white" : "text-black"}`}>Attendance Of</label>
+                  <select id="user_type" className={`mx-5 mb-2 rounded-md py-1 px-3 border-x border-y   ${sidenavType === 'dark' ? " bg-gray-900 border-gray-800 text-white" : "bg-white border-blue-gray-200 text-black"}`} onChange={handleChange}>
+                    <option value="">Select</option>
+                    <option value="Members">Members</option>
+                    <option value="Trainers">Trainers</option>
+                    <option value="Other Staffs">Other Staffs</option>
+                  </select>
+                  <div className="mx-5 mb-2 mt-2">
+                    <div className=' mt-3 flex'>
+                      <div className=' w-4/5'>
+                        <label htmlFor="attendance" className={` w-full mt-2 text-sm mb-1 pr-2 ${sidenavType === 'dark' ? "text-white" : "text-black"}`}>Member ID</label>
+                        <input id="user_id" value={attendanceFormData.user_id} type="search" placeholder="Search" onChange={handleChange} className={`border-x border-y w-full  px-3 py-1 rounded-md focus:outline-none focus:border-gray-500 ${sidenavType === 'dark' ? "text-white  bg-gray-900 border-gray-300" : "text-black border-blue-gray-200"}`} />
+                      </div>
+                      <div className=' w-1/5'>
+                        <div className='h-1/2'></div>
+                        <button className={` pb-2 -mt-1 px-3 md:px-4 ml-3 rounded pt-1 ${sidenavType === 'dark' ? "bg-red-700 hover:bg-red-900 text-white" : "bg-black hover:bg-gray-900 text-white"}`} onClick={searchUserById}>
+                          Search
+                        </button>
+                      </div>
+                    </div>
 
-      <div className={`w-full h-22 border-x border-y  mt-3 rounded-lg -mb-5 ${sidenavType === 'dark' ? "border-gray-800 text-white" : " border-blue-gray-200 text-black"}`} >
-        <h1 className='pl-2 pt-1'>Full Name : </h1>
-        <h1 className='pl-2 pt-1'>Member ID : </h1>
-        <h1 className='pl-2 pt-1 pb-1'>Phone : </h1>
-      </div>
-    </div>
-  </div>
+                    <div className={`w-full h-22 border-x border-y  mt-3 rounded-lg -mb-5 ${sidenavType === 'dark' ? "border-gray-800 text-white" : " border-blue-gray-200 text-black"}`} >
+                      <h1 className='pl-2 pt-1'>Full Name : </h1>
+                      <h1 className='pl-2 pt-1'>Member ID : </h1>
+                      <h1 className='pl-2 pt-1 pb-1'>Phone : </h1>
+                    </div>
+                  </div>
+                </div>
 
-  <div className='mx-5'>
-    <button className={`px-3 py-2 mb-5 w-full mt-10 rounded-lg ${sidenavType === 'dark' ? " bg-red-700 hover:bg-red-900 text-white" : " bg-black hover:bg-gray-900 text-white"}`} onClick={handleSubmitAttendance}>Submit Attendance</button>
-  </div>
-</div>
-  :
-  ''
-}
+                <div className='mx-5'>
+                  <button type='button' className={`px-3 py-2 mb-5 w-full mt-10 rounded-lg ${sidenavType === 'dark' ? " bg-red-700 hover:bg-red-900 text-white" : " bg-black hover:bg-gray-900 text-white"}`} onClick={handleSubmitAttendance}>Submit Attendance</button>
+                </div>
+              </div>
+              :
+              ''
+            }
 
 
 
@@ -859,3 +889,4 @@ export function Home() {
   );
 }
 export default Home;
+
