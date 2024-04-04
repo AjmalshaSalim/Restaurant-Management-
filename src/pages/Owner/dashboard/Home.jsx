@@ -359,7 +359,7 @@ export function Home() {
 
 
             {/* Add Enquiry Card */}
-            <div className='' onClick={handleEnquiryClick}>
+            <Link to='/dashboard/AddEnquiries'>
               <StatisticsCard
                 key={EnquiryCardData.title}
                 {...EnquiryCardData}
@@ -375,9 +375,9 @@ export function Home() {
                   </Typography>
                 }
               />
-            </div>
+           </Link>
 
-            {showAddEnquiryForm ?
+            {/* {showAddEnquiryForm ?
               <div className={` ${sidenavType === 'dark' ? "bg-gray-900 border-gray-800 shadow-2xl" : "bg-white border-blue-gray-100 shadow-2xl"} border-x border-y rounded-xl md:w-[40%] h-[auto] z-1 absolute md:left-[30%] left-[12%] top-6`} data-aos="fade-up" data-aos-duration="500">
                 <div className='w-full h-10'>
                   <button className={`${sidenavType === 'dark' ? " bg-gray-700 hover:bg-gray-600" : " bg-blue-gray-200 hover:bg-blue-gray-300"} w-8 h-8 rounded-full absolute right-2 top-2`} onClick={handleEnquiryClick}>
@@ -410,7 +410,7 @@ export function Home() {
               </div>
               :
               ''
-            }
+            } */}
 
             {/* Add New Member */}
             <div className=''>
