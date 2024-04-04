@@ -5,7 +5,8 @@ export const FIlter_Attendance = async data => {
 
     try {
       console.log("ffffff",data);
-      const response = await axios.get (API_URLS.Filter_Attendance, data);
+      
+      const response = await axios.get (`${API_URLS.Filter_Attendance}?user_type=${data}`);
       return response.data;
     } catch (error) {
       console.error ('Filtering Attendance:', error);

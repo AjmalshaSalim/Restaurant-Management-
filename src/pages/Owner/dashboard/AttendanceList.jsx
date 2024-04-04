@@ -63,12 +63,29 @@ export const AttendanceList = () => {
     const date = new Date(dateString);
     return date.toLocaleString('en-US', { day: 'numeric', month: 'short', year: 'numeric' });
   };
-  const handleFiltering=async(data)=>{
-    setUserType(data);
- console.log(userType);
-   const response = await FIlter_Attendance(userType)
-   console.log(response);
+
+  const handleUserTypeChange = (e) => {
+    setUserType(e.target.value);
+  };
+
+  
+  const handleFiltering = async (data) => {
+    console.log("Selected user type:", data); // Log the selected value
+    
+    try {
+      const response = await FIlter_Attendance(data);
+      console.log(response);
+      const formattedAttendanceList = response.map(item => ({
+        ...item,
+        time: formatTime(item.time),
+        date: formatDate(item.date)
+      }));
+      setAttendanceList(formattedAttendanceList);
+    } catch (error) {
+      console.error('Failed to filter attendance:', error);
+    }
   }
+  
 
   return (
     <>
@@ -86,11 +103,11 @@ export const AttendanceList = () => {
               <div className='w-full flex justify-between items-center pr-6'>
 
                 <div className="pr-2 ml-10">
-                  <select
-                   id="user_type"
-                    className={`py-2 pl-2 rounded-lg bg-transparent border-x border-y w-full ${sidenavType ? " text-gray-400 border-gray-700" : " text-blue-gray-600 border-blue-gray-100"}`}
-                    onChange={(e) => handleFiltering(e.target.value)}
-                  >
+                <select
+              id="user_type"
+              className={`py-2 pl-2 rounded-lg bg-transparent border-x border-y w-full ${sidenavType ? " text-gray-400 border-gray-700" : " text-blue-gray-600 border-blue-gray-100"}`}
+                onChange={(e) => handleFiltering(e.target.value)} // Pass the selected value directly
+                    >
                     <option className={`${sidenavType === 'dark' ? "bg-gray-800 py-1" : "bg-white"}`}>All</option>
                     <option value="user" className={`${sidenavType === 'dark' ? "bg-gray-800 py-1" : "bg-white"}`}>Members</option>
                     <option value="trainer" className={`${sidenavType === 'dark' ? "bg-gray-800 py-1" : "bg-white"}`}>Trainers</option>
