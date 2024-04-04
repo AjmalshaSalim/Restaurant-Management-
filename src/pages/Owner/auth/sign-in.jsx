@@ -44,7 +44,8 @@ export function SignIn () {
       console.log("status>>>>", response.status);
       if (response.access) {
         console.log("acesses grantedc >>>>");
-        navigate('/')
+        navigate('/dashboard/home')
+        window.location.reload();
       } else {
         toast.error('Login failed');
         navigate('/sign-in'); // Use navigate instead of redirect

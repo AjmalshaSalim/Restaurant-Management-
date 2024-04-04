@@ -57,7 +57,7 @@ const EquipmentsHome = () => {
               <img src={equipment.image} alt={equipment.title} className="equipment-image w-full h-48 sm:h-64 object-contain rounded-t-lg hover:cursor-grabbing" />
               <div className="equipment-info p-4">
                 <h3 className="equipment-title text-lg sm:text-xl font-semibold mb-2">{equipment.name}</h3>
-                <p className="equipment-description text-gray-700 text-sm sm:text-base">{equipment.category}</p>
+                <p className="equipment-description text-red-700 text-sm sm:text-base">{equipment.category}</p>
               </div>
             </div>
           </SwiperSlide>
