@@ -7,6 +7,7 @@ import Forgetpassword from "../pages/User/Forgetpassword";
 import Changepassword from "../pages/User/Changepassword";
 import Otp from "../pages/User/Otp";
 import Homepage from "../pages/User/Homepage";
+import Plans from "../pages/Owner/dashboard/Plans"
 import AddMember from "../pages/Owner/dashboard/AddMember";
 import Equipments from "../pages/User/Equipments";
 import OwnerLogin from "../pages/Owner/auth/sign-in";
@@ -24,6 +25,9 @@ import SlotBooking from "../components/User/SlotBooking";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import TrainersPage from "../pages/User/TrainersPage";
+import CreatePlans from "../pages/Owner/dashboard/CreatePlans";
+import ConfirmPayments from "../pages/Owner/dashboard/ConfirmPayments";
+import {PaymentDetail} from "../pages/Owner/dashboard/PaymentDetail";
 
 const MainRoutes = () => {
   const [showRoutes, setShowRoutes] = useState(false);
@@ -85,6 +89,10 @@ const MainRoutes = () => {
               <Route path="/changepassword/" element={<Changepassword />} />
               <Route path="/equipments/" element={<Equipments />} />
               <Route path="/Trainers/" element={<TrainersPage />} />
+              <Route path="/Plans/" element={<Plans/>} />
+              <Route path="/CreatePlans/" element={<CreatePlans />} />
+              <Route path="/PaymentDetail" element={<PaymentDetail/>}/>
+              <Route path="/ConfirmPayments" element={<ConfirmPayments/>} />
               <Route path="/MembersList/" element={<OwnerUserList />} />
               <Route path="/AddMember/" element={<AddMember />} />
               <Route path="/slot-booking/" element={<SlotBooking />} />
