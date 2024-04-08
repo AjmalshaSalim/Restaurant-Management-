@@ -28,6 +28,7 @@ import TrainersPage from "../pages/User/TrainersPage";
 import CreatePlans from "../pages/Owner/dashboard/CreatePlans";
 import ConfirmPayments from "../pages/Owner/dashboard/ConfirmPayments";
 import {PaymentDetail} from "../pages/Owner/dashboard/PaymentDetail";
+import {AllDietPlans} from "../pages/Owner/dashboard/AllDietPlans";
 import Profile from "../pages/User/Profile"
 
 const MainRoutes = () => {
@@ -92,6 +93,7 @@ const MainRoutes = () => {
               <Route path="/equipments/" element={<Equipments />} />
               <Route path="/Trainers/" element={<TrainersPage />} />
               <Route path="/Plans/" element={<Plans/>} />
+              <Route path="/AllDietPlans/" element={<AllDietPlans/>} />
               <Route path="/CreatePlans/" element={<CreatePlans />} />
               <Route path="/PaymentDetail" element={<PaymentDetail/>}/>
               <Route path="/ConfirmPayments" element={<ConfirmPayments/>} />
