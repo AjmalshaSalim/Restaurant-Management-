@@ -26,8 +26,10 @@ import {AllStaffs} from './pages/Owner/dashboard/AllStaffs'
 import {CreateSlots} from './pages/Owner/dashboard/CreateSlots'
 import {Plans} from './pages/Owner/dashboard/Plans'
 import CreatePlans from './pages/Owner/dashboard/CreatePlans';
+import EditPlan from './pages/User/EditPlan';
 import ConfirmPayments from './pages/Owner/dashboard/ConfirmPayments';
 import {PaymentDetail} from './pages/Owner/dashboard/PaymentDetail';
+import {AllDietPlans} from './pages/Owner/dashboard/AllDietPlans';
 const icon = {
   className: 'w-5 h-5 text-inherit',
 };
@@ -67,18 +69,23 @@ export const routes = [
         element: <Plans/>,
       },
       {
+        icon: <BsPatchPlusFill {...icon} />,
+        name: 'Create Plans',
+        path: '/CreatePlans',
+        element: <CreatePlans/>,
+      },
+      {
+        icon: <BsPatchPlusFill {...icon} />,
+        name: 'Edit Plan',
+        path: '/EditPlan',
+        element: <EditPlan/>,
+      },
+      {
         icon: <BiSolidOffer {...icon} />,
         name: 'Payment Detail',
         path: '/PaymentDetail',
         element: <PaymentDetail/>,
       },
-      // {
-      //   icon: <BsPatchPlusFill {...icon} />,
-      //   name: 'Create Plans',
-      //   path: '/CreatePlans',
-      //   element: <CreatePlans/>,
-      // },
-
       {
         icon: <BsPatchPlusFill {...icon} />,
         name: 'Confirm Payments',
@@ -114,6 +121,12 @@ export const routes = [
         name: 'Equipments',
         path: '/gym-equipments',
         element: <GymEquipments />,
+      },
+      {
+        icon: <FaDumbbell {...icon} />,
+        name: 'Diet Plans',
+        path: '/AllDietPlans',
+        element: <AllDietPlans />,
       },
       // {
       //   icon: <TableCellsIcon {...icon} />,
