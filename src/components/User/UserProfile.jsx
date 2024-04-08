@@ -71,6 +71,7 @@ export default function UserProfile() {
     formData.append('profile_picture', profileDetails.profile_picture);
 
     try {
+      console.log(formData)
       const response = await Edit_User_Profile(formData);
       console.log(response);
     } catch (error) {
