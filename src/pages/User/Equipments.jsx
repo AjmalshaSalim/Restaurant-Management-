@@ -53,6 +53,10 @@ export default function Equipments() {
                         <div className="col-lg-12 text-center">
                             <div className="breadcrumb-text text-gray-300" data-aos="fade-up">
                                 <h2>Our Equipments</h2>
+                                <div class="bt-option">
+                  <a href="/home">Home</a>
+                  <span>Equipments</span>
+                </div>
                             </div>
                         </div>
                     </div>
@@ -112,23 +116,23 @@ export default function Equipments() {
                         ))}
                     </div>
                     {filteredEquipments.length > 0 && (
-                        <div className="flex justify-center mt-4">
+                        <div className="flex justify-center mt-4 mb-5">
                             <nav>
-                                <ul className="pagination">
+                                <ul className="pagination gap-3 cursor-pointer">
                                     <li className={currentPage === 1 ? 'disabled' : ''}>
-                                        <button onClick={() => paginate(currentPage - 1)} className="page-link rounded-full">
+                                        <button onClick={() => paginate(currentPage - 1)} className="page-link rounded-full font-poppins">
                                             Previous
                                         </button>
                                     </li>
                                     {Array.from({ length: Math.ceil(filteredEquipments.length / itemsPerPage) }).map((_, index) => (
                                         <li key={index} className={index + 1 === currentPage ? 'active' : ''}>
-                                            <button onClick={() => paginate(index + 1)} className="page-link rounded-full">
+                                            <button onClick={() => paginate(index + 1)} className="page-link rounded-full ">
                                                 {index + 1}
                                             </button>
                                         </li>
                                     ))}
                                     <li className={currentPage === Math.ceil(filteredEquipments.length / itemsPerPage) ? 'disabled' : ''}>
-                                        <button onClick={() => paginate(currentPage + 1)} className="page-link rounded-full">
+                                        <button onClick={() => paginate(currentPage + 1)} className="page-link rounded-full font-poppins">
                                             Next
                                         </button>
                                     </li>

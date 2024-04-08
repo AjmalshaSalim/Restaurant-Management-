@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { DemoAction1 } from './../../actions/DemoActions';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { ToastContainer, toast } from 'react-toastify';
 function Login() {
     const [formData, setFormData] = useState({ username: '', password: '' });
     const navigate = useNavigate();
@@ -23,16 +24,17 @@ function Login() {
             if (response.access) {
                 navigate('/home')
             } else {
-                navigate('/login')
+                navigate('/userlogin')
             }
         } catch (error) {
-            console.error('Login failed:', error.message);
+            toast.error("Login failed enter valid details")
         }
     }
 
 
     return (
         <div className="relative h-screen">
+            <ToastContainer />
             <img className="absolute inset-0 w-full h-full object-cover filter grayscale" src={BackgroundImage} alt="bg-iage" />
 
             <div className="absolute inset-0 bg-gradient-to-br from-black to-gray-800 opacity-60"></div>

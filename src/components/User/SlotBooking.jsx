@@ -5,6 +5,7 @@ import { MdDelete } from "react-icons/md";
 import "./SlotBooking.css"
 import backgroundImage from "../../assets/images/breadcrumb-bg.jpg"
 import Footer from './Footer.jsx';
+import { Link } from 'react-router-dom';
 
 const SlotBooking = () => {
     const [selectedSlot, setSelectedSlot] = useState(null);
@@ -17,11 +18,11 @@ const SlotBooking = () => {
         try {
             const response = await Slot_List();
             if (response !== null && typeof response === 'object' && !Array.isArray(response)) {
-                     const filteredSlots = response.filter(slot => {
-                        const slotDate = new Date(slot.date);
-                        return slotDate >= new Date();
-                    });
-                    setAvailableSlots(filteredSlots);
+                const filteredSlots = response.filter(slot => {
+                    const slotDate = new Date(slot.date);
+                    return slotDate >= new Date();
+                });
+                setAvailableSlots(filteredSlots);
             } else {
                 console.error('Response is not an object:', response);
                 setAvailableSlots({});
@@ -51,7 +52,7 @@ const SlotBooking = () => {
     useEffect(() => {
         fetchAvailableSlots(selectedDate);
         fetchBookings();
-    }, [selectedDate]); 
+    }, [selectedDate]);
 
     const handleDateSelect = async (day) => {
         const newSelectedDate = new Date(selectedDate);
@@ -145,6 +146,13 @@ const SlotBooking = () => {
                         <div className="col-lg-12 text-center">
                             <div className="breadcrumb-text" data-aos="fade-up">
                                 <h2>My Bookings</h2>
+                                <div class="bt-option">
+                                    <Link to='/home'>
+                                        <p>Home</p>
+                                    </Link>
+
+                                    <span> Slot-Booking</span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -155,8 +163,8 @@ const SlotBooking = () => {
                     {bookings.length > 0 && (
                         <div className="mb-4 flex flex-col sm:flex-row flex-wrap justify-center items-center gap-5">
                             {bookings.map((booking, index) => (
-                                <div key={index}  
-                                 className="p-4 text-white rounded-xl transition-all duration-500 bg-gradient-to-br to-white via-black from-green-800 bg-size-200 hover:bg-right-bottom mb-4 sm:mb-0">
+                                <div key={index}
+                                    className="p-4 text-white rounded-xl transition-all duration-500 bg-gradient-to-br to-white via-black from-green-800 bg-size-200 hover:bg-right-bottom mb-4 sm:mb-0">
                                     <p>{formatTime12Hour(booking.slot_start_time)} to {formatTime12Hour(booking.slot_end_time)}</p>
                                     <p>Date: {new Date(booking.date).toLocaleDateString('en-GB')}</p>
                                     <button
@@ -164,7 +172,7 @@ const SlotBooking = () => {
                                         onClick={() => handleCancelBooking(booking.id)}
                                         className="px-2 py-2 bg-red-800 text-white rounded-md hover:bg-red-300 mt-2"
                                     >
-                                       <MdDelete />
+                                        <MdDelete />
                                     </button>
                                 </div>
                             ))}
@@ -187,7 +195,7 @@ const SlotBooking = () => {
                             <p className="text-md sm:text-lg md:text-xl font-poppins mt-4 text-center">Today's Date:<span className='text-gray-500'> {today.toLocaleDateString('en-GB')}</span></p>
                         </div>
                     </div>
-                  
+
                 </div>
                 <div className="flex flex-col items-center  p-4 lg:p-8 pt-8 lg:pt-16 xl:pt-36 w-full">
                     <h2 className="text-xl sm:text-2xl md:text-3xl flex font-poppins mb-4 text-center" data-aos="fade-down">Available Slots</h2>
@@ -220,7 +228,7 @@ const SlotBooking = () => {
                         </div>
                     )}
                 </div>
-                
+
             </div>
             <Footer />
         </>

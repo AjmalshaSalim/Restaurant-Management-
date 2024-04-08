@@ -8,7 +8,7 @@ const GymVideo = () => {
         <section className="video-wrapper video section-padding bg-img bg-fixed" data-overlay-dark="4" style={{ backgroundImage: `url(${bg})` }}>
             <div className="container ">
                 <div className="row">
-                    <div className="col-md-12 text-center mb-30">
+                    <div className="col-md-12 text-center mb-14">
                         <div className="section-title3 text-white">Be Inspire</div>
                     </div>
                 </div>

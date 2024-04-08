@@ -67,25 +67,28 @@ const Services = () => {
           {/* Services Card section  */}
           <div className="grid grid-cols-2  md:grid-cols-3 lg:grid-cols-6 xl:grid-cols-6 gap-5">
             {ServicesData.map((service) => (
-              <div key={service.id}
-                data-aos="fade-up"
-                data-aos-delay={`${service.id * 100}`}
-                className="rounded-lg bg-black relative shadow-md duration-300 group mx-auto"
-                style={{ width: "100%", maxWidth: "556px", margin: "0 auto" }}
-              ><Link to={service.link}>
-                  <div className="h-[61px] bg-black" style={{ width: "80px", margin: "0 auto" }}>
-                    <img
-                      src={service.img}
-                      alt=""
-                      className="max-w-[80px] rounded-lg block mx-auto transform -translate-y-7 group-hover:scale-105 group-hover:rotate-3   duration-300"
-                      style={{ filter: "drop-shadow(0 0 0.25rem #000)", color: "black" }}
-                    />
-                  </div>
-                </Link>
-                <div className="p-2 text-center">             
-                  <h1 className="text-md text-gray-500 font-medium">{service.name}</h1>
-                </div>
-              </div>
+             <div
+             key={service.id}
+             data-aos="fade-up"
+             data-aos-delay={`${service.id * 100}`}
+             className="rounded-lg bg-black relative shadow-md duration-300 group mx-auto"
+             style={{ width: "100%", maxWidth: "556px", margin: "0 auto", display: "flex", flexDirection: "column", alignItems: "center" }}
+           >
+             <Link to={service.link}>
+               <div className="h-[61px] bg-black" style={{ width: "80px", margin: "0 auto" }}>
+                 <img
+                   src={service.img}
+                   alt=""
+                   className="max-w-[80px] rounded-lg block mx-auto transform -translate-y-7 group-hover:scale-105 group-hover:rotate-3   duration-300"
+                   style={{ filter: "drop-shadow(0 0 0.25rem #000)", color: "black" }}
+                 />
+               </div>
+             </Link>
+             <div className="p-2 text-center flex-grow">
+               <h1 className="text-md text-gray-500 font-medium">{service.name}</h1>
+             </div>
+           </div>
+           
             ))}
           </div>
         </div>

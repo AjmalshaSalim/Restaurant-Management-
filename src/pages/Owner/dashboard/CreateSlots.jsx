@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useMaterialTailwindController } from "../../../context/index";
-import { Create_Slot } from '../../../actions/SlotBookingActions';
+import { Create_Slot, Slot_List } from '../../../actions/SlotBookingActions';
 import { MdDelete } from "react-icons/md";
 import {
     Card,
@@ -10,6 +10,7 @@ import {
 } from '@material-tailwind/react';
 
 export const CreateSlots = () => {
+
     const [controller] = useMaterialTailwindController();
     const { sidenavType } = controller;
     const [slots, setSlots] = useState([]);
@@ -17,14 +18,27 @@ export const CreateSlots = () => {
     const [endTime, setEndTime] = useState('');
     const [selectedDay, setSelectedDay] = useState('all');
 
+    useEffect(() => {
+        const fetchSlotList = async () => {
+            try {
+                const response = await Slot_List();
+                if(response && response.slots) { 
+                    setSlots(response.slots);
+                }
+            } catch (error) {
+                console.error(error);
+            }
+        };
+        fetchSlotList();
+    }, []);
+
     const addSlot = () => {
         if (!startTime || !endTime || !selectedDay) return;
-        const newSlot = { id: Date.now(), day: selectedDay, startTime, endTime };
+        const newSlot = { id: Date.now(), startTime, endTime };
         const updatedSlots = [...slots, newSlot];
         setSlots(updatedSlots);
         setStartTime('');
         setEndTime('');
-        setSelectedDay('all');
         updateSlotsInBackend(updatedSlots);
     };
 
@@ -33,22 +47,22 @@ export const CreateSlots = () => {
     };
 
     const updateSlotsInBackend = (updatedSlots) => {
-      try {
-        const slotsData = updatedSlots.map(slot => ({
-          start_time: slot.startTime,
-          end_time: slot.endTime,
-          available: true
-      }));
-      const requestData = {
-          day_type: selectedDay,
-          slots: slotsData
-      };
-       Create_Slot(requestData);
-      } catch (error) {
-        console.error('Error while creating slots', error);
-        throw error;
-      }
-       
+        try {
+            const slotsData = updatedSlots.map(slot => ({
+                start_time: slot.startTime,
+                end_time: slot.endTime,
+                available: true
+            }));
+            const requestData = {
+                day_type: selectedDay,
+                slots: slotsData
+            };
+            console.log(requestData);
+            Create_Slot(requestData);
+        } catch (error) {
+            console.error('Error while creating slots', error);
+            throw error;
+        }
     };
 
     return (
@@ -80,7 +94,6 @@ export const CreateSlots = () => {
                                         <option value="saturday">Saturday</option>
                                     </select>
                                 </div>
-
                                 <div className="my-4">
                                     <input
                                         type="time"
@@ -98,9 +111,9 @@ export const CreateSlots = () => {
                                 </div>
                             </div>
                             <div>
-                                {slots.map(slot => (
+                                {slots && slots.map(slot => ( // Ensure slots is truthy before mapping to avoid undefined error
                                     <div key={slot.id} className={`flex justify-between items-center mx-4 my-2 py-2 px-3 ${sidenavType === 'dark' ? "bg-gray-800 text-gray-200" : " bg-gray-200"} rounded-lg`}>
-                                        <span className=' text-sm text-gray-400'>Day - {slot.day} &nbsp;&nbsp;<br></br>Time - {slot.startTime} to {slot.endTime}</span>
+                                        <span className=' text-sm text-gray-400'>Time - {slot.startTime} to {slot.endTime}</span>
                                         <button onClick={() => deleteSlot(slot.id)} className="px-3 py-2 bg-red-700 text-white rounded-md"><MdDelete className=' h-5 w-5' /></button>
                                     </div>
                                 ))}
@@ -114,3 +127,6 @@ export const CreateSlots = () => {
 };
 
 export default CreateSlots;
+
+
+

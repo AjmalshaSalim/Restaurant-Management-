@@ -7,7 +7,7 @@ export default function PricingPlans() {
     <div>  <section className="pricing-section spad">
     <div className="container">
         <div className="row">
-            <div className="col-lg-12">
+            <div className="col-lg-12 mb-5">
                 <div className="section-title" data-aos="zoom-in-up">
                     <span>Our Plan</span>
                     <h2>Choose your pricing plan</h2>

@@ -10,6 +10,7 @@ import team6 from "../../assets/Trainers/team-6.jpg"
 import { FaFacebook ,FaYoutube,FaInstagram  } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import Footer from './Footer';
+import { Link } from 'react-router-dom';
 
 export default function Trainers() {
     return (
@@ -20,6 +21,12 @@ export default function Trainers() {
                         <div className="col-lg-12 text-center">
                             <div className="breadcrumb-text" data-aos="fade-up">
                                 <h2>Our Trainers</h2>
+                                <div class="bt-option">
+                                <Link to='/home'>
+                                        <p>Home</p>
+                                    </Link>
+                  <span>Trainers</span>
+                </div>
                             </div>
                         </div>
                     </div>
