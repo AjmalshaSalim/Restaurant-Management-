@@ -1,38 +1,81 @@
-import React, { useState } from 'react'
-import "./UserProfile.css"
-import prfl from "../../assets/bg/about.jpg"
+import React, { useEffect, useState } from 'react';
+import "./UserProfile.css";
+// import prfl from "../../assets/bg/about.jpg";
 import { GiFireFlower } from "react-icons/gi";
 import backgroundImage from '../../assets/images/breadcrumb-bg.jpg';
-import { FaEdit } from "react-icons/fa";
-
+import { Link, useNavigate } from 'react-router-dom';
+import store from "../../store"
+import { User_Profile, Edit_User_Profile } from "../../actions/UserActions"
 
 export default function UserProfile() {
-
   const [isEditing, setIsEditing] = useState(false);
   const [profileDetails, setProfileDetails] = useState({
-    name: "Jijomon js",
-    age: "25 Years Old",
-    weight: "76 Kg",
-    height: "173 cm",
-    daysCompleted: "25 Days Completed"
+    first_name: "",
+    last_name: "",
+    age: 0,
+    weight: 0,
+    height: 0,
+    days_since_joining: 0,
+    profile_picture: null,
+    initial_weight: 0,
   });
+  const navigate = useNavigate()
+  useEffect(() => {
+    const fetchUserProfile = async () => {
+      try {
+        const response = await User_Profile()
+        setProfileDetails(response);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    fetchUserProfile()
+  }, []);
 
   const handleEditClick = () => {
     setIsEditing(true);
   };
+
   const handleInputChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value, files } = e.target;
     setProfileDetails((prevState) => ({
       ...prevState,
-      [name]: value
+      [name]: name === 'profile_picture' ? files[0] : value,
     }));
   };
 
-  const handleSaveClick = () => {
-    setIsEditing(false);
-  };
   const handleGoBack = () => {
     setIsEditing(false);
+  };
+
+  const handleLogout = () => {
+    store.dispatch({ type: 'LOGOUT' });
+    localStorage.removeItem('userAccessToken');
+    localStorage.removeItem('userRefreshToken');
+    navigate('/userlogin')
+  };
+
+  const handleChangePassword = () => {
+    console.log("Change Password");
+  };
+
+  const handleSaveClick = async () => {
+    setIsEditing(false);
+    const formData = new FormData();
+    formData.append('first_name', profileDetails.first_name);
+    formData.append('last_name', profileDetails.last_name);
+    formData.append('weight', profileDetails.weight);
+    formData.append('height', profileDetails.height);
+    formData.append('days_since_joining', profileDetails.days_since_joining);
+    formData.append('initial_weight', profileDetails.initial_weight);
+    formData.append('profile_picture', profileDetails.profile_picture);
+
+    try {
+      const response = await Edit_User_Profile(formData);
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -44,7 +87,9 @@ export default function UserProfile() {
               <div className="breadcrumb-text" data-aos="fade-up">
                 <h2>My Profile</h2>
                 <div class="bt-option">
-                  <a href="/home">Home</a>
+                  <Link to='/home'>
+                    <p>Home</p>
+                  </Link>
                   <span>Profile</span>
                 </div>
               </div>
@@ -55,110 +100,130 @@ export default function UserProfile() {
       <section className="about section-padding">
         <div className="container">
           <div className="row">
-            <div className="col-md-6">
-              {isEditing ? (
-                <div className="flex flex-col items-center justify-center mx-auto max-w-md p-4 space-y-4">
-                  <input
-                    type="text"
-                    name="name"
-                    value={profileDetails.name}
-                    onChange={handleInputChange}
-                    placeholder="Name"
-                    className="w-full px-3 py-2 rounded border-gray-300 focus:outline-none focus:border-blue-500"
-                  />
-                  <input
-                    type="text"
-                    name="age"
-                    value={profileDetails.age}
-                    onChange={handleInputChange}
-                    placeholder="Age"
-                    className="w-full px-3 py-2 rounded border-gray-300 focus:outline-none focus:border-blue-500"
-                  />
-                  <input
-                    type="text"
-                    name="weight"
-                    value={profileDetails.weight}
-                    onChange={handleInputChange}
-                    placeholder="Weight"
-                    className="w-full px-3 py-2 rounded border-gray-300 focus:outline-none focus:border-blue-500"
-                  />
-                  <input
-                    type="text"
-                    name="height"
-                    value={profileDetails.height}
-                    onChange={handleInputChange}
-                    placeholder="Height"
-                    className="w-full px-3 py-2 rounded border-gray-300 focus:outline-none focus:border-blue-500"
-                  />
-                  <input
-                    type="text"
-                    name="daysCompleted"
-                    value={profileDetails.daysCompleted}
-                    onChange={handleInputChange}
-                    placeholder="Days Completed"
-                    className="w-full px-3 py-2 rounded border-gray-300 focus:outline-none focus:border-blue-500"
-                  />
-                  <button
-                    onClick={handleSaveClick}
-                    className="w-full px-4 py-2 bg-red-500 text-white font-poppins rounded-md hover:bg-red-900 focus:outline-none focus:bg-blue-600"
-                  >
-                    Save
-                  </button>
-
-                  <button
-                    onClick={handleGoBack}
-                    className="w-full px-4 py-2 bg-gray-400 text-black font-poppins rounded-md hover:bg-gray-500 focus:outline-none focus:bg-gray-500"
-                  >
-                    Back
-                  </button>
-
-                </div>
-              ) : (
-                <>
-                  <div className="section-title2 flex justify-between items-center">
-                    <div className="flex items-center justify-start sm:justify-between w-full sm:w-auto">
-                      <p className="mr-4">{profileDetails.name}</p>
-                      <button onClick={handleEditClick} className='text-gray-500 text-4xl hover:text-red-600 pb-2'><FaEdit /></button>
-                    </div>
-                  </div>
-                  <ul className="list-unstyled list mb-10">
-                    <li>
-                      <div className="list-icon"> <span><GiFireFlower /></span> </div>
-                      <div className="list-text">
-                        <p className='font-poppins'>{profileDetails.age}</p>
-                      </div>
-                    </li>
-                    <li>
-                      <div className="list-icon"> <span><GiFireFlower /></span>  </div>
-                      <div className="list-text">
-                        <p className='font-poppins'>{profileDetails.weight}</p>
-                      </div>
-                    </li>
-                    <li>
-                      <div className="list-icon"> <span><GiFireFlower /></span>  </div>
-                      <div className="list-text">
-                        <p className='font-poppins'>{profileDetails.height}</p>
-                      </div>
-                    </li>
-                    <li>
-                      <div className="list-icon"> <span><GiFireFlower /></span>  </div>
-                      <div className="list-text">
-                        <p className='font-poppins'>{profileDetails.daysCompleted}</p>
-                      </div>
-                    </li>
-                  </ul>
-
-                </>
-              )}
+            <div className="col-md-6 mt-4">
+              <div className="about-img">
+                {
+                  profileDetails.profile_picture ? (<div className="img"> <img src={profileDetails.profile_picture} className="img-fluid h-[350px]" alt="" /> </div>) :
+                    (<div className='text-gray-500 font-poppins justify-center'>Loading profile image...</div>)
+                }
+              </div>
             </div>
             <div className="col-md-6">
-              <div className="about-img">
-                <div className="img"> <img src={prfl} className="img-fluid" alt="" /> </div>
+              <div className="details">
+                {isEditing ? (
+                  <div className="flex flex-col items-center justify-center mx-auto max-w-md p-4 space-y-4">
+                    <input
+                      type="text"
+                      name="first_name"
+                      value={profileDetails.first_name}
+                      onChange={handleInputChange}
+                      placeholder="First Name"
+                      className="w-full px-3 py-2 rounded font-poppins border-gray-300 focus:outline-none focus:border-blue-500"
+                    />
+                    <input
+                      type="text"
+                      name="last_name"
+                      value={profileDetails.last_name}
+                      onChange={handleInputChange}
+                      placeholder="Last Name"
+                      className="w-full px-3 py-2 rounded font-poppins border-gray-300 focus:outline-none focus:border-blue-500"
+                    />
+                    <input
+                      type="number"
+                      name="weight"
+                      value={profileDetails.weight}
+                      onChange={handleInputChange}
+                      placeholder="Weight"
+                      className="w-full px-3 py-2 rounded font-poppins border-gray-300 focus:outline-none focus:border-blue-500"
+                    />
+                    <input
+                      type="number"
+                      name="height"
+                      value={profileDetails.height}
+                      onChange={handleInputChange}
+                      placeholder="Height"
+                      className="w-full px-3 py-2 rounded font-poppins border-gray-300 focus:outline-none focus:border-blue-500"
+                    />
+                    <input
+                      type="number"
+                      name="days_since_joining"
+                      value={profileDetails.days_since_joining}
+                      onChange={handleInputChange}
+                      placeholder="Days Since Joining"
+                      className="w-full px-3 py-2 rounded font-poppins border-gray-300 focus:outline-none focus:border-blue-500"
+                    />
+                    <input
+                      type="file"
+                      name="profile_picture"
+                      onChange={handleInputChange}
+                      className="w-full px-3 py-2 rounded font-poppins bg-white border-gray-300 focus:outline-none focus:border-blue-500"
+                    />
+                    <button
+                      onClick={handleSaveClick}
+                      className="w-full px-4 py-2 bg-red-500 text-white font-poppins rounded-md hover:bg-red-900 focus:outline-none focus:bg-blue-600"
+                    >
+                      Save
+                    </button>
+                    <button
+                      onClick={handleGoBack}
+                      className="w-full px-4 py-2 bg-gray-400 text-black font-poppins rounded-md hover:bg-gray-500 focus:outline-none focus:bg-gray-500"
+                    >
+                      Back
+                    </button>
+                  </div>
+
+                ) : (
+                  <>
+                    <div className="section-title2 flex justify-between items-center">
+                      <div className="flex items-center justify-start sm:justify-between w-full sm:w-auto">
+                        <p className=" mt-2 text-lg md:text-3xl">{profileDetails.first_name}<span className='ml-2'>{profileDetails.last_name}</span> </p>
+                      </div>
+                    </div>
+                    <ul className="list-unstyled list mb-10">
+                      <li>
+                        <div className="list-icon"> <span><GiFireFlower /></span> </div>
+                        <div className="list-text">
+                          <p className='font-poppins'>Age : {profileDetails.age} years old</p>
+                        </div>
+                      </li>
+                      <li>
+                        <div className="list-icon"> <span><GiFireFlower /></span>  </div>
+                        <div className="list-text">
+                          <p className='font-poppins'>Initial Weight :  {profileDetails.initial_weight} Kg</p>
+                        </div>
+                      </li>
+                      <li>
+                        <div className="list-icon"> <span><GiFireFlower /></span>  </div>
+                        <div className="list-text">
+                          <p className='font-poppins'>Current Weight :  {profileDetails.weight} Kg</p>
+                        </div>
+                      </li>
+
+                      <li>
+                        <div className="list-icon"> <span><GiFireFlower /></span>  </div>
+                        <div className="list-text">
+                          <p className='font-poppins'>Height : {profileDetails.height} cm</p>
+                        </div>
+                      </li>
+                      <li>
+                        <div className="list-icon"> <span><GiFireFlower /></span>  </div>
+                        <div className="list-text">
+                          <p className='font-poppins'>Days Completed : {profileDetails.days_since_joining} days</p>
+                        </div>
+                      </li>
+                    </ul>
+                    <div className='flex flex-col sm:flex-row sm:justify-between mb-4'>
+                      <button onClick={handleEditClick} className='text-gray-500 lg:text-4xl text-2xl hover:text-red-600 pb-2 mb-2 sm:mb-0 sm:mr-2'>Edit</button>
+                      <button onClick={handleChangePassword} className='text-gray-500 lg:text-4xl text-2xl hover:text-red-600 pb-2 mb-2 sm:mb-0 sm:mr-2'>Change Password</button>
+                      <button onClick={handleLogout} className='text-gray-500 lg:text-4xl text-2xl hover:text-red-600 pb-2 mb-2 sm:mb-0 sm:mr-2'>Logout</button>
+                    </div>
+                  </>
+                )}
               </div>
             </div>
           </div>
         </div>
       </section>
     </div>
-  )
+  );
 }

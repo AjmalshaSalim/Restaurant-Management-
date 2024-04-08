@@ -3,7 +3,7 @@ import BackgroundImage from '../../assets/images/gym-bg-login.jpg';
 import logo from '../../assets/images/Gymsoft_Logo1-removebg-preview.png';
 import { useNavigate } from 'react-router-dom';
 import { CHANGE_PASSWORD } from '../../actions/AuthActions';
-
+import { ToastContainer, toast } from 'react-toastify';
 import { PhoneNumberContext } from '../../context/phoneNumberContext';
 
 
@@ -26,20 +26,21 @@ function Forgetpassword() {
         e.preventDefault();
         const { newPassword, confirmPassword } = formData;
         if (newPassword !== confirmPassword) {
-            alert('New password and confirm password do not match.');
+            toast("New password and confirm password do not match.")
             return;
         }
         try {
             const response = await CHANGE_PASSWORD(formData)
-            if (response.success) {
-                navigate('/login')
+            if (response.message === 'Password reset successfully.') {
+                navigate('/userlogin')
             }
         } catch (error) {
-            console.error('error while sending phone number:', error.message);
+            toast.error('error while sending phone number:', error.message);
         }
     }
     return (
         <div className="relative h-screen">
+             <ToastContainer />
             <img className="absolute inset-0 w-full h-full object-cover filter grayscale" src={BackgroundImage} alt="bg-imae" />
 
             <div className="absolute inset-0 bg-gradient-to-br from-black to-gray-800 opacity-60"></div>

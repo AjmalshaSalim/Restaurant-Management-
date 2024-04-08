@@ -22,6 +22,8 @@ const ADD_Attendance ='/api/mark-attendance/'
 const View_Attendance ='/api/attendance/'
 const Search_user_For_Attendance ='/api/user-details/'
 const Type_Attendance ='/api/attendance/filter/'
+const User_Profile='/api/user-profile/'
+const Edit_User_Profile='/api/user-profile/edit/'
 
 export const API_URLS = {
     LOGIN_API_PATH: `${LOGIN_API_PATH}`,
@@ -46,5 +48,7 @@ export const API_URLS = {
     View_Attendance:`${View_Attendance}`,
     Search_user_For_Attendance:`${Search_user_For_Attendance}`,
     TYPE_ATTENDANCE:`${Type_Attendance}`,
+    USER_PROFILE:`${User_Profile}`,
+    EDIT_USER_PROFILE:`${Edit_User_Profile}`,
 }
 
