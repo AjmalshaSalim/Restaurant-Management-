@@ -37,24 +37,30 @@ function PricingSection() {
             <div className="row">
                 <div className="col-lg-12">
                     <div className="section-title"  data-aos="fade-up">
-                        <h2 className='text-gray-300 text-center text-2xl lg:text-3xl font-poppins'>My Bookings</h2>
+                        <h2 className='text-gray-300 text-center text-2xl lg:text-2xl font-poppins'>My Bookings</h2>
                     </div>
                 </div>
             </div>
-            <div className="row justify-content-center">
-                {bookings.map((booking, index) => (
-                    <Link to="/slot-booking" key={index} className="col-lg-4 col-md-6 col-sm-10 mb-4">
-                        <div className="ps-item"  data-aos="fade-up" >
-                            <h3 className="text-lg lg:text-xl mb-2">Date: {new Date(booking.date).toLocaleDateString('en-GB')}</h3>
-                            <div className="pi-price">
-                                <h2 className="text-xl lg:text-xl">
-                                    {formatTime12Hour(booking.slot_start_time)} to {formatTime12Hour(booking.slot_end_time)}
-                                </h2>
+            {bookings.length > 0 ? (
+                <div className="row justify-content-center">
+                    {bookings.map((booking, index) => (
+                        <Link to="/slot-booking" key={index} className="col-lg-4 col-md-6 col-sm-10 mb-4">
+                            <div className="ps-item"  data-aos="fade-up" >
+                                <h3 className="text-lg lg:text-xl mb-2">Date: {new Date(booking.date).toLocaleDateString('en-GB')}</h3>
+                                <div className="pi-price">
+                                    <h2 className="text-xl lg:text-xl">
+                                        {formatTime12Hour(booking.slot_start_time)} to {formatTime12Hour(booking.slot_end_time)}
+                                    </h2>
+                                </div>
                             </div>
-                        </div>
-                    </Link>
-                ))}
-            </div>
+                        </Link>
+                    ))}
+                </div>
+            ) : (
+                <div className="text-center">
+                    <h2 className="text-gray-700 text-base lg:text-base font-poppins">No bookings found! Start booking now<Link to="/slot-booking"> <span className='ml-2 cursor-pointer'>➡️</span></Link></h2>
+                </div>
+            )}
         </div>
     </section>
     

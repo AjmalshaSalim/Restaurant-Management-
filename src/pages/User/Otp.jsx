@@ -4,6 +4,7 @@ import logo from '../../assets/images/Gymsoft_Logo1-removebg-preview.png';
 import { useRef, useState,useEffect, useContext } from 'react';
 import { VERIFY_OTP } from '../../actions/AuthActions';
 import { PhoneNumberContext } from '../../context/phoneNumberContext';
+import { ToastContainer, toast } from 'react-toastify';
 
 function Otp() {
     const { phoneNumber } = useContext(PhoneNumberContext);
@@ -66,14 +67,15 @@ e.preventDefault();
 try {
     const response=await VERIFY_OTP(data)
     navigate('/changepassword')
-    console.log(response);
 } catch (error) {
  console.error('Error', error);
+ toast.error("otp incorrect , please try again ")
 }
 }
     return (
 
         <div className="relative h-screen">
+               <ToastContainer />
         <img className="absolute inset-0 w-full h-full object-cover filter grayscale " src={BackgroundImage} alt="bg-imae" />
       
         <div className="absolute inset-0 bg-gradient-to-br from-black to-gray-800 opacity-60"></div>

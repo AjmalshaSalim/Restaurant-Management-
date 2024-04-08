@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
 import { Dashboard } from "../layouts/dashboard";
 import { Auth } from "../layouts/auth";
-import Login from "../pages/User/Login";
+import UserLogin from "../pages/User/Login";
 import Forgetpassword from "../pages/User/Forgetpassword";
 import Changepassword from "../pages/User/Changepassword";
 import Otp from "../pages/User/Otp";
@@ -62,12 +62,15 @@ const MainRoutes = () => {
             {/* Public Routes */}
             <Route element={<PublicRoutes />}>
 
-              <Route path="/login/" element={<Login />} />
+             <Route path="/userlogin" element={<UserLogin/>} />
               <Route path="/Ownerlogin" element={<OwnerLogin />} />
               <Route path="/OwnerRegister" element={<OwnerRegister />} />
               <Route path="/OwnerForgetpassword" element={<OwnerForgetpassword />} />
               <Route path="/OwnerOtp" element={<OwnerOtp />} />
               <Route path="/OwnerChangepassword" element={<OwnerChangepassword />} />
+              <Route path="/UserForgotpassword/" element={<Forgetpassword />} />
+              <Route path="/Otp/" element={<Otp />} />
+              <Route path="/changepassword/" element={<Changepassword />} />
 
             </Route>
             <Route path="/home" element={<Homepage />} />
@@ -85,9 +88,7 @@ const MainRoutes = () => {
 
               <Route path="/auth/" element={<Auth />} />
               <Route path="/home" element={<Homepage />} />
-              <Route path="/UserForgotpassword/" element={<Forgetpassword />} />
-              <Route path="/Otp/" element={<Otp />} />
-              <Route path="/changepassword/" element={<Changepassword />} />
+             
               <Route path="/equipments/" element={<Equipments />} />
               <Route path="/Trainers/" element={<TrainersPage />} />
               <Route path="/Plans/" element={<Plans/>} />

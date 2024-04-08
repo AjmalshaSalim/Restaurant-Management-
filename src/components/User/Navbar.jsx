@@ -1,8 +1,11 @@
 import React, { useState, useRef, useEffect } from "react";
 import Logo from "../../assets/images/Gymsoft_Logo1-removebg-preview.png";
 import ResponsiveNavbar from "./ResponsiveNavbar.jsx";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaBars, FaTimes } from "react-icons/fa";
+import Avatar from '@mui/material/Avatar'; 
+import {User_Profile} from "../../actions/UserActions"
+import store from "../../store"
 
 export const Menu = [
   {
@@ -38,6 +41,14 @@ export const Menu = [
 ];
 
 const Navbar = () => {
+
+  const navigate=useNavigate()
+  const [profileDetails, setProfileDetails] = useState({
+    first_name: "",
+    last_name: "",
+    profile_picture:null,
+   
+  });
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const navbarRef = useRef();
@@ -47,6 +58,18 @@ const Navbar = () => {
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+
+  useEffect(() => {
+    const fetchUserProfile=async()=>{
+      try {
+        const response=await User_Profile()
+        setProfileDetails(response);
+      } catch (error) {
+        console.log(error);
+      } 
+    }
+    fetchUserProfile()
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -75,9 +98,16 @@ const Navbar = () => {
     };
   }, [isMenuOpen]);
 
+  const handleLogout=()=>{
+    store.dispatch({ type: 'LOGOUT' });
+    localStorage.removeItem('userAccessToken');
+    localStorage.removeItem('userRefreshToken');
+    navigate('/userlogin')
+  }
+
   return (
     <nav className={`text-white fixed top-0 left-0 w-full z-50 ${isScrolled ? 'bg-black transition-colors duration-500' : 'bg-transparent'}`} ref={navbarRef}>
-      <div className="container mx-auto px-6 flex justify-between items-center">
+      <div className="mx-auto sm:px-2 md:px-16 flex justify-between items-center">
         {/* Logo section */}
         <div className="flex items-center" data-aos="fade-down" data-aos-once="true">
           <button
@@ -88,7 +118,7 @@ const Navbar = () => {
           </button>
         </div>
 
-        <div className="md:hidden">
+        <div className="md:hidden mr-3">
           <button onClick={toggleMenu} ref={menuButtonRef}>
             {isMenuOpen ? <FaTimes className="text-2xl" /> : <FaBars className="text-2xl" />}
           </button>
@@ -115,6 +145,17 @@ const Navbar = () => {
                 </Link>           
               </li>
             ))}
+            {/* Avatar component */}
+          
+            <div className="relative group">
+           
+              <Avatar alt="Cindy Baker" src={profileDetails.profile_picture} />
+              
+              <ul className="absolute hidden group-hover:block font-poppins bg-white text-black py-2 rounded-md shadow-lg">
+                <li className="cursor-pointer px-3 py-1 text-red-900 hover:bg-gray-200" onClick={handleLogout} >Logout</li>
+              </ul>
+            </div>
+            
           </ul>
         </div>
       </div>

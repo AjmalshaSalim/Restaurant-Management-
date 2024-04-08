@@ -21,6 +21,21 @@ function Forgetpassword() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        
+        // Validate phone number
+        if (formData.phonenumber.length !== 10) {
+            toast.error('Please enter a 10-digit phone number.', {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+            return; // Stop execution if phone number is not 10 digits
+        }
+
         try {
             // Assuming SEND_OTP function works as expected
             const response = await SEND_OTP(formData);

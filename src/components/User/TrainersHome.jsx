@@ -81,14 +81,14 @@ export default function TrainersHome() {
     };
 
     return (
-        <div className="">
-            <div className="container">
+        <div >
+            <div>
                 {/* header section */}
-                <div className="" data-aos="fade-up">
+                <div  data-aos="fade-up">
                     <h2 className='text-red-900 text-center text-xl lg:text-lg font-bold'>OUR TEAM</h2>
                 </div>
                 <div className="" data-aos="fade-up">
-                    <h2 className='text-gray-300 text-center text-2xl lg:text-3xl font-poppins'>TRAIN WITH EXPERTS</h2>
+                    <h2 className='text-white text-center text-2xl lg:text-3xl font-bold'>TRAIN WITH EXPERTS</h2>
                 </div>
 
                 {/* Testimonial cards */}
@@ -101,8 +101,9 @@ export default function TrainersHome() {
                                         <img
                                             src={data.image}
                                             alt=""
-                                            className="rounded-full w-40 h-40"
+                                            className="rounded-full w-60 h-60 transition-transform duration-300 transform hover:scale-105"
                                         />
+
                                     </div>
                                     {/* content section */}
                                     <div className="flex flex-col items-center gap-4">
