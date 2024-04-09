@@ -444,7 +444,7 @@ export function Home() {
 
             {/* Add New Member */}
             <div className=''>
-              <Link to="/dashboard/AddMember">
+              <Link to="/dashboard/AddMember" className='w-full'>
                 <StatisticsCard
                   key={AddMemberCardData.title}
                   {...AddMemberCardData}
