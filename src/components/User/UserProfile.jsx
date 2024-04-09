@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import "./UserProfile.css";
-// import prfl from "../../assets/bg/about.jpg";
 import { GiFireFlower } from "react-icons/gi";
 import backgroundImage from '../../assets/images/breadcrumb-bg.jpg';
 import { Link, useNavigate } from 'react-router-dom';
@@ -9,7 +8,7 @@ import { User_Profile, Edit_User_Profile } from "../../actions/UserActions"
 
 export default function UserProfile() {
   const [isEditing, setIsEditing] = useState(false);
-  const [profileDetails, setProfileDetails] = useState({
+  const [formData, setFormData] = useState({
     first_name: "",
     last_name: "",
     age: 0,
@@ -19,17 +18,18 @@ export default function UserProfile() {
     profile_picture: null,
     initial_weight: 0,
   });
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+
   useEffect(() => {
     const fetchUserProfile = async () => {
       try {
-        const response = await User_Profile()
-        setProfileDetails(response);
+        const response = await User_Profile();
+        setFormData(response);
       } catch (error) {
         console.log(error);
       }
     }
-    fetchUserProfile()
+    fetchUserProfile();
   }, []);
 
   const handleEditClick = () => {
@@ -38,7 +38,7 @@ export default function UserProfile() {
 
   const handleInputChange = (e) => {
     const { name, value, files } = e.target;
-    setProfileDetails((prevState) => ({
+    setFormData((prevState) => ({
       ...prevState,
       [name]: name === 'profile_picture' ? files[0] : value,
     }));
@@ -60,17 +60,8 @@ export default function UserProfile() {
   };
 
   const handleSaveClick = async () => {
-    setIsEditing(false);
-    const formData = new FormData();
-    formData.append('first_name', profileDetails.first_name);
-    formData.append('last_name', profileDetails.last_name);
-    formData.append('weight', profileDetails.weight);
-    formData.append('height', profileDetails.height);
-    formData.append('days_since_joining', profileDetails.days_since_joining);
-    formData.append('initial_weight', profileDetails.initial_weight);
-    formData.append('profile_picture', profileDetails.profile_picture);
-
     try {
+      console.log(formData)
       const response = await Edit_User_Profile(formData);
       console.log(response);
     } catch (error) {
@@ -103,7 +94,7 @@ export default function UserProfile() {
             <div className="col-md-6 mt-4">
               <div className="about-img">
                 {
-                  profileDetails.profile_picture ? (<div className="img"> <img src={profileDetails.profile_picture} className="img-fluid h-[350px]" alt="" /> </div>) :
+                  formData.profile_picture ? (<div className="img"> <img src={formData.profile_picture} className="img-fluid h-[350px]" alt="" /> </div>) :
                     (<div className='text-gray-500 font-poppins justify-center'>Loading profile image...</div>)
                 }
               </div>
@@ -115,7 +106,7 @@ export default function UserProfile() {
                     <input
                       type="text"
                       name="first_name"
-                      value={profileDetails.first_name}
+                      value={formData.first_name}
                       onChange={handleInputChange}
                       placeholder="First Name"
                       className="w-full px-3 py-2 rounded font-poppins border-gray-300 focus:outline-none focus:border-blue-500"
@@ -123,7 +114,7 @@ export default function UserProfile() {
                     <input
                       type="text"
                       name="last_name"
-                      value={profileDetails.last_name}
+                      value={formData.last_name}
                       onChange={handleInputChange}
                       placeholder="Last Name"
                       className="w-full px-3 py-2 rounded font-poppins border-gray-300 focus:outline-none focus:border-blue-500"
@@ -131,7 +122,7 @@ export default function UserProfile() {
                     <input
                       type="number"
                       name="weight"
-                      value={profileDetails.weight}
+                      value={formData.weight}
                       onChange={handleInputChange}
                       placeholder="Weight"
                       className="w-full px-3 py-2 rounded font-poppins border-gray-300 focus:outline-none focus:border-blue-500"
@@ -139,7 +130,7 @@ export default function UserProfile() {
                     <input
                       type="number"
                       name="height"
-                      value={profileDetails.height}
+                      value={formData.height}
                       onChange={handleInputChange}
                       placeholder="Height"
                       className="w-full px-3 py-2 rounded font-poppins border-gray-300 focus:outline-none focus:border-blue-500"
@@ -147,7 +138,7 @@ export default function UserProfile() {
                     <input
                       type="number"
                       name="days_since_joining"
-                      value={profileDetails.days_since_joining}
+                      value={formData.days_since_joining}
                       onChange={handleInputChange}
                       placeholder="Days Since Joining"
                       className="w-full px-3 py-2 rounded font-poppins border-gray-300 focus:outline-none focus:border-blue-500"
@@ -176,39 +167,39 @@ export default function UserProfile() {
                   <>
                     <div className="section-title2 flex justify-between items-center">
                       <div className="flex items-center justify-start sm:justify-between w-full sm:w-auto">
-                        <p className=" mt-2 text-lg md:text-3xl">{profileDetails.first_name}<span className='ml-2'>{profileDetails.last_name}</span> </p>
+                        <p className=" mt-2 text-lg md:text-3xl">{formData.first_name}<span className='ml-2'>{formData.last_name}</span> </p>
                       </div>
                     </div>
                     <ul className="list-unstyled list mb-10">
                       <li>
                         <div className="list-icon"> <span><GiFireFlower /></span> </div>
                         <div className="list-text">
-                          <p className='font-poppins'>Age : {profileDetails.age} years old</p>
+                          <p className='font-poppins'>Age : {formData.age} years old</p>
                         </div>
                       </li>
                       <li>
                         <div className="list-icon"> <span><GiFireFlower /></span>  </div>
                         <div className="list-text">
-                          <p className='font-poppins'>Initial Weight :  {profileDetails.initial_weight} Kg</p>
+                          <p className='font-poppins'>Initial Weight :  {formData.initial_weight} Kg</p>
                         </div>
                       </li>
                       <li>
                         <div className="list-icon"> <span><GiFireFlower /></span>  </div>
                         <div className="list-text">
-                          <p className='font-poppins'>Current Weight :  {profileDetails.weight} Kg</p>
+                          <p className='font-poppins'>Current Weight :  {formData.weight} Kg</p>
                         </div>
                       </li>
 
                       <li>
                         <div className="list-icon"> <span><GiFireFlower /></span>  </div>
                         <div className="list-text">
-                          <p className='font-poppins'>Height : {profileDetails.height} cm</p>
+                          <p className='font-poppins'>Height : {formData.height} cm</p>
                         </div>
                       </li>
                       <li>
                         <div className="list-icon"> <span><GiFireFlower /></span>  </div>
                         <div className="list-text">
-                          <p className='font-poppins'>Days Completed : {profileDetails.days_since_joining} days</p>
+                          <p className='font-poppins'>Days Completed : {formData.days_since_joining} days</p>
                         </div>
                       </li>
                     </ul>

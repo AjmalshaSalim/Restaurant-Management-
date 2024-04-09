@@ -47,8 +47,8 @@ function PricingSection() {
                         <Link to="/slot-booking" key={index} className="col-lg-4 col-md-6 col-sm-10 mb-4">
                             <div className="ps-item"  data-aos="fade-up" >
                                 <h3 className="text-lg lg:text-xl mb-2">Date: {new Date(booking.date).toLocaleDateString('en-GB')}</h3>
-                                <div className="pi-price">
-                                    <h2 className="text-xl lg:text-xl">
+                                <div className="pi-slots">
+                                    <h2 className="">
                                         {formatTime12Hour(booking.slot_start_time)} to {formatTime12Hour(booking.slot_end_time)}
                                     </h2>
                                 </div>

@@ -33,7 +33,7 @@ function Login() {
 
 
     return (
-        <div className="relative h-screen">
+        <div className="relative h-screen overflow-hidden">
             <ToastContainer />
             <img className="absolute inset-0 w-full h-full object-cover filter grayscale" src={BackgroundImage} alt="bg-iage" />
 

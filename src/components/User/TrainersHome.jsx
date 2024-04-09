@@ -101,7 +101,7 @@ export default function TrainersHome() {
                                         <img
                                             src={data.image}
                                             alt=""
-                                            className="rounded-full w-60 h-60 transition-transform duration-300 transform hover:scale-105"
+                                            className="rounded-full  w-60 h-60 transition-transform duration-300 transform hover:scale-105"
                                         />
 
                                     </div>
