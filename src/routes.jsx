@@ -22,6 +22,8 @@ import GymEquipments from './pages/Owner/dashboard/GymEquipments';
 import {AddMember} from './pages/Owner/dashboard/AddMember'
 import {AttendanceList} from './pages/Owner/dashboard/AttendanceList'
 import {AddEnquiries} from './pages/Owner/dashboard/AddEnquiries'
+import {EditEnquiry} from './pages/Owner/dashboard/EditEnquiry'
+import {EnquiriesList} from './pages/Owner/dashboard/EnquiriesList'
 import {AllStaffs} from './pages/Owner/dashboard/AllStaffs'
 import {CreateSlots} from './pages/Owner/dashboard/CreateSlots'
 import {Plans} from './pages/Owner/dashboard/Plans'
@@ -55,6 +57,18 @@ export const routes = [
         name: 'Add Enquiries',
         path: '/AddEnquiries',
         element: <AddEnquiries />,
+      },
+      {
+        icon: <UserPlusIcon {...icon} />,
+        name: 'Enquiries List',
+        path: '/EnquiriesList',
+        element: <EnquiriesList />,
+      },
+      {
+        icon: <UserPlusIcon {...icon} />,
+        name: 'Edit Enquiry',
+        path: '/EditEnquiry',
+        element: <EditEnquiry />,
       },
       {
         icon: <FaUsers {...icon} />,

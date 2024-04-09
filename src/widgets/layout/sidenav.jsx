@@ -61,7 +61,7 @@ export function Sidenav({ brandImg, brandName, routes }) {
                 <Typography
                   variant="small"
                   color={sidenavType === "dark" ? "white" : "black"}
-                  className="font-black uppercase opacity-75 text-xs"
+                  className="font-black uppercase opacity-75 text-xs "
                 >
                   {title}
                 </Typography>
@@ -80,13 +80,13 @@ export function Sidenav({ brandImg, brandName, routes }) {
                           ? "white"
                           : "black"
                       }
-                      className={sidenavType === 'dark' ? `flex items-center gap-4 px-4 capitalize ${isActive ? "bg-red-700" : "bg-transparent"}` : `flex items-center gap-4 px-4 capitalize ${isActive ? "bg-black" : "bg-transparent"}`}
+                      className={sidenavType === 'dark' ? `flex items-center gap-4 w-60 capitalize ${isActive ? "bg-red-700" : "bg-transparent"}` : `flex w-60 items-center gap-4 px-4 capitalize ${isActive ? "bg-black" : "bg-transparent"}`}
                       fullWidth
                     >
                       {icon}
                       <Typography
                         color="inherit"
-                        className="font-medium capitalize text-sm"
+                        className="font-medium capitalize text-sm  hover:space-x-4"
                       >
                         {name}
                       </Typography>
