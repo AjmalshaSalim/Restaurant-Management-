@@ -59,22 +59,16 @@
     transform: skewY(4deg);
 }
 
-.ps-item .pi-price {
-    margin-bottom: 30px;
+.ps-item .pi-slots {
+    margin-bottom: 5px;
     transform: skewY(4deg);
 }
 
-.ps-item .pi-price h2 {
-    font-size: 20px;
+.ps-item .pi-slots h2 {
+    font-size: 30px;
     color: #e60709;
-    font-weight: 600;
+    font-weight: 300;
 }
-
-
-
-
-
-
 
 
 

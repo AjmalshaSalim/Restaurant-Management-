@@ -16,7 +16,7 @@ export const Menu = [
   {
     id: 2,
     name: "Diet",
-    link: "/diet",
+    link: "/dietplansuser",
   },
   {
     id: 3,

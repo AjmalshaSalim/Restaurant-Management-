@@ -22,7 +22,9 @@ export const ADD_Equipments = async data => {
   }
 
   export const Edit_User_Profile = async data => {
+    console.log(data,"hhjgjhgjjhgfjhfjh");
     try {
+      console.log(data,"hjhgj");
       const response = await axios.put(API_URLS.EDIT_USER_PROFILE, data);
       return response.data;
     } catch (error) {
