@@ -30,7 +30,7 @@ export function PaymentDetail() {
   const { sidenavType } = controller;
 
   return (
-    <div className="w-full h-full overflow-auto py-5">
+    <div className="w-full py-5 h-[1100px] overflow-scroll">
       <div className={`grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-6`} data-aos="fade-up" data-aos-duration="700">
         {paymentData.map(({ id, name, amount, status, date, plan, transactionId, transactionTime, screenshot }) => (
           <Card key={id} className={`${sidenavType === 'dark' ? "bg-gray-900 bg-opacity-90 border-gray-800" : "bg-white"} shadow-xl mt-2 pb-12 border-x border-y`}>

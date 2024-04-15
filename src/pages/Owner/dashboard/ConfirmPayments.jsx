@@ -40,7 +40,7 @@ export function ConfirmPayments() {
 navigate('../PaymentDetail')
   }
   return (
-    <div className="w-full h-full overflow-auto p-5">
+    <div className="w-full p-5 h-[1100px] overflow-scroll">
       <div className={`flex w-full pt-3 pb-4 border-x border-y rounded-xl ${sidenavType === 'dark' ? "bg-gray-900 bg-opacity-90 border-gray-800" : ""} `}>
         <div className=' w-5/6 h-10'>
           <Typography variant="h6" color="white" className='pl-5 mt-2'>

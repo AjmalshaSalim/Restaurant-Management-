@@ -38,7 +38,7 @@ export function MembersList() {
     controller;
   return (
     <>
-    <div className=" w-full h-[920px] overflow-scroll">
+    <div className=" w-full h-[1100px] overflow-scroll">
     <div className={`mt-12 mb-8 flex flex-col gap-12 rounded-xl ${
       sidenavType === "dark" ? "bg-transparent border-x border-y border-gray-800" : "bg-white"
     }`} data-aos="fade-up"
