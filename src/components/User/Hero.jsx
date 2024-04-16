@@ -5,18 +5,20 @@ import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import { MdOutlineQrCodeScanner } from "react-icons/md";
 import { Tooltip } from "@material-tailwind/react";
-// QR Code Scanner
+import {User_Profile} from "../../actions/UserActions"
 
 
 const Hero = () => {
   const [qrData, setQrData] = useState('');
   const [isCameraOpen, setIsCameraOpen] = useState(false);
-  const [percentage, setPercentage] = useState(50);
+  const [profileDetails, setProfileDetails] = useState({});
+  const [percentage, setPercentage] = useState(0);
+  
   const handleScan = (data) => {
     if (data) {
       setQrData(data);
-      localStorage.setItem('qrData', data); // Add QR data to localStorage
-      window.location.reload(); // Reload the page
+      localStorage.setItem('qrData', data); 
+      window.location.reload(); 
     }
   };
 
@@ -29,7 +31,7 @@ const Hero = () => {
   };
 
   const closeCamera = () => {
-    setIsCameraOpen(false); // Close camera forcefully
+    setIsCameraOpen(false); 
     setQrData('');
   };
 
@@ -41,7 +43,7 @@ const Hero = () => {
 
   useEffect(() => {
     const handleUnload = () => {
-      closeCamera(); // Close camera when the component unloads
+      closeCamera();
     };
 
     window.addEventListener('beforeunload', handleUnload);
@@ -51,6 +53,36 @@ const Hero = () => {
     };
   }, []);
 
+  useEffect(() => {
+    const fetchUserProfile = async () => {
+      try {
+        const response = await User_Profile();
+        console.log("Fetched Profile Details:", response);
+        setProfileDetails(response);
+        const calculatedPercentage = calculatePercentage();
+        setPercentage(calculatedPercentage);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchUserProfile();
+  }, []);
+ 
+  const calculatePercentage = () => {
+    const initialWeight = parseFloat(profileDetails.initial_weight); 
+    const currentWeight = parseFloat(profileDetails.weight); 
+
+    if (isNaN(initialWeight) || isNaN(currentWeight) || initialWeight === 0) {
+      return 0; 
+    }
+    if (currentWeight < initialWeight) {
+      return ((initialWeight - currentWeight) / initialWeight) * 100;
+    } else {
+      return ((currentWeight - initialWeight) / initialWeight) * 100;
+    }
+  };
+  const result=calculatePercentage()
+  
   return (
     <>
       <div className="min-h-screen bg-black flex justify-center items-center text-gray-300 relative">
@@ -77,21 +109,20 @@ const Hero = () => {
               {/* Finished Workouts */}
               <div className="bg-black bg-opacity-50 p-4 rounded-lg shadow-lg" data-aos="fade-down" >
                 <h2 className="text-xl font-semibold mb-2 text-center md:text-left">Completed Workouts</h2>
-                <p className="text-4xl font-bold text-center md:text-left">12</p>
+                <p className="text-4xl font-bold text-center md:text-left">{profileDetails.days_since_joining}</p>
                 <p className="text-sm text-gray-400 text-center md:text-left">Days</p>
               </div>
               {/* In Progress Workouts */}
               <div className="bg-black bg-opacity-50 p-4 rounded-lg shadow-lg" data-aos="fade-up" >
-                <h2 className="text-xl font-semibold mb-2 text-center md:text-left">In Progress</h2>
-                <p className="text-4xl font-bold text-center md:text-left">2</p>
-                <p className="text-sm text-gray-400 text-center md:text-left">Days</p>
+                <h2 className="text-xl font-semibold mb-2 text-center md:text-left">Current Weight</h2>
+                <p className="text-4xl font-bold text-center md:text-left">{profileDetails.weight}</p>
+                <p className="text-sm text-gray-400 text-center md:text-left">Kg</p>
               </div>
               {/* Your Progress */}
               <div className="bg-black bg-opacity-50 p-2 rounded-lg shadow-lg flex flex-col items-center justify-center" data-aos="fade-up" data-aos-anchor-placement="bottom-bottom">
-                <h2 className="text-xl font-semibold mb-2 text-center">Your Progress</h2>
-                <p className="text-lg pb-2 text-center">Weight Gain</p>
+              <p className="text-xl font-semibold mb-3 lg:mb-2 text-center md:text-left ">{parseFloat(profileDetails.weight) < parseFloat(profileDetails.initial_weight) ? 'Weight Loss' : 'Weight Gain'}</p>
                 <div style={{ width: '60%', height: '60%' }} className="flex items-center justify-center pt-4 sm:pt-4">
-                  <CircularProgressbar value={percentage} text={`${percentage}%`} styles={{
+                  <CircularProgressbar value={result} text={`${result.toFixed(1)}%`} styles={{
                     path: {
                       stroke: `red`,
                     },
@@ -107,7 +138,7 @@ const Hero = () => {
               </div>
               <div className=" bg-red-900 hover:bg-opacity-70 h-20 w-30 rounded-lg text-center bg-opacity-60" onClick={openCamera}>
                 <MdOutlineQrCodeScanner className=" w-10 h-10 mx-auto mt-2" />
-                <h3 className=" mt-1">Add Attendance</h3>
+                <h3 className=" mt-1 font-poppins">Add Attendance</h3>
               </div>
               {isCameraOpen && (
         <div className="qr-reader-container md:w-[40%] md:absolute md:left-[35%] md:top-[10%] w-full z-2 fixed border-x border-y border-5 rounded-lg border-gray-900 bg-gray-900 text-center">

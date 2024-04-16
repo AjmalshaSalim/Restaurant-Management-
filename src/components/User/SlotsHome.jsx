@@ -11,7 +11,7 @@ function PricingSection() {
             const response = await My_Bookings();
             if (response && Array.isArray(response) && response.length > 0) {
                 const filteredBookings = response.filter(booking => new Date(booking.date) >= new Date());
-                setBookings(filteredBookings); 
+                setBookings(filteredBookings);
             } else {
                 console.error('No bookings found');
                 setBookings([]);
@@ -32,38 +32,43 @@ function PricingSection() {
         return `${hours12}:${minutes} ${amPm}`;
     };
     return (
-        <section className="pricing-section spad">
-        <div className="container">
-            <div className="row">
-                <div className="col-lg-12">
-                    <div className="section-title"  data-aos="fade-up">
-                        <h2 className='text-gray-300 text-center text-2xl lg:text-2xl font-poppins'>My Bookings</h2>
-                    </div>
-                </div>
-            </div>
-            {bookings.length > 0 ? (
-                <div className="row justify-content-center">
-                    {bookings.map((booking, index) => (
-                        <Link to="/slot-booking" key={index} className="col-lg-4 col-md-6 col-sm-10 mb-4">
-                            <div className="ps-item"  data-aos="fade-up" >
-                                <h3 className="text-lg lg:text-xl mb-2">Date: {new Date(booking.date).toLocaleDateString('en-GB')}</h3>
-                                <div className="pi-slots">
-                                    <h2 className="">
-                                        {formatTime12Hour(booking.slot_start_time)} to {formatTime12Hour(booking.slot_end_time)}
-                                    </h2>
+        <section className="pricing-section spad mt-16 mb-10">
+            <div className="container">
+                <div class="bg-black">
+                    <div class="container mx-auto px-4 lg:px-0">
+                        <div class="lg:flex justify-center">
+                            <div class="lg:w-3/4 mb-5">
+                                <div class="text-center mb-10" data-aos="zoom-up">
+                                    <span class="text-red-800 font-poppins uppercase">Your Bookings</span>
+                                    <h2 class="text-white text-4xl uppercase font-semibold">Choose your pricing plan</h2>
                                 </div>
                             </div>
-                        </Link>
-                    ))}
+                        </div>
+                    </div>
                 </div>
-            ) : (
-                <div className="text-center">
-                    <h2 className="text-gray-700 text-base lg:text-base font-poppins">No bookings found! Start booking now<Link to="/slot-booking"> <span className='ml-2 cursor-pointer'>➡️</span></Link></h2>
-                </div>
-            )}
-        </div>
-    </section>
-    
+                {bookings.length > 0 ? (
+                    <div className="row justify-content-center">
+                        {bookings.map((booking, index) => (
+                            <Link to="/slot-booking" key={index} className="col-lg-4 col-md-6 col-sm-10 mb-4">
+                                <div className="ps-item rounded-3xl"  >
+                                    <h3 className="text-lg lg:text-xl mb-2">Date: {new Date(booking.date).toLocaleDateString('en-GB')}</h3>
+                                    <div className="pi-slots" data-aos="fade-down">
+                                        <h2 className="">
+                                            {formatTime12Hour(booking.slot_start_time)} to {formatTime12Hour(booking.slot_end_time)}
+                                        </h2>
+                                    </div>
+                                </div>
+                            </Link>
+                        ))}
+                    </div>
+                ) : (
+                    <div className="text-center">
+                        <h2 className="text-gray-700 text-base lg:text-base font-poppins">No bookings found! Start booking now<Link to="/slot-booking"> <span className='ml-2 cursor-pointer'>➡️</span></Link></h2>
+                    </div>
+                )}
+            </div>
+        </section>
+
     );
 }
 
