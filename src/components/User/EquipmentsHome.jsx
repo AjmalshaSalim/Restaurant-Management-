@@ -37,9 +37,16 @@ const EquipmentsHome = () => {
 
   return (
     <div>
-      <h1 className="text-2xl text-white pt-4 font-medium font-poppins text-center" data-aos="fade-up">
-        Our Equipments
-      </h1>
+        <div class="container mx-auto px-4 lg:px-0">
+                        <div class="lg:flex justify-center">
+                            <div class="lg:w-3/4 mb-5">
+                                <div class="text-center mb-10" data-aos="zoom-up">
+                                    <span class="text-red-800 font-poppins uppercase">Welcome</span>
+                                    <h2 class="text-white text-4xl uppercase font-semibold">Our Equipments</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
       <div data-aos="fade-up" className="equipments-swiper-container p-4 sm:p-7 bg-black shadow-lg rounded-lg overflow-hidden flex justify-center relative cursor-pointer">
         <Swiper
           effect={'cards'}
@@ -63,10 +70,10 @@ const EquipmentsHome = () => {
           ))}
         </Swiper>
         <div className="absolute inset-y-0 left-0 z-10 flex items-center">
-          <button onClick={goPrev} className="swiper-button-prev bg-white p-1 sm:p-2 ml-4 sm:ml-8 rounded-full shadow-md hover:cursor-pointer" aria-label="Previous slide">&#10094;</button>
+          <button onClick={goPrev} className="swiper-button-prev bg-black text-white p-1 sm:p-2 ml-4 sm:ml-8 rounded-full shadow-md hover:cursor-pointer" aria-label="Previous slide">&#10094;</button>
         </div>
         <div className="absolute inset-y-0 right-0 z-10 flex items-center">
-          <button onClick={goNext} className="swiper-button-next bg-white p-1 sm:p-2 mr-4 sm:mr-8 rounded-full shadow-md hover:cursor-pointer" aria-label="Next slide">&#10095;</button>
+          <button onClick={goNext} className="swiper-button-next bg-black text-white p-1 sm:p-2 mr-4 sm:mr-8 rounded-full shadow-md hover:cursor-pointer" aria-label="Next slide">&#10095;</button>
         </div>
       </div>
     </div>
