@@ -19,14 +19,14 @@ const ServicesData = [
     id: 2,
     img: Img2,
     name: "Trainer",
-    link: '/trainer',
+    link: '/Trainers',
     aosDelay: "300",
   },
   {
     id: 3,
     img: Img3,
     name: "Diet",
-    link: '/diet',
+    link: '/dietplansuser',
     aosDelay: "500",
   },
   {

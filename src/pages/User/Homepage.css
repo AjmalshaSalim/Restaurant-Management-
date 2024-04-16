@@ -1,0 +1,22 @@
+.progress-circle {
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+    background-color: #696969;
+    color: rgb(255, 255, 255);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 1000; 
+    transition: background-color 1s ease, color 0.5s ease-in;
+}
+
+.progress-circle:hover {
+    background-color: #ff0000;
+    color: rgb(255, 255, 255);
+}
+

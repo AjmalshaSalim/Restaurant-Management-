@@ -6,6 +6,7 @@ import backgroundImage from "../../assets/images/breadcrumb-bg.jpg"
 import "../../components/User/Equipments.css"
 import { FaSearch } from "react-icons/fa";
 import Footer from "../../components/User/Footer.jsx"
+import { Link } from 'react-router-dom';
 
 export default function Equipments() {
     const [equipments, setEquipments] = useState([]);
@@ -54,7 +55,9 @@ export default function Equipments() {
                             <div className="breadcrumb-text text-gray-300" data-aos="fade-up">
                                 <h2>Our Equipments</h2>
                                 <div class="bt-option">
-                  <a href="/home">Home</a>
+                                <Link to='/home'>
+                                        <p>Home</p>
+                                    </Link>
                   <span>Equipments</span>
                 </div>
                             </div>
@@ -97,18 +100,18 @@ export default function Equipments() {
                                 transition={{ duration: 0.1, type: "tween", stiffness: 200, damping: 10 }}
                                 className="block rounded-md bg-white dark:bg-neutral-600 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:text-red-400 shadow-lg"
                             >
-                                <div className="relative overflow-hidden bg-cover bg-no-repeat h-48">
+                                <div className="relative overflow-hidden bg-cover bg-no-repeat h-64">
                                     <img
                                         className="rounded-t-md h-full w-full transition duration-200 ease-in-out object-contain"
                                         src={equipment.image}
                                         alt={equipment.title}
                                     />
                                 </div>
-                                <div className="p-2">
-                                    <h5 className="mb-1 text-lg leading-tight text-neutral-800 dark:text-neutral-50 transition duration-200 ease-in-out font-poppins">
+                                <div className="p-2 flex items-center justify-between">
+                                    <h5 className="mb-1 text-xl leading-tight text-neutral-800 dark:text-neutral-50 transition duration-200 ease-in-out font-poppins">
                                         {equipment.name}
                                     </h5>
-                                    <p className="text-xs text-neutral-500 dark:text-neutral-300 transition duration-200 ease-in-out font-poppins">
+                                    <p className="text-base text-neutral-500 dark:text-neutral-300 transition duration-200 ease-in-out font-poppins">
                                         {equipment.category}
                                     </p>
                                 </div>
