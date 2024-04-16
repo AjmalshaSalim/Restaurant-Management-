@@ -48,8 +48,8 @@ export function AddEnquiries() {
   };
 
   return (
-    <div className="flex justify-center items-center py-5">
-      <Card className={`w-full max-w-8xl shadow-xl ${sidenavType === 'dark' ? 'bg-gray-900 bg-opacity-90' : 'bg-white'}`} data-aos="fade-up" data-aos-duration="700">
+    <div className="flex justify-center items-center py-5 w-full h-[1100px] overflow-scroll">
+      <Card className={`w-full max-w-8xl mt-2 shadow-xl ${sidenavType === 'dark' ? 'bg-gray-900 bg-opacity-90' : 'bg-white'}`} data-aos="fade-up" data-aos-duration="700">
         <CardHeader className={`flex border-x border-y ${sidenavType === 'dark' ? "bg-gray-900 border-gray-800": "bg-white"}  rounded-xl py-4`}>
           <Typography variant="h6" color={sidenavType==='dark'? "white":"black"} className=' ml-6'>
             Add Enquiry

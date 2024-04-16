@@ -54,7 +54,7 @@ const CreatePlans = () => {
   const [controller] = useMaterialTailwindController();
   const { sidenavType } = controller;
   return (
-    <div className="w-full h-[920px] overflow-y-scroll p-5 ">
+    <div className="w-full h-[1100px] overflow-y-scroll p-5 ">
       <div className={`flex w-full pt-3 pb-4 border-x border-y rounded-xl ${sidenavType==='dark' ? "bg-gray-900 border-gray-800" : "bg-white border-gray-200 text-black"}`}>
         <div className=' w-5/6 h-10'>
           <Typography variant="h6" color={sidenavType === 'dark'? "white" : "black"} className='pl-5 mt-2'>

@@ -147,7 +147,7 @@ export default function GymEquipments() {
 
     return (
       <>
-        <div className=" w-full h-[920px] overflow-scroll">
+        <div className=" w-full h-[1100px] overflow-scroll">
           <div className='flex flex-row justify-between items-center mt-8 mb-3'>
             <h1 className={`text-3xl font-extrabold tracking-tight flex-grow ${sidenavType === 'dark' ? "text-white" : "text-black"}`}>Add Equipments</h1>
             <Button onClick={handleAddEquipmentFormToggle} className={` px-4 shadow-sm font-medium py-3 ${sidenavType === 'dark' ? "bg-red-700" : "bg-black"}`}>
@@ -385,7 +385,7 @@ export default function GymEquipments() {
 
   return (
     <>
-      <div className=" w-full h-[920px] overflow-scroll">
+      <div className=" w-full h-[1100px] overflow-scroll">
         <ToastContainer />
         {showAddEquipmentForm ? (
           <AddEquipmentForm />
