@@ -17,6 +17,7 @@ export const CreateSlots = () => {
     const [startTime, setStartTime] = useState('');
     const [endTime, setEndTime] = useState('');
     const [selectedDay, setSelectedDay] = useState('all');
+    const [slotCount, setSlotCount] = useState(1); // New state for count of slots
 
     useEffect(() => {
         const fetchSlotList = async () => {
@@ -33,12 +34,13 @@ export const CreateSlots = () => {
     }, []);
 
     const addSlot = () => {
-        if (!startTime || !endTime || !selectedDay) return;
-        const newSlot = { id: Date.now(), startTime, endTime };
+        if (!startTime || !endTime || !selectedDay || slotCount <= 0) return;
+        const newSlot = { id: Date.now(), startTime, endTime, count: slotCount }; // Include count in new slot object
         const updatedSlots = [...slots, newSlot];
         setSlots(updatedSlots);
         setStartTime('');
         setEndTime('');
+        setSlotCount(1); // Reset slot count
         updateSlotsInBackend(updatedSlots);
     };
 
@@ -51,7 +53,8 @@ export const CreateSlots = () => {
             const slotsData = updatedSlots.map(slot => ({
                 start_time: slot.startTime,
                 end_time: slot.endTime,
-                available: true
+                available: true,
+                count: slot.count // Include count in slots data
             }));
             const requestData = {
                 day_type: selectedDay,
@@ -95,17 +98,27 @@ export const CreateSlots = () => {
                                     </select>
                                 </div>
                                 <div className="my-4">
+                                    Start Time :
                                     <input
                                         type="time"
                                         value={startTime}
                                         onChange={(e) => setStartTime(e.target.value)}
-                                        className="mx-2 py-2 px-3 rounded-md"
+                                        className="ml-2 mr-6 py-2 px-3 rounded-md"
                                     />
+                                    End Time :
                                     <input
                                         type="time"
                                         value={endTime}
                                         onChange={(e) => setEndTime(e.target.value)}
-                                        className="mx-2 py-2 px-3 rounded-md"
+                                        className="ml-2 mr-6 py-2 px-3 rounded-md"
+                                    />
+                                    Count of slots :
+                                    <input
+                                        type="number"
+                                        value={slotCount}
+                                        onChange={(e) => setSlotCount(parseInt(e.target.value))}
+                                        className="ml-2 mr-6 py-2 px-3 rounded-md"
+                                        min="1" // Set minimum value for slot count
                                     />
                                     <button onClick={addSlot} className={`px-4 py-2 ml-2 ${sidenavType === 'dark' ? "bg-red-700" : "bg-black"}  text-white rounded-md`}>Add Slot</button>
                                 </div>
@@ -113,7 +126,7 @@ export const CreateSlots = () => {
                             <div>
                                 {slots && slots.map(slot => ( // Ensure slots is truthy before mapping to avoid undefined error
                                     <div key={slot.id} className={`flex justify-between items-center mx-4 my-2 py-2 px-3 ${sidenavType === 'dark' ? "bg-gray-800 text-gray-200" : " bg-gray-200"} rounded-lg`}>
-                                        <span className=' text-sm text-gray-400'>Time - {slot.startTime} to {slot.endTime}</span>
+                                        <span className=' text-sm text-gray-400'>Time - {slot.startTime} to {slot.endTime} | Count: {slot.count}</span> {/* Display slot count */}
                                         <button onClick={() => deleteSlot(slot.id)} className="px-3 py-2 bg-red-700 text-white rounded-md"><MdDelete className=' h-5 w-5' /></button>
                                     </div>
                                 ))}
@@ -127,6 +140,3 @@ export const CreateSlots = () => {
 };
 
 export default CreateSlots;
-
-
-
