@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import AOS from 'aos';
+import { MdEdit } from "react-icons/md";
 import 'aos/dist/aos.css';
 import { Link } from 'react-router-dom';
 import {
@@ -38,7 +39,7 @@ export function EnquiriesList() {
 
   return (
     <>
-      <div className="w-full h-[920px] overflow-scroll">
+      <div className="w-full h-[1100px] overflow-scroll">
         <div className={`mt-12 mb-8 flex flex-col gap-12 rounded-xl ${sidenavType === "dark" ? "bg-transparent border-x border-y border-gray-800" : "bg-white"}`} data-aos="fade-up" data-aos-duration="700">
           <Card className={`${sidenavType === 'dark' ? "bg-gray-900 bg-opacity-90" : "bg-white"}`}>
             <CardHeader variant="filled" color="gray" className={`mb-8 p-6 ${sidenavType === 'dark' ? "bg-gray-900 border-x border-y border-gray-800" : "bg-gray-900"}`}>
@@ -99,7 +100,7 @@ export function EnquiriesList() {
                             href="#"
                             className={`text-xs font-semibold ${sidenavType === "dark" ? "text-white" : "text-blue-gray-600"}`}
                           >
-                            Edit
+                           <MdEdit className='w-5 h-5'/>
                           </Typography>
                         </td>
                       </tr>

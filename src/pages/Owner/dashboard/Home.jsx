@@ -309,7 +309,7 @@ export function Home() {
   console.log(statisticsCardsData);
   return (
     <>
-      <div className=" w-full h-[920px] overflow-scroll">
+      <div className=" w-full h-[1100px] overflow-scroll">
       <ToastContainer />
         <div className="mt-10 bg-transparent">
           <div

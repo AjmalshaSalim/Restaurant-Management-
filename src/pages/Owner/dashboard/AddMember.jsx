@@ -104,7 +104,7 @@ export function AddMember() {
   }, [])
   return (
     <>
-      <div className=" w-full h-[920px] overflow-hidden">
+      <div className=" w-full h-[1100px] overflow-hidden">
         <Card className={`mt-10 ml mb-6  w-full  ${sidenavType === 'dark' ? "bg-gray-900 bg-opacity-90 border-x border-y border-gray-800" : "bg-white border border-blue-gray-100"}`}
           data-aos="fade-up"
           data-aos-duration="700">
@@ -173,7 +173,7 @@ export function AddMember() {
                   // value={formData.firstname}
                   name="firstname"
                   onChange={handleChange}
-                  className={` py-2  pl-2 pr-20 rounded-lg bg-transparent border-x border-y ${sidenavType === 'dark' ? "border-gray-600" : " border-blue-gray-100"}`}
+                  className={` py-2 text-sm  pl-2 pr-20 rounded-lg bg-transparent border-x border-y ${sidenavType === 'dark' ? "border-gray-600" : " border-blue-gray-100"}`}
                 />
               </div>
 
@@ -191,7 +191,7 @@ export function AddMember() {
                   // value={formData.lastname}
                   name="lastname"
                   onChange={handleChange}
-                  className={` py-2  pl-2 pr-20 rounded-lg bg-transparent border-x border-y ${sidenavType === 'dark' ? "border-gray-600" : " border-blue-gray-100"}`}
+                  className={` py-2 text-sm pl-2 pr-20 rounded-lg bg-transparent border-x border-y ${sidenavType === 'dark' ? "border-gray-600" : " border-blue-gray-100"}`}
                 />
               </div>
 
@@ -209,7 +209,7 @@ export function AddMember() {
                   // value={formData.mobilenumber}
                   name="mobilenumber"
                   onChange={handleChange}
-                  className={` py-2  pl-2 pr-20 rounded-lg bg-transparent border-x border-y ${sidenavType === 'dark' ? "border-gray-600" : " border-blue-gray-100"}`}
+                  className={` py-2 text-sm pl-2 pr-20 rounded-lg bg-transparent border-x border-y ${sidenavType === 'dark' ? "border-gray-600" : " border-blue-gray-100"}`}
                 />
               </div>
 
@@ -227,7 +227,7 @@ export function AddMember() {
                   value={userData.email}
                   name="email"
                   onChange={handleChange}
-                  className={` py-2  pl-2 pr-20 rounded-lg bg-transparent border-x border-y ${sidenavType === 'dark' ? "border-gray-600" : " border-blue-gray-100"}`}
+                  className={` py-2 text-sm pl-2 pr-20 rounded-lg bg-transparent border-x border-y ${sidenavType === 'dark' ? "border-gray-600" : " border-blue-gray-100"}`}
                 />
               </div>
 
@@ -243,7 +243,7 @@ export function AddMember() {
                   value={userData.gender}
                   onChange={handleChange}
                   name="gender"
-                  className={`py-2 pl-2 pr-20 rounded-lg bg-transparent w-[280px] border-x border-y ${sidenavType ? " text-gray-400 border-gray-700" : " text-blue-gray-600 border-blue-gray-100"}`}
+                  className={`py-2 text-sm pl-2 pr-20 rounded-lg bg-transparent w-[254px] border-x border-y ${sidenavType ? " text-gray-400 border-gray-700" : " text-blue-gray-600 border-blue-gray-100"}`}
                 >
                   <option value="male" className={`${sidenavType === 'dark' ? "bg-black" : "bg-white"}`}>Male</option>
                   <option value="female" className={`${sidenavType === 'dark' ? "bg-black" : "bg-white"}`}>Female</option>
@@ -265,7 +265,7 @@ export function AddMember() {
                   // value={formData.age}
                   name="age"
                   onChange={handleChange}
-                  className={` py-2  pl-2 pr-20 rounded-lg bg-transparent border-x border-y ${sidenavType === 'dark' ? "border-gray-600" : " border-blue-gray-100"}`}
+                  className={` py-2 text-sm pl-2 pr-20 rounded-lg bg-transparent border-x border-y ${sidenavType === 'dark' ? "border-gray-600" : " border-blue-gray-100"}`}
                 />
               </div>
 
@@ -283,7 +283,7 @@ export function AddMember() {
                   // value={formData.height}
                   name="height"
                   onChange={handleChange}
-                  className={` py-2  pl-2 pr-20 rounded-lg bg-transparent border-x border-y ${sidenavType === 'dark' ? "border-gray-600" : " border-blue-gray-100"}`}
+                  className={` py-2 text-sm pl-2 pr-20 rounded-lg bg-transparent border-x border-y ${sidenavType === 'dark' ? "border-gray-600" : " border-blue-gray-100"}`}
                 />
               </div>
 
@@ -302,7 +302,7 @@ export function AddMember() {
                   // value={formData.weight}
                   name="weight"
                   onChange={handleChange}
-                  className={` py-2  pl-2 pr-20 rounded-lg bg-transparent border-x border-y ${sidenavType === 'dark' ? "border-gray-600" : " border-blue-gray-100"}`}
+                  className={` py-2 text-sm pl-2 pr-20 rounded-lg bg-transparent border-x border-y ${sidenavType === 'dark' ? "border-gray-600" : " border-blue-gray-100"}`}
                 />
               </div>
 
@@ -321,7 +321,7 @@ export function AddMember() {
                   // value={formData.proffession}
                   name="proffession"
                   onChange={handleChange}
-                  className={` py-2  pl-2 pr-20 rounded-lg bg-transparent border-x border-y ${sidenavType === 'dark' ? "border-gray-600" : " border-blue-gray-100"}`}
+                  className={` py-2 text-sm pl-2 pr-20 rounded-lg bg-transparent border-x border-y ${sidenavType === 'dark' ? "border-gray-600" : " border-blue-gray-100"}`}
                 />
               </div>
 
@@ -340,7 +340,7 @@ export function AddMember() {
                   // value={formData.address}
                   name="address"
                   onChange={handleChange}
-                  className={` py-2  pl-2 pr-20 rounded-lg bg-transparent border-x border-y ${sidenavType === 'dark' ? "border-gray-600" : " border-blue-gray-100"}`}
+                  className={` py-2 text-sm pl-2 pr-20 rounded-lg bg-transparent border-x border-y ${sidenavType === 'dark' ? "border-gray-600" : " border-blue-gray-100"}`}
                 />
               </div>
               <div className=" pt-3 pl-5">

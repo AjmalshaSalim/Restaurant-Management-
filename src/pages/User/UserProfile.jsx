@@ -126,7 +126,7 @@ export function Profile() {
   console.log(">>>>" + menu)
   return (
     <>
-      <div className=" w-full h-[920px] overflow-hidden">
+      <div className=" w-full h-[1100px] overflow-hidden">
         <Card className={`mt-10 mb-6 w-full h-[700px] overflow-scroll ${sidenavType === 'dark' ? "bg-gray-900 bg-opacity-90 border-x border-y border-gray-800" : "bg-white border border-blue-gray-100"}`}
           data-aos="fade-up"
           data-aos-duration="700">

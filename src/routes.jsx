@@ -32,6 +32,7 @@ import EditPlan from './pages/User/EditPlan';
 import ConfirmPayments from './pages/Owner/dashboard/ConfirmPayments';
 import {PaymentDetail} from './pages/Owner/dashboard/PaymentDetail';
 import {AllDietPlans} from './pages/Owner/dashboard/AllDietPlans';
+import {CreateDietPlans} from './pages/Owner/dashboard/CreateDietPlans'
 const icon = {
   className: 'w-5 h-5 text-inherit',
 };
@@ -141,6 +142,12 @@ export const routes = [
         name: 'Diet Plans',
         path: '/AllDietPlans',
         element: <AllDietPlans />,
+      },
+      {
+        icon: <FaDumbbell {...icon} />,
+        name: 'Create Diet Plans',
+        path: '/CreateDietPlans',
+        element: <CreateDietPlans />,
       },
       // {
       //   icon: <TableCellsIcon {...icon} />,
