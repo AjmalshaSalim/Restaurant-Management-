@@ -1,4 +1,7 @@
+import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import {
@@ -17,6 +20,7 @@ import { useMaterialTailwindController } from "../../../context/index";
 import { paymentPlansData } from '../dashboard/Plans'; // Using your existing plans data for the plan selection
 
 export function AddEnquiries() {
+  const navigate = useNavigate();
   useEffect(() => {
     AOS.init();
   }, []);
@@ -41,12 +45,30 @@ export function AddEnquiries() {
     setEnquiry({ ...enquiry, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(enquiry);
+    console.log(">>>>>",enquiry);
+    const formData = new FormData();
+    
+    Object.entries(enquiry).forEach(([key, value]) => {
+      formData.append(key, value);
     // Here you would handle form submission, like sending data to your backend
-  };
+  });
+  try {
+    console.log("form data >>>>>", formData);
+    const response = await axios.post('https://achujozef.pythonanywhere.com/api/enquiries-create/', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
 
+    console.log(response.data);
+    toast("Enquiry Added Successfully")
+    navigate('/dashboard/EnquiriesList')
+  } catch (error) {
+    console.error('Error adding member:', error);
+  }
+}
   return (
     <div className="flex justify-center items-center py-5 w-full h-[1100px] overflow-scroll">
       <Card className={`w-full max-w-8xl mt-2 shadow-xl ${sidenavType === 'dark' ? 'bg-gray-900 bg-opacity-90' : 'bg-white'}`} data-aos="fade-up" data-aos-duration="700">

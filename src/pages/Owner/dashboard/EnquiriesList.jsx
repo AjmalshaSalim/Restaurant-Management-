@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import AOS from 'aos';
 import { MdEdit } from "react-icons/md";
 import 'aos/dist/aos.css';
@@ -36,7 +36,6 @@ export function EnquiriesList() {
 
   const [controller] = useMaterialTailwindController();
   const { sidenavType } = controller;
-
   return (
     <>
       <div className="w-full h-[1100px] overflow-scroll">
