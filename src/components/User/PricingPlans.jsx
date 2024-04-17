@@ -15,7 +15,6 @@ import {
 export default function PricingPlans() {
     const [gymPlans, setGymPlans] = useState([]);
     const [showTerms, setShowTerms] = useState([]);
-    // const [planDetails, setPlanDetails] = useState([]);
     const [selectedPlanDetails, setSelectedPlanDetails] = useState(null);
 
     useEffect(() => {
@@ -55,8 +54,8 @@ export default function PricingPlans() {
         <div className='pt-8'>
             <div className="bg-black">
                 <div className="container mx-auto px-4 lg:px-0">
-                    <div className="lg:flex justify-center">
-                        <div className="lg:w-3/4 mb-5">
+                    <div className="flex justify-center">
+                        <div className="w-full lg:w-3/4 mb-5">
                             <div className="text-center mb-10" data-aos="zoom-in-up">
                                 <span className="text-red-800 font-poppins uppercase">Our Plan</span>
                                 <h2 className="text-white text-4xl uppercase font-semibold">Choose your pricing plan</h2>
@@ -65,15 +64,16 @@ export default function PricingPlans() {
                     </div>
                 </div>
             </div>
-            <div className="flex flex-row flex-wrap justify-center gap-4 pb-5 pt-3 ">
+            <div className="flex flex-wrap justify-center gap-4 pb-5 pt-3 ">
                 {gymPlans.map((plan, index) => (
 
-                    <Card key={index} variant="gradient" className="bg-gray-900 w-full max-w-[20rem] p-8 transition-transform duration-300 ease-in-out transform hover:scale-105 " onClick={() => fetchGymPlanDetailsById(plan.id)}>
+                    <Card key={index} variant="gradient" className="bg-gray-900 w-full md:max-w-[20rem] p-8 transition-transform duration-300 ease-in-out transform hover:scale-105 " >
                         <CardHeader
                             floated={false}
                             shadow={false}
                             color="transparent"
-                            className="m-0 mb-8 rounded-none border-b border-orange-100/40 pb-8 text-center "
+                            className="m-0 mb-8 rounded-none border-b border-orange-100/40 pb-8 text-center cursor-pointer"
+                            onClick={() => fetchGymPlanDetailsById(plan.id)}
                         >
                             <Typography
                                 variant="small"
@@ -171,7 +171,7 @@ function PlanDetailsPopup({ planDetails, onClose }) {
         <>
             {isFullScreen && (
                 <div
-                    className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 z-50"
+                    className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50"
                     onClick={handleImageClick}
                 >
                     <img
@@ -184,14 +184,14 @@ function PlanDetailsPopup({ planDetails, onClose }) {
 
             <div
                 ref={popupRef}
-                className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 z-40"
+                className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-40"
                 onClick={handleClickOutside}
             >
-                <div className="bg-white p-8 rounded-lg shadow-lg w-96 z-50">
+                <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md z-50">
                     <img
                         src={image}
                         alt={name}
-                        className={`w-full h-${isFullScreen ? 'auto' : 'auto'} object-cover rounded-t-lg mb-4 cursor-pointer`}
+                        className="w-full h-auto object-cover rounded-t-lg mb-4 cursor-pointer"
                         onClick={handleImageClick}
                     />
 

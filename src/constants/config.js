@@ -26,6 +26,8 @@ const User_Profile='/api/user-profile/'
 const Edit_User_Profile='/api/user-profile/edit/'
 const List_Gym_Plans='/api/gym-plans/'
 const List_Gym_Plan_Details='/api/gym-plans/'
+const Create_Gym_Plans='/api/gym-plans/create/'
+const Delete_Gym_Plans='/api/gym-plans/'
 
 export const API_URLS = {
     LOGIN_API_PATH: `${LOGIN_API_PATH}`,
@@ -53,6 +55,8 @@ export const API_URLS = {
     USER_PROFILE:`${User_Profile}`,
     EDIT_USER_PROFILE:`${Edit_User_Profile}`,
     LIST_GYM_PLANS:`${List_Gym_Plans}`,
-    LIST_GYM_PLAN_DETAILS:`${List_Gym_Plan_Details}`
+    LIST_GYM_PLAN_DETAILS:`${List_Gym_Plan_Details}`,
+    CREATE_GYM_PLANS:`${Create_Gym_Plans}`,
+    DELETE_GYM_PLANS:`${Delete_Gym_Plans}`,
 }
 

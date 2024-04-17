@@ -1,13 +1,11 @@
 
-import UserIcon from "../../../assets/gym -icons/Plans_White.jpg"
-import UserIconDark from "../../../assets/gym -icons/Plans_Dark.png"
-import PlanImage from "../../../assets/images/Dumbel_Workout.jpg"
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { Card, CardHeader, CardBody, Typography, Button, Avatar } from '@material-tailwind/react';
 import { useMaterialTailwindController } from "../../../context/index";
 import { Link } from 'react-router-dom';
+import {List_Gym_Plans,Delete_Gym_Plans} from "../../../actions/GymPlansActions"
 
 export const paymentPlansData = [
     {
@@ -40,14 +38,40 @@ export const paymentPlansData = [
   ];
 
 export function Plans() {
+
+  const [gymPlans, setGymPlans] = useState([]);
+  // const [showTerms, setShowTerms] = useState([]);
   useEffect(() => {
     AOS.init();
   }, []);
-const handleClickCreatePlan = ()=>{
-  alert("clicked")
-}
+useEffect(() => {
+  async function fetchGymPlans() {
+      try {
+          const plans = await List_Gym_Plans();
+          setGymPlans(plans);
+          // setShowTerms(new Array(plans.length).fill(false));
+          console.log('Fetched gym plans:', plans);
+      } catch (error) {
+          console.error('Error fetching gym plans:', error);
+      }
+  }
+  fetchGymPlans();
+}, []);
+
+const handleDeletePlan = async (id) => {
+  try {
+    await Delete_Gym_Plans(id);
+    const updatedPlans = await List_Gym_Plans();
+    setGymPlans(updatedPlans);
+    console.log(`Plan with id ${id} deleted successfully`);
+  } catch (error) {
+    console.error(`Error deleting plan with id ${id}:`, error);
+  }
+};
   const [controller] = useMaterialTailwindController();
   const { sidenavType } = controller;
+
+  
   return (
     <div className="p-5 w-full h-[1100px] overflow-scroll" >
         <div className={`flex w-full pt-3 pb-4 border-x border-y rounded-xl ${sidenavType === 'dark'? " bg-gray-900 bg-opacity-90 border-gray-800" : ""} `}>
@@ -64,18 +88,18 @@ const handleClickCreatePlan = ()=>{
               </Link></div>    
         </div>
       <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6`} data-aos="fade-up" data-aos-duration="700">
-        {paymentPlansData.map(({ id, title, price, features }, index) => (
-          <Card key={id} className={`${sidenavType === 'dark' ? "bg-gray-900 bg-opacity-90" : "bg-white"} shadow-xl mt-16`}>
+        {gymPlans.map((data, index) => (
+          <Card key={index} className={`${sidenavType === 'dark' ? "bg-gray-900 bg-opacity-90" : "bg-white"} shadow-xl mt-16`}>
             <CardHeader className={`flex justify-center  ${sidenavType === 'dark' ? "bg-gray-800" : "bg-white"} rounded-md py-4`}>
               <Typography variant="h6" color={sidenavType === 'dark'? 'white' : 'black'} className="text-center">
-                {title}
+                {data.name}
               </Typography>
             </CardHeader>
             <CardBody className="flex flex-col gap-4">
-            {paymentPlansData.image ?
-                  <div className={`relative w-32 h-32 mx-auto`}>
+            {data.image ?
+                  <div className={`relative w-32 h-20 mx-auto`}>
                     <Avatar
-                      src={paymentPlansData.image}
+                      src={data.image}
                       alt="Profile Image"
                       size="xl"
                       variant="rounded"
@@ -83,31 +107,18 @@ const handleClickCreatePlan = ()=>{
                     />
                   </div>
                   :
-                  <div className="relative w-36 h-36 -mb-16 mx-auto" >
-                    {sidenavType == 'dark' ?
-                      <Avatar
-                        src={UserIconDark}
-                        alt="Profile Image"
-                        size="xl"
-                        variant="rounded"
-                        className={`rounded-lg shadow-lg shadow-blue-gray-500/40 p-2 mx-9 pt-1 border-y border-x ${sidenavType === 'dark' ? "border-gray-700" : "border-blue-gray-200"}`}
-                      /> :
-                      <Avatar
-                        src={UserIcon}
-                        alt="Profile Image"
-                        size="xl"
-                        variant="rounded"
-                        className="rounded-lg shadow-lg shadow-blue-gray-500/40 p-2 pt-1 mx-9 border"
-                      />
-                    }
-
-                  </div>
+                  <div className="flex items-center justify-center font-poppins h-full">
+                  no image...
+                </div>                  
                 }
               <Typography variant="h6" className={`text-center ${sidenavType === 'dark' ? "text-white" : "text-blue-gray-900"}`}>
-              ₹ {price} / month
+              {data.description}
+              </Typography>
+              <Typography variant="h6" className={`text-center ${sidenavType === 'dark' ? "text-white" : "text-blue-gray-900"}`}>
+              ₹ {data.price} / {data.duration_type}
               </Typography>
               <div className="flex flex-col items-center gap-2">
-                {features.map((feature, featureIndex) => (
+                {data.features.map((feature, featureIndex) => (
                   <Typography key={featureIndex} className={`text-sm pb-1 ${sidenavType === 'dark' ? "text-gray-400 border-b border-gray-800" : "text-blue-gray-500"}`}>
                    - {feature}
                   </Typography>
@@ -118,7 +129,7 @@ const handleClickCreatePlan = ()=>{
                 Edit Plan
               </Button>
               </Link>
-              <Button variant="filled" className={`${sidenavType === 'dark'? "bg-red-700 hover:bg-red-900" : "bg-black"}`}>
+              <Button variant="filled" onClick={()=>handleDeletePlan(data.id)} className={`${sidenavType === 'dark'? "bg-red-700 hover:bg-red-900" : "bg-black"}`}>
                 Delete Plan
               </Button>
             </CardBody>
