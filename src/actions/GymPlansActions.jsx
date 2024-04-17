@@ -19,3 +19,26 @@ export const List_Gym_Plan_Details = async (id) =>{
       throw error;
     }
     }
+    export const Create_Gym_Plan = async (data) => {
+      console.log(data, "plans created");
+    
+      try {
+        const response = await axios.post(API_URLS.CREATE_GYM_PLANS, data);
+        console.log("gggg", response);
+      } catch (error) {
+        console.error('while creating gym plans', error);
+        throw error;
+      }
+    };
+
+    export const Delete_Gym_Plans=async (id)=>{
+      try {
+        const response =await axios.delete(`${API_URLS.DELETE_GYM_PLANS}${id}`)
+        console.log(response.data);
+        return response.data
+      } catch (error) {
+        console.error ('while deleting gym plans', error);
+        throw error;
+      }
+
+    }

@@ -2,9 +2,6 @@ import axios from '../axios';
 import {API_URLS} from '../constants/config';
 
 export const ADD_Equipments = async data => {
-
-    console.log ('equipments adding');
-    console.log ('dataaaaaaaaaa', data);
     if(data.name){
       console.log("entered if");
       try {

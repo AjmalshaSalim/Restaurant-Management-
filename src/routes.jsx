@@ -1,8 +1,6 @@
 import {
   HomeIcon,
   UserPlusIcon,
-  // TableCellsIcon,
-  // InformationCircleIcon,
   ServerStackIcon,
   RectangleStackIcon,
 } from '@heroicons/react/24/solid';
