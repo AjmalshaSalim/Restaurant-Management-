@@ -19,7 +19,7 @@ function authReducer(state = initialState, action) {
   }
 }
 
-// Apply middleware using applyMiddleware
+
 const store = createStore(
   authReducer,
   initialState,
