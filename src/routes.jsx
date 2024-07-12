@@ -169,19 +169,7 @@ export const routes = [
         element: <SalaryManagement />,
       },
      
-      // {
-      //   icon: <TableCellsIcon {...icon} />,
-      //   name: 'tables',
-      //   path: '/tables',
-      //   element: <Tables />,
-      // },
       
-      // {
-      //   icon: <InformationCircleIcon {...icon} />,
-      //   name: 'notifications',
-      //   path: '/notifications',
-      //   element: <Notifications />,
-      // },
     ],
   },
 ];
