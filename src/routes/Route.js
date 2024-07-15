@@ -4,7 +4,7 @@ import Register from "../pages/User/Register"
 import Forgetpassword from "../pages/User/Forgetpassword"
 import Otp from "../pages/User/Otp"
 import Changepassword from "../pages/User/Changepassword"
-import Dashboard from "../../src/pages/dashboard/Home"
+import Dashboard from "../pages/Owner/dashboard/Home"
 let Routers = () => {
     return (
         <div className="Route">

@@ -23,14 +23,7 @@ export const platformSettingsData = [
         checked: false,
         label: "Block",
       },
-      // {
-      //   checked: true,
-      //   label: "Monthly product updates",
-      // },
-      // {
-      //   checked: false,
-      //   label: "Subscribe to newsletter",
-      // },
+
     ],
   },
 ];

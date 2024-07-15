@@ -1,3 +1,9 @@
+<<<<<<< HEAD:src/pages/auth/sign-in.jsx
+import React, { useState } from "react";
+import axios from "./../../axios";
+=======
+import BackgroundImage from "../../../assets/images/backgroundlog.jpg"
+>>>>>>> 20536eb7ee1d7a3a3e42d8cfff31619dc4601717:src/pages/Owner/auth/sign-in.jsx
 import {
   Card,
   Input,
@@ -8,32 +14,66 @@ import {
 import { Link } from "react-router-dom";
 
 
-export function SignUp() {
+export function SignIn() {
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [password, setPassword] = useState("");
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post("/api/login/", { phoneNumber, password });
+      console.log("Login successful:", response.data);
+    } catch (error) {
+      console.error("Login failed:", error);
+    }
+  };
+
   return (
-    <section className="m-8 flex">
-            <div className="w-2/5 h-full hidden lg:block">
-        <img
-          src="/img/pattern.png"
-          className="h-full w-full object-cover rounded-3xl"
-        />
-      </div>
-      <div className="w-full lg:w-3/5 flex flex-col items-center justify-center">
+    <section className="m-8 flex gap-4">
+      <div className="w-full lg:w-3/5 mt-24">
         <div className="text-center">
-          <Typography variant="h2" className="font-bold mb-4">Join Us Today</Typography>
-          <Typography variant="paragraph" color="blue-gray" className="text-lg font-normal">Enter your email and password to register.</Typography>
+          <Typography variant="h2" className="font-bold mb-4">Sign In</Typography>
+          <Typography variant="paragraph" color="blue-gray" className="text-lg font-normal">Enter your email and password to Sign In.</Typography>
         </div>
-        <form className="mt-8 mb-2 mx-auto w-80 max-w-screen-lg lg:w-1/2">
+        <form className="mt-8 mb-2 mx-auto w-80 max-w-screen-lg lg:w-1/2" onSubmit={handleSubmit}>
           <div className="mb-1 flex flex-col gap-6">
             <Typography variant="small" color="blue-gray" className="-mb-3 font-medium">
-              Your email
+<<<<<<< HEAD:src/pages/auth/sign-in.jsx
+              Your phone number
+            </Typography>
+            <Input
+    size="lg"
+    placeholder="Phone number"
+    className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
+    labelProps={{
+        className: "before:content-none after:content-none",
+    }}
+    value={phoneNumber}
+    onChange={(e) => setPhoneNumber(e.target.value)}
+/>
+=======
+              Your Mobile Number
             </Typography>
             <Input
               size="lg"
-              placeholder="name@mail.com"
               className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
               labelProps={{
                 className: "before:content-none after:content-none",
               }}
+            />
+>>>>>>> 20536eb7ee1d7a3a3e42d8cfff31619dc4601717:src/pages/Owner/auth/sign-in.jsx
+            <Typography variant="small" color="blue-gray" className="-mb-3 font-medium">
+              Password
+            </Typography>
+            <Input
+              type="password"
+              size="lg"
+              placeholder="********"
+              className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
+              labelProps={{
+                className: "before:content-none after:content-none",
+              }}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
           <Checkbox
@@ -54,10 +94,18 @@ export function SignUp() {
             }
             containerProps={{ className: "-ml-2.5" }}
           />
-          <Button className="mt-6" fullWidth>
-            Register Now
+          <Button type="submit" className="mt-6" fullWidth>
+            Sign In
           </Button>
 
+
+          <div className="flex items-center justify-between gap-2 mt-6">
+            <Typography variant="small" className="font-medium text-gray-900">
+              <a href="#">
+                Forgot Password
+              </a>
+            </Typography>
+          </div>
           <div className="space-y-4 mt-8">
             <Button size="lg" color="white" className="flex items-center gap-2 justify-center shadow-md" fullWidth>
               <svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -75,20 +123,23 @@ export function SignUp() {
               </svg>
               <span>Sign in With Google</span>
             </Button>
-            <Button size="lg" color="white" className="flex items-center gap-2 justify-center shadow-md" fullWidth>
-              <img src="/img/twitter-logo.svg" height={24} width={24} alt="" />
-              <span>Sign in With Twitter</span>
-            </Button>
           </div>
           <Typography variant="paragraph" className="text-center text-blue-gray-500 font-medium mt-4">
-            Already have an account?
-            <Link to="/auth/sign-in" className="text-gray-900 ml-1">Sign in</Link>
+            Not registered?
+            <Link to="/auth/sign-up" className="text-gray-900 ml-1">Create account</Link>
           </Typography>
         </form>
 
       </div>
+      <div className="w-2/5 h-full hidden lg:block">
+        <img
+          src={BackgroundImage} alt="BackgroundImage"
+          className="h-full w-full object-cover rounded-3xl"
+        />
+      </div>
+
     </section>
   );
 }
 
-export default SignUp;
+export default SignIn;
