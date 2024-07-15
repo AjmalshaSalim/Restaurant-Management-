@@ -46,14 +46,16 @@ export function Configurator() {
   const { openConfigurator, sidenavColor, sidenavType, fixedNavbar } =
     controller;
   const [stars, setStars] = React.useState(0);
-
   const sidenavColors = {
-    white: "from-gray-100 to-gray-100 border-gray-200",
-    dark: "from-red-500 to-orange-500 border-gray-200",
-    green: "from-red-500 to-green-700",
-    orange: "from-orange-400 to-orange-600",
-    red: "from-red-600 to-red-800",
-    pink: "from-red-500 to-red-700",
+
+    // Themes
+    // white: "from-gray-100 to-gray-100 border-gray-200",
+    // dark: "from-red-500 to-orange-500 border-gray-200",
+    // green: "from-red-500 to-green-700",
+    // orange: "from-orange-400 to-orange-600",
+    // red: "from-red-600 to-red-800",
+    // pink: "from-red-500 to-red-700",
+    // Themes
   };
 
   React.useEffect(() => {
@@ -66,28 +68,34 @@ export function Configurator() {
 
   return (
     <aside
-      className={`fixed top-0 right-0 z-50 h-screen w-96 bg-white px-2.5 shadow-lg transition-transform duration-300 ${
+      className={`fixed top-0 right-0 z-50 ${
+        sidenavType === "dark" ? "bg-gray-900 bg-opacity-90 border-l border-gray-800" : "bg-white"
+      } h-screen w-96 px-2.5 shadow-lg transition-transform duration-300 ${
         openConfigurator ? "translate-x-0" : "translate-x-96"
       }`}
     >
       <div className="flex items-start justify-between px-6 pt-8 pb-6">
         <div>
-          <Typography variant="h5" color="blue-gray">
+          <Typography variant="h5" color={sidenavType === 'dark' ? "white" : "blue-gray"}>
             Settings
           </Typography>
-          <Typography className="font-normal text-blue-gray-600">
+          <Typography className={`font-normal ${
+      sidenavType === "dark" ? "text-white" : "text-blue-gray-600"
+    }`}>
           </Typography>
         </div>
         <IconButton
           variant="text"
-          color="blue-gray"
+          color={sidenavType === 'dark' ? "white" : "blue-gray"}
           onClick={() => setOpenConfigurator(dispatch, false)}
         >
           <XMarkIcon strokeWidth={2.5} className="h-5 w-5" />
         </IconButton>
       </div>
       <div className="py-4 px-6">
-        <div className="mb-12">
+
+{/* Themes */}
+        {/* <div className="mb-12">
           <Typography variant="h6" color="blue-gray">
             Themes
           </Typography>
@@ -104,35 +112,37 @@ export function Configurator() {
               />
             ))}
           </div>
-        </div>
+        </div> */}
+{/* Themes */}
+
         <div className="mb-12">
-          <Typography variant="h6" color="blue-gray">
+          <Typography variant="h6" color={sidenavType === 'dark' ? "white" : "blue-gray"}>
             Mode
           </Typography>
           <Typography variant="small" color="gray">
           </Typography>
           <div className="mt-3 flex items-center gap-2">
             <Button
-              variant={sidenavType === "dark" ? "gradient" : "outlined"}
+              // variant={sidenavType === "dark" ? "gradient" : "outlined"}
               onClick={() => setSidenavType(dispatch, "dark")}
-              className="rounded-full"
+              className={`rounded-full outline-none ${sidenavType === "dark" ? "bg-white text-black " : " border text-black bg-transparent"}`}
             >
-              <MdNightlight  className=" text-lg"/>
+              <MdNightlight  className=" text-md"/>
             </Button>
             
             <Button
-              variant={sidenavType === "white" ? "gradient" : "outlined"}
+              // variant={sidenavType === "white" ? "gradient" : "outlined"}
               onClick={() => setSidenavType(dispatch, "white")}
-              className="rounded-full"
+              className={`rounded-full outline-none ${sidenavType === "white" ? "bg-black " : " border bg-transparent"}`}
             >
-              <MdWbSunny className=" text-lg"/>
+              <MdWbSunny className="text-md text-white"/>
             </Button>
           </div>
         </div>
         <div className="mb-12">
           <hr />
           <div className="flex items-center justify-between py-5">
-            <Typography variant="h6" color="blue-gray">
+            <Typography variant="h6" color={sidenavType === 'dark' ? "white" : "blue-gray"}>
               Navbar Fixed
             </Typography>
             <Switch

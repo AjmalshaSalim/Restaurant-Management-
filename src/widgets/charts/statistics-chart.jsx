@@ -7,23 +7,71 @@ import {
 } from "@material-tailwind/react";
 import PropTypes from "prop-types";
 import Chart from "react-apexcharts";
-
+import {
+  useMaterialTailwindController
+} from "../../context/index";
 export function StatisticsChart({ color, chart, title, description, footer }) {
+  const [controller, dispatch] = useMaterialTailwindController();
+  const { sidenavType} =
+    controller;
+    const options = {
+       grid: {
+    show: false
+  },
+  chart: {
+    toolbar: {
+      show: false,
+    },
+  },
+  yaxis: {
+    labels: {
+      style: {
+        colors: "#fff",
+        fontSize: "12px",
+        fontFamily: "inherit",
+        fontWeight: 400,
+      },
+    },
+  },
+  xaxis: {
+    labels: {
+      style: {
+        colors: "#fff",
+        fontSize: "12px",
+        fontFamily: "inherit",
+        fontWeight: 400,
+      },
+    },
+  },
+  colors: ["#C62828", "#43AF50"],
+    stroke: {
+      lineCap: "round",
+      curve: "smooth",
+    },
+    };
   return (
-    <Card className="border border-blue-gray-100 shadow-sm">
+    <Card className={` shadow-sm ${
+      sidenavType === "dark" ? " bg-gray-800 bg-opacity-50 border-x border-y border-gray-800" : "border border-blue-gray-100 bg-white"
+    }`}>
       <CardHeader variant="gradient" color={color} floated={false} shadow={false}>
-        <Chart {...chart} />
+        <Chart className={`${
+      sidenavType === "dark" ? " bg-gray-800 border-x border-y border-gray-700 rounded-md" : "bg-white"
+    }`} {...chart}
+    options={options}
+     />
       </CardHeader>
       <CardBody className="px-6 pt-0">
-        <Typography variant="h6" color="blue-gray">
+        <Typography variant="h6" color={sidenavType === 'dark' ? "white" : "blue-gray"}>
           {title}
         </Typography>
-        <Typography variant="small" className="font-normal text-blue-gray-600">
+        <Typography variant="small" className={`font-normal ${
+      sidenavType === "dark" ? "text-gray-600" : "text-blue-gray-600"
+    }`}>
           {description}
         </Typography>
       </CardBody>
       {footer && (
-        <CardFooter className="border-t border-blue-gray-50 px-6 py-5">
+        <CardFooter className={` px-6 py-5 ${sidenavType ==='dark'? "border-t border-gray-800" : "border-t border-gray-300"}`}>
           {footer}
         </CardFooter>
       )}

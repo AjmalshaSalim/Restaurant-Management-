@@ -1,0 +1,147 @@
+.section-padding {
+    padding: 120px 0;
+}
+
+.video-wrapper .vid .vid-butn .icon:hover {
+    border: 2px solid #C7D300;
+}
+
+/* Add this rule to change the color of FaPlayCircle on hover */
+.video-wrapper .vid .vid-butn .icon:hover svg {
+    color: #ffffff; /* Change to white */
+}
+
+[data-overlay-dark] .section-title span {
+    color: #f80202;
+}
+.section-title.white {
+    color: #fff;
+}
+.section-title3 {
+    font-size: 17px;
+    font-family: 'Oswald', sans-serif;
+    color: #fff;
+    position: relative;
+    margin-top: 30px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.video-wrapper {
+    min-height: 500px;
+}
+.video-wrapper .vid {
+    position: relative;
+    z-index: 8;
+}
+.video-wrapper .vid .vid-butn:hover .icon {
+    color: #ffffff;
+}
+.video-wrapper .vid .vid-butn:hover .icon:before {
+    -webkit-transform: scale(0);
+    -ms-transform: scale(0);
+    transform: scale(0);
+}
+.video-wrapper .vid .vid-butn .icon {
+    color: #fe0000;
+    width: 100px;
+    height: 100px;
+    border: 2px solid rgba(147, 18, 18, 0.3);
+    border-radius: 50%;
+    line-height: 50px;
+    text-align: center;
+    font-size: 40px;
+    position: relative;
+    -webkit-transition: all .5s;
+    -o-transition: all .5s;
+    transition: all .5s;
+}
+.video-wrapper .vid .vid-butn .icon:after {
+    content: '';
+    position: absolute;
+    top: 5px;
+    bottom: 5px;
+    right: 5px;
+    left: 5px;
+    border: 2px solid #a2a2a2;
+    border-radius: 50%;
+    z-index: -1;
+}
+.video-wrapper .vid .vid-butn .icon:before {
+    content: '';
+    position: absolute;
+    top: 5px;
+    bottom: 5px;
+    right: 5px;
+    left: 5px;
+    background: transparent;
+    border-radius: 50%;
+    z-index: -1;
+    -webkit-transition: all 0.5s cubic-bezier(1, 0, 0, 1);
+    -o-transition: all 0.5s cubic-bezier(1, 0, 0, 1);
+    transition: all 0.5s cubic-bezier(1, 0, 0, 1);
+}
+[data-overlay-dark] {
+    position: relative;
+}
+[data-overlay-dark] .container {
+    position: relative;
+    z-index: 2;
+}
+[data-overlay-dark]:before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+[data-overlay-dark]:before {
+    background: #000;
+}
+[data-overlay-dark] h1,
+[data-overlay-dark] h2,
+[data-overlay-dark] h3,
+[data-overlay-dark] h4,
+[data-overlay-dark] h5,
+[data-overlay-dark] h6,
+[data-overlay-dark] span {
+    color: #fff;
+}
+[data-overlay-dark] p {
+    color: #b1b1b1;
+}
+[data-overlay-dark="0"]:before {
+    opacity: 0;
+}
+[data-overlay-dark="1"]:before {
+    opacity: 0.1;
+}
+[data-overlay-dark="2"]:before {
+    opacity: 0.2;
+}
+[data-overlay-dark="3"]:before {
+    opacity: 0.3;
+}
+[data-overlay-dark="4"]:before {
+    opacity: 0.4;
+}
+[data-overlay-dark="5"]:before {
+    opacity: 0.5;
+}
+[data-overlay-dark="6"]:before {
+    opacity: 0.6;
+}
+[data-overlay-dark="7"]:before {
+    opacity: 0.7;
+}
+[data-overlay-dark="8"]:before {
+    opacity: 0.8;
+}
+[data-overlay-dark="9"]:before {
+    opacity: 0.9;
+}
+[data-overlay-dark="10"]:before {
+    opacity: 1;
+}

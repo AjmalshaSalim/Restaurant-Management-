@@ -1,0 +1,128 @@
+.section-padding {
+    padding: 120px 0;
+}
+.container {
+    max-width: 1140px !important;
+}
+.row {
+    --bs-gutter-x: 1.5rem;
+    --bs-gutter-y: 0;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: calc(-1* var(--bs-gutter-y));
+    margin-right: calc(-.5* var(--bs-gutter-x));
+    margin-left: calc(-.5* var(--bs-gutter-x));
+}
+.mb-60 {
+    margin-bottom: 60px !important;
+}
+.classes .item {
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 30px;
+}
+.position-re {
+    position: relative;
+}
+.o-hidden {
+    overflow: hidden;
+}
+img, svg {
+    vertical-align: middle;
+}
+.classes .item {
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 30px;
+}
+.classes .item:hover img {
+    -webkit-filter: none;
+    filter: none;
+    -webkit-transform: scale(1.09, 1.09);
+    transform: scale(1.09, 1.09);
+    -webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    -ms-transition: all 1s ease;
+    transition: all 1s ease;
+}
+.classes .item:hover .con {
+    bottom: 0;
+}
+.classes .item img {
+    -webkit-transition: all .5s;
+    transition: all .5s;
+}
+.classes .item .con {
+    padding: 30px 15px;
+    position: absolute;
+    bottom: -60px;
+    left: 0;
+    width: 100%;
+    -webkit-transition: all .3s;
+    transition: all .3s;
+    text-align: center;
+    z-index: 20;
+    height: auto;
+    box-sizing: border-box;
+    background: -moz-linear-gradient(top, transparent 0, rgba(0, 0, 0, .1) 2%, rgba(0, 0, 0, .75) 90%);
+    background: -webkit-linear-gradient(top, transparent 0, rgba(0, 0, 0, .01) 2%, rgba(0, 0, 0, .75) 90%);
+    background: linear-gradient(to bottom, transparent 0, rgba(0, 0, 0, .01) 2%, rgba(0, 0, 0, .75) 90%);
+}
+.classes .item .con img {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 15px;
+}
+.classes .item .con span {
+    font-size: 60px;
+    color: #fff;
+}
+.classes .item .con h5 {
+    position: relative;
+    color: #fff;
+    font-size: 30px;
+    font-weight: 700;
+    margin-top: 0px;
+    margin-bottom: 15px;
+}
+.classes .item .con h5 a {
+    position: relative;
+    color: #fff;
+    font-size: 30px;
+    font-weight: 700;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.classes .item .con p {
+    color: #fff;
+    font-size: 17px;
+}
+.classes .item .con .icon {
+    border-radius: 0;
+    margin: 0 auto;
+}
+.classes .item .con .icon a i {
+    color: #fff;
+    font-size: 20px;
+}
+.classes .item .con .icon a i:hover {
+    color: #d30000;
+}
+/* line animation */
+.classes .item .line {
+    text-align: center;
+    height: 1px;
+    width: 60px;
+    background-color: #d30000;
+    transition-property: all;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-in-out;
+    margin: 0 auto 30px;
+}
+.classes .item:hover .line {
+    width: 100%;
+    transition-property: all;
+    transition-duration: 0.8s;
+    transition-timing-function: ease-in-out;
+}

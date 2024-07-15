@@ -34,7 +34,7 @@ export function MaterialTailwindControllerProvider({ children }) {
   const initialState = {
     openSidenav: false,
     sidenavColor: "dark",
-    sidenavType: "white",
+    sidenavType: "dark",
     transparentNavbar: true,
     fixedNavbar: false,
     openConfigurator: false,
@@ -83,3 +83,6 @@ export const setFixedNavbar = (dispatch, value) =>
   dispatch({ type: "FIXED_NAVBAR", value });
 export const setOpenConfigurator = (dispatch, value) =>
   dispatch({ type: "OPEN_CONFIGURATOR", value });
+
+
+  

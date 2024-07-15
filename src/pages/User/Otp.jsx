@@ -1,57 +1,140 @@
-import "../../assets/styles/login.css"
-import Swal from 'sweetalert2';
+import {  useNavigate } from 'react-router-dom';
+import BackgroundImage from '../../assets/images/bg-gitl-login.jpg';
+import logo from '../../assets/images/Gymsoft_Logo1-removebg-preview.png';
+import { useRef, useState,useEffect, useContext } from 'react';
+import { VERIFY_OTP } from '../../actions/AuthActions';
+import { PhoneNumberContext } from '../../context/phoneNumberContext';
+import { ToastContainer, toast } from 'react-toastify';
+
+function Otp() {
+    const { phoneNumber } = useContext(PhoneNumberContext);
 
 
-import { useState } from "react"
-let Otp=()=>{
-    const [otp, setOtp] = useState({
-        code: ""
-    })
-    let handleSubmit = (e) => {
-        if (otp.code === "") {
-            alert('fill the fields')
-        }
-        else {
-            // document.getElementById("password").type = "password";
-            Swal.fire('Suceess'); 
+    console.log("Phone Number:", phoneNumber); 
+    const [otp,setOtp]=useState('')
+    const [minutes,setMinutes]=useState(1)
+    const [seconds,setSeconds]=useState(30)
+const navigate=useNavigate()
+const inputRefs = useRef([]);
+
+const resendOTP=()=>{
+setMinutes(1)
+setSeconds(30)
+}
+
+useEffect(()=>{
+const interval=setInterval(()=>{
+    
+    if(seconds>0){
+        setSeconds(seconds-1)
+    }
+    if(seconds===0){
+        if(minutes===0){
+            clearInterval(interval)
+        }else{
+            setSeconds(59)
+            setMinutes(minutes-1)
         }
     }
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setOtp((prevLog) => ({
-            ...prevLog,
-            [name]: value,
-        }));
-    };
-    return(
-        <div className="login">
-<div className="container">
-                <div className="row">
-                    <div className="col-12 col-xl-6 col-md-12 col-lg-6 col-xxl-6 col-sm-12 ">
-                        <div className="log-bg">
-                        </div>
-                    </div>
-                    <div className="col-12 col-xl-6 col-md-12 col-lg-6 col-xxl-6 col-sm-12 ">
-                        <div className="form">
-                            <div className="brand-logo-login">
-                                <img src="" alt=""/>
-                            </div>
-                            <h2 className="text-center text-light">OTP</h2>
-                            <form className="login-form" onSubmit={handleSubmit} action="/Changepassword">
-                                <p>Enter Otp send in your giver Phone number  </p>
-                                <div className="mb-3">
-                                    <label className="form-label">Otp</label>
-                                    <input type="number" className="form-control" placeholder="Your otp number" name="code" value={otp.code} required onChange={handleChange} />
-                                </div>
-                                <div className="mb-3 text-center">
-                                    <button type="submit" className="btn log-submit">SUBMIT</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    )
+},1000)
+return ()=>{
+    clearInterval(interval)
 }
-export default Otp
+},[seconds])
+
+const handleInputChange = (index, e) => {
+    const value = e.target.value;
+    if (value.length === 1 && index < inputRefs.current.length - 1) {
+        inputRefs.current[index + 1].focus();
+    }
+    const newOtp=[...otp];
+    newOtp[index] = value;
+    setOtp(newOtp.join(''));
+    console.log(otp);
+};
+
+const handleKeyDown = (index, e) => {
+    if (e.key === 'Backspace' && index > 0 && e.target.value === '') {
+        inputRefs.current[index - 1].focus();
+    }
+};
+const handleSubmit= async(e)=>{
+    const data = {
+        phoneNumber: phoneNumber,
+        otp: otp
+    };
+e.preventDefault();
+try {
+    const response=await VERIFY_OTP(data)
+    navigate('/changepassword')
+} catch (error) {
+ console.error('Error', error);
+ toast.error("otp incorrect , please try again ")
+}
+}
+    return (
+
+        <div className="relative h-screen">
+               <ToastContainer />
+        <img className="absolute inset-0 w-full h-full object-cover filter grayscale " src={BackgroundImage} alt="bg-imae" />
+      
+        <div className="absolute inset-0 bg-gradient-to-br from-black to-gray-800 opacity-60"></div>
+        <img className='h-auto w-[200px] md:w-[300px] ml-2 mt-2 absolute left-2 top-8' src={logo} alt='' />
+    <div className="relative flex flex-col justify-center min-h-screen overflow-hidden">
+    <div className="w-full max-w-[400px] p-6 m-auto bg-gray-900 rounded-md shadow-md lg:max-w-xl opacity-70 border-1 border-gray-700">
+        <h1 className="text-3xl font-semibold text-center text-white ">
+           Enter OTP
+        </h1>
+        <form className="mt-6" onSubmit={handleSubmit}>
+    <div className="mb-2">
+        <div className="flex justify-center flex-wrap">
+            {[...Array(4).keys()].map((index) => (
+                <input
+                className='hover:transform hover:scale-105 transition-transform duration-500 ease-in-out'
+                    key={index}
+                    ref={(el) => (inputRefs.current[index] = el)}
+                    type="text"
+                    maxLength="1"
+                    value={otp[index]}
+                    style={{
+                        width: '40px',
+                        margin:'10px',
+                        height: '40px',
+                        textAlign: 'center',
+                        fontSize: '20px',
+                        border: '2px solid #ccc',
+                        borderRadius: '5px',
+                        outline: 'none',
+                    }}
+                    onChange={(e) => handleInputChange(index, e)}
+                    onKeyDown={(e) => handleKeyDown(index, e)}
+                />
+            ))}
+        </div>
+    </div>
+    
+    <div className="mt-6 flex justify-center flex-wrap">
+            <button type='submit' className="w-auto px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-red-700 rounded-xl hover:bg-red-300 focus:outline-none focus:bg-red-800">
+                Verify Otp
+            </button>
+        
+    </div>
+    <div className='flex justify-between items-center'>
+    <div className='ml-4 mt-3 text-white flex flex-row'>
+        <span className='text-white'>Time Remaining :  {" "}</span>
+        <span className='font-semibold text-white '>{minutes < 10 ? `0${minutes}` : minutes}:{seconds < 10 ? `0${seconds}` : seconds}</span>
+    </div>
+    <button onClick={resendOTP} style={{color:seconds>0 || minutes >0 ? '#DFE3E8':' #0000FF'}} className=' font-semibold mt-3 mr-4' type='button' disabled={seconds > 0 || minutes > 0}>Resend OTP</button>
+</div>
+
+        
+</form>
+
+       
+    </div>
+</div>
+</div>
+    );
+}
+
+export default Otp;
