@@ -14,6 +14,7 @@ import { FaUserTie } from "react-icons/fa";
 import {Home} from './pages/Owner/dashboard/Home';
 import {Profile} from './pages/User/UserProfile';
 import {MembersList} from './pages/Owner/dashboard/MembersList'
+import {FollowupEnquiries} from './pages/Owner/dashboard/FollowupEnquiries'
 import GymEquipments from './pages/Owner/dashboard/GymEquipments';
 // import {Tables} from './pages/Owner/dashboard/tables';
 // import {Notifications} from './pages/Owner/dashboard/notifications';
@@ -65,6 +66,12 @@ export const routes = [
         name: 'Enquiries List',
         path: '/EnquiriesList',
         element: <EnquiriesList />,
+      },
+      {
+        icon: <UserPlusIcon {...icon} />,
+        name: 'Enquiries Followup',
+        path: '/FollowupEnquiries',
+        element: <FollowupEnquiries />,
       },
       {
         icon: <UserPlusIcon {...icon} />,
