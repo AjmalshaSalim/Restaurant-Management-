@@ -141,7 +141,7 @@ export function Sidenav({ brandImg, brandName, routes }) {
                 color={sidenavType === "dark" ? "white" : "black"}
                 >
                   <ul className="flex flex-col gap-1">
-                    {pages.slice(2, 5).map(({ icon, name, path }) => (
+                    {pages.slice(2, 6).map(({ icon, name, path }) => (
                       <li key={name}>
                         <NavLink to={`/${layout}${path}`}>
                           {({ isActive }) => (
@@ -196,7 +196,7 @@ export function Sidenav({ brandImg, brandName, routes }) {
                 color={sidenavType === "dark" ? "white" : "black"}
                 >
                   <ul className="flex flex-col gap-1">
-                    {pages.slice(5, 8).map(({ icon, name, path }) => (
+                    {pages.slice(6, 9).map(({ icon, name, path }) => (
                       <li key={name}>
                         <NavLink to={`/${layout}${path}`}>
                           {({ isActive }) => (
@@ -230,7 +230,7 @@ export function Sidenav({ brandImg, brandName, routes }) {
             </li>
 
 
-            {pages.slice(8,11).map(({ icon, name, path }) => (
+            {pages.slice(9,12).map(({ icon, name, path }) => (
               <li key={name}>
                 <NavLink to={`/${layout}${path}`}>
                   {({ isActive }) => (
@@ -281,7 +281,7 @@ export function Sidenav({ brandImg, brandName, routes }) {
                 color={sidenavType === "dark" ? "white" : "black"}
                 >
                   <ul className="flex flex-col gap-1">
-                    {pages.slice(11, 14).map(({ icon, name, path }) => (
+                    {pages.slice(12, 15).map(({ icon, name, path }) => (
                       <li key={name}>
                         <NavLink to={`/${layout}${path}`}>
                           {({ isActive }) => (
@@ -315,7 +315,7 @@ export function Sidenav({ brandImg, brandName, routes }) {
             </li>
 
 
-            {pages.slice(14,18).map(({ icon, name, path }) => (
+            {pages.slice(15,19).map(({ icon, name, path }) => (
               <li key={name}>
                 <NavLink to={`/${layout}${path}`}>
                   {({ isActive }) => (
@@ -365,7 +365,7 @@ export function Sidenav({ brandImg, brandName, routes }) {
                 color={sidenavType === "dark" ? "white" : "black"}
                 >
                   <ul className="flex flex-col gap-1">
-                    {pages.slice(18, 20).map(({ icon, name, path }) => (
+                    {pages.slice(19, 21).map(({ icon, name, path }) => (
                       <li key={name}>
                         <NavLink to={`/${layout}${path}`}>
                           {({ isActive }) => (
@@ -399,7 +399,7 @@ export function Sidenav({ brandImg, brandName, routes }) {
             </li>
 
 
-            {pages.slice(20).map(({ icon, name, path }) => (
+            {pages.slice(21).map(({ icon, name, path }) => (
               <li key={name}>
                 <NavLink to={`/${layout}${path}`}>
                   {({ isActive }) => (

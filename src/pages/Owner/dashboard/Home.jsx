@@ -484,7 +484,8 @@ export function Home() {
 
 
             {/* Todays Attendance  */}
-            <div className='' onClick={handleTodaysAttendanceClick}>
+            <div className=''>
+            <Link to="/dashboard/AttendanceList" className='w-full'>
               <StatisticsCard
                 key={TodaysAttendanceCardData.title}
                 // {...TodaysAttendanceCardData}
@@ -501,10 +502,12 @@ export function Home() {
                   </Typography>
                 }
               />
+              </Link>
             </div>
 
             {/* Todays Enquiry Followup  */}
-            <div className='' onClick={handleTodaysAttendanceClick}>
+            <div className=''>
+            <Link to="/dashboard/FollowupEnquiries" className='w-full'>
               <StatisticsCard
                 key={EnquiryFollowupCardData.title}
                 // {...TodaysAttendanceCardData}
@@ -521,6 +524,7 @@ export function Home() {
                   </Typography>
                 }
               />
+              </Link>
             </div>
 
             {/* Payments to Confirm  */}
