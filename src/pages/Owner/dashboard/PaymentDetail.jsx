@@ -4,6 +4,7 @@ import 'aos/dist/aos.css';
 import { Card, CardHeader, CardBody, Typography, Button, Input, FileInput } from '@material-tailwind/react';
 import { useMaterialTailwindController } from "../../../context/index";
 import { Link } from 'react-router-dom';
+import { IoMdClose } from "react-icons/io";
 
 // Sample payment data
 export const paymentData = [
@@ -38,6 +39,9 @@ export function PaymentDetail() {
               <Typography variant="h6" color={sidenavType === 'dark' ? 'white' : 'black'} className="text-center">
                 Payment Details
               </Typography>
+              <Link to="/dashboard/home" className='w-full'>
+              <IoMdClose className=' w-8 h-8 absolute right-7 top-7 bg-gray-600 rounded-full p-[5px] text-gray-900 hover:bg-gray-500'/>
+              </Link>
             </CardHeader>
             <CardBody className="flex flex-col gap-4">
               <Typography variant="h6" className={`text-center pb-2 border-b ${sidenavType === 'dark' ? "text-white border-gray-800" : "text-blue-gray-900"}`}>

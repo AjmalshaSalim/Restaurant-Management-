@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import AOS from 'aos';
 import { MdEdit } from "react-icons/md";
 import 'aos/dist/aos.css';
 import { Link } from 'react-router-dom';
+import { IoMdClose } from "react-icons/io";
 import {
   Card,
   CardHeader,
   CardBody,
   Typography,
-  Chip,
   Button,
 } from '@material-tailwind/react';
 import { useMaterialTailwindController } from "../../../context/index";
@@ -45,6 +45,9 @@ export function EnquiriesList() {
               <Typography variant="h6" color="white">
                 Enquiries List
               </Typography>
+              <Link to="/dashboard/home" className='w-full'>
+              <IoMdClose className=' w-8 h-8 absolute right-7 top-7 bg-gray-700 rounded-full p-[5px] text-gray-900 hover:bg-gray-500'/>
+              </Link>
             </CardHeader>
             <CardBody className={`w-full bg-red-600 px-0 pt-0 pb-2 ${sidenavType === 'dark' ? "bg-gray-900 bg-opacity-40" : "bg-white"}`}>
               <div className='w-full flex justify-between items-center pr-6'>

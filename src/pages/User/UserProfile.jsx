@@ -5,6 +5,8 @@ import UserIconDark from "../../assets/gym -icons/User_Icon1.svg"
 import AOS from 'aos';
 import { IoArrowBackSharp } from "react-icons/io5";
 import 'aos/dist/aos.css';
+import { IoMdClose } from "react-icons/io";
+import { Link } from 'react-router-dom';
 import {
   Card,
   CardBody,
@@ -46,7 +48,6 @@ export function Profile() {
     joining_date: "",
     email: "",
     address: "",
-    joining_date: "",
     membership_expiry_date: "",
     is_active: false,
     health_conditions: "",
@@ -130,6 +131,9 @@ export function Profile() {
         <Card className={`mt-10 mb-6 w-full h-[700px] overflow-scroll ${sidenavType === 'dark' ? "bg-gray-900 bg-opacity-90 border-x border-y border-gray-800" : "bg-white border border-blue-gray-100"}`}
           data-aos="fade-up"
           data-aos-duration="700">
+             <Link to="/dashboard/home" className='w-full'>
+              <IoMdClose className=' w-8 h-8 absolute right-7 top-1 bg-gray-700 rounded-full p-[5px] text-gray-900 hover:bg-gray-500'/>
+              </Link>
           <CardBody className="p-4">
             <div className="mb-10 flex items-center justify-between flex-wrap gap-6">
               <div className="flex items-center gap-6">
@@ -159,7 +163,7 @@ export function Profile() {
                   </div>
                   :
                   <div className="relative w-36 h-36 -mb-16" >
-                    {sidenavType == 'dark' ?
+                    {sidenavType === 'dark' ?
                       <Avatar
                         src={UserIconDark}
                         alt="Profile Image"

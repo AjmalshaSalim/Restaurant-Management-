@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { Link } from 'react-router-dom';
+import { IoMdClose } from "react-icons/io";
 import {
   Card,
   CardHeader,
@@ -48,6 +49,9 @@ export function MembersList() {
           <Typography variant="h6" color="white">
             Members List
           </Typography>
+          <Link to="/dashboard/home" className='w-full'>
+              <IoMdClose className=' w-8 h-8 absolute right-7 top-7 bg-gray-700 rounded-full p-[5px] text-gray-900 hover:bg-gray-500'/>
+              </Link>
         </CardHeader>
         <CardBody className={`overflow-x-scroll px-0 pt-0 pb-2 ${sidenavType === 'dark'? "bg-gray-900 bg-opacity-40" : "bg-white"}`}>
         <div className='w-full flex justify-between items-center pr-6'>

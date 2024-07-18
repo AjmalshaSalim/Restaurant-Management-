@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { IoMdClose } from "react-icons/io";
 import {
   Card,
   CardHeader,
@@ -42,9 +43,12 @@ export function CreateDietPlans() {
     <div className="flex justify-center py-5 w-full h-[1100px] overflow-scroll">
       <Card className={`w-full h-[500px] max-w-8xl shadow-xl ${sidenavType === 'dark' ? 'bg-gray-900 bg-opacity-90' : 'bg-white'}`}>
         <CardHeader color="gray" className={`flex border-x border-y ${sidenavType === 'dark' ? "bg-gray-900 border-gray-800": ""} rounded-xl py-4`}>
-          <Typography variant="h6" color="white" className='ml-6'>
+          <Typography variant="h6" color="white" className='ml-6 w-40'>
             Create Diet Plan
           </Typography>
+          <Link to="/dashboard/home" className='w-full'>
+              <IoMdClose className=' w-8 h-8 absolute right-7 top-5 bg-gray-700 rounded-full p-[5px] text-gray-900 hover:bg-gray-500'/>
+              </Link>
         </CardHeader>
         <CardBody>
           <form onSubmit={handleSubmit} className="flex flex-col gap-4 md:px-20 pb-10">

@@ -1,9 +1,11 @@
 import axios from 'axios';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { IoMdClose } from "react-icons/io";
+import { Link } from 'react-router-dom';
 import {
   Card,
   CardHeader,
@@ -14,7 +16,6 @@ import {
   Textarea,
   Select,
   Option,
-  DatePicker
 } from '@material-tailwind/react';
 import { useMaterialTailwindController } from "../../../context/index";
 import { paymentPlansData } from '../dashboard/Plans'; // Using your existing plans data for the plan selection
@@ -73,9 +74,12 @@ export function AddEnquiries() {
     <div className="flex justify-center items-center py-5 w-full h-[1100px] overflow-scroll">
       <Card className={`w-full max-w-8xl mt-2 shadow-xl ${sidenavType === 'dark' ? 'bg-gray-900 bg-opacity-90' : 'bg-white'}`} data-aos="fade-up" data-aos-duration="700">
         <CardHeader className={`flex border-x border-y ${sidenavType === 'dark' ? "bg-gray-900 border-gray-800": "bg-white"}  rounded-xl py-4`}>
-          <Typography variant="h6" color={sidenavType==='dark'? "white":"black"} className=' ml-6'>
+          <Typography variant="h6" color={sidenavType==='dark'? "white":"black"} className=' ml-6 w-28'>
             Add Enquiry
           </Typography>
+          <Link to="/dashboard/home" className='w-full'>
+              <IoMdClose className=' w-8 h-8 absolute right-7 top-5 bg-gray-700 rounded-full p-[5px] text-gray-900 hover:bg-gray-500'/>
+              </Link>
         </CardHeader>
         <CardBody>
         <form onSubmit={handleSubmit} className="flex flex-col gap-2 md:px-20 pb-10">
