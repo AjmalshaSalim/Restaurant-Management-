@@ -4,7 +4,8 @@ import 'aos/dist/aos.css';
 import { Card, CardHeader, CardBody, Typography, Button } from '@material-tailwind/react';
 import { useMaterialTailwindController } from "../../../context/index";
 import { useNavigate } from 'react-router-dom';
-
+import { IoMdClose } from "react-icons/io";
+import { Link } from 'react-router-dom';
 
 // Assume this is your payment data
 export const paymentData = [
@@ -46,6 +47,9 @@ navigate('../PaymentDetail')
           <Typography variant="h6" color="white" className='pl-5 mt-2'>
             Payments to Confirm
           </Typography>
+          <Link to="/dashboard/home" className='w-full'>
+              <IoMdClose className=' w-8 h-8 absolute right-24 top-40 bg-gray-700 rounded-full p-[5px] text-gray-900 hover:bg-gray-500'/>
+              </Link>
         </div>
       </div>
       <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6`} data-aos="fade-up" data-aos-duration="700">

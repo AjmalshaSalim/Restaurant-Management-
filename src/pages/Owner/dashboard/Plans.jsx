@@ -6,6 +6,7 @@ import { Card, CardHeader, CardBody, Typography, Button, Avatar } from '@materia
 import { useMaterialTailwindController } from "../../../context/index";
 import { Link } from 'react-router-dom';
 import {List_Gym_Plans,Delete_Gym_Plans} from "../../../actions/GymPlansActions"
+import { IoMdClose } from "react-icons/io";
 
 export const paymentPlansData = [
     {
@@ -79,6 +80,9 @@ const handleDeletePlan = async (id) => {
           <Typography variant="h6" color="white" className='pl-5 mt-2'>
             Plans
           </Typography>
+          <Link to="/dashboard/home" className='w-full'>
+              <IoMdClose className=' w-8 h-8 absolute right-24 top-40 bg-gray-700 rounded-full p-[5px] text-gray-900 hover:bg-gray-500'/>
+              </Link>
           </div>
           <div className=' w-1/6 h-10'>
             <Link to='/dashboard/CreatePlans'>

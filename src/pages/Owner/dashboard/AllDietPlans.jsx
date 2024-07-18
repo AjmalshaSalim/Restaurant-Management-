@@ -6,6 +6,7 @@ import 'aos/dist/aos.css';
 import { Card, CardHeader, CardBody, Typography, Button } from '@material-tailwind/react';
 import { useMaterialTailwindController } from "../../../context/index";
 import { Link } from 'react-router-dom';
+import { IoMdClose } from "react-icons/io";
 
 export const paymentPlansData = [
     {
@@ -42,9 +43,7 @@ export function AllDietPlans() {
   useEffect(() => {
     AOS.init();
   }, []);
-const handleClickCreatePlan = ()=>{
-  alert("clicked")
-}
+
   const [controller] = useMaterialTailwindController();
   const { sidenavType } = controller;
   return (
@@ -54,8 +53,11 @@ const handleClickCreatePlan = ()=>{
           <Typography variant="h6" color="white" className='pl-5 mt-2'>
             Plans
           </Typography>
+          <Link to="/dashboard/home" className='w-full'>
+              <IoMdClose className=' w-8 h-8 absolute right-24 top-40 bg-gray-700 rounded-full p-[5px] text-gray-900 hover:bg-gray-500'/>
+              </Link>
           </div>
-          <div className=' w-1/6 h-10'>
+          <div className=' w-2/6 h-10'>
             <Link to='/dashboard/createDietPlans'>
             <Button variant="filled" className={` ${sidenavType === 'dark'? "bg-red-700 hover:bg-red-900" : "bg-black"}`}>
                 Create Plan

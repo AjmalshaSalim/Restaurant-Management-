@@ -1,20 +1,17 @@
 import axios from 'axios';
-import { ToastContainer, toast } from 'react-toastify';
+import {  toast } from 'react-toastify';
 import React, { useState } from "react";
 import { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { useNavigate } from 'react-router-dom';
+import { IoMdClose } from "react-icons/io";
 import {
   Card,
   CardBody,
   Avatar,
   Typography,
-  Tabs,
-  TabsHeader,
   Button,
-  Input,
-  Select,
 } from "@material-tailwind/react";
 import UserIcon from "../../../assets/gym -icons/User_Icon.svg"
 import UserIconDark from "../../../assets/gym -icons/User_Icon1.svg"
@@ -22,13 +19,10 @@ import {
   useMaterialTailwindController
 } from "../../../context/index";
 import {
-  HomeIcon,
-  ChatBubbleLeftEllipsisIcon,
-  Cog6ToothIcon,
   PencilIcon,
 
 } from "@heroicons/react/24/solid";
-import { ProfileInfoCard } from "../../../widgets/cards/profile-info-card";
+// import { ProfileInfoCard } from "../../../widgets/cards/profile-info-card";
 import { Link } from "react-router-dom";
 
 
@@ -37,7 +31,8 @@ export function AddMember() {
   const [controller] = useMaterialTailwindController();
   const { sidenavType } = controller;
   //toggle
-  const [isEditing, setIsEditing] = useState(false);
+  // const [isEditing, setIsEditing] = useState(false);
+  // console.log(isEditing);
 
   const [userData, setUserData] = useState({
     profileImage: null,
@@ -72,10 +67,10 @@ export function AddMember() {
   };
 
   // Function to handle saving changes
-  const handleSaveChanges = () => {
-    // Logic to save changes goes here
-    setIsEditing(false); // Once changes are saved, exit edit mode
-  };
+  // const handleSaveChanges = () => {
+  //  Logic here
+  //   setIsEditing(false); 
+  // };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -108,6 +103,9 @@ export function AddMember() {
         <Card className={`mt-10 ml mb-6  w-full  ${sidenavType === 'dark' ? "bg-gray-900 bg-opacity-90 border-x border-y border-gray-800" : "bg-white border border-blue-gray-100"}`}
           data-aos="fade-up"
           data-aos-duration="700">
+             <Link to="/dashboard/home" className='w-full'>
+              <IoMdClose className=' w-8 h-8 absolute right-7 top-7 bg-gray-700 rounded-full p-[5px] text-gray-900 hover:bg-gray-500'/>
+              </Link>
           <CardBody className="p-4" >
             <div className="mb-10 flex items-center justify-between flex-wrap gap-6">
               <div className="w-96">
@@ -129,7 +127,7 @@ export function AddMember() {
                     </label>
                   </div> :
                   <div className="relative w-36 h-36 -mb-5" >
-                    {sidenavType == 'dark' ?
+                    {sidenavType === 'dark' ?
                       <Avatar
                         src={UserIconDark}
                         alt="Profile Image"

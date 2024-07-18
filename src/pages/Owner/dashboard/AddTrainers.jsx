@@ -5,11 +5,11 @@ import { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { useNavigate } from 'react-router-dom';
+import { IoMdClose } from "react-icons/io";
 import {
   Card,
   CardBody,
   Avatar,
-  Typography,
   Button,
   Input,
   Select,
@@ -81,7 +81,7 @@ export function AddTrainers() {
           'Content-Type': 'multipart/form-data',
         },
       });
-
+      console.log(response);
       toast("Trainer added successfully!");
       navigate('/trainers');
     } catch (error) {
@@ -101,6 +101,9 @@ export function AddTrainers() {
         <Card className={`mt-10 ml mb-6 w-full ${sidenavType === 'dark' ? "bg-gray-900 bg-opacity-90 border-x border-y border-gray-800" : "bg-white border border-blue-gray-100"}`}
           data-aos="fade-up"
           data-aos-duration="700">
+             <Link to="/dashboard/home" className='w-full'>
+              <IoMdClose className=' w-8 h-8 absolute right-7 top-7 bg-gray-700 rounded-full p-[5px] text-gray-900 hover:bg-gray-500'/>
+              </Link>
           <CardBody className="p-4">
             <div className="mb-10 flex items-center justify-between flex-wrap gap-6">
               <div className="w-96">

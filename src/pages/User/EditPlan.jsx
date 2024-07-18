@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { Card, CardHeader, CardBody, Typography, Button, Avatar } from '@material-tailwind/react';
+import { Card, CardHeader, CardBody, Typography, Button } from '@material-tailwind/react';
 import { Link } from 'react-router-dom';
 import { useMaterialTailwindController } from "../../context/index";
 import { MdDelete } from "react-icons/md";
+import { IoMdClose } from "react-icons/io";
 
 const EditPlan = () => {
   const [formData, setFormData] = useState({
@@ -12,13 +13,13 @@ const EditPlan = () => {
     price: "1500/month",
     features: ["Access to all equipment", "1 fitness consultation", "2 group classes per month"]
   });
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    setFormData({
-      ...formData,
-      image: file,
-    });
-  };
+  // const handleFileChange = (e) => {
+  //   const file = e.target.files[0];
+  //   setFormData({
+  //     ...formData,
+  //     image: file,
+  //   });
+  // };
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -73,6 +74,9 @@ const EditPlan = () => {
               Back to Plans
             </Button>
           </Link>
+          <Link to="/dashboard/home" className='w-full'>
+              <IoMdClose className=' w-8 h-8 absolute right-24 top-40 bg-gray-700 rounded-full p-[5px] text-gray-900 hover:bg-gray-500'/>
+              </Link>
         </div>
       </div>
       <form onSubmit={handleSubmit}>
