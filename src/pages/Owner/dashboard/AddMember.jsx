@@ -1,4 +1,6 @@
-import axios from 'axios';
+// import axios from 'axios';
+import axios from '../../../axios';
+
 import {  toast } from 'react-toastify';
 import React, { useState } from "react";
 import { useEffect } from 'react';
@@ -25,7 +27,9 @@ import {
 // import { ProfileInfoCard } from "../../../widgets/cards/profile-info-card";
 import { Link } from "react-router-dom";
 
-
+import {fetchTrainers} from "../../../actions/TrainerActions"
+import {List_Gym_Plans} from "../../../actions/GymPlansActions"
+import {Add_Member} from "../../../actions/AddUserActions"
 export function AddMember() {
   const navigate = useNavigate();
   const [controller] = useMaterialTailwindController();
@@ -34,19 +38,69 @@ export function AddMember() {
   // const [isEditing, setIsEditing] = useState(false);
   // console.log(isEditing);
 
+  // const [userData, setUserData] = useState({
+  //   profileImage: null,
+  //   firstname: " ",
+  //   lastname: " ",
+  //   mobilenumber: " ",
+  //   email: " ",
+  //   gender: " ",
+  //   age: " ",
+  //   height: " ",
+  //   weight: " ",
+  //   proffession: " ",
+  //   address: " "
+  // });
   const [userData, setUserData] = useState({
-    profileImage: null,
-    firstname: " ",
-    lastname: " ",
-    mobilenumber: " ",
-    email: " ",
-    gender: " ",
-    age: " ",
-    height: " ",
-    weight: " ",
-    proffession: " ",
-    address: " "
+    first_name: "",
+    last_name: "",
+    contact_number: "",
+    email: "",
+    gender: "",
+    date_of_birth: "",
+    address: "",
+    membership_type: "",
+    joining_date: "",
+    membership_expiry_date: "",
+    is_active: true,
+    health_conditions: "",
+    fitness_goals: "",
+    exercise_restrictions: "",
+    emergency_contact_name: "",
+    emergency_contact_phone_number: "",
+    emergency_contact_relationship: "",
+    assigned_personal_trainer: "",
+    weight: "",
+    height: "",
+    profession: ""
   });
+
+
+  const [plans, setPlans] = useState([]);
+  const [trainers, setTrainers] = useState([]);
+  useEffect(() => {
+
+    const FetchingTheTrainer = async () => {
+      try {
+        const response = await fetchTrainers();
+        setTrainers(response);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    const FetchingThePlans = async () => {
+      try {
+        const response = await List_Gym_Plans();
+        setPlans(response);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    FetchingTheTrainer();
+    FetchingThePlans();
+  }, []);
+
+
 
   // Function to handle input changes
   const handleChange = (e) => {
@@ -81,11 +135,7 @@ export function AddMember() {
     });
 
     try {
-      const response = await axios.post('https://achujozef.pythonanywhere.com/api/add_user/', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
+      const response = Add_Member(formData)
 
       console.log(response.data);
       toast("User Created Successfully")
@@ -112,7 +162,7 @@ export function AddMember() {
 
 
 
-                {userData.profileImage ?
+                {/* {userData.profileImage ?
                   <div className="relative w-36 h-36 -mb-5">
                     <Avatar
                       src={URL.createObjectURL(userData.profileImage)}
@@ -150,7 +200,7 @@ export function AddMember() {
                     </label>
 
                   </div>
-                }
+                } */}
 
               </div>
             </div>
@@ -158,189 +208,212 @@ export function AddMember() {
             <div className="grid-cols-1 mb-12 grid gap-y-5 gap-x-5 px-4 lg:grid-cols-2 xl:grid-cols-3 w-full">
               {/* Editable Profile Information */}
               <div>
-                <Typography
-                  variant="small"
-                  color={sidenavType === 'dark' ? "white" : "blue-gray"}
-                  className=" font-medium"
-                >
+                <Typography variant="small" color={sidenavType === 'dark' ? "white" : "blue-gray"} className="font-medium">
                   First Name
                 </Typography>
-                <input
-                  type="text"
-                  placeholder="Enter first name"
-                  // value={formData.firstname}
-                  name="firstname"
-                  onChange={handleChange}
-                  className={` py-2 text-sm  pl-2 pr-20 rounded-lg bg-transparent border-x border-y ${sidenavType === 'dark' ? "border-gray-600" : " border-blue-gray-100"}`}
-                />
+                <input type="text" placeholder="Enter first name" name="first_name" onChange={handleChange} className={`py-2 text-sm pl-2 pr-20 rounded-lg bg-transparent border-x border-y ${sidenavType === 'dark' ? "border-gray-600" : " border-blue-gray-100"}`} />
               </div>
 
               <div>
-                <Typography
-                  variant="small"
-                  color={sidenavType === 'dark' ? "white" : "blue-gray"}
-                  className=" font-medium"
-                >
+                <Typography variant="small" color={sidenavType === 'dark' ? "white" : "blue-gray"} className="font-medium">
                   Last Name
                 </Typography>
-                <input
-                  type="text"
-                  placeholder="Last Name"
-                  // value={formData.lastname}
-                  name="lastname"
-                  onChange={handleChange}
-                  className={` py-2 text-sm pl-2 pr-20 rounded-lg bg-transparent border-x border-y ${sidenavType === 'dark' ? "border-gray-600" : " border-blue-gray-100"}`}
-                />
+                <input type="text" placeholder="Enter last name" name="last_name" onChange={handleChange} className={`py-2 text-sm pl-2 pr-20 rounded-lg bg-transparent border-x border-y ${sidenavType === 'dark' ? "border-gray-600" : " border-blue-gray-100"}`} />
               </div>
 
               <div>
-                <Typography
-                  variant="small"
-                  color={sidenavType === 'dark' ? "white" : "blue-gray"}
-                  className=" font-medium"
-                >
+                <Typography variant="small" color={sidenavType === 'dark' ? "white" : "blue-gray"} className="font-medium">
                   Phone
                 </Typography>
-                <input
-                  type="tel"
-                  placeholder="Mobile Number"
-                  // value={formData.mobilenumber}
-                  name="mobilenumber"
-                  onChange={handleChange}
-                  className={` py-2 text-sm pl-2 pr-20 rounded-lg bg-transparent border-x border-y ${sidenavType === 'dark' ? "border-gray-600" : " border-blue-gray-100"}`}
-                />
+                <input type="tel" placeholder="Mobile Number" name="contact_number" onChange={handleChange} className={`py-2 text-sm pl-2 pr-20 rounded-lg bg-transparent border-x border-y ${sidenavType === 'dark' ? "border-gray-600" : " border-blue-gray-100"}`} />
               </div>
 
               <div>
-                <Typography
-                  variant="small"
-                  color={sidenavType === 'dark' ? "white" : "blue-gray"}
-                  className=" font-medium"
-                >
+                <Typography variant="small" color={sidenavType === 'dark' ? "white" : "blue-gray"} className="font-medium">
                   Email
                 </Typography>
-                <input
-                  type="email"
-                  placeholder="Email"
-                  value={userData.email}
-                  name="email"
-                  onChange={handleChange}
-                  className={` py-2 text-sm pl-2 pr-20 rounded-lg bg-transparent border-x border-y ${sidenavType === 'dark' ? "border-gray-600" : " border-blue-gray-100"}`}
-                />
+                <input type="email" placeholder="Email" name="email" onChange={handleChange} className={`py-2 text-sm pl-2 pr-20 rounded-lg bg-transparent border-x border-y ${sidenavType === 'dark' ? "border-gray-600" : " border-blue-gray-100"}`} />
               </div>
 
-              <div className="pr-2 ">
-                <Typography
-                  variant="small"
-                  color={sidenavType === 'dark' ? "white" : "blue-gray"}
-                  className=" font-medium"
-                >
+              <div className="pr-2">
+                <Typography variant="small" color={sidenavType === 'dark' ? "white" : "blue-gray"} className="font-medium">
                   Gender
                 </Typography>
-                <select
-                  value={userData.gender}
-                  onChange={handleChange}
-                  name="gender"
-                  className={`py-2 text-sm pl-2 pr-20 rounded-lg bg-transparent w-[254px] border-x border-y ${sidenavType ? " text-gray-400 border-gray-700" : " text-blue-gray-600 border-blue-gray-100"}`}
-                >
+                <select name="gender" onChange={handleChange} className={`py-2 text-sm pl-2 pr-20 rounded-lg bg-transparent w-[254px] border-x border-y ${sidenavType ? "text-gray-400 border-gray-700" : "text-blue-gray-600 border-blue-gray-100"}`}>
                   <option value="male" className={`${sidenavType === 'dark' ? "bg-black" : "bg-white"}`}>Male</option>
                   <option value="female" className={`${sidenavType === 'dark' ? "bg-black" : "bg-white"}`}>Female</option>
+                  <option value="other" className={`${sidenavType === 'dark' ? "bg-black" : "bg-white"}`}>Other</option>
                 </select>
               </div>
 
-
               <div>
-                <Typography
-                  variant="small"
-                  color={sidenavType === 'dark' ? "white" : "blue-gray"}
-                  className=" font-medium"
-                >
-                  Age
+                <Typography variant="small" color={sidenavType === 'dark' ? "white" : "blue-gray"} className="font-medium">
+                  Date of Birth
                 </Typography>
-                <input
-                  type="number"
-                  placeholder="Age"
-                  // value={formData.age}
-                  name="age"
-                  onChange={handleChange}
-                  className={` py-2 text-sm pl-2 pr-20 rounded-lg bg-transparent border-x border-y ${sidenavType === 'dark' ? "border-gray-600" : " border-blue-gray-100"}`}
-                />
+                <input type="date" placeholder="dd-mm-yyyy" name="date_of_birth" onChange={handleChange} className={`py-2 text-sm pl-2 pr-20 rounded-lg bg-transparent border-x border-y ${sidenavType === 'dark' ? "border-gray-600" : " border-blue-gray-100"}`} />
               </div>
 
               <div>
-                <Typography
-                  variant="small"
-                  color={sidenavType === 'dark' ? "white" : "blue-gray"}
-                  className=" font-medium"
-                >
-                  Height
-                </Typography>
-                <input
-                  type="text"
-                  placeholder="Height"
-                  // value={formData.height}
-                  name="height"
-                  onChange={handleChange}
-                  className={` py-2 text-sm pl-2 pr-20 rounded-lg bg-transparent border-x border-y ${sidenavType === 'dark' ? "border-gray-600" : " border-blue-gray-100"}`}
-                />
-              </div>
-
-
-              <div>
-                <Typography
-                  variant="small"
-                  color={sidenavType === 'dark' ? "white" : "blue-gray"}
-                  className=" font-medium"
-                >
-                  Weight
-                </Typography>
-                <input
-                  type="text"
-                  placeholder="Weight"
-                  // value={formData.weight}
-                  name="weight"
-                  onChange={handleChange}
-                  className={` py-2 text-sm pl-2 pr-20 rounded-lg bg-transparent border-x border-y ${sidenavType === 'dark' ? "border-gray-600" : " border-blue-gray-100"}`}
-                />
-              </div>
-
-
-              <div>
-                <Typography
-                  variant="small"
-                  color={sidenavType === 'dark' ? "white" : "blue-gray"}
-                  className=" font-medium"
-                >
-                  Proffession
-                </Typography>
-                <input
-                  type="text"
-                  placeholder="Profession"
-                  // value={formData.proffession}
-                  name="proffession"
-                  onChange={handleChange}
-                  className={` py-2 text-sm pl-2 pr-20 rounded-lg bg-transparent border-x border-y ${sidenavType === 'dark' ? "border-gray-600" : " border-blue-gray-100"}`}
-                />
-              </div>
-
-
-              <div>
-                <Typography
-                  variant="small"
-                  color={sidenavType === 'dark' ? "white" : "blue-gray"}
-                  className=" font-medium"
-                >
+                <Typography variant="small" color={sidenavType === 'dark' ? "white" : "blue-gray"} className="font-medium">
                   Address
                 </Typography>
-                <input
-                  type="text"
-                  placeholder="Address"
-                  // value={formData.address}
-                  name="address"
-                  onChange={handleChange}
-                  className={` py-2 text-sm pl-2 pr-20 rounded-lg bg-transparent border-x border-y ${sidenavType === 'dark' ? "border-gray-600" : " border-blue-gray-100"}`}
-                />
+                <input type="text" placeholder="Enter address" name="address" onChange={handleChange} className={`py-2 text-sm pl-2 pr-20 rounded-lg bg-transparent border-x border-y ${sidenavType === 'dark' ? "border-gray-600" : " border-blue-gray-100"}`} />
               </div>
+
+              <div className="w-[270px]">
+                <Typography variant="small" color={sidenavType === 'dark' ? "white" : "blue-gray"} className="font-medium">
+                  Membership Type
+                </Typography>
+                <select name="membership_type" onChange={handleChange} className={`py-2 text-sm pl-2 pr-20 rounded-lg bg-transparent w-[254px] border-x border-y ${sidenavType ? "text-gray-400 border-gray-700" : "text-blue-gray-600 border-blue-gray-100"}`}>
+                {plans.map((plan) => (
+          <option
+            key={plan.id}
+            value={plan.id}
+            className={`${sidenavType === 'dark' ? "bg-black" : "bg-white"}`}
+          >
+            {plan.name}
+          </option>
+        ))}
+                </select>
+              </div>
+
+              <div>
+                <Typography variant="small" color={sidenavType === 'dark' ? "white" : "blue-gray"} className="font-medium">
+                  Joining Date
+                </Typography>
+                <input type="date" name="joining_date" onChange={handleChange} className={`py-2 text-sm pl-2 pr-20 rounded-lg bg-transparent border-x border-y ${sidenavType === 'dark' ? "border-gray-600" : " border-blue-gray-100"}`} />
+              </div>
+
+              <div>
+                <Typography variant="small" color={sidenavType === 'dark' ? "white" : "blue-gray"} className="font-medium">
+                  Membership Expiry Date
+                </Typography>
+                <input type="date" name="membership_expiry_date" onChange={handleChange} className={`py-2 text-sm pl-2 pr-20 rounded-lg bg-transparent border-x border-y ${sidenavType === 'dark' ? "border-gray-600" : " border-blue-gray-100"}`} />
+              </div>
+
+              <div>
+                <Typography variant="small" color={sidenavType === 'dark' ? "white" : "blue-gray"} className="font-medium">
+                  Health Conditions
+                </Typography>
+                <input type="text" placeholder="Enter health conditions" name="health_conditions" onChange={handleChange} className={`py-2 text-sm pl-2 pr-20 rounded-lg bg-transparent border-x border-y ${sidenavType === 'dark' ? "border-gray-600" : " border-blue-gray-100"}`} />
+              </div>
+
+              <div>
+                <Typography variant="small" color={sidenavType === 'dark' ? "white" : "blue-gray"} className="font-medium">
+                  Fitness Goals
+                </Typography>
+                <input type="text" placeholder="Enter fitness goals" name="fitness_goals" onChange={handleChange} className={`py-2 text-sm pl-2 pr-20 rounded-lg bg-transparent border-x border-y ${sidenavType === 'dark' ? "border-gray-600" : " border-blue-gray-100"}`} />
+              </div>
+
+              {/* <div>
+                <Typography variant="small" color={sidenavType === 'dark' ? "white" : "blue-gray"} className="font-medium">
+                  Workout Schedule
+                </Typography>
+                <input type="text" placeholder="Enter workout schedule" name="workout_schedule" onChange={handleChange} className={`py-2 text-sm pl-2 pr-20 rounded-lg bg-transparent border-x border-y ${sidenavType === 'dark' ? "border-gray-600" : " border-blue-gray-100"}`} />
+              </div> */}
+
+              <div>
+                <Typography variant="small" color={sidenavType === 'dark' ? "white" : "blue-gray"} className="font-medium">
+                  Exercise Restrictions
+                </Typography>
+                <input type="text" placeholder="Enter exercise restrictions" name="exercise_restrictions" onChange={handleChange} className={`py-2 text-sm pl-2 pr-20 rounded-lg bg-transparent border-x border-y ${sidenavType === 'dark' ? "border-gray-600" : " border-blue-gray-100"}`} />
+              </div>
+
+              <div>
+                <Typography variant="small" color={sidenavType === 'dark' ? "white" : "blue-gray"} className="font-medium">
+                  Emergency Contact Name
+                </Typography>
+                <input type="text" placeholder="Enter emergency contact name" name="emergency_contact_name" onChange={handleChange} className={`py-2 text-sm pl-2 pr-20 rounded-lg bg-transparent border-x border-y ${sidenavType === 'dark' ? "border-gray-600" : " border-blue-gray-100"}`} />
+              </div>
+
+              <div>
+                <Typography variant="small" color={sidenavType === 'dark' ? "white" : "blue-gray"} className="font-medium">
+                  Emergency Contact Phone Number
+                </Typography>
+                <input type="tel" placeholder="Enter emergency contact phone number" name="emergency_contact_phone_number" onChange={handleChange} className={`py-2 text-sm pl-2 pr-20 rounded-lg bg-transparent border-x border-y ${sidenavType === 'dark' ? "border-gray-600" : " border-blue-gray-100"}`} />
+              </div>
+
+              <div>
+                <Typography variant="small" color={sidenavType === 'dark' ? "white" : "blue-gray"} className="font-medium">
+                  Emergency Contact Relationship
+                </Typography>
+                <input type="text" placeholder="Enter emergency contact relationship" name="emergency_contact_relationship" onChange={handleChange} className={`py-2 text-sm pl-2 pr-20 rounded-lg bg-transparent border-x border-y ${sidenavType === 'dark' ? "border-gray-600" : " border-blue-gray-100"}`} />
+              </div>
+
+              {/* <div>
+                <Typography variant="small" color={sidenavType === 'dark' ? "white" : "blue-gray"} className="font-medium">
+                  Membership ID Number
+                </Typography>
+                <input type="text" placeholder="Enter membership ID number" name="membership_id_number" onChange={handleChange} className={`py-2 text-sm pl-2 pr-20 rounded-lg bg-transparent border-x border-y ${sidenavType === 'dark' ? "border-gray-600" : " border-blue-gray-100"}`} />
+              </div> */}
+
+              {/* <div>
+                <Typography variant="small" color={sidenavType === 'dark' ? "white" : "blue-gray"} className="font-medium">
+                  Access Information
+                </Typography>
+                <input type="text" placeholder="Enter access information" name="access_information" onChange={handleChange} className={`py-2 text-sm pl-2 pr-20 rounded-lg bg-transparent border-x border-y ${sidenavType === 'dark' ? "border-gray-600" : " border-blue-gray-100"}`} />
+              </div> */}
+
+<div>
+      <Typography variant="small" color={sidenavType === 'dark' ? "white" : "blue-gray"} className="font-medium">
+        Assigned Personal Trainer
+      </Typography>
+      <select
+        name="assigned_personal_trainer"
+        onChange={handleChange}
+        className={`py-2 text-sm pl-2 pr-20 rounded-lg bg-transparent w-[254px] border-x border-y ${sidenavType === 'dark' ? "border-gray-600" : "border-blue-gray-100"}`}
+      >
+        <option value="" className={`${sidenavType === 'dark' ? "bg-black" : "bg-white"}`}>Select a trainer</option>
+        {trainers?.map((trainer) => (
+          <option key={trainer.id} value={`${trainer.trainer_id} ${trainer.
+            user.last_name}`} className={`${sidenavType === 'dark' ? "bg-black" : "bg-white"}`}>
+            {trainer.first_name} {trainer.last_name}
+          </option>
+        ))}
+      </select>
+    </div>
+
+              {/* <div>
+                <Typography variant="small" color={sidenavType === 'dark' ? "white" : "blue-gray"} className="font-medium">
+                  Trainer Contact Information
+                </Typography>
+                <input type="text" placeholder="Enter trainer contact information" name="trainer_contact_information" onChange={handleChange} className={`py-2 text-sm pl-2 pr-20 rounded-lg bg-transparent border-x border-y ${sidenavType === 'dark' ? "border-gray-600" : " border-blue-gray-100"}`} />
+              </div> */}
+
+              {/* <div>
+                <Typography variant="small" color={sidenavType === 'dark' ? "white" : "blue-gray"} className="font-medium">
+                  Assigned Locker Number
+                </Typography>
+                <input type="text" placeholder="Enter assigned locker number" name="assigned_locker_number" onChange={handleChange} className={`py-2 text-sm pl-2 pr-20 rounded-lg bg-transparent border-x border-y ${sidenavType === 'dark' ? "border-gray-600" : " border-blue-gray-100"}`} />
+              </div> */}
+
+              {/* <div>
+                <Typography variant="small" color={sidenavType === 'dark' ? "white" : "blue-gray"} className="font-medium">
+                  Feedback
+                </Typography>
+                <input type="text" placeholder="Enter feedback" name="feedback" onChange={handleChange} className={`py-2 text-sm pl-2 pr-20 rounded-lg bg-transparent border-x border-y ${sidenavType === 'dark' ? "border-gray-600" : " border-blue-gray-100"}`} />
+              </div> */}
+
+              <div>
+                <Typography variant="small" color={sidenavType === 'dark' ? "white" : "blue-gray"} className="font-medium">
+                  Weight
+                </Typography>
+                <input type="text" placeholder="Enter weight" name="weight" onChange={handleChange} className={`py-2 text-sm pl-2 pr-20 rounded-lg bg-transparent border-x border-y ${sidenavType === 'dark' ? "border-gray-600" : " border-blue-gray-100"}`} />
+              </div>
+
+              <div>
+                <Typography variant="small" color={sidenavType === 'dark' ? "white" : "blue-gray"} className="font-medium">
+                  Height
+                </Typography>
+                <input type="text" placeholder="Enter height" name="height" onChange={handleChange} className={`py-2 text-sm pl-2 pr-20 rounded-lg bg-transparent border-x border-y ${sidenavType === 'dark' ? "border-gray-600" : " border-blue-gray-100"}`} />
+              </div>
+
+              <div>
+                <Typography variant="small" color={sidenavType === 'dark' ? "white" : "blue-gray"} className="font-medium">
+                  Profession
+                </Typography>
+                <input type="text" placeholder="Enter profession" name="profession" onChange={handleChange} className={`py-2 text-sm pl-2 pr-20 rounded-lg bg-transparent border-x border-y ${sidenavType === 'dark' ? "border-gray-600" : " border-blue-gray-100"}`} />
+              </div>  
               <div className=" pt-3 pl-5">
                 <Link to="/">
                   <Button type="submit" onClick={handleSubmit} className={` w-[100%] lg:w-[180px] ${sidenavType === 'dark' ? "bg-red-700" : "bg-black"}`}>create user</Button>

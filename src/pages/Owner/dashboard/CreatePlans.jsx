@@ -115,7 +115,7 @@ const CreatePlans = () => {
               <input type="text" name="name" placeholder="Name" value={formData.name} onChange={handleChange} className={`p-2 rounded-md border border-gray-200 ${sidenavType === 'dark' ? "bg-gray-900" : "bg-white"}`} />
               <input type="text" name="description" placeholder="Description" value={formData.description} onChange={handleChange} className={`p-2 rounded-md border border-gray-200 ${sidenavType === 'dark' ? "bg-gray-900" : "bg-white"}`} />
               <input type="text" name="price" placeholder="Price" value={formData.price} onChange={handleChange} className={`p-2 rounded-md border border-gray-200 ${sidenavType === 'dark' ? "bg-gray-900" : "bg-white"}`} />
-              <input type="file" name="image" onChange={handleChange} className={`p-2 rounded-md border border-gray-200 ${sidenavType === 'dark' ? "bg-gray-900" : "bg-white"}`} />
+              {/* <input type="file" name="image" onChange={handleChange} className={`p-2 rounded-md border border-gray-200 ${sidenavType === 'dark' ? "bg-gray-900" : "bg-white"}`} /> */}
               <input type="number" name="duration" placeholder="Duration" value={formData.duration} onChange={handleChange} className={`p-2 rounded-md border border-gray-200 ${sidenavType === 'dark' ? "bg-gray-900" : "bg-white"}`} />
               <select name="duration_type" value={formData.duration_type} onChange={handleChange} className={`p-2 rounded-md border border-gray-200 ${sidenavType === 'dark' ? "bg-gray-900" : "bg-white"}`}>
                 <option value="day">Day</option>
@@ -143,13 +143,13 @@ const CreatePlans = () => {
                     </button>
                   </div>
                 ))}
-                <button
+                {/* <button
                   type="button"
                   onClick={addFeatureField}
                   className={`p-2 rounded-md ${sidenavType === 'dark' ? "bg-red-700 text-white" : "bg-black text-white"}`}
                 >
                   Add Feature
-                </button>
+                </button> */}
               </div>
             </CardBody>
             <div className="flex justify-end p-4">

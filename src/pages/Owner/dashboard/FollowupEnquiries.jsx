@@ -16,9 +16,22 @@ import {
   useMaterialTailwindController
 } from "../../../context/index";
 import {authorsEnquiryData} from '../../../data/authors-enquiry-data';
-
+import {List_Enquiries} from '../../../actions/EnquirieActions'
+import  { useState } from "react";
 export function FollowupEnquiries() {
-
+  const [enquiries, setEnquiries] = useState([]);
+  useEffect(() => {
+    async function Enquiries() {
+      try {
+        const response = await List_Enquiries();
+        setEnquiries(response);
+        console.log('Fetched enquiries:', response);
+      } catch (error) {
+        console.error('Error fetching enquiries:', error);
+      }
+    }
+    Enquiries();
+  }, []);
   useEffect(() => {
     AOS.init();
   }, []);

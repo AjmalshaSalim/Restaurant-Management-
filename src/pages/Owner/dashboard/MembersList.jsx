@@ -1,5 +1,5 @@
 import React from 'react'
-import { useEffect } from 'react';
+import { useEffect,useState } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { Link } from 'react-router-dom';
@@ -18,22 +18,24 @@ import {
   useMaterialTailwindController
 } from "../../../context/index";
 import {authorsTableData} from '../../../data/authors-table-data';
+import {List_Users} from "../../../actions/UserActions"
 export function MembersList() {
+  const [members, setMembers] = useState([]);
+  useEffect(() => {
+    const fetchMembers = async () => {
+      try {
+        const response = await List_Users();
+        setMembers(response);
+      } catch (error) {
+        console.error('Failed to fetch equipments', error);
+      }
+    };
+    fetchMembers();
+  }, []);
 
   useEffect(() => {
     AOS.init();
-    // const fetchMembers = async () => {
-    //   try {
-    //     const response = await List_Equipments();
-    //     setEquipments(response);
-    //   } catch (error) {
-    //     console.error('Failed to fetch equipments', error);
-    //   }
-    // };
-    // fetchEquipments();
-  }, []);
-
-
+  }, [])
   const [controller, dispatch] = useMaterialTailwindController();
   const { sidenavType} =
     controller;
@@ -85,7 +87,7 @@ export function MembersList() {
               </tr>
             </thead>
             <tbody>
-              {authorsTableData.map (
+              {members.map (
                 ({img, name, email, job, online, date}, key) => {
                   const className = `py-3 px-5 ${key === authorsTableData.length - 1 ? '' : (sidenavType === 'dark' ? 'border-b border-gray-900' : 'border-b border-red-50')}`;
 

@@ -362,19 +362,19 @@ export function Home() {
                         <label htmlFor="attendance" className={` w-full mt-2 text-sm mb-1 pr-2 ${sidenavType === 'dark' ? "text-white" : "text-black"}`}>Member ID</label>
                         <input id="user_id" value={attendanceFormData.user_id} type="search" placeholder="Search" onChange={handleChange} className={`border-x border-y w-full  px-3 py-1 rounded-md focus:outline-none focus:border-gray-500 ${sidenavType === 'dark' ? "text-white  bg-gray-900 border-gray-300" : "text-black border-blue-gray-200"}`} />
                       </div>
-                      <div className=' w-1/5'>
+                      {/* <div className=' w-1/5'>
                         <div className='h-1/2'></div>
                         <button className={` pb-2 -mt-1 px-3 md:px-4 ml-3 rounded pt-1 ${sidenavType === 'dark' ? "bg-red-700 hover:bg-red-900 text-white" : "bg-black hover:bg-gray-900 text-white"}`} onClick={searchUserById}>
                           Search
                         </button>
-                      </div>
+                      </div> */}
                     </div>
 
-                    <div className={`w-full h-22 border-x border-y  mt-3 rounded-lg -mb-5 ${sidenavType === 'dark' ? "border-gray-800 text-white" : " border-blue-gray-200 text-black"}`} >
+                    {/* <div className={`w-full h-22 border-x border-y  mt-3 rounded-lg -mb-5 ${sidenavType === 'dark' ? "border-gray-800 text-white" : " border-blue-gray-200 text-black"}`} >
                       <h1 className='pl-2 pt-1'>Full Name : </h1>
                       <h1 className='pl-2 pt-1'>Member ID : </h1>
                       <h1 className='pl-2 pt-1 pb-1'>Phone : </h1>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
 

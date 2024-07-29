@@ -21,6 +21,17 @@ export const ADD_Equipments = async data => {
     }
   }
 
+  export const List_Users=async () =>{
+    try {
+      const response =await axios.get(API_URLS.List_Users);
+      console.log("List User",response.data);
+      return response.data;
+    } catch (error) {
+      console.error ('Fetching user >>>>:', error);
+      throw error;
+    }
+  }
+
   export const Edit_User_Profile = async data => {
     console.log(data,"hhjgjhgjjhgfjhfjh");
     try {

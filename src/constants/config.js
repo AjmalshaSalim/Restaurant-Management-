@@ -6,7 +6,7 @@ const Ver_otp ='/api/verify_otp/'
 const Reset_password = '/api/reset-password/'
 const Add_equipments ='/api/add-equipment/'
 const List_equipments='/api/list-equipment/'
-const Add_members='/api/add_user/'
+const Add_members='/api/create-gym-user/'
 const Edit_equipments='/api/edit-equipment/id:/'
 const fetchProfileData ='/api/user-profile/'
 const Fetch_Dash = '/api/dash/count/'
@@ -28,6 +28,20 @@ const List_Gym_Plans='/api/gym-plans/'
 const List_Gym_Plan_Details='/api/gym-plans/'
 const Create_Gym_Plans='/api/gym-plans/create/'
 const Delete_Gym_Plans='/api/gym-plans/'
+const View_Trainers='/api/trainers/'
+const Create_Trainer='/api/add-trainer/'
+const List_Users='/api/gym-users/'
+const List_Enquiries = '/api/enquiries/followup/'
+
+
+
+
+
+
+
+
+
+
 
 export const API_URLS = {
     LOGIN_API_PATH: `${LOGIN_API_PATH}`,
@@ -58,5 +72,9 @@ export const API_URLS = {
     LIST_GYM_PLAN_DETAILS:`${List_Gym_Plan_Details}`,
     CREATE_GYM_PLANS:`${Create_Gym_Plans}`,
     DELETE_GYM_PLANS:`${Delete_Gym_Plans}`,
+    View_Trainers:`${View_Trainers}`,
+    Create_Trainer:`${Create_Trainer}`,
+    List_Users:`${List_Users}`,
+    List_Enquiries:`${List_Enquiries}`
 }
 
